@@ -1,2 +1,3 @@
-# structr
-Structr — structured training session PWA (liquid-glass home + phased workouts)
+# Structr
+
+Structr — structured training session PWA with a liquid-glass home screen, ready for Vercel (Next.js, project name `structr`).

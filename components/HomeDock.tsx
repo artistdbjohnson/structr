@@ -5,9 +5,11 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { createSession } from "@/lib/session";
-import { loadActive, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
+import { loadActive, loadHistory, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
+import { DEFAULT_TEMPLATE_ROUTE } from "@/lib/taxonomy";
 import { BoltIcon, CalendarIcon, PersonIcon } from "./icons";
+import { TrainSheet } from "./TrainSheet";
 
 /** Shared-layout glide. Near-critical spring so the disc settles without bounce. */
 const SELECTION_SPRING = {
@@ -32,32 +34,56 @@ export function HomeDock() {
   const lock = useRef(false);
   const routeActive = routeSlot(pathname);
   const [hold, setHold] = useState<SlotId | null>(null);
+  const [sheet, setSheet] = useState<{ templateId: string; templateName: string } | null>(null);
   const active: SlotId = hold ?? routeActive;
 
   useEffect(() => {
     setHold(null);
+    setSheet(null);
+    lock.current = false;
   }, [pathname]);
 
-  function train() {
-    if (lock.current) return;
-    lock.current = true;
-    const activeSession = loadActive();
-    if (activeSession) {
-      router.push("/session");
-      return;
-    }
+  function returningTemplate() {
+    const history = loadHistory();
     const prefs = loadPrefs();
-    const template =
-      (prefs.lastTemplateId && getTemplate(prefs.lastTemplateId)) || getTemplate("swing-foundation");
-    if (!template) {
-      lock.current = false;
-      setHold(null);
-      return;
-    }
+    return (
+      (history[0]?.templateId && getTemplate(history[0].templateId)) ||
+      (prefs.lastTemplateId && getTemplate(prefs.lastTemplateId)) ||
+      getTemplate(DEFAULT_TEMPLATE_ROUTE)
+    );
+  }
+
+  function startTemplate(templateId: string) {
+    if (lock.current) return;
+    const template = getTemplate(templateId) || getTemplate(DEFAULT_TEMPLATE_ROUTE);
+    if (!template) return;
+    lock.current = true;
+    const prefs = loadPrefs();
     const session = createSession(template, prefs.unit);
     saveActive(session);
     savePrefs({ ...prefs, lastTemplateId: template.id });
+    setSheet(null);
     router.push("/session");
+  }
+
+  function train() {
+    if (lock.current) return;
+    if (loadActive()) {
+      lock.current = true;
+      setSheet(null);
+      router.push("/session");
+      return;
+    }
+    if (loadHistory().length > 0) {
+      const template = returningTemplate();
+      if (!template) return;
+      setSheet({ templateId: template.id, templateName: template.name });
+      return;
+    }
+    const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+    if (path === "/plans") return;
+    lock.current = true;
+    router.push("/plans");
   }
 
   function press(id: SlotId, event: PointerEvent<HTMLElement>) {
@@ -89,7 +115,8 @@ export function HomeDock() {
   const dockTransition = reduce ? { duration: 0 } : SELECTION_SPRING;
 
   return (
-    <motion.div className={onHome ? "dock-anchor" : "dock-anchor dock-anchor--side"} layoutRoot>
+    <>
+      <motion.div className={onHome ? "dock-anchor" : "dock-anchor dock-anchor--side"} layoutRoot>
       <motion.nav
         layout
         className="dock"
@@ -128,8 +155,20 @@ export function HomeDock() {
           onPointerDown={(event) => press("you", event)}
           icon={<PersonIcon />}
         />
-      </motion.nav>
-    </motion.div>
+        </motion.nav>
+      </motion.div>
+      {sheet ? (
+        <TrainSheet
+          templateName={sheet.templateName}
+          onClose={() => setSheet(null)}
+          onPickPlan={() => {
+            setSheet(null);
+            router.push("/plans");
+          }}
+          onStart={() => startTemplate(sheet.templateId)}
+        />
+      ) : null}
+    </>
   );
 }
 

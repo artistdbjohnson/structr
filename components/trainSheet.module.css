@@ -1,0 +1,76 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    max(20px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom))
+    max(20px, env(safe-area-inset-left));
+  background: rgba(8, 7, 10, 0.55);
+}
+
+.sheet {
+  width: min(360px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 18px;
+  color: #fff;
+  background: rgba(18, 16, 20, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 22px 48px -14px rgba(0, 0, 0, 0.55);
+}
+
+.title {
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.lead {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.primary,
+.ghost,
+.dismiss {
+  min-height: 48px;
+  border-radius: 999px;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.primary {
+  border: 0;
+  background: #fff;
+  color: #16130f;
+}
+
+.ghost,
+.dismiss {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.dismiss {
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.primary:focus-visible,
+.ghost:focus-visible,
+.dismiss:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}

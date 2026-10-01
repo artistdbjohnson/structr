@@ -11,7 +11,7 @@ export function generateStaticParams() {
   return TEMPLATES.map((template) => ({ id: template.id }));
 }
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateMetadata({
   params,
@@ -31,7 +31,7 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ id:
   return (
     <PageFrame
       backHref="/plans"
-      backLabel="‹ Plans"
+      backLabel="‹ Train for"
       title={template.name}
       meta={template.minutes}
       trailing={<InfoLink />}

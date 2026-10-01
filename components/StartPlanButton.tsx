@@ -6,6 +6,7 @@ import { createSession } from "@/lib/session";
 import { loadActive, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
 import styles from "./subpage.module.css";
+import { useTapGuard } from "./useTapGuard";
 
 export function StartPlanButton({
   templateId,
@@ -17,6 +18,7 @@ export function StartPlanButton({
   label?: string;
 }) {
   const router = useRouter();
+  const tap = useTapGuard();
   const [mode, setMode] = useState<"start" | "resume">("start");
   const [ask, setAsk] = useState(false);
 
@@ -36,6 +38,7 @@ export function StartPlanButton({
   }
 
   function onClick() {
+    if (tap.consumeIfMoved()) return;
     const active = loadActive();
     if (active?.templateId === templateId) {
       router.push("/session");
@@ -53,10 +56,28 @@ export function StartPlanButton({
       <div className={styles.confirm}>
         <p>End the current session before starting this plan? It won&apos;t be saved.</p>
         <div className={styles.confirmActions}>
-          <button className={styles.primary} type="button" onClick={startFresh}>
+          <button
+            className={styles.primary}
+            type="button"
+            onPointerDown={tap.onPointerDown}
+            onPointerMove={tap.onPointerMove}
+            onClick={() => {
+              if (tap.consumeIfMoved()) return;
+              startFresh();
+            }}
+          >
             End and start
           </button>
-          <button className={styles.ghost} type="button" onClick={() => router.push("/session")}>
+          <button
+            className={styles.ghost}
+            type="button"
+            onPointerDown={tap.onPointerDown}
+            onPointerMove={tap.onPointerMove}
+            onClick={() => {
+              if (tap.consumeIfMoved()) return;
+              router.push("/session");
+            }}
+          >
             Resume
           </button>
         </div>
@@ -65,7 +86,13 @@ export function StartPlanButton({
   }
 
   return (
-    <button className={className ?? styles.primary} type="button" onClick={onClick}>
+    <button
+      className={className ?? styles.primary}
+      type="button"
+      onPointerDown={tap.onPointerDown}
+      onPointerMove={tap.onPointerMove}
+      onClick={onClick}
+    >
       {mode === "resume" ? "Resume" : label}
     </button>
   );

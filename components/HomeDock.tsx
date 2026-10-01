@@ -4,12 +4,14 @@ import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
+import { isTrainHome } from "@/lib/nav";
 import { createSession } from "@/lib/session";
 import { loadActive, loadHistory, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
 import { DEFAULT_TEMPLATE_ROUTE } from "@/lib/taxonomy";
 import { BoltIcon, CalendarIcon, PersonIcon } from "./icons";
 import { TrainSheet } from "./TrainSheet";
+import { useTapGuard } from "./useTapGuard";
 
 /** Shared-layout glide. Near-critical spring so the disc settles without bounce. */
 const SELECTION_SPRING = {
@@ -35,11 +37,21 @@ function routeSlot(pathname: string): Exclude<SlotId, "train"> {
   return "you";
 }
 
-export function HomeDock() {
+export function HomeDock({
+  trayOpen,
+  onOpenTray,
+  onCloseTray,
+}: {
+  trayOpen: boolean;
+  onOpenTray: () => void;
+  onCloseTray: () => void;
+}) {
   const router = useRouter();
   const pathname = usePathname() || "/";
   const reduce = useReducedMotion() === true;
   const lock = useRef(false);
+  const tap = useTapGuard();
+  const marginTap = useTapGuard();
   const routeActive = routeSlot(pathname);
   const [hold, setHold] = useState<SlotId | null>(null);
   const [sheet, setSheet] = useState<{ templateId: string; templateName: string } | null>(null);
@@ -76,6 +88,7 @@ export function HomeDock() {
 
   function train() {
     if (lock.current) return;
+    if (tap.consumeIfMoved()) return;
     if (loadActive()) {
       lock.current = true;
       setSheet(null);
@@ -88,19 +101,18 @@ export function HomeDock() {
       setSheet({ templateId: template.id, templateName: template.name });
       return;
     }
-    const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-    if (path === "/" || path === "/plans") return;
-    lock.current = true;
-    router.push("/plans");
+    onOpenTray();
+    if (!isTrainHome(pathname)) {
+      lock.current = true;
+      router.push("/plans");
+    }
   }
 
   function press(id: SlotId, event: PointerEvent<HTMLElement>) {
     if (event.button !== 0) return;
-    try {
-      event.currentTarget.setPointerCapture(event.pointerId);
-    } catch {
-      /* Some browsers reject capture during a cancelled gesture. */
-    }
+    // Do not capture the pointer. Capture turned a scroll beside the pill into a Train click,
+    // which resumed Warm-up. Movement past a few pixels is ignored instead.
+    tap.onPointerDown(event);
     setHold(id);
   }
 
@@ -111,17 +123,40 @@ export function HomeDock() {
       event.clientX <= rect.right &&
       event.clientY >= rect.top &&
       event.clientY <= rect.bottom;
-    if (!inside) setHold(null);
+    if (!inside) {
+      tap.suppress();
+      setHold(null);
+    }
   }
 
   const slotProps = {
     reduce,
+    onPointerMove: tap.onPointerMove,
     onPointerUp: release,
-    onPointerCancel: () => setHold(null),
+    onPointerCancel: () => {
+      tap.suppress();
+      setHold(null);
+    },
+    onPointerLeave: () => setHold(null),
   };
   return (
     <>
       <div className="dock-anchor dock-anchor--side">
+        {trayOpen ? (
+          <button
+            type="button"
+            className="dock-margin"
+            aria-label="Close Train for"
+            tabIndex={-1}
+            data-dock-margin="true"
+            onPointerDown={marginTap.onPointerDown}
+            onPointerMove={marginTap.onPointerMove}
+            onClick={() => {
+              if (marginTap.consumeIfMoved()) return;
+              onCloseTray();
+            }}
+          />
+        ) : null}
       <nav className="dock" aria-label="Home" data-active={routeActive}>
         <DockSlot
           {...slotProps}
@@ -141,6 +176,13 @@ export function HomeDock() {
           active={active === "plans"}
           current={routeActive === "plans"}
           onPointerDown={(event) => press("plans", event)}
+          onClick={(event) => {
+            if (tap.consumeIfMoved()) {
+              event.preventDefault();
+              return;
+            }
+            onOpenTray();
+          }}
           icon={<CalendarIcon />}
         />
         <DockSlot
@@ -151,6 +193,9 @@ export function HomeDock() {
           active={active === "you"}
           current={routeActive === "you"}
           onPointerDown={(event) => press("you", event)}
+          onClick={(event) => {
+            if (tap.consumeIfMoved()) event.preventDefault();
+          }}
           icon={<PersonIcon />}
         />
         </nav>
@@ -161,7 +206,8 @@ export function HomeDock() {
           onClose={() => setSheet(null)}
           onPickPlan={() => {
             setSheet(null);
-            router.push("/plans");
+            onOpenTray();
+            if (!isTrainHome(pathname)) router.push("/plans");
           }}
           onStart={() => startTemplate(sheet.templateId)}
         />
@@ -179,8 +225,10 @@ function DockSlot({
   reduce,
   icon,
   onPointerDown,
+  onPointerMove,
   onPointerUp,
   onPointerCancel,
+  onPointerLeave,
   onClick,
 }: {
   id: SlotId;
@@ -191,9 +239,11 @@ function DockSlot({
   reduce: boolean;
   icon: ReactNode;
   onPointerDown: (event: PointerEvent<HTMLElement>) => void;
+  onPointerMove: (event: PointerEvent<HTMLElement>) => void;
   onPointerUp: (event: PointerEvent<HTMLElement>) => void;
   onPointerCancel: () => void;
-  onClick?: () => void;
+  onPointerLeave: () => void;
+  onClick?: (event: { preventDefault(): void }) => void;
 }) {
   const body = (
     <>
@@ -225,8 +275,11 @@ function DockSlot({
         data-slot={id}
         data-selected={active ? "true" : "false"}
         onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerCancel}
+        onPointerLeave={onPointerLeave}
+        onClick={onClick}
       >
         {body}
       </Link>
@@ -242,8 +295,10 @@ function DockSlot({
       data-selected={active ? "true" : "false"}
       onClick={onClick}
       onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerCancel}
+      onPointerLeave={onPointerLeave}
     >
       {body}
     </button>

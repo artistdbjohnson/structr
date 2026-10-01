@@ -4,7 +4,7 @@ import { resolveTrainChip } from "@/lib/taxonomy";
 
 export const metadata: Metadata = { title: "Train for" };
 
-/** Cold load opens Train for. The wallpaper-only dock is no longer the entry. */
+/** Cold load opens the Train for tray over the wallpaper. Dismiss leaves the dock. */
 export default function HomePage() {
   return <TrainFor chip={resolveTrainChip(null)} />;
 }

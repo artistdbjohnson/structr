@@ -44,7 +44,26 @@ textarea {
   display: grid;
   position: fixed;
   inset: 0;
+  z-index: 0;
   overflow: hidden;
+}
+
+.home-stage {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .home::before {
@@ -83,9 +102,31 @@ textarea {
   }
 }
 
+.dock-margin {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  width: var(--dock-gutter);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  pointer-events: auto;
+  touch-action: manipulation;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .dock {
   z-index: 1;
   isolation: isolate;
+  height: max-content;
+  max-height: calc(100dvh - 16px);
+  align-self: center;
+  justify-self: end;
   pointer-events: auto;
   color: #fff;
   border: 1px solid var(--rim-soft);

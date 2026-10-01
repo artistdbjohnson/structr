@@ -164,7 +164,7 @@
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: var(--track-tight);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .marks {
@@ -476,9 +476,15 @@
 
 .moduleHead {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px 12px;
+}
+
+.moduleHead .cardTitle {
+  flex: 1 1 10rem;
+  min-width: min(100%, 8rem);
 }
 
 .quietLink {
@@ -513,6 +519,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
   border-radius: 8px;
 }
 
@@ -521,6 +528,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .blockBtn {
@@ -542,9 +551,10 @@
   width: 100%;
   min-height: 48px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px 12px;
   padding: 10px 0;
   background: transparent;
   color: inherit;
@@ -557,16 +567,23 @@
 }
 
 .soonName {
+  flex: 1 1 10rem;
+  min-width: min(100%, 8rem);
   font-size: 16px;
   font-weight: 650;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .soonMeta {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
-  flex: none;
+  flex: 0 1 auto;
+  max-width: 100%;
+  margin-left: auto;
+  position: static;
 }
 
 .infoMark {
@@ -602,9 +619,11 @@
   min-width: 0;
   min-height: 52px;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 6px 12px;
   padding: 12px 14px;
   text-align: left;
   color: inherit;
@@ -630,7 +649,21 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
+  flex: 1 1 12rem;
+  min-width: min(100%, 11rem);
+  max-width: 100%;
+}
+
+.eyebrow,
+.accName,
+.accMeta,
+.cardTitle,
+.plannedName,
+.soonName,
+.sessionName {
   min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .accName {
@@ -638,22 +671,30 @@
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: var(--track-tight);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .accSide {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  flex: none;
+  justify-content: flex-end;
+  gap: 6px 8px;
+  flex: 1 1 auto;
+  min-width: min(100%, max-content);
+  max-width: 100%;
+  margin-left: auto;
+  position: static;
 }
 
 .accMeta {
+  position: static;
   color: var(--ink-meta);
   font-size: 0.8125rem;
   font-weight: 650;
   line-height: 1.2;
   text-align: right;
+  white-space: normal;
 }
 
 .accChevron {

@@ -8,6 +8,13 @@
   --glass: #ffffff38;
   --rim-soft: #ffffff47;
   --ink: #fff;
+  --ink-body: rgba(255, 255, 255, 0.86);
+  --ink-meta: rgba(255, 255, 255, 0.78);
+  --ink-label: rgba(255, 255, 255, 0.72);
+  --track-tight: -0.03em;
+  --track-label: 0.08em;
+  --measure: 40rem;
+  --dock-gutter: calc(clamp(128px, 17.5vmin, 158px) + 22px);
   color-scheme: dark;
 }
 
@@ -72,7 +79,7 @@ textarea {
 
 @media (max-width: 839px) {
   .shell--sub {
-    padding-right: calc(clamp(128px, 17.5vmin, 158px) + 22px);
+    padding-right: var(--dock-gutter);
   }
 }
 
@@ -220,12 +227,22 @@ textarea {
   display: block;
   width: 100%;
   text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
   color: #fff;
   white-space: nowrap;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+}
+
+.dock__btn[data-selected="true"] {
+  color: #1a1612;
+}
+
+.dock__btn[data-selected="true"] .dock__label {
+  color: #1a1612;
+  text-shadow: none;
 }
 
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {

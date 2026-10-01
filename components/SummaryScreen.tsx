@@ -50,8 +50,10 @@ export function SummaryScreen() {
   return (
     <main className={styles.screen} data-screen="summary">
       <div className={styles.shell}>
-        <p className={styles.detail}>{formatWhen(summary.endedAt)}</p>
-        <h1 className={styles.title}>{summary.templateName}</h1>
+        <header className={styles.heading}>
+          <h1 className={styles.title}>{summary.templateName}</h1>
+          <p className={styles.kicker}>{formatWhen(summary.endedAt)}</p>
+        </header>
         <p className={styles.lead}>Saved on this device.</p>
         <PhaseBar
           title="Session"

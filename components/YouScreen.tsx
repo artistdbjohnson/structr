@@ -72,13 +72,14 @@ export function YouScreen() {
                 return (
                   <article key={summary.id} className={styles.card}>
                     <div className={styles.sessionItem}>
-                      <strong>{summary.templateName}</strong>
-                      <span className={styles.lead}>{formatWhen(summary.endedAt)}</span>
-                      <span className={styles.lead}>
-                        {formatClock(summary.durationSec)} · {summary.totalReps} reps ·{" "}
-                        {summary.topWeight > 0 ? `${summary.topWeight} ${summary.unit}` : "no load"} · BULK RPE{" "}
-                        {summary.bulkRpe ?? "—"}
-                      </span>
+                      <strong className={styles.sessionName}>{summary.templateName}</strong>
+                      <p className={styles.kicker}>{formatWhen(summary.endedAt)}</p>
+                      <ul className={styles.statRow}>
+                        <li>{formatClock(summary.durationSec)}</li>
+                        <li>{summary.totalReps} reps</li>
+                        <li>{summary.topWeight > 0 ? `${summary.topWeight} ${summary.unit}` : "no load"}</li>
+                        <li>BULK RPE {summary.bulkRpe ?? "—"}</li>
+                      </ul>
                     </div>
                   </article>
                 );

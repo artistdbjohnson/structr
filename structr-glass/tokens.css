@@ -47,9 +47,16 @@
   --sg-fill-orange-strong: hsla(var(--sg-tint-orange) / 0.34);
   --sg-fill-cyan-strong: hsla(var(--sg-tint-cyan) / 0.34);
 
-  --sg-glow-magenta: hsla(var(--sg-tint-magenta) / 0.35);
-  --sg-glow-orange: hsla(var(--sg-tint-orange) / 0.35);
-  --sg-glow-cyan: hsla(var(--sg-tint-cyan) / 0.35);
+  /* Internal bloom — luminous, not a stroke. Second stop is the far-side hue. */
+  --sg-glow-magenta: hsla(var(--sg-tint-magenta) / 0.55);
+  --sg-glow-orange: hsla(var(--sg-tint-orange) / 0.5);
+  --sg-glow-cyan: hsla(var(--sg-tint-cyan) / 0.5);
+  --sg-bloom-magenta-a: hsla(320 96% 68% / 0.72);
+  --sg-bloom-magenta-b: hsla(168 72% 46% / 0.4);
+  --sg-bloom-orange-a: hsla(28 100% 66% / 0.7);
+  --sg-bloom-orange-b: hsla(8 92% 46% / 0.42);
+  --sg-bloom-cyan-a: hsla(210 100% 72% / 0.62);
+  --sg-bloom-cyan-b: hsla(186 96% 52% / 0.46);
 
   /* Neutral frosted base under tint */
   --sg-fill-base: rgba(255, 255, 255, 0.1);
@@ -61,14 +68,20 @@
   --sg-radius-md: 20px;
   --sg-radius-lg: 26px;
   --sg-radius-xl: 32px;
-  --sg-radius-pill: 999px; /* reserved for nested % chip only — not MetricPill shell */
+  --sg-radius-capsule: 36px; /* frosted metric shells — short cards read as capsules */
+  --sg-radius-pill: 999px; /* nested % / trend chips */
 
-  /* ── Dashed inner rim ────────────────────────────────────────────────── */
-  --sg-rim-dash: 1.5px;
-  --sg-rim-gap: 3.5px;
-  --sg-rim-inset: 3px;
-  --sg-rim-color: rgba(255, 255, 255, 0.42);
-  --sg-rim-color-strong: rgba(255, 255, 255, 0.58);
+  /* ── Soft luminous rim (thin sheen + bloom — never a dashed perimeter) ─ */
+  --sg-rim-width: 1px;
+  --sg-rim-color: rgba(255, 255, 255, 0.32);
+  --sg-rim-color-strong: rgba(255, 255, 255, 0.72);
+  --sg-rim-sheen: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(255, 255, 255, 0.1) 34%,
+    rgba(255, 255, 255, 0.04) 62%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
 
   /* ── Grain overlay ───────────────────────────────────────────────────── */
   --sg-grain-opacity: 0.08;
@@ -86,18 +99,18 @@
   --sg-shadow-depth:
     0 10px 28px -10px rgba(0, 0, 0, 0.55),
     0 4px 12px rgba(0, 0, 0, 0.22);
-  --sg-shadow-glow-magenta: 0 0 24px var(--sg-glow-magenta);
-  --sg-shadow-glow-orange: 0 0 24px var(--sg-glow-orange);
-  --sg-shadow-glow-cyan: 0 0 24px var(--sg-glow-cyan);
+  --sg-shadow-glow-magenta: 0 0 28px var(--sg-glow-magenta);
+  --sg-shadow-glow-orange: 0 0 28px var(--sg-glow-orange);
+  --sg-shadow-glow-cyan: 0 0 28px var(--sg-glow-cyan);
 
   /* Outer hairline + refraction combo (compose in components) */
   --sg-shadow-metric: var(--sg-shadow-rim), var(--sg-shadow-depth);
 
   /* ── Dot-matrix numerals ─────────────────────────────────────────────── */
-  --sg-numeral-tracking: 0.06em;
+  --sg-numeral-tracking: 0.02em;
   --sg-numeral-weight: 600;
-  --sg-numeral-size: clamp(1.75rem, 4.2vmin, 2.35rem);
-  --sg-numeral-size-sm: clamp(1.1rem, 2.6vmin, 1.35rem);
+  --sg-numeral-size: clamp(1.2rem, 6.4vw, 2rem);
+  --sg-numeral-size-sm: clamp(0.95rem, 3.4vw, 1.15rem);
   /* Stack: tabular + optional bitmapped look via text-shadow lattice */
   --sg-numeral-font: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   --sg-numeral-dot:
@@ -155,8 +168,14 @@
   --sg-canvas: #f4f2ef;
   --sg-fill-base: rgba(255, 255, 255, 0.55);
   --sg-fill-base-hi: rgba(255, 255, 255, 0.72);
-  --sg-rim-color: rgba(0, 0, 0, 0.18);
-  --sg-rim-color-strong: rgba(0, 0, 0, 0.28);
+  --sg-rim-color: rgba(0, 0, 0, 0.16);
+  --sg-rim-color-strong: rgba(255, 255, 255, 0.85);
+  --sg-rim-sheen: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.2) 40%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
   --sg-grain-opacity: 0.05;
   --sg-chip-fill: rgba(255, 255, 255, 0.55);
   --sg-shadow-rim:
@@ -177,7 +196,7 @@
  *   .dock radius:      999px (metric uses squircle scale)
  *   .dock fill:        milky white / warm gray — no magenta/orange/cyan tint
  *   .dock grain:       none
- *   .dock dashed rim:  none (solid + soft-light sheen ::before instead)
+ *   .dock rim:         solid + soft-light sheen (not StructrGlass bloom)
  *
  * If you need dock tokens later, namespace them --dock-* in globals.css,
  * never --sg-*.

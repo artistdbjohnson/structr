@@ -14,7 +14,7 @@
 | **Home dock (liquid-glass pill)** | `app/globals.css` → `.dock` | **~36px** + saturate 160% | Milky white / warm gray | **999px** capsule | Store / People / Photos nav only |
 | **StructrGlass (this package)** | `tokens.css` → `--sg-*` | **12–16px** + saturate 130–160% | **Magenta / orange / cyan** tints | **Squircle** `--sg-radius-sm…xl` | MetricPill, TrendChip, PhaseBar |
 
-**Rule:** Never fold dock styles into MetricPill tokens (or the reverse). Dock has no dashed rim, no grain overlay, no tint fills, no squircle shell. Keep `.dock` untouched when wiring StructrGlass.
+**Rule:** Never fold dock styles into MetricPill tokens (or the reverse). Dock has no metric bloom, no grain overlay, no tint fills, no squircle shell. Keep `.dock` untouched when wiring StructrGlass.
 
 ---
 
@@ -54,8 +54,8 @@ export { PhaseBar } from "../structr-glass/components/PhaseBar";
 |--------------|--------|---------|
 | Backdrop blur + saturate | `--sg-blur`, `--sg-blur-sm`, `--sg-blur-lg`, `--sg-saturate*`, `--sg-backdrop` | blur **14px** (range **12–16**), saturate **145%** |
 | Tinted glass fills | `--sg-tint-{magenta,orange,cyan}`, `--sg-fill-*`, `--sg-fill-*-strong`, `--sg-glow-*` | HSL channels + alpha fills |
-| Squircle radii | `--sg-radius-xs…xl` | 10 / 14 / 20 / 26 / 32 — **not** dock’s 999 |
-| Dashed inner rim | `--sg-rim-dash`, `--sg-rim-gap`, `--sg-rim-inset`, `--sg-rim-color*` | 1.5px dashed, 3px inset |
+| Squircle / capsule radii | `--sg-radius-xs…xl`, `--sg-radius-capsule` | 10 / 14 / 20 / 26 / 32, capsule **36** — dock stays 999 |
+| Soft luminous rim | `--sg-rim-width`, `--sg-rim-sheen`, `--sg-rim-color*` | 1px masked sheen + bloom. No dashed perimeter |
 | Grain overlay | `--sg-grain-image`, `--sg-grain-opacity`, `--sg-grain-size` | SVG noise ~8% overlay |
 | Refractive rim shadows | `--sg-shadow-rim`, `--sg-shadow-depth`, `--sg-shadow-metric`, `--sg-shadow-glow-*` | inset highlights + depth + tint glow |
 | Dot-matrix numerals | `--sg-numeral-*`, `--sg-numeral-dot`, `--sg-numeral-mask-size` | mono + tabular + soft lattice |
@@ -84,11 +84,12 @@ import { TrendChip } from "@/structr-glass/components/TrendChip";
 />
 ```
 
-- Shell: squircle + `--sg-backdrop` + tint fill + refractive shadow  
-- `::before` dashed rim · `::after` grain  
-- Value: dot-matrix numeral  
+- Shell: frosted capsule + `--sg-backdrop` + internal multi-hue bloom + soft rim  
+- `::before` masked sheen (not a dashed stroke) · `::after` grain  
+- Value: dot-matrix numeral sized with the pill (`cqi`) so it stays inside  
 - `percent` → nested `PercentChip`  
-- `spark` → hairline SVG  
+- Optional dotted accent arc sits under the reading when a footer or percent is present  
+- `spark` → hairline SVG that shrinks inside the row  
 
 ### TrendChip
 
@@ -96,7 +97,7 @@ import { TrendChip } from "@/structr-glass/components/TrendChip";
 <TrendChip value="−2.1%" direction="down" tint="orange" />
 ```
 
-Compact nested glass; dashed rim + grain at smaller scale. Use in MetricPill `footer` or alone.
+Compact frosted chip; soft rim + grain. Use in MetricPill `footer` or alone. The dotted arc on a pill is an accent under the trend, not an outline around this chip.
 
 ### PhaseBar
 
@@ -158,4 +159,4 @@ Inspected: `https://structr-wine.vercel.app` + `artistdbjohnson/structr@main`.
 
 ## 10. Message for App Builder (forwardable)
 
-> StructrGlass handoff is ready under `/workspace/structr-glass/` (tokens + MetricPill / TrendChip / PhaseBar + RECIPE.md). Import `tokens.css`, drop the three CSS Module components into the Next app. **Keep the home dock’s liquid-glass pill (`.dock` in globals.css) as a separate system** — do not reuse `--sg-*` metric tokens on the dock or dock styles on MetricPill. Metric glass = blur 12–16px, magenta/orange/cyan tints, squircle radii, dashed rim, grain, refractive shadows, dot-matrix numerals, nested % chip, hairline sparkline. Flint will not push to GitHub; please pull these files into `artistdbjohnson/structr` when ready.
+> StructrGlass handoff is ready under `/workspace/structr-glass/` (tokens + MetricPill / TrendChip / PhaseBar + RECIPE.md). Import `tokens.css`, drop the three CSS Module components into the Next app. **Keep the home dock’s liquid-glass pill (`.dock` in globals.css) as a separate system** — do not reuse `--sg-*` metric tokens on the dock or dock styles on MetricPill. Metric glass = blur 12–16px, magenta/orange/cyan internal bloom, capsule radii, soft 1px sheen (no dashed perimeter), grain, refractive shadows, dot-matrix numerals, nested % chip, hairline sparkline. Flint will not push to GitHub; please pull these files into `artistdbjohnson/structr` when ready.

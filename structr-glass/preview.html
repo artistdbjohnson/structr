@@ -39,20 +39,29 @@
     /* Inline recipes (mirror CSS modules for static preview) */
     .pill, .phase {
       position: relative; isolation: isolate; overflow: hidden;
-      border-radius: var(--sg-radius-lg);
-      padding: var(--sg-pad-pill-y) var(--sg-pad-pill-x);
+      border-radius: var(--sg-radius-capsule);
+      padding: 16px 14px 14px;
+      --sg-bloom-a: var(--sg-bloom-cyan-a);
+      --sg-bloom-b: var(--sg-bloom-cyan-b);
       background:
-        linear-gradient(155deg, var(--sg-fill-base-hi) 0%, transparent 42%),
-        linear-gradient(180deg, var(--sg-fill-strong) 0%, var(--sg-fill) 100%),
-        var(--sg-fill-base);
-      box-shadow: var(--sg-shadow-metric), var(--sg-shadow-glow);
+        radial-gradient(115% 90% at 12% 0%, var(--sg-bloom-a) 0%, transparent 58%),
+        radial-gradient(95% 85% at 100% 115%, var(--sg-bloom-b) 0%, transparent 62%),
+        linear-gradient(165deg, var(--sg-fill-base-hi) 0%, transparent 44%),
+        linear-gradient(185deg, var(--sg-fill-strong) 0%, var(--sg-fill) 68%, rgba(8, 8, 12, 0.22) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.62),
+        0 0 0 1px var(--sg-rim-color),
+        var(--sg-shadow-glow),
+        var(--sg-shadow-depth);
       backdrop-filter: var(--sg-backdrop);
       -webkit-backdrop-filter: var(--sg-backdrop);
     }
     .pill::before, .phase::before {
-      content: ""; position: absolute; inset: var(--sg-rim-inset);
-      border-radius: calc(var(--sg-radius-lg) - var(--sg-rim-inset));
-      border: var(--sg-rim-dash) dashed var(--sg-rim-color); z-index: 2; pointer-events: none;
+      content: ""; position: absolute; inset: 0; border-radius: inherit;
+      padding: var(--sg-rim-width); background: var(--sg-rim-sheen);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      z-index: 2; pointer-events: none;
     }
     .pill::after, .phase::after, .tchip::after {
       content: ""; position: absolute; inset: 0; border-radius: inherit;
@@ -63,16 +72,19 @@
       --sg-fill: var(--sg-fill-magenta); --sg-fill-strong: var(--sg-fill-magenta-strong);
       --sg-glow: var(--sg-glow-magenta); --sg-spark: var(--sg-spark-magenta);
       --sg-shadow-glow: var(--sg-shadow-glow-magenta);
+      --sg-bloom-a: var(--sg-bloom-magenta-a); --sg-bloom-b: var(--sg-bloom-magenta-b);
     }
     .pill[data-tint="orange"], .phase[data-tint="orange"] {
       --sg-fill: var(--sg-fill-orange); --sg-fill-strong: var(--sg-fill-orange-strong);
       --sg-glow: var(--sg-glow-orange); --sg-spark: var(--sg-spark-orange);
       --sg-shadow-glow: var(--sg-shadow-glow-orange);
+      --sg-bloom-a: var(--sg-bloom-orange-a); --sg-bloom-b: var(--sg-bloom-orange-b);
     }
     .pill[data-tint="cyan"], .phase[data-tint="cyan"] {
       --sg-fill: var(--sg-fill-cyan); --sg-fill-strong: var(--sg-fill-cyan-strong);
       --sg-glow: var(--sg-glow-cyan); --sg-spark: var(--sg-spark-cyan);
       --sg-shadow-glow: var(--sg-shadow-glow-cyan);
+      --sg-bloom-a: var(--sg-bloom-cyan-a); --sg-bloom-b: var(--sg-bloom-cyan-b);
     }
     .label { position: relative; z-index: 3; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sg-ink-muted); margin-bottom: 10px; }
     .row { position: relative; z-index: 3; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
@@ -93,26 +105,29 @@
     .tchip {
       position: relative; isolation: isolate; overflow: hidden;
       display: inline-flex; align-items: center; gap: 0.35em;
-      padding: 0.28em 0.65em 0.28em 0.5em; border-radius: var(--sg-radius-sm);
-      font-family: var(--sg-numeral-font); font-size: 0.75rem; font-weight: 600;
-      background: linear-gradient(160deg, var(--sg-fill-base-hi), transparent 55%), var(--sg-fill);
-      box-shadow: var(--sg-shadow-rim); backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
+      padding: 0.22em 0.7em; border-radius: var(--sg-radius-pill);
+      font-family: var(--sg-numeral-font); font-size: 0.75rem; font-weight: 650;
+      background: linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,255,255,0.08)), var(--sg-fill);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.66), 0 0 0 1px rgba(255,255,255,0.28), 0 0 12px var(--sg-glow);
+      backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
       -webkit-backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
     }
     .tchip::before {
-      content: ""; position: absolute; inset: 2px; border-radius: calc(var(--sg-radius-sm) - 2px);
-      border: 1px dashed var(--sg-rim-color); opacity: 0.7; z-index: 1; pointer-events: none;
+      content: ""; position: absolute; inset: 0; border-radius: inherit;
+      padding: var(--sg-rim-width); background: var(--sg-rim-sheen);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      z-index: 1; pointer-events: none;
     }
     .tchip span { position: relative; z-index: 2; }
-    .phase { border-radius: var(--sg-radius-md); --pb-active: var(--sg-spark); }
-    .phase::before { border-radius: calc(var(--sg-radius-md) - var(--sg-rim-inset)); }
+    .phase { border-radius: 28px; --pb-active: var(--sg-spark); }
     .track { position: relative; z-index: 3; display: flex; gap: var(--sg-phase-gap); height: var(--sg-phase-track-h); margin-top: 10px; }
     .seg { flex: 1; border-radius: 999px; background: rgba(255,255,255,0.12); }
     .seg.done { background: color-mix(in srgb, var(--pb-active) 55%, rgba(255,255,255,0.2)); box-shadow: 0 0 10px color-mix(in srgb, var(--pb-active) 40%, transparent); }
     .seg.active { position: relative; overflow: hidden; }
     .seg.active > i { display: block; height: 100%; width: 60%; background: linear-gradient(90deg, transparent, var(--pb-active)); border-radius: inherit; box-shadow: 0 0 12px color-mix(in srgb, var(--pb-active) 50%, transparent); }
     .dock-demo {
-      margin-top: 40px; padding: 16px; border: 1px dashed rgba(251, 191, 36, 0.45); border-radius: 16px; max-width: 720px;
+      margin-top: 40px; padding: 16px; border: 1px solid rgba(251, 191, 36, 0.45); border-radius: 16px; max-width: 720px;
     }
     .dock-demo .fake-dock {
       width: 72px; margin: 12px auto 0; padding: 14px 10px; border-radius: 999px;
@@ -184,7 +199,7 @@
 
   <div class="dock-demo">
     <strong style="color:#fbbf24;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase">Not StructrGlass — home dock (separate)</strong>
-    <p class="note" style="margin:8px 0 0">Blur 36px · milky fill · radius 999 · no tint / dashed rim / grain. Lives in <code>app/globals.css</code> only.</p>
+    <p class="note" style="margin:8px 0 0">Blur 36px · milky fill · radius 999 · no tint / metric bloom / grain. Lives in <code>app/globals.css</code> only.</p>
     <div class="fake-dock" aria-hidden="true"><i></i><i></i><i></i></div>
   </div>
 </body>

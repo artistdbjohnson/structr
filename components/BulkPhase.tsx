@@ -17,8 +17,14 @@ function HeroSpark({ progress }: { progress: number }) {
   const x = 12 + clamped * 300;
   return (
     <svg className={styles.spark} viewBox="0 0 328 36" aria-hidden="true">
-      <path d="M12 18 H316" stroke="rgba(255,255,255,0.28)" strokeWidth="1" strokeDasharray="3 4" />
-      <path d={`M12 18 H ${x.toFixed(1)}`} stroke="white" strokeWidth="1.25" strokeLinecap="round" />
+      <path d="M12 18 H316" stroke="rgba(255,255,255,0.28)" strokeWidth="1.5" strokeLinecap="round" />
+      <path
+        d={`M12 18 H ${x.toFixed(1)}`}
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85))" }}
+      />
       <circle cx={x} cy="18" r="4" fill="white" />
       <circle cx={x} cy="18" r="8" fill="none" stroke="white" strokeOpacity="0.45" />
     </svg>
@@ -214,7 +220,7 @@ export function BulkPhase({
         <div className={styles.heroTop}>
           <span className={styles.heroLabel}>{heroLabel}</span>
         </div>
-        <div>
+        <div className={styles.heroClock}>
           <div className={styles.matrix}>{clock}</div>
           <div className={styles.sublabel}>{sublabel}</div>
         </div>

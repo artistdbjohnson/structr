@@ -8,12 +8,14 @@ export function PageFrame({
   backHref,
   backLabel,
   title,
+  meta,
   trailing,
   children,
 }: {
   backHref: string;
   backLabel: string;
   title: string;
+  meta?: ReactNode;
   trailing?: ReactNode;
   children: ReactNode;
 }) {
@@ -26,7 +28,10 @@ export function PageFrame({
           </Link>
           {trailing}
         </div>
-        <h1 className={styles.title}>{title}</h1>
+        <header className={styles.heading}>
+          <h1 className={styles.title}>{title}</h1>
+          {meta ? <p className={styles.kicker}>{meta}</p> : null}
+        </header>
         {children}
       </div>
     </main>

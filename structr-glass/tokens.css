@@ -19,8 +19,8 @@
 
   /* ── Ink / surfaces (shared dark canvas; dock keeps its own) ─────────── */
   --sg-ink: #ffffff;
-  --sg-ink-muted: rgba(255, 255, 255, 0.72);
-  --sg-ink-faint: rgba(255, 255, 255, 0.45);
+  --sg-ink-muted: rgba(255, 255, 255, 0.82);
+  --sg-ink-faint: rgba(255, 255, 255, 0.68);
   --sg-canvas: #0a0a0a;
 
   /* ── Backdrop: metric glass (NOT dock) ───────────────────────────────── */

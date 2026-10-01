@@ -2,7 +2,7 @@
   min-height: 100dvh;
   color: #fff;
   background:
-    linear-gradient(180deg, rgba(12, 11, 15, 0.78), rgba(12, 11, 15, 0.9)),
+    linear-gradient(180deg, rgba(12, 11, 15, 0.86), rgba(12, 11, 15, 0.94)),
     #0c0b0f url(/bg.jpg) center / cover no-repeat;
   padding: calc(20px + env(safe-area-inset-top)) 20px calc(32px + env(safe-area-inset-bottom));
 }
@@ -12,7 +12,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .back {
@@ -26,11 +26,28 @@
   align-items: center;
 }
 
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
 .title {
-  font-size: 34px;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: clamp(2rem, 8vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: var(--track-tight);
   font-weight: 700;
+  text-wrap: balance;
+}
+
+.kicker {
+  color: var(--ink-meta);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
 }
 
 .chrome {
@@ -42,11 +59,11 @@
 
 .infoLink {
   flex: none;
-  color: rgba(255, 255, 255, 0.46);
+  color: rgba(255, 255, 255, 0.9);
   font-family: Georgia, "Iowan Old Style", Palatino, serif;
   font-style: italic;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   text-decoration: none;
   min-width: 44px;
@@ -68,9 +85,11 @@
 }
 
 .lead {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 15px;
-  line-height: 1.45;
+  color: var(--ink-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: var(--measure);
+  text-wrap: pretty;
 }
 
 .stack {
@@ -94,13 +113,16 @@
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: flex-start;
+  gap: 6px;
 }
 
 .cardTitle {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: var(--track-tight);
+  text-wrap: balance;
 }
 
 .marks {
@@ -111,9 +133,10 @@
 
 .mark {
   font-size: 12px;
-  letter-spacing: 0.04em;
+  font-weight: 650;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.86);
+  color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   padding: 4px 8px;
@@ -166,21 +189,61 @@
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.phaseHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  width: 100%;
 }
 
 .phaseName {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .blockList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  color: rgba(255, 255, 255, 0.78);
+  width: 100%;
+  color: var(--ink-body);
+  font-size: 15px;
+}
+
+.blockList li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.blockList li:first-child {
+  border-top: 0;
+  padding-top: 2px;
+}
+
+.blockName {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.blockDetail {
+  color: var(--ink-body);
   font-size: 14px;
+  line-height: 1.4;
+  text-wrap: pretty;
 }
 
 .unitRow {
@@ -201,7 +264,28 @@
 .sessionItem {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.sessionName {
+  font-size: 1.125rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.statRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--ink-body);
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
 }
 
 .confirm {
@@ -210,7 +294,10 @@
   gap: 8px;
   background: rgba(0, 0, 0, 0.28);
   border-radius: 14px;
-  padding: 10px;
+  padding: 12px;
+  color: var(--ink-body);
+  font-size: 0.9375rem;
+  line-height: 1.45;
 }
 
 .confirmActions {
@@ -229,12 +316,18 @@
   bottom: 0;
   z-index: 4;
   padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(12, 11, 15, 0), rgba(12, 11, 15, 0.94) 36%);
+  background: linear-gradient(180deg, rgba(12, 11, 15, 0), rgba(12, 11, 15, 0.96) 36%);
 }
 
 .startBarInner {
   width: min(440px, 100%);
   margin: 0 auto;
+}
+
+@media (max-width: 839px) {
+  .startBar {
+    right: var(--dock-gutter);
+  }
 }
 
 .withStart {

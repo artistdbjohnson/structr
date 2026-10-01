@@ -18,9 +18,8 @@ export default function PlansPage() {
           <article key={template.id} className={styles.card} data-template={template.id}>
             <Link className={styles.cardLink} href={`/plans/${template.id}`}>
               <h2 className={styles.cardTitle}>{template.name}</h2>
-              <p className={styles.lead}>
-                {template.focus} · {template.minutes}
-              </p>
+              <p className={styles.kicker}>{template.minutes}</p>
+              <p className={styles.lead}>{template.focus}</p>
             </Link>
             <PlanMarks id={template.id} />
             <StartPlanButton templateId={template.id} />

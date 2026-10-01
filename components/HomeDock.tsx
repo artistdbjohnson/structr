@@ -186,6 +186,7 @@ function DockSlot({
         aria-label={label}
         aria-current={current ? "page" : undefined}
         data-slot={id}
+        data-selected={active ? "true" : "false"}
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerCancel}
@@ -201,6 +202,7 @@ function DockSlot({
       type="button"
       aria-label={label}
       data-slot={id}
+      data-selected={active ? "true" : "false"}
       onClick={onClick}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}

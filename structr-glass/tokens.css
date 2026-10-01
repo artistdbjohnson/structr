@@ -3,10 +3,9 @@
  * ============================================================================: Flint | Consumer: App Builder (Next.js app router)
  *
  * IMPORTANT — two glass systems:
- *   1. HOME DOCK  = dglxss frosted acrylic pill (blur ~42px, warm-gray glass,
- *      debossed Train / Plans / You glyphs). Lives in app/globals.css as
- *      `.dock`. DO NOT import or alias these metric tokens into the dock.
- *      Keep dock styling isolated.
+ *   1. HOME DOCK  = liquid-glass pill (blur ~36px, milky white). Lives in
+ *      app/globals.css as `.dock`. DO NOT import or alias these metric tokens
+ *      into the dock. Keep dock styling isolated.
  *   2. STRUCTRGLASS (this file) = tinted metric glass (blur 12–16px, magenta /
  *      orange / cyan tints, squircle radii). Use for MetricPill, TrendChip,
  *      PhaseBar and related health UI only.
@@ -173,17 +172,12 @@
  * DOCK TOKEN MIRROR (documentation only — do NOT apply to MetricPill).
  * Copied from live app/globals.css for App Builder awareness:
  *
- *   .dock blur:        ~42px (metric uses 12–16px)
- *   .dock saturate:    ~138%
+ *   .dock blur:        36px  (metric uses 12–16px)
+ *   .dock saturate:    160%
  *   .dock radius:      999px (metric uses squircle scale)
- *   .dock fill:        thick warm-gray acrylic — wallpaper bleeds through;
- *                      no magenta/orange/cyan tint
- *   .dock glyphs:      debossed (top inner shadow, bottom inner highlight,
- *                      soft internal luminosity) — not flat printed icons
- *   .dock selection:   fixed circle, slightly more opaque than the pill;
- *                      the glyph stays debossed on top
+ *   .dock fill:        milky white / warm gray — no magenta/orange/cyan tint
  *   .dock grain:       none
- *   .dock dashed rim:  none (solid rim highlight instead)
+ *   .dock dashed rim:  none (solid + soft-light sheen ::before instead)
  *
  * If you need dock tokens later, namespace them --dock-* in globals.css,
  * never --sg-*.

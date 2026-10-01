@@ -306,7 +306,7 @@ function DockSlot({
 }) {
   const body = (
     <span className="dock__content">
-      {icon}
+      <span className="dock__icon">{icon}</span>
       <span className="dock__label">{label}</span>
     </span>
   );

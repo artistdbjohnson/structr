@@ -8,19 +8,24 @@ export function PageFrame({
   backHref,
   backLabel,
   title,
+  trailing,
   children,
 }: {
   backHref: string;
   backLabel: string;
   title: string;
+  trailing?: ReactNode;
   children: ReactNode;
 }) {
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
-        <Link className={styles.back} href={backHref}>
-          {backLabel}
-        </Link>
+        <div className={styles.chrome}>
+          <Link className={styles.back} href={backHref}>
+            {backLabel}
+          </Link>
+          {trailing}
+        </div>
         <h1 className={styles.title}>{title}</h1>
         {children}
       </div>

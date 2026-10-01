@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { InfoLink } from "@/components/InfoLink";
 import { PageFrame } from "@/components/PageFrame";
 import { PlanMarks } from "@/components/PlanMarks";
 import { StartPlanButton } from "@/components/StartPlanButton";
@@ -28,7 +29,7 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ id:
   if (!template) notFound();
 
   return (
-    <PageFrame backHref="/plans" backLabel="‹ Plans" title={template.name}>
+    <PageFrame backHref="/plans" backLabel="‹ Plans" title={template.name} trailing={<InfoLink />}>
       <div className={styles.withStart}>
         <p className={styles.lead}>
           {template.focus} · {template.minutes}

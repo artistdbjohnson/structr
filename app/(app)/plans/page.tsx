@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { InfoLink } from "@/components/InfoLink";
 import { PageFrame } from "@/components/PageFrame";
 import { PlanMarks } from "@/components/PlanMarks";
 import { StartPlanButton } from "@/components/StartPlanButton";
@@ -10,7 +11,7 @@ export const metadata: Metadata = { title: "Plans" };
 
 export default function PlansPage() {
   return (
-    <PageFrame backHref="/" backLabel="‹ Home" title="Plans">
+    <PageFrame backHref="/" backLabel="‹ Home" title="Plans" trailing={<InfoLink />}>
       <p className={styles.lead}>Three kettlebell templates. Phases stay in order.</p>
       <div className={styles.stack}>
         {TEMPLATES.map((template) => (

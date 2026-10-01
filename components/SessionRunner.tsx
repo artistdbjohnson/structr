@@ -1,0 +1,226 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { formatClock } from "@/lib/format";
+import { checkAdvance, phaseProgress } from "@/lib/session";
+import { clearActive, loadHistory, loadPrefs, saveActive, saveHistory, savePrefs } from "@/lib/storage";
+import { PHASE_SHORT, defaultBell, getTemplate } from "@/lib/templates";
+import type { WorkoutSession } from "@/lib/types";
+import { PhaseBar } from "@/structr-glass/components/PhaseBar";
+import { BulkPhase } from "./BulkPhase";
+import { PrepPhase } from "./PrepPhase";
+import styles from "./session.module.css";
+
+export function SessionRunner({ initial }: { initial: WorkoutSession }) {
+  const router = useRouter();
+  const template = getTemplate(initial.templateId);
+  const [session, setSession] = useState(initial);
+  const sessionRef = useRef(session);
+  sessionRef.current = session;
+  const [message, setMessage] = useState<string | null>(null);
+  const [confirmText, setConfirmText] = useState<string | null>(null);
+  const [menu, setMenu] = useState(false);
+  const [now, setNow] = useState(() => Date.now());
+  const finishing = useRef(false);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(Date.now()), 250);
+    return () => window.clearInterval(id);
+  }, []);
+
+  function commit(next: WorkoutSession) {
+    sessionRef.current = next;
+    setSession(next);
+    if (next.status === "active") saveActive(next);
+    setMessage(null);
+  }
+
+  if (!template) {
+    return (
+      <main className={styles.screen}>
+        <div className={styles.shell}>
+          <h1 className={styles.title}>Plan missing</h1>
+          <p className={styles.lead}>This session’s template is no longer on the device.</p>
+          <button
+            className={styles.nextBtn}
+            type="button"
+            onClick={() => {
+              clearActive();
+              router.push("/");
+            }}
+          >
+            Discard
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  const phase = session.phases[session.phaseIndex];
+  const spec = template.phases[session.phaseIndex];
+  const started = Date.parse(session.startedAt);
+  const elapsed = Number.isFinite(started) ? Math.max(0, Math.floor((now - started) / 1000)) : 0;
+  const bulkSets = phase?.bulk?.sets.length ?? 0;
+  const bulkTarget = spec?.id === "bulk" ? (spec.blocks[0]?.sets ?? 0) : 0;
+
+  function advance(force: boolean) {
+    const current = sessionRef.current;
+    const activeTemplate = getTemplate(current.templateId);
+    if (!activeTemplate) return;
+    const result = checkAdvance(current, activeTemplate);
+    if (result.type === "block") {
+      setConfirmText(null);
+      setMessage(result.message);
+      return;
+    }
+    if (result.type === "confirm" && !force) {
+      setMessage(null);
+      setConfirmText(result.message);
+      return;
+    }
+    setConfirmText(null);
+    setMessage(null);
+    if (current.phaseIndex >= current.phases.length - 1) {
+      if (finishing.current) return;
+      finishing.current = true;
+      const done: WorkoutSession = {
+        ...current,
+        status: "complete",
+        endedAt: new Date().toISOString(),
+      };
+      saveHistory([done, ...loadHistory().filter((item) => item.id !== done.id)].slice(0, 40));
+      clearActive();
+      const prefs = loadPrefs();
+      savePrefs({ ...prefs, lastTemplateId: done.templateId });
+      sessionRef.current = done;
+      setSession(done);
+      router.replace(`/session/complete?id=${encodeURIComponent(done.id)}`);
+      return;
+    }
+    commit({ ...current, phaseIndex: current.phaseIndex + 1 });
+  }
+
+  function abortSet() {
+    const current = sessionRef.current;
+    commit({
+      ...current,
+      phases: current.phases.map((item) =>
+        item.id === "bulk" && item.bulk
+          ? { ...item, bulk: { ...item.bulk, ui: "idle", activeStartedAt: undefined } }
+          : item,
+      ),
+    });
+    setMenu(false);
+  }
+
+  function toggleUnit() {
+    const current = sessionRef.current;
+    const unit = current.unit === "lb" ? "kg" : "lb";
+    const prefs = loadPrefs();
+    savePrefs({ ...prefs, unit });
+    const next: WorkoutSession = {
+      ...current,
+      unit,
+      phases: current.phases.map((item) => {
+        if (item.id !== "bulk" || !item.bulk || item.bulk.sets.length > 0) return item;
+        return { ...item, bulk: { ...item.bulk, weight: defaultBell(current.templateId, unit) } };
+      }),
+    };
+    commit(next);
+    setMenu(false);
+  }
+
+  return (
+    <main className={styles.screen} data-screen="session" data-phase={phase?.id ?? "unknown"}>
+      <div className={styles.shell}>
+        <header className={styles.chrome}>
+          <button className={styles.iconBtn} type="button" aria-label="End session" onClick={() => router.push("/")}>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path
+                d="M14.5 5.5 8 12l6.5 6.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <span className={styles.phasePill}>{spec?.id === "bulk" ? "BULK" : spec?.name}</span>
+          <button
+            className={styles.iconBtn}
+            type="button"
+            aria-label="Session menu"
+            aria-expanded={menu}
+            onClick={() => setMenu((open) => !open)}
+          >
+            ···
+          </button>
+        </header>
+        {menu ? (
+          <div className={styles.menu} role="menu">
+            <button type="button" onClick={() => router.push("/")}>
+              End session
+            </button>
+            {phase?.bulk?.ui === "active" ? (
+              <button type="button" onClick={abortSet}>
+                Abort set
+              </button>
+            ) : null}
+            <button type="button" onClick={toggleUnit}>
+              Units · {session.unit === "lb" ? "lb" : "kg"}
+            </button>
+            <button type="button" onClick={() => setMenu(false)}>
+              Close
+            </button>
+          </div>
+        ) : null}
+        <PhaseBar
+          title="Session"
+          phases={5}
+          activeIndex={session.phaseIndex}
+          activeProgress={phaseProgress(session, template)}
+          phaseName={PHASE_SHORT[session.phaseIndex] ?? spec?.name}
+          tint={phase?.id === "bulk" ? "orange" : "magenta"}
+        />
+        {phase?.id === "bulk" ? (
+          <BulkPhase session={session} template={template} now={now} onChange={commit} />
+        ) : (
+          <PrepPhase key={phase?.id} session={session} template={template} onChange={commit} />
+        )}
+        <div className={styles.nextBar}>
+          {message ? (
+            <p className={styles.message} role="alert">
+              {message}
+            </p>
+          ) : null}
+          {confirmText ? (
+            <div className={styles.confirm}>
+              <p>{confirmText}</p>
+              <div className={styles.confirmActions}>
+                <button type="button" onClick={() => advance(true)}>
+                  Continue
+                </button>
+                <button type="button" onClick={() => setConfirmText(null)}>
+                  Stay
+                </button>
+              </div>
+            </div>
+          ) : null}
+          <button className={styles.nextBtn} type="button" onClick={() => advance(false)}>
+            {session.phaseIndex >= session.phases.length - 1 ? "Finish" : "Next phase"}
+          </button>
+        </div>
+        <p className={styles.metaFooter}>
+          <span>{formatClock(elapsed)} elapsed</span>
+          <span>
+            {phase?.id === "bulk"
+              ? `${Math.max(0, bulkTarget - bulkSets)} sets left`
+              : spec?.name}
+          </span>
+        </p>
+      </div>
+    </main>
+  );
+}

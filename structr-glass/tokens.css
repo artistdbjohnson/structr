@@ -1,0 +1,203 @@
+/**
+ * StructrGlass — design tokens for health-tech metric surfaces
+ * ============================================================================: Flint | Consumer: App Builder (Next.js app router)
+ *
+ * IMPORTANT — two glass systems:
+ *   1. HOME DOCK  = liquid-glass pill (blur ~36px, milky white). Lives in
+ *      app/globals.css as `.dock`. DO NOT import or alias these metric tokens
+ *      into the dock. Keep dock styling isolated.
+ *   2. STRUCTRGLASS (this file) = tinted metric glass (blur 12–16px, magenta /
+ *      orange / cyan tints, squircle radii). Use for MetricPill, TrendChip,
+ *      PhaseBar and related health UI only.
+ *
+ * Import once from app/layout.tsx (or globals.css):
+ *   import "@/structr-glass/tokens.css";  // or copy into app/globals.css
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ── Ink / surfaces (shared dark canvas; dock keeps its own) ─────────── */
+  --sg-ink: #ffffff;
+  --sg-ink-muted: rgba(255, 255, 255, 0.72);
+  --sg-ink-faint: rgba(255, 255, 255, 0.45);
+  --sg-canvas: #0a0a0a;
+
+  /* ── Backdrop: metric glass (NOT dock) ───────────────────────────────── */
+  /* Spec range: blur 12–16px + saturate. Default mid; use -sm / -lg variants. */
+  --sg-blur: 14px;
+  --sg-blur-sm: 12px;
+  --sg-blur-lg: 16px;
+  --sg-saturate: 145%;
+  --sg-saturate-sm: 130%;
+  --sg-saturate-lg: 160%;
+  --sg-brightness: 1.06;
+  --sg-backdrop: blur(var(--sg-blur)) saturate(var(--sg-saturate)) brightness(var(--sg-brightness));
+
+  /* ── Tint fills (magenta / orange / cyan) ────────────────────────────── */
+  --sg-tint-magenta: 236 72% 62%;
+  --sg-tint-orange: 24 95% 58%;
+  --sg-tint-cyan: 186 92% 52%;
+
+  --sg-fill-magenta: hsla(var(--sg-tint-magenta) / 0.22);
+  --sg-fill-orange: hsla(var(--sg-tint-orange) / 0.22);
+  --sg-fill-cyan: hsla(var(--sg-tint-cyan) / 0.22);
+
+  --sg-fill-magenta-strong: hsla(var(--sg-tint-magenta) / 0.34);
+  --sg-fill-orange-strong: hsla(var(--sg-tint-orange) / 0.34);
+  --sg-fill-cyan-strong: hsla(var(--sg-tint-cyan) / 0.34);
+
+  --sg-glow-magenta: hsla(var(--sg-tint-magenta) / 0.35);
+  --sg-glow-orange: hsla(var(--sg-tint-orange) / 0.35);
+  --sg-glow-cyan: hsla(var(--sg-tint-cyan) / 0.35);
+
+  /* Neutral frosted base under tint */
+  --sg-fill-base: rgba(255, 255, 255, 0.1);
+  --sg-fill-base-hi: rgba(255, 255, 255, 0.16);
+
+  /* ── Squircle radii scale (continuous-corner feel; NOT pill/999) ─────── */
+  --sg-radius-xs: 10px;
+  --sg-radius-sm: 14px;
+  --sg-radius-md: 20px;
+  --sg-radius-lg: 26px;
+  --sg-radius-xl: 32px;
+  --sg-radius-pill: 999px; /* reserved for nested % chip only — not MetricPill shell */
+
+  /* ── Dashed inner rim ────────────────────────────────────────────────── */
+  --sg-rim-dash: 1.5px;
+  --sg-rim-gap: 3.5px;
+  --sg-rim-inset: 3px;
+  --sg-rim-color: rgba(255, 255, 255, 0.42);
+  --sg-rim-color-strong: rgba(255, 255, 255, 0.58);
+
+  /* ── Grain overlay ───────────────────────────────────────────────────── */
+  --sg-grain-opacity: 0.08;
+  --sg-grain-size: 120px;
+  /* SVG noise as data-URI; tiled. Override --sg-grain-image if needed. */
+  --sg-grain-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+
+  /* ── Refractive rim shadows ──────────────────────────────────────────── */
+  --sg-shadow-rim:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
+    inset 1px 0 0 rgba(255, 255, 255, 0.18),
+    inset -1px 0 0 rgba(255, 255, 255, 0.08),
+    0 0 0 0.5px rgba(255, 255, 255, 0.28);
+  --sg-shadow-depth:
+    0 10px 28px -10px rgba(0, 0, 0, 0.55),
+    0 4px 12px rgba(0, 0, 0, 0.22);
+  --sg-shadow-glow-magenta: 0 0 24px var(--sg-glow-magenta);
+  --sg-shadow-glow-orange: 0 0 24px var(--sg-glow-orange);
+  --sg-shadow-glow-cyan: 0 0 24px var(--sg-glow-cyan);
+
+  /* Outer hairline + refraction combo (compose in components) */
+  --sg-shadow-metric: var(--sg-shadow-rim), var(--sg-shadow-depth);
+
+  /* ── Dot-matrix numerals ─────────────────────────────────────────────── */
+  --sg-numeral-tracking: 0.06em;
+  --sg-numeral-weight: 600;
+  --sg-numeral-size: clamp(1.75rem, 4.2vmin, 2.35rem);
+  --sg-numeral-size-sm: clamp(1.1rem, 2.6vmin, 1.35rem);
+  /* Stack: tabular + optional bitmapped look via text-shadow lattice */
+  --sg-numeral-font: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --sg-numeral-dot:
+    0 0 0 transparent,
+    0.5px 0.5px 0 rgba(255, 255, 255, 0.15);
+  --sg-numeral-mask-size: 2px 2px;
+
+  /* ── Nested % chip (glass-in-glass) ──────────────────────────────────── */
+  --sg-chip-blur: 10px;
+  --sg-chip-saturate: 140%;
+  --sg-chip-fill: rgba(255, 255, 255, 0.18);
+  --sg-chip-radius: var(--sg-radius-pill);
+  --sg-chip-pad-y: 0.2em;
+  --sg-chip-pad-x: 0.55em;
+  --sg-chip-font-size: 0.72em;
+  --sg-chip-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 0 0 0.5px rgba(255, 255, 255, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+
+  /* ── Hairline sparkline ──────────────────────────────────────────────── */
+  --sg-spark-stroke: 1.25px;
+  --sg-spark-height: 28px;
+  --sg-spark-width: 72px;
+  --sg-spark-opacity: 0.9;
+  --sg-spark-magenta: hsl(var(--sg-tint-magenta));
+  --sg-spark-orange: hsl(var(--sg-tint-orange));
+  --sg-spark-cyan: hsl(var(--sg-tint-cyan));
+
+  /* ── Spacing / layout for recipes ────────────────────────────────────── */
+  --sg-pad-pill-y: 14px;
+  --sg-pad-pill-x: 16px;
+  --sg-gap-pill: 10px;
+  --sg-phase-track-h: 8px;
+  --sg-phase-gap: 4px;
+
+  /* ── Motion ──────────────────────────────────────────────────────────── */
+  --sg-ease-spring: cubic-bezier(0.34, 1.45, 0.5, 1);
+  --sg-dur-fast: 160ms;
+  --sg-dur: 220ms;
+
+  /* ── Default tint alias (components set --sg-tint-* locally) ─────────── */
+  --sg-fill: var(--sg-fill-cyan);
+  --sg-fill-strong: var(--sg-fill-cyan-strong);
+  --sg-glow: var(--sg-glow-cyan);
+  --sg-spark: var(--sg-spark-cyan);
+  --sg-shadow-glow: var(--sg-shadow-glow-cyan);
+}
+
+/* Optional light theme hook — App Builder can opt in with data-theme="light" */
+[data-theme="light"] {
+  --sg-ink: #121212;
+  --sg-ink-muted: rgba(18, 18, 18, 0.72);
+  --sg-ink-faint: rgba(18, 18, 18, 0.45);
+  --sg-canvas: #f4f2ef;
+  --sg-fill-base: rgba(255, 255, 255, 0.55);
+  --sg-fill-base-hi: rgba(255, 255, 255, 0.72);
+  --sg-rim-color: rgba(0, 0, 0, 0.18);
+  --sg-rim-color-strong: rgba(0, 0, 0, 0.28);
+  --sg-grain-opacity: 0.05;
+  --sg-chip-fill: rgba(255, 255, 255, 0.55);
+  --sg-shadow-rim:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06),
+    0 0 0 0.5px rgba(0, 0, 0, 0.08);
+  --sg-shadow-depth:
+    0 10px 28px -10px rgba(0, 0, 0, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/**
+ * DOCK TOKEN MIRROR (documentation only — do NOT apply to MetricPill).
+ * Copied from live app/globals.css for App Builder awareness:
+ *
+ *   .dock blur:        36px  (metric uses 12–16px)
+ *   .dock saturate:    160%
+ *   .dock radius:      999px (metric uses squircle scale)
+ *   .dock fill:        milky white / warm gray — no magenta/orange/cyan tint
+ *   .dock grain:       none
+ *   .dock dashed rim:  none (solid + soft-light sheen ::before instead)
+ *
+ * If you need dock tokens later, namespace them --dock-* in globals.css,
+ * never --sg-*.
+ */
+
+/* Reduced transparency / motion — shared fallbacks for metric glass */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --sg-fill-base: rgba(40, 40, 44, 0.92);
+    --sg-fill-magenta: hsla(var(--sg-tint-magenta) / 0.45);
+    --sg-fill-orange: hsla(var(--sg-tint-orange) / 0.45);
+    --sg-fill-cyan: hsla(var(--sg-tint-cyan) / 0.45);
+    --sg-backdrop: none;
+    --sg-grain-opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sg-dur-fast: 0ms;
+    --sg-dur: 0ms;
+  }
+}

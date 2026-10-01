@@ -1,0 +1,136 @@
+/**
+ * MetricPill — tinted StructrGlass shell
+ * Uses --sg-* tokens. Do not reuse .dock liquid-glass styles here.
+ */
+
+.pill {
+  --sg-fill: var(--sg-fill-cyan);
+  --sg-fill-strong: var(--sg-fill-cyan-strong);
+  --sg-glow: var(--sg-glow-cyan);
+  --sg-spark: var(--sg-spark-cyan);
+  --sg-shadow-glow: var(--sg-shadow-glow-cyan);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sg-gap-pill);
+  min-width: 148px;
+  max-width: 220px;
+  padding: var(--sg-pad-pill-y) var(--sg-pad-pill-x);
+  border-radius: var(--sg-radius-lg);
+  color: var(--sg-ink);
+  background:
+    linear-gradient(155deg, var(--sg-fill-base-hi) 0%, transparent 42%),
+    linear-gradient(180deg, var(--sg-fill-strong) 0%, var(--sg-fill) 100%),
+    var(--sg-fill-base);
+  border: 0;
+  box-shadow: var(--sg-shadow-metric), var(--sg-shadow-glow);
+  backdrop-filter: var(--sg-backdrop);
+  -webkit-backdrop-filter: var(--sg-backdrop);
+  overflow: hidden;
+}
+
+.pill[data-tint="magenta"] {
+  --sg-fill: var(--sg-fill-magenta);
+  --sg-fill-strong: var(--sg-fill-magenta-strong);
+  --sg-glow: var(--sg-glow-magenta);
+  --sg-spark: var(--sg-spark-magenta);
+  --sg-shadow-glow: var(--sg-shadow-glow-magenta);
+}
+
+.pill[data-tint="orange"] {
+  --sg-fill: var(--sg-fill-orange);
+  --sg-fill-strong: var(--sg-fill-orange-strong);
+  --sg-glow: var(--sg-glow-orange);
+  --sg-spark: var(--sg-spark-orange);
+  --sg-shadow-glow: var(--sg-shadow-glow-orange);
+}
+
+.pill[data-tint="cyan"] {
+  --sg-fill: var(--sg-fill-cyan);
+  --sg-fill-strong: var(--sg-fill-cyan-strong);
+  --sg-glow: var(--sg-glow-cyan);
+  --sg-spark: var(--sg-spark-cyan);
+  --sg-shadow-glow: var(--sg-shadow-glow-cyan);
+}
+
+/* Dashed inner rim */
+.pill::before {
+  content: "";
+  position: absolute;
+  inset: var(--sg-rim-inset);
+  border-radius: calc(var(--sg-radius-lg) - var(--sg-rim-inset));
+  border: var(--sg-rim-dash) dashed var(--sg-rim-color);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Grain overlay */
+.pill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--sg-grain-image);
+  background-size: var(--sg-grain-size) var(--sg-grain-size);
+  opacity: var(--sg-grain-opacity);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.label {
+  position: relative;
+  z-index: 3;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sg-ink-muted);
+}
+
+.row {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Dot-matrix numeral */
+.value {
+  font-family: var(--sg-numeral-font);
+  font-size: var(--sg-numeral-size);
+  font-weight: var(--sg-numeral-weight);
+  letter-spacing: var(--sg-numeral-tracking);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-shadow: var(--sg-numeral-dot);
+  background-image: radial-gradient(
+    circle at center,
+    currentColor 0.55px,
+    transparent 0.65px
+  );
+  background-size: var(--sg-numeral-mask-size);
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* Fallback keeps solid if clip unsupported; still readable */
+  color: var(--sg-ink);
+}
+
+.meta {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .pill {
+    background: color-mix(in srgb, var(--sg-fill-strong) 70%, #2a2a2e);
+  }
+}

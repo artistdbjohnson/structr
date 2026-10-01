@@ -1,0 +1,93 @@
+/**
+ * TrendChip — compact StructrGlass status chip (up / down / flat)
+ * Nested glass; not the home dock pill.
+ */
+
+.chip {
+  --sg-fill: var(--sg-fill-cyan);
+  --tc-dir: var(--sg-spark-cyan);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.28em 0.65em 0.28em 0.5em;
+  border-radius: var(--sg-radius-sm);
+  color: var(--sg-ink);
+  font-family: var(--sg-numeral-font);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  background:
+    linear-gradient(160deg, var(--sg-fill-base-hi), transparent 55%),
+    var(--sg-fill);
+  box-shadow: var(--sg-shadow-rim), 0 4px 12px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
+  -webkit-backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
+  overflow: hidden;
+}
+
+.chip[data-tint="magenta"] {
+  --sg-fill: var(--sg-fill-magenta);
+  --tc-dir: var(--sg-spark-magenta);
+}
+
+.chip[data-tint="orange"] {
+  --sg-fill: var(--sg-fill-orange);
+  --tc-dir: var(--sg-spark-orange);
+}
+
+.chip[data-tint="cyan"] {
+  --sg-fill: var(--sg-fill-cyan);
+  --tc-dir: var(--sg-spark-cyan);
+}
+
+.chip[data-direction="down"] {
+  --tc-dir: hsl(0 78% 62%);
+}
+
+.chip[data-direction="flat"] {
+  --tc-dir: var(--sg-ink-muted);
+}
+
+/* Dashed inner rim (tighter) */
+.chip::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: calc(var(--sg-radius-sm) - 2px);
+  border: 1px dashed var(--sg-rim-color);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Grain */
+.chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--sg-grain-image);
+  background-size: 80px 80px;
+  opacity: calc(var(--sg-grain-opacity) * 0.85);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.arrow {
+  position: relative;
+  z-index: 2;
+  color: var(--tc-dir);
+  font-size: 0.85em;
+  line-height: 1;
+}
+
+.label {
+  position: relative;
+  z-index: 2;
+  color: var(--sg-ink);
+}

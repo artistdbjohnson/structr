@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StructrGlass preview</title>
+  <link rel="stylesheet" href="./tokens.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      color: var(--sg-ink);
+      background:
+        radial-gradient(90% 60% at 20% 10%, rgba(236, 72, 153, 0.25), transparent 50%),
+        radial-gradient(80% 50% at 90% 30%, rgba(34, 211, 238, 0.22), transparent 45%),
+        radial-gradient(70% 50% at 50% 90%, rgba(249, 115, 22, 0.2), transparent 40%),
+        var(--sg-canvas);
+      padding: 32px 20px 64px;
+    }
+    h1 { font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 8px; }
+    .note {
+      max-width: 52rem;
+      margin-bottom: 28px;
+      font-size: 0.9rem;
+      color: var(--sg-ink-muted);
+      line-height: 1.45;
+    }
+    .note strong { color: #fbbf24; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+    .wide { grid-column: 1 / -1; }
+
+    /* Inline recipes (mirror CSS modules for static preview) */
+    .pill, .phase {
+      position: relative; isolation: isolate; overflow: hidden;
+      border-radius: var(--sg-radius-lg);
+      padding: var(--sg-pad-pill-y) var(--sg-pad-pill-x);
+      background:
+        linear-gradient(155deg, var(--sg-fill-base-hi) 0%, transparent 42%),
+        linear-gradient(180deg, var(--sg-fill-strong) 0%, var(--sg-fill) 100%),
+        var(--sg-fill-base);
+      box-shadow: var(--sg-shadow-metric), var(--sg-shadow-glow);
+      backdrop-filter: var(--sg-backdrop);
+      -webkit-backdrop-filter: var(--sg-backdrop);
+    }
+    .pill::before, .phase::before {
+      content: ""; position: absolute; inset: var(--sg-rim-inset);
+      border-radius: calc(var(--sg-radius-lg) - var(--sg-rim-inset));
+      border: var(--sg-rim-dash) dashed var(--sg-rim-color); z-index: 2; pointer-events: none;
+    }
+    .pill::after, .phase::after, .tchip::after {
+      content: ""; position: absolute; inset: 0; border-radius: inherit;
+      background-image: var(--sg-grain-image); background-size: var(--sg-grain-size);
+      opacity: var(--sg-grain-opacity); mix-blend-mode: overlay; z-index: 1; pointer-events: none;
+    }
+    .pill[data-tint="magenta"], .phase[data-tint="magenta"] {
+      --sg-fill: var(--sg-fill-magenta); --sg-fill-strong: var(--sg-fill-magenta-strong);
+      --sg-glow: var(--sg-glow-magenta); --sg-spark: var(--sg-spark-magenta);
+      --sg-shadow-glow: var(--sg-shadow-glow-magenta);
+    }
+    .pill[data-tint="orange"], .phase[data-tint="orange"] {
+      --sg-fill: var(--sg-fill-orange); --sg-fill-strong: var(--sg-fill-orange-strong);
+      --sg-glow: var(--sg-glow-orange); --sg-spark: var(--sg-spark-orange);
+      --sg-shadow-glow: var(--sg-shadow-glow-orange);
+    }
+    .pill[data-tint="cyan"], .phase[data-tint="cyan"] {
+      --sg-fill: var(--sg-fill-cyan); --sg-fill-strong: var(--sg-fill-cyan-strong);
+      --sg-glow: var(--sg-glow-cyan); --sg-spark: var(--sg-spark-cyan);
+      --sg-shadow-glow: var(--sg-shadow-glow-cyan);
+    }
+    .label { position: relative; z-index: 3; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sg-ink-muted); margin-bottom: 10px; }
+    .row { position: relative; z-index: 3; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
+    .value {
+      font-family: var(--sg-numeral-font); font-size: var(--sg-numeral-size); font-weight: 600;
+      letter-spacing: var(--sg-numeral-tracking); font-variant-numeric: tabular-nums; line-height: 1;
+      text-shadow: var(--sg-numeral-dot);
+    }
+    .meta { position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; }
+    .pct {
+      display: inline-flex; padding: var(--sg-chip-pad-y) var(--sg-chip-pad-x);
+      border-radius: var(--sg-chip-radius); font-size: var(--sg-chip-font-size);
+      font-family: var(--sg-numeral-font); background: var(--sg-chip-fill);
+      box-shadow: var(--sg-chip-shadow);
+      backdrop-filter: blur(var(--sg-chip-blur)) saturate(var(--sg-chip-saturate));
+      -webkit-backdrop-filter: blur(var(--sg-chip-blur)) saturate(var(--sg-chip-saturate));
+    }
+    .tchip {
+      position: relative; isolation: isolate; overflow: hidden;
+      display: inline-flex; align-items: center; gap: 0.35em;
+      padding: 0.28em 0.65em 0.28em 0.5em; border-radius: var(--sg-radius-sm);
+      font-family: var(--sg-numeral-font); font-size: 0.75rem; font-weight: 600;
+      background: linear-gradient(160deg, var(--sg-fill-base-hi), transparent 55%), var(--sg-fill);
+      box-shadow: var(--sg-shadow-rim); backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
+      -webkit-backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
+    }
+    .tchip::before {
+      content: ""; position: absolute; inset: 2px; border-radius: calc(var(--sg-radius-sm) - 2px);
+      border: 1px dashed var(--sg-rim-color); opacity: 0.7; z-index: 1; pointer-events: none;
+    }
+    .tchip span { position: relative; z-index: 2; }
+    .phase { border-radius: var(--sg-radius-md); --pb-active: var(--sg-spark); }
+    .phase::before { border-radius: calc(var(--sg-radius-md) - var(--sg-rim-inset)); }
+    .track { position: relative; z-index: 3; display: flex; gap: var(--sg-phase-gap); height: var(--sg-phase-track-h); margin-top: 10px; }
+    .seg { flex: 1; border-radius: 999px; background: rgba(255,255,255,0.12); }
+    .seg.done { background: color-mix(in srgb, var(--pb-active) 55%, rgba(255,255,255,0.2)); box-shadow: 0 0 10px color-mix(in srgb, var(--pb-active) 40%, transparent); }
+    .seg.active { position: relative; overflow: hidden; }
+    .seg.active > i { display: block; height: 100%; width: 60%; background: linear-gradient(90deg, transparent, var(--pb-active)); border-radius: inherit; box-shadow: 0 0 12px color-mix(in srgb, var(--pb-active) 50%, transparent); }
+    .dock-demo {
+      margin-top: 40px; padding: 16px; border: 1px dashed rgba(251, 191, 36, 0.45); border-radius: 16px; max-width: 720px;
+    }
+    .dock-demo .fake-dock {
+      width: 72px; margin: 12px auto 0; padding: 14px 10px; border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.34) 40%, rgba(255,255,255,0.46)), rgba(120,118,114,0.42);
+      backdrop-filter: blur(36px) saturate(160%);
+      -webkit-backdrop-filter: blur(36px) saturate(160%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 22px 48px -14px rgba(0,0,0,0.55);
+      display: flex; flex-direction: column; gap: 14px; align-items: center;
+    }
+    .dock-demo .fake-dock i { width: 28px; height: 28px; border-radius: 999px; background: rgba(255,255,255,0.35); display: block; }
+  </style>
+</head>
+<body>
+  <h1>StructrGlass preview</h1>
+  <p class="note">
+    Metric surfaces use <strong>12–16px</strong> tinted glass. The home dock below is a
+    <strong>separate</strong> liquid-glass pill (~36px, milky) — do not merge token systems.
+  </p>
+
+  <div class="grid">
+    <article class="pill" data-tint="cyan">
+      <div class="label">HRV</div>
+      <div class="row">
+        <span class="value">62</span>
+        <svg width="72" height="28" aria-hidden="true" style="opacity:0.9">
+          <path d="M0 20 L12 16 L24 18 L36 10 L48 12 L60 6 L72 8" fill="none" stroke="var(--sg-spark)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="meta">
+        <span class="pct">18%</span>
+        <span class="tchip" data-tint="cyan" style="--sg-fill:var(--sg-fill-cyan)"><span>▲</span><span>+4%</span></span>
+      </div>
+    </article>
+
+    <article class="pill" data-tint="magenta">
+      <div class="label">Load</div>
+      <div class="row"><span class="value"> thr</span></div>
+      <div class="meta">
+        <span class="pct">72%</span>
+        <span class="tchip" style="--sg-fill:var(--sg-fill-magenta)"><span>▲</span><span>+12</span></span>
+      </div>
+    </article>
+
+    <article class="pill" data-tint="orange">
+      <div class="label">RPE</div>
+      <div class="row"><span class="value">7.5</span></div>
+      <div class="meta">
+        <span class="pct">−3%</span>
+        <span class="tchip" style="--sg-fill:var(--sg-fill-orange)"><span>▼</span><span>−0.4</span></span>
+      </div>
+    </article>
+
+    <div class="phase wide" data-tint="magenta">
+      <div class="label" style="display:flex;justify-content:space-between;align-items:baseline">
+        <span>Session</span>
+        <span style="display:flex;gap:8px;align-items:center">
+          <span class="value" style="font-size:var(--sg-numeral-size-sm)">Build</span>
+          <span class="pct">40%</span>
+        </span>
+      </div>
+      <div class="track">
+        <div class="seg done"></div>
+        <div class="seg active"><i></i></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dock-demo">
+    <strong style="color:#fbbf24;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase">Not StructrGlass — home dock (separate)</strong>
+    <p class="note" style="margin:8px 0 0">Blur 36px · milky fill · radius 999 · no tint / dashed rim / grain. Lives in <code>app/globals.css</code> only.</p>
+    <div class="fake-dock" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
+</body>
+</html>

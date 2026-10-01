@@ -1,0 +1,146 @@
+/**
+ * PhaseBar — multi-segment StructrGlass progress / phase track
+ */
+
+.wrap {
+  --sg-fill: var(--sg-fill-cyan);
+  --pb-active: var(--sg-spark-cyan);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  min-width: 160px;
+  padding: 12px 14px;
+  border-radius: var(--sg-radius-md);
+  color: var(--sg-ink);
+  background:
+    linear-gradient(150deg, var(--sg-fill-base-hi) 0%, transparent 50%),
+    linear-gradient(180deg, var(--sg-fill-strong, var(--sg-fill)) 0%, var(--sg-fill) 100%),
+    var(--sg-fill-base);
+  box-shadow: var(--sg-shadow-metric);
+  backdrop-filter: var(--sg-backdrop);
+  -webkit-backdrop-filter: var(--sg-backdrop);
+  overflow: hidden;
+}
+
+.wrap[data-tint="magenta"] {
+  --sg-fill: var(--sg-fill-magenta);
+  --sg-fill-strong: var(--sg-fill-magenta-strong);
+  --pb-active: var(--sg-spark-magenta);
+}
+
+.wrap[data-tint="orange"] {
+  --sg-fill: var(--sg-fill-orange);
+  --sg-fill-strong: var(--sg-fill-orange-strong);
+  --pb-active: var(--sg-spark-orange);
+}
+
+.wrap[data-tint="cyan"] {
+  --sg-fill: var(--sg-fill-cyan);
+  --sg-fill-strong: var(--sg-fill-cyan-strong);
+  --pb-active: var(--sg-spark-cyan);
+}
+
+.wrap::before {
+  content: "";
+  position: absolute;
+  inset: var(--sg-rim-inset);
+  border-radius: calc(var(--sg-radius-md) - var(--sg-rim-inset));
+  border: var(--sg-rim-dash) dashed var(--sg-rim-color);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--sg-grain-image);
+  background-size: var(--sg-grain-size);
+  opacity: var(--sg-grain-opacity);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.header {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sg-ink-muted);
+}
+
+.phaseLabel {
+  font-family: var(--sg-numeral-font);
+  font-size: var(--sg-numeral-size-sm);
+  font-weight: var(--sg-numeral-weight);
+  letter-spacing: var(--sg-numeral-tracking);
+  font-variant-numeric: tabular-nums;
+  text-shadow: var(--sg-numeral-dot);
+  color: var(--sg-ink);
+}
+
+.track {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  gap: var(--sg-phase-gap);
+  height: var(--sg-phase-track-h);
+  width: 100%;
+}
+
+.seg {
+  flex: 1;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+.seg[data-state="done"] {
+  background: color-mix(in srgb, var(--pb-active) 55%, rgba(255, 255, 255, 0.2));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 0 10px color-mix(in srgb, var(--pb-active) 40%, transparent);
+}
+
+.seg[data-state="active"] {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.seg[data-state="active"] > .fill {
+  position: absolute;
+  inset: 0;
+  width: var(--pb-progress, 50%);
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--pb-active) 40%, transparent),
+    var(--pb-active)
+  );
+  box-shadow: 0 0 12px color-mix(in srgb, var(--pb-active) 50%, transparent);
+}
+
+.seg[data-state="todo"] {
+  opacity: 0.55;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+}

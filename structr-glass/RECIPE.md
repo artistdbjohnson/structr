@@ -11,10 +11,18 @@
 
 | System | Where | Blur | Fill | Radius | Used for |
 |--------|--------|------|------|--------|----------|
-| **Home dock (liquid-glass pill)** | `app/globals.css` → `.dock` | **~36px** + saturate 160% | Milky white / warm gray | **999px** capsule | Store / People / Photos nav only |
+| **Home dock (dglxss frosted pill)** | `app/globals.css` → `.dock` | **~42px** + saturate ~138% | Thick warm-gray acrylic; wallpaper bleeds through | **999px** capsule | Train / Plans / You. Glyphs are **debossed** |
 | **StructrGlass (this package)** | `tokens.css` → `--sg-*` | **12–16px** + saturate 130–160% | **Magenta / orange / cyan** tints | **Squircle** `--sg-radius-sm…xl` | MetricPill, TrendChip, PhaseBar |
 
 **Rule:** Never fold dock styles into MetricPill tokens (or the reverse). Dock has no dashed rim, no grain overlay, no tint fills, no squircle shell. Keep `.dock` untouched when wiring StructrGlass.
+
+### dglxss dock language
+
+The home capsule is thick frosted acrylic, not a flat milky print.
+
+- Warm-gray glass. The wallpaper bleeds through the frost. Soft rim highlight along the top edge.
+- Train, Plans, and You icons (and their labels) are **debossed**: a dark lip on the top of the carve, a light lip along the bottom, and a soft internal luminosity. They are not flat filled glyphs.
+- Selection is a fixed circle, slightly more opaque than the pill, with a soft elevation. The icon stays debossed on top of that disc. The disc glides on Y only and does not stretch.
 
 ---
 
@@ -149,7 +157,7 @@ Inspected: `https://structr-wine.vercel.app` + `artistdbjohnson/structr@main`.
 | Finding | Implication |
 |---------|-------------|
 | Live page is **wallpaper + HomeDock only** | MetricPill / TrendChip / PhaseBar **do not exist** in repo yet — this package is greenfield |
-| Dock blur **36px**, milky, pill radius | Confirms separation from metric 12–16px tinted squircles |
+| Dock is its own pill (now dglxss debossed frost in `globals.css`, not metric glass) | Confirms separation from metric 12–16px tinted squircles |
 | No Tailwind; CSS in `globals.css` | Recipes use CSS Modules + vars (no Tailwind dependency) |
 | `:root` only has `--glass`, `--rim-soft`, `--ink` | StructrGlass adds `--sg-*` namespace; leave dock vars alone |
 | Search for MetricPill / glass metric code → **0 hits** | Spec comes from App Builder brief, not existing components |
@@ -158,4 +166,4 @@ Inspected: `https://structr-wine.vercel.app` + `artistdbjohnson/structr@main`.
 
 ## 10. Message for App Builder (forwardable)
 
-> StructrGlass handoff is ready under `/workspace/structr-glass/` (tokens + MetricPill / TrendChip / PhaseBar + RECIPE.md). Import `tokens.css`, drop the three CSS Module components into the Next app. **Keep the home dock’s liquid-glass pill (`.dock` in globals.css) as a separate system** — do not reuse `--sg-*` metric tokens on the dock or dock styles on MetricPill. Metric glass = blur 12–16px, magenta/orange/cyan tints, squircle radii, dashed rim, grain, refractive shadows, dot-matrix numerals, nested % chip, hairline sparkline. Flint will not push to GitHub; please pull these files into `artistdbjohnson/structr` when ready.
+> StructrGlass handoff is ready under `/workspace/structr-glass/` (tokens + MetricPill / TrendChip / PhaseBar + RECIPE.md). Import `tokens.css`, drop the three CSS Module components into the Next app. **Keep the home dock’s dglxss frosted pill (`.dock` in globals.css, debossed glyphs) as a separate system** — do not reuse `--sg-*` metric tokens on the dock or dock styles on MetricPill. Metric glass = blur 12–16px, magenta/orange/cyan tints, squircle radii, dashed rim, grain, refractive shadows, dot-matrix numerals, nested % chip, hairline sparkline. Flint will not push to GitHub; please pull these files into `artistdbjohnson/structr` when ready.

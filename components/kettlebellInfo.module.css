@@ -484,6 +484,11 @@
   opacity: 0;
 }
 
+/* display:flex on .panelBody would otherwise paint closed panels on top of the page. */
+.panel:not([open]) > :not(summary) {
+  display: none;
+}
+
 .panelBody {
   display: flex;
   flex-direction: column;

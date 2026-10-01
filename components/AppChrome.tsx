@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { isTrainHome } from "@/lib/nav";
 import { HomeDock } from "./HomeDock";
@@ -8,16 +8,10 @@ import { TrainTray } from "./TrainTray";
 
 export function AppChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname() || "/";
-  const [dismissed, setDismissed] = useState(false);
-  const prevPath = useRef(pathname);
+  // Closed is the lasting default. A hard load of / or /plans must not open Train for.
+  const [dismissed, setDismissed] = useState(true);
   const trainHome = isTrainHome(pathname);
   const trayOpen = trainHome && !dismissed;
-
-  useEffect(() => {
-    const before = prevPath.current;
-    prevPath.current = pathname;
-    if (isTrainHome(pathname) && !isTrainHome(before)) setDismissed(false);
-  }, [pathname]);
 
   function openTray() {
     setDismissed(false);

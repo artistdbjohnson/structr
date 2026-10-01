@@ -92,6 +92,10 @@ textarea {
   place-items: center end;
 }
 
+.dock-anchor--side .dock {
+  justify-self: end;
+}
+
 .shell--sub {
   min-height: 100dvh;
 }
@@ -126,7 +130,7 @@ textarea {
   height: max-content;
   max-height: calc(100dvh - 16px);
   align-self: center;
-  justify-self: end;
+  justify-self: center;
   pointer-events: auto;
   color: #fff;
   border: 1px solid var(--rim-soft);

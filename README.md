@@ -1,12 +1,12 @@
 # structr
 
-Structr is a kettlebell day-one training PWA. Cold load opens **Train for**. A vertical liquid-glass dock stays on the athletic wallpaper: **Train · Plans · You**. Workouts run Warm-up → Skill drills → Form → THE BULK → Cool-down and stay on this device.
+Structr is a kettlebell day-one training PWA. Cold load is the athletic wallpaper and the centered glass dock: **Train · Plans · You**. Plans opens **Train for** over that wallpaper; dismissing it returns to the pill. Workouts run Warm-up → Skill drills → Form → THE BULK → Cool-down and stay on this device.
 
 Only Swing Foundation, Clean Path, and Get-Up Primer can start. Everything else in the catalog is coming soon.
 
 ## Routes
 
-- `/` Train for — Kettlebell skill, same screen as Plans
+- `/` Wallpaper and the centered dock. Same closed default as Plans
 - `/plans` Train for — Kettlebell skill (default), Get stronger, Move freer, and More goals
 - `/plans/browse` Category → module → template tree
 - `/plans/[id]` Phase outline and Start (`swing-foundation`, `clean-path`, `get-up-primer`)

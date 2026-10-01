@@ -139,9 +139,11 @@ export function HomeDock({
     },
     onPointerLeave: () => setHold(null),
   };
+  // Wallpaper home keeps the pill centered. An open tray, and every other page, parks it on the right.
+  const parkDock = trayOpen || !isTrainHome(pathname);
   return (
     <>
-      <div className="dock-anchor dock-anchor--side">
+      <div className={parkDock ? "dock-anchor dock-anchor--side" : "dock-anchor"}>
         {trayOpen ? (
           <button
             type="button"

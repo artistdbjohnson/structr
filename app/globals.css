@@ -57,9 +57,23 @@ textarea {
   pointer-events: none;
   padding:
     max(8px, env(safe-area-inset-top))
-    max(8px, env(safe-area-inset-right))
+    max(16px, env(safe-area-inset-right))
     max(8px, env(safe-area-inset-bottom))
-    max(8px, env(safe-area-inset-left));
+    max(16px, env(safe-area-inset-left));
+}
+
+.dock-anchor--side {
+  place-items: center end;
+}
+
+.shell--sub {
+  min-height: 100dvh;
+}
+
+@media (max-width: 839px) {
+  .shell--sub {
+    padding-right: calc(clamp(128px, 17.5vmin, 158px) + 22px);
+  }
 }
 
 .dock {
@@ -146,8 +160,8 @@ textarea {
   inset: 0;
   border-radius: inherit;
   background:
-    radial-gradient(120% 88% at 50% 0%, #fffffffa 0%, #ffffff8f 38%, #ffffffc2 72%, #ffffffa8 100%),
-    linear-gradient(180deg, #ffffff66 0%, #ffffff24 100%);
+    radial-gradient(125% 90% at 50% 0%, #fffffff5 0%, #ffffffd6 36%, #ffffffc9 70%, #ffffffb8 100%),
+    linear-gradient(180deg, #ffffff80 0%, #ffffff38 100%);
   box-shadow:
     inset 0 1.5px 0 #fffffffa,
     inset 0 -16px 18px #6d768a24,

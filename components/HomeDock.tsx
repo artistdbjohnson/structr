@@ -85,10 +85,19 @@ export function HomeDock() {
     onPointerUp: release,
     onPointerCancel: () => setHold(null),
   };
+  const onHome = pathname === "/";
+  const dockTransition = reduce ? { duration: 0 } : SELECTION_SPRING;
 
   return (
-    <motion.div className="dock-anchor" layoutRoot>
-      <nav className="dock" aria-label="Home" data-active={routeActive}>
+    <motion.div className={onHome ? "dock-anchor" : "dock-anchor dock-anchor--side"} layoutRoot>
+      <motion.nav
+        layout
+        className="dock"
+        aria-label="Home"
+        data-active={routeActive}
+        initial={false}
+        transition={dockTransition}
+      >
         <DockSlot
           {...slotProps}
           id="train"
@@ -119,7 +128,7 @@ export function HomeDock() {
           onPointerDown={(event) => press("you", event)}
           icon={<PersonIcon />}
         />
-      </nav>
+      </motion.nav>
     </motion.div>
   );
 }

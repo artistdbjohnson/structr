@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { HomeDock } from "@/components/HomeDock";
+import { AppChrome } from "@/components/AppChrome";
 
 /**
  * Home, Plans, and You share one dock instance so the selection disc can
@@ -7,10 +7,5 @@ import { HomeDock } from "@/components/HomeDock";
  * this group, so the dock unmounts there.
  */
 export default function HomeChromeLayout({ children }: { children: ReactNode }) {
-  return (
-    <>
-      {children}
-      <HomeDock />
-    </>
-  );
+  return <AppChrome>{children}</AppChrome>;
 }

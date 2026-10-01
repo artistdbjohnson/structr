@@ -20,17 +20,13 @@ export function PageFrame({
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
-        <Link className={styles.back} href={backHref}>
-          {backLabel}
-        </Link>
-        {trailing ? (
-          <div className={styles.titleRow}>
-            <h1 className={styles.title}>{title}</h1>
-            {trailing}
-          </div>
-        ) : (
-          <h1 className={styles.title}>{title}</h1>
-        )}
+        <div className={styles.chrome}>
+          <Link className={styles.back} href={backHref}>
+            {backLabel}
+          </Link>
+          {trailing}
+        </div>
+        <h1 className={styles.title}>{title}</h1>
         {children}
       </div>
     </main>

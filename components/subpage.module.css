@@ -33,16 +33,11 @@
   font-weight: 700;
 }
 
-.titleRow {
+.chrome {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-}
-
-.titleRow .title {
-  flex: 1;
-  min-width: 0;
 }
 
 .infoLink {

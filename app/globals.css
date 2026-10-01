@@ -201,8 +201,19 @@ textarea {
 
 .dock__selection {
   position: absolute;
-  inset: 0;
   z-index: 0;
+  top: 0;
+  left: var(--disc-x, 0px);
+  width: var(--disc-size, 0px);
+  height: var(--disc-size, 0px);
+  min-width: var(--disc-size, 0px);
+  max-width: var(--disc-size, 0px);
+  min-height: var(--disc-size, 0px);
+  max-height: var(--disc-size, 0px);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  box-sizing: border-box;
+  flex: none;
   pointer-events: none;
   overflow: hidden;
 }
@@ -248,7 +259,7 @@ textarea {
   transition: transform 0.18s cubic-bezier(0.34, 1.45, 0.5, 1);
 }
 
-.dock__btn:active .dock__selection-face,
+.dock__selection[data-pressed="true"] .dock__selection-face,
 .dock__btn:active .dock__content {
   transform: scale(0.94);
 }
@@ -322,7 +333,7 @@ textarea {
   .dock__content {
     transition: none;
   }
-  .dock__btn:active .dock__selection-face,
+  .dock__selection[data-pressed="true"] .dock__selection-face,
   .dock__btn:active .dock__content {
     transform: none;
   }

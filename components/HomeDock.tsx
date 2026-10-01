@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
@@ -13,15 +21,24 @@ import { BoltIcon, CalendarIcon, PersonIcon } from "./icons";
 import { TrainSheet } from "./TrainSheet";
 import { useTapGuard } from "./useTapGuard";
 
-/** Shared-layout glide. Near-critical spring so the disc settles without bounce. */
+/** Y-only glide. Overdamped so the disc settles without bounce or size morph. */
 const SELECTION_SPRING = {
   type: "spring" as const,
-  stiffness: 380,
-  damping: 30,
-  mass: 0.62,
+  stiffness: 420,
+  damping: 42,
+  mass: 0.8,
 };
 
 type SlotId = "train" | "plans" | "you";
+type SlotBox = { x: number; y: number; size: number };
+
+function measureSlot(nav: HTMLElement, id: SlotId): SlotBox | null {
+  const slot = nav.querySelector<HTMLElement>(`[data-slot="${id}"]`);
+  if (!slot) return null;
+  const size = slot.offsetWidth;
+  if (size <= 0) return null;
+  return { x: slot.offsetLeft, y: slot.offsetTop, size };
+}
 
 function routeSlot(pathname: string): Exclude<SlotId, "train"> {
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
@@ -56,6 +73,26 @@ export function HomeDock({
   const [hold, setHold] = useState<SlotId | null>(null);
   const [sheet, setSheet] = useState<{ templateId: string; templateName: string } | null>(null);
   const active: SlotId = hold ?? routeActive;
+  const navRef = useRef<HTMLElement>(null);
+  const [box, setBox] = useState<SlotBox | null>(null);
+
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const measure = () => {
+      const next = measureSlot(nav, active);
+      setBox((prev) => {
+        if (!next) return prev;
+        if (prev && prev.x === next.x && prev.y === next.y && prev.size === next.size) return prev;
+        return next;
+      });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(nav);
+    for (const slot of nav.querySelectorAll<HTMLElement>("[data-slot]")) observer.observe(slot);
+    return () => observer.disconnect();
+  }, [active, trayOpen, pathname]);
 
   useEffect(() => {
     setHold(null);
@@ -130,7 +167,6 @@ export function HomeDock({
   }
 
   const slotProps = {
-    reduce,
     onPointerMove: tap.onPointerMove,
     onPointerUp: release,
     onPointerCancel: () => {
@@ -159,7 +195,30 @@ export function HomeDock({
             }}
           />
         ) : null}
-      <nav className="dock" aria-label="Home" data-active={routeActive}>
+      <nav ref={navRef} className="dock" aria-label="Home" data-active={routeActive}>
+        {box ? (
+          <motion.span
+            className="dock__selection"
+            data-pressed={hold ? "true" : "false"}
+            aria-hidden="true"
+            layout={false}
+            initial={false}
+            animate={{ y: box.y, scaleX: 1, scaleY: 1 }}
+            style={
+              {
+                "--disc-size": `${box.size}px`,
+                "--disc-x": `${box.x}px`,
+              } as CSSProperties
+            }
+            transition={
+              reduce
+                ? { duration: 0 }
+                : { y: SELECTION_SPRING, scaleX: { duration: 0 }, scaleY: { duration: 0 } }
+            }
+          >
+            <span className="dock__selection-face" />
+          </motion.span>
+        ) : null}
         <DockSlot
           {...slotProps}
           id="train"
@@ -224,7 +283,6 @@ function DockSlot({
   href,
   active,
   current,
-  reduce,
   icon,
   onPointerDown,
   onPointerMove,
@@ -238,7 +296,6 @@ function DockSlot({
   href?: string;
   active: boolean;
   current: boolean;
-  reduce: boolean;
   icon: ReactNode;
   onPointerDown: (event: PointerEvent<HTMLElement>) => void;
   onPointerMove: (event: PointerEvent<HTMLElement>) => void;
@@ -248,23 +305,10 @@ function DockSlot({
   onClick?: (event: { preventDefault(): void }) => void;
 }) {
   const body = (
-    <>
-      {active ? (
-        <motion.span
-          layoutId="structr-dock-selection"
-          className="dock__selection"
-          style={{ borderRadius: 9999 }}
-          initial={false}
-          transition={reduce ? { duration: 0 } : SELECTION_SPRING}
-        >
-          <span className="dock__selection-face" />
-        </motion.span>
-      ) : null}
-      <span className="dock__content">
-        <span className="dock__icon">{icon}</span>
-        <span className="dock__label">{label}</span>
-      </span>
-    </>
+    <span className="dock__content">
+      <span className="dock__icon">{icon}</span>
+      <span className="dock__label">{label}</span>
+    </span>
   );
 
   if (href) {

@@ -33,6 +33,45 @@
   font-weight: 700;
 }
 
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.titleRow .title {
+  flex: 1;
+  min-width: 0;
+}
+
+.infoLink {
+  flex: none;
+  color: rgba(255, 255, 255, 0.46);
+  font-family: Georgia, "Iowan Old Style", Palatino, serif;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 8px;
+}
+
+.infoLink:hover {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.infoLink:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  color: #fff;
+}
+
 .lead {
   color: rgba(255, 255, 255, 0.72);
   font-size: 15px;

@@ -10,9 +10,11 @@ import styles from "./subpage.module.css";
 export function StartPlanButton({
   templateId,
   className,
+  label = "Start",
 }: {
   templateId: string;
   className?: string;
+  label?: string;
 }) {
   const router = useRouter();
   const [mode, setMode] = useState<"start" | "resume">("start");
@@ -64,7 +66,7 @@ export function StartPlanButton({
 
   return (
     <button className={className ?? styles.primary} type="button" onClick={onClick}>
-      {mode === "resume" ? "Resume" : "Start"}
+      {mode === "resume" ? "Resume" : label}
     </button>
   );
 }

@@ -8,11 +8,13 @@ export function PageFrame({
   backHref,
   backLabel,
   title,
+  trailing,
   children,
 }: {
   backHref: string;
   backLabel: string;
   title: string;
+  trailing?: ReactNode;
   children: ReactNode;
 }) {
   return (
@@ -21,7 +23,14 @@ export function PageFrame({
         <Link className={styles.back} href={backHref}>
           {backLabel}
         </Link>
-        <h1 className={styles.title}>{title}</h1>
+        {trailing ? (
+          <div className={styles.titleRow}>
+            <h1 className={styles.title}>{title}</h1>
+            {trailing}
+          </div>
+        ) : (
+          <h1 className={styles.title}>{title}</h1>
+        )}
         {children}
       </div>
     </main>

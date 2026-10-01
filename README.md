@@ -7,6 +7,7 @@ Structr is a kettlebell day-one training PWA. Home is an athletic wallpaper and 
 - `/` Home dock
 - `/plans` Swing Foundation, Clean Path, Get-Up Primer
 - `/plans/[id]` Phase outline and Start
+- `/info/kettlebell` Day-one kettlebell briefing
 - `/session` Five-phase runner (dock hidden, resumes after refresh)
 - `/session/complete` Summary
 - `/you` Local history, lb/kg, clear data

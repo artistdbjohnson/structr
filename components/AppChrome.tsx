@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { isTrainHome } from "@/lib/nav";
 import { HomeDock } from "./HomeDock";
+import { HomeSplash } from "./HomeSplash";
 import { TrainTray } from "./TrainTray";
 
 export function AppChrome({ children }: { children: ReactNode }) {
@@ -23,7 +24,11 @@ export function AppChrome({ children }: { children: ReactNode }) {
 
   return (
     <div className="shell shell--sub" data-tray={trayOpen ? "open" : "closed"}>
-      {trainHome ? <div className="home" aria-hidden="true" /> : null}
+      {trainHome ? (
+        <div className="home" aria-hidden="true">
+          <HomeSplash />
+        </div>
+      ) : null}
       {trainHome ? (
         <>
           <TrainTray open={trayOpen} onClose={closeTray}>

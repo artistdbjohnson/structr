@@ -333,3 +333,227 @@
 .withStart {
   padding-bottom: calc(96px + env(safe-area-inset-bottom));
 }
+
+.goals {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chipRow {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.chipRow::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  position: relative;
+  flex: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.chipOn {
+  background: #fff;
+  color: #16130f;
+  border-color: #fff;
+}
+
+.chipSoon:not(.chipOn) {
+  color: rgba(255, 255, 255, 0.62);
+  border-style: dashed;
+}
+
+.chip:focus-visible,
+.quietLink:focus-visible,
+.templateLink:focus-visible,
+.soonButton:focus-visible,
+.more summary:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.more summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 650;
+  list-style: none;
+}
+
+.more summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Author display:flex on .chipRow would otherwise override the closed-details hide. */
+.more:not([open]) > :not(summary) {
+  display: none;
+}
+
+.more .chipRow {
+  padding-bottom: 8px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-meta);
+}
+
+.moduleHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.quietLink {
+  color: #fff;
+  font-weight: 650;
+  text-decoration: none;
+  min-height: 44px;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.templateList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.templateRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.templateLink {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: 8px;
+}
+
+.templateTitle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.blockBtn {
+  width: 100%;
+}
+
+.soonList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.soonItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.soonButton {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.soonName {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.soonSheet {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 4px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.28);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.soonActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.soonActions button {
+  flex: 1;
+  min-width: 140px;
+}
+
+.nameList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nameList li {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.78);
+}

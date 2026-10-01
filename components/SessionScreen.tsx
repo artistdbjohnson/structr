@@ -31,10 +31,10 @@ export function SessionScreen() {
       <main className={styles.screen}>
         <div className={styles.shell}>
           <h1 className={styles.title}>No active session</h1>
-          <p className={styles.lead}>Train starts your last plan, or pick one from Plans.</p>
+          <p className={styles.lead}>No session in progress. Pick a plan from Train for.</p>
           <div className={styles.links}>
             <Link href="/">Home</Link>
-            <Link href="/plans">Plans</Link>
+            <Link href="/plans">Train for</Link>
           </div>
         </div>
       </main>

@@ -5,9 +5,12 @@ Structr is a kettlebell day-one training PWA. Home is an athletic wallpaper and 
 ## Routes
 
 - `/` Home dock
-- `/plans` Swing Foundation, Clean Path, Get-Up Primer
+- `/plans` Train for — Kettlebell skill (default), Get stronger, Move freer
+- `/plans/browse` Category tree. Only kettlebell templates can start
 - `/plans/[id]` Phase outline and Start
-- `/plans/info` Day-one kettlebell briefing
+- `/plans/info` Kettlebell module briefing
+
+Train with no finished session opens Train for. After a finished session, Train offers the last template or Pick plan. An in-progress session resumes.
 - `/session` Five-phase runner (dock hidden, resumes after refresh)
 - `/session/complete` Summary
 - `/you` Local history, lb/kg, clear data

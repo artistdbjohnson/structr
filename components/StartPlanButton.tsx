@@ -51,10 +51,10 @@ export function StartPlanButton({
   if (ask) {
     return (
       <div className={styles.confirm}>
-        <p>A session is already in progress. Replace it with this plan?</p>
+        <p>End the current session before starting this plan? It won&apos;t be saved.</p>
         <div className={styles.confirmActions}>
           <button className={styles.primary} type="button" onClick={startFresh}>
-            Replace
+            End and start
           </button>
           <button className={styles.ghost} type="button" onClick={() => router.push("/session")}>
             Resume

@@ -4,6 +4,7 @@ export const STORAGE_KEYS = {
   active: "structr.activeSession",
   history: "structr.history",
   prefs: "structr.prefs",
+  soonWatch: "structr.soonWatch",
 } as const;
 
 const DEFAULT_PREFS: Prefs = { unit: "lb" };
@@ -94,4 +95,5 @@ export function clearAllData() {
   window.localStorage.removeItem(STORAGE_KEYS.active);
   window.localStorage.removeItem(STORAGE_KEYS.history);
   window.localStorage.removeItem(STORAGE_KEYS.prefs);
+  window.localStorage.removeItem(STORAGE_KEYS.soonWatch);
 }

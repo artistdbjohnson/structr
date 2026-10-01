@@ -65,7 +65,7 @@ export function YouScreen() {
           <section className={styles.stack}>
             <h2 className={styles.cardTitle}>Recent</h2>
             {history.length === 0 ? (
-              <p className={styles.lead}>No sessions yet. Train starts Swing Foundation.</p>
+              <p className={styles.lead}>No sessions yet. Train opens Train for.</p>
             ) : (
               history.map((session) => {
                 const summary = summarize(session);

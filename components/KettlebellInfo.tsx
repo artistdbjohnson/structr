@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getCategory, getModule } from "@/lib/taxonomy";
 import {
   BELLS,
   FAQ,
@@ -15,15 +16,25 @@ import { StartPlanButton } from "./StartPlanButton";
 import styles from "./kettlebellInfo.module.css";
 
 export function KettlebellInfo() {
+  const kettlebell = getModule("mod_kettlebell");
+  const category = kettlebell ? getCategory(kettlebell.categoryId) : undefined;
+
   return (
     <main className={styles.page}>
       <div className={styles.bar}>
         <Link className={styles.back} href="/plans">
-          ‹ Plans
+          ‹ Train for
         </Link>
       </div>
       <div className={styles.wrap}>
         <header className={styles.hero}>
+          {category && kettlebell ? (
+            <p className={styles.crumbs}>
+              {category.name}
+              <span aria-hidden="true"> → </span>
+              {kettlebell.name}
+            </p>
+          ) : null}
           <h1>Kettlebell</h1>
           <p className={styles.promise}>Skill practice. Three paths. Five phases.</p>
         </header>
@@ -231,7 +242,7 @@ export function KettlebellInfo() {
           <p className={styles.prose}>Open the plans, or start Swing Foundation.</p>
           <div className={styles.actions}>
             <Link className={styles.ctaGhost} href="/plans">
-              Open Plans
+              Train for
             </Link>
             <StartPlanButton
               templateId="swing-foundation"

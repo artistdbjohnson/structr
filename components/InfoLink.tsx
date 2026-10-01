@@ -1,9 +1,15 @@
 import Link from "next/link";
 import styles from "./subpage.module.css";
 
-export function InfoLink() {
+export function InfoLink({
+  href = "/plans/info",
+  label = "Kettlebell info",
+}: {
+  href?: string;
+  label?: string;
+}) {
   return (
-    <Link className={styles.infoLink} href="/plans/info" aria-label="Kettlebell info">
+    <Link className={styles.infoLink} href={href} aria-label={label}>
       i
     </Link>
   );

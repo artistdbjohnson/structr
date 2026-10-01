@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import Link from "next/link";
 import { loadSoonWatch, setSoonWatch } from "@/lib/soonWatch";
 import styles from "./subpage.module.css";
 
-/** Non-startable catalog row. Opens a short sheet; never a session. */
-export function ComingSoonRow({ id, name }: { id: string; name: string }) {
+/** Non-startable catalog row. Info opens the briefing. Never a session. */
+export function ComingSoonRow({ id, name, href }: { id: string; name: string; href?: string }) {
   const panelId = useId();
   const [open, setOpen] = useState(false);
   const [watching, setWatching] = useState(false);
@@ -13,6 +14,22 @@ export function ComingSoonRow({ id, name }: { id: string; name: string }) {
   useEffect(() => {
     setWatching(loadSoonWatch().includes(id));
   }, [id]);
+
+  if (href) {
+    return (
+      <li className={styles.soonItem} data-soon={id}>
+        <Link className={styles.soonButton} href={href}>
+          <span className={styles.soonName}>{name}</span>
+          <span className={styles.soonMeta}>
+            <span className={styles.infoMark} aria-hidden="true">
+              i
+            </span>
+            <span className={styles.mark}>Coming soon</span>
+          </span>
+        </Link>
+      </li>
+    );
+  }
 
   return (
     <li className={styles.soonItem} data-soon={id}>

@@ -12,22 +12,29 @@ export function PageFrame({
   trailing,
   children,
 }: {
-  backHref: string;
-  backLabel: string;
+  backHref?: string;
+  backLabel?: string;
   title: string;
   meta?: ReactNode;
   trailing?: ReactNode;
   children: ReactNode;
 }) {
+  const back = backHref && backLabel;
   return (
     <main className={styles.page}>
       <div className={styles.wrap}>
-        <div className={styles.chrome}>
-          <Link className={styles.back} href={backHref}>
-            {backLabel}
-          </Link>
-          {trailing}
-        </div>
+        {back || trailing ? (
+          <div className={styles.chrome}>
+            {backHref && backLabel ? (
+              <Link className={styles.back} href={backHref}>
+                {backLabel}
+              </Link>
+            ) : (
+              <span />
+            )}
+            {trailing}
+          </div>
+        ) : null}
         <header className={styles.heading}>
           <h1 className={styles.title}>{title}</h1>
           {meta ? <p className={styles.kicker}>{meta}</p> : null}

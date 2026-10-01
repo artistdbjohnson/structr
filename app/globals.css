@@ -14,7 +14,8 @@
   --track-tight: -0.03em;
   --track-label: 0.08em;
   --measure: 40rem;
-  --dock-gutter: calc(clamp(128px, 17.5vmin, 158px) + 22px);
+  --dock-width: clamp(128px, 17.5vmin, 158px);
+  --dock-gutter: calc(var(--dock-width) + 22px);
   color-scheme: dark;
 }
 
@@ -109,6 +110,35 @@ textarea {
   justify-self: end;
 }
 
+/* You parks the pill on the right. The rows above and below it are the dismiss targets. */
+.dock-anchor--you {
+  grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  justify-items: end;
+}
+
+.dock-gutter {
+  justify-self: end;
+  align-self: stretch;
+  width: var(--dock-width);
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  pointer-events: auto;
+  touch-action: manipulation;
+  cursor: default;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dock-gutter:focus {
+  outline: none;
+}
+
 .shell--sub {
   min-height: 100dvh;
 }
@@ -158,7 +188,7 @@ textarea {
   border-radius: 999px;
   flex-direction: column;
   align-items: stretch;
-  width: clamp(128px, 17.5vmin, 158px);
+  width: var(--dock-width);
   gap: clamp(6px, 0.9vmin, 10px);
   padding: clamp(15px, 1.9vmin, 18px);
   display: flex;

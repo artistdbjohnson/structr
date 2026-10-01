@@ -54,6 +54,11 @@ function routeSlot(pathname: string): Exclude<SlotId, "train"> {
   return "you";
 }
 
+function isYouPath(pathname: string): boolean {
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  return path === "/you";
+}
+
 export function HomeDock({
   trayOpen,
   onOpenTray,
@@ -177,9 +182,40 @@ export function HomeDock({
   };
   // Wallpaper home keeps the pill centered. An open tray, and every other page, parks it on the right.
   const parkDock = trayOpen || !isTrainHome(pathname);
+  const youOpen = isYouPath(pathname);
+
+  function dismissYou() {
+    if (marginTap.consumeIfMoved()) return;
+    if (lock.current) return;
+    lock.current = true;
+    // You can be opened after Plans, which leaves the tray flag set.
+    // Clearing it here is what makes / the cold wallpaper, not an open tray.
+    onCloseTray();
+    router.push("/");
+  }
+
+  const gutterProps = {
+    type: "button" as const,
+    className: "dock-gutter",
+    "aria-label": "Close You",
+    tabIndex: -1,
+    onPointerDown: marginTap.onPointerDown,
+    onPointerMove: marginTap.onPointerMove,
+    onClick: dismissYou,
+  };
+
   return (
     <>
-      <div className={parkDock ? "dock-anchor dock-anchor--side" : "dock-anchor"}>
+      <div
+        className={
+          youOpen
+            ? "dock-anchor dock-anchor--side dock-anchor--you"
+            : parkDock
+              ? "dock-anchor dock-anchor--side"
+              : "dock-anchor"
+        }
+      >
+        {youOpen ? <button {...gutterProps} data-dock-gutter="above" /> : null}
         {trayOpen ? (
           <button
             type="button"
@@ -260,6 +296,7 @@ export function HomeDock({
           icon={<PersonIcon />}
         />
         </nav>
+        {youOpen ? <button {...gutterProps} data-dock-gutter="below" /> : null}
       </div>
       {sheet ? (
         <TrainSheet

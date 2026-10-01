@@ -23,7 +23,15 @@ type SlotId = "train" | "plans" | "you";
 
 function routeSlot(pathname: string): Exclude<SlotId, "train"> {
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-  if (path === "/plans" || path.startsWith("/plans/")) return "plans";
+  if (
+    path === "/" ||
+    path === "/plans" ||
+    path.startsWith("/plans/") ||
+    path === "/info" ||
+    path.startsWith("/info/")
+  ) {
+    return "plans";
+  }
   return "you";
 }
 
@@ -81,7 +89,7 @@ export function HomeDock() {
       return;
     }
     const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-    if (path === "/plans") return;
+    if (path === "/" || path === "/plans") return;
     lock.current = true;
     router.push("/plans");
   }
@@ -111,20 +119,10 @@ export function HomeDock() {
     onPointerUp: release,
     onPointerCancel: () => setHold(null),
   };
-  const onHome = pathname === "/";
-  const dockTransition = reduce ? { duration: 0 } : SELECTION_SPRING;
-
   return (
     <>
-      <motion.div className={onHome ? "dock-anchor" : "dock-anchor dock-anchor--side"} layoutRoot>
-      <motion.nav
-        layout
-        className="dock"
-        aria-label="Home"
-        data-active={routeActive}
-        initial={false}
-        transition={dockTransition}
-      >
+      <div className="dock-anchor dock-anchor--side">
+      <nav className="dock" aria-label="Home" data-active={routeActive}>
         <DockSlot
           {...slotProps}
           id="train"
@@ -155,8 +153,8 @@ export function HomeDock() {
           onPointerDown={(event) => press("you", event)}
           icon={<PersonIcon />}
         />
-        </motion.nav>
-      </motion.div>
+        </nav>
+      </div>
       {sheet ? (
         <TrainSheet
           templateName={sheet.templateName}

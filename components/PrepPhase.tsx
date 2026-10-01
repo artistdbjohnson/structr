@@ -103,6 +103,7 @@ function BlockEditor({
       {track.time !== "off" ? (
         <div className={styles.timeRow}>
           <button
+            className={styles.timeToggle}
             type="button"
             onClick={() => {
               if (!running) {
@@ -115,10 +116,12 @@ function BlockEditor({
           >
             {running ? "Stop timer" : "Start timer"}
           </button>
-          <output aria-live="polite">
-            {timeLabel} {formatClock(timeSec)}
+          <output className={styles.timeReadout} aria-live="polite">
+            <span className={styles.timeLabel}>{timeLabel}</span>
+            <span className={styles.timeValue}>{formatClock(timeSec)}</span>
           </output>
           <button
+            className={styles.timeBump}
             type="button"
             onClick={() => {
               setRunning(false);
@@ -128,6 +131,7 @@ function BlockEditor({
             +0:15
           </button>
           <button
+            className={styles.timeBump}
             type="button"
             onClick={() => {
               setRunning(false);

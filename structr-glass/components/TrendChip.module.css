@@ -12,18 +12,24 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
-  padding: 0.28em 0.65em 0.28em 0.5em;
-  border-radius: var(--sg-radius-sm);
+  max-width: 100%;
+  padding: 0.22em 0.7em 0.22em 0.5em;
+  border-radius: var(--sg-radius-pill);
   color: var(--sg-ink);
   font-family: var(--sg-numeral-font);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 650;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: nowrap;
   background:
-    linear-gradient(160deg, var(--sg-fill-base-hi), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.08) 55%),
     var(--sg-fill);
-  box-shadow: var(--sg-shadow-rim), 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.66),
+    0 0 0 1px rgba(255, 255, 255, 0.28),
+    0 0 12px var(--sg-glow, var(--sg-glow-cyan));
   backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
   -webkit-backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
   overflow: hidden;
@@ -32,16 +38,19 @@
 .chip[data-tint="magenta"] {
   --sg-fill: var(--sg-fill-magenta);
   --tc-dir: var(--sg-spark-magenta);
+  --sg-glow: var(--sg-glow-magenta);
 }
 
 .chip[data-tint="orange"] {
   --sg-fill: var(--sg-fill-orange);
   --tc-dir: var(--sg-spark-orange);
+  --sg-glow: var(--sg-glow-orange);
 }
 
 .chip[data-tint="cyan"] {
   --sg-fill: var(--sg-fill-cyan);
   --tc-dir: var(--sg-spark-cyan);
+  --sg-glow: var(--sg-glow-cyan);
 }
 
 .chip[data-direction="down"] {
@@ -52,14 +61,19 @@
   --tc-dir: var(--sg-ink-muted);
 }
 
-/* Dashed inner rim (tighter) */
+/* Soft thin rim */
 .chip::before {
   content: "";
   position: absolute;
-  inset: 2px;
-  border-radius: calc(var(--sg-radius-sm) - 2px);
-  border: 1px dashed var(--sg-rim-color);
-  opacity: 0.7;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--sg-rim-width);
+  background: var(--sg-rim-sheen);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
   pointer-events: none;
   z-index: 1;
 }

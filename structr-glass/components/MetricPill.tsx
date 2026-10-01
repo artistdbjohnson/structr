@@ -55,10 +55,11 @@ function Sparkline({
       viewBox={`0 0 ${w} ${h}`}
       aria-hidden="true"
       style={{
-        width: "var(--sg-spark-width)",
-        height: "var(--sg-spark-height)",
+        width: "100%",
+        maxWidth: "var(--sg-spark-width)",
+        height: "auto",
+        maxHeight: "var(--sg-spark-height)",
         opacity: "var(--sg-spark-opacity)" as unknown as number,
-        flexShrink: 0,
       }}
     >
       <path
@@ -139,6 +140,16 @@ export function MetricPill({
       </div>
       {(pct || footer) && (
         <div className={styles.meta}>
+          <svg className={styles.accent} viewBox="0 0 140 24" aria-hidden="true">
+            <path
+              d="M4 18 C 42 18, 64 5, 136 8"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.15"
+              strokeLinecap="round"
+              strokeDasharray="0.9 3.2"
+            />
+          </svg>
           {pct ? <PercentChip>{pct}</PercentChip> : <span />}
           {footer}
         </div>

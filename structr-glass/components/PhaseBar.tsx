@@ -61,7 +61,7 @@ export function PhaseBar({
     >
       <div className={styles.header}>
         <span className={styles.title}>{title}</span>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+        <span className={styles.phaseSlot}>
           {phaseName ? (
             <span className={styles.phaseLabel}>{phaseName}</span>
           ) : (

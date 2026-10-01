@@ -29,11 +29,12 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ id:
 
   return (
     <PageFrame backHref="/plans" backLabel="‹ Plans" title={template.name}>
-      <p className={styles.lead}>
-        {template.focus} · {template.minutes}
-      </p>
-      <PlanMarks id={template.id} />
-      <ol className={styles.phaseList}>
+      <div className={styles.withStart}>
+        <p className={styles.lead}>
+          {template.focus} · {template.minutes}
+        </p>
+        <PlanMarks id={template.id} />
+        <ol className={styles.phaseList}>
         {template.phases.map((phase, index) => (
           <li key={phase.id} className={styles.phaseItem}>
             <h2 className={styles.phaseName}>
@@ -50,8 +51,13 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ id:
             </ul>
           </li>
         ))}
-      </ol>
-      <StartPlanButton templateId={template.id} />
+        </ol>
+      </div>
+      <div className={styles.startBar}>
+        <div className={styles.startBarInner}>
+          <StartPlanButton templateId={template.id} />
+        </div>
+      </div>
     </PageFrame>
   );
 }

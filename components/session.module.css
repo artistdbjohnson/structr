@@ -362,18 +362,20 @@
 
 .rpeTicks {
   display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  gap: 4px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
 }
 
 .rpeTicks button {
-  min-height: 40px;
+  min-width: 0;
+  min-height: 44px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
   cursor: pointer;
   font-variant-numeric: tabular-nums;
+  padding: 0;
 }
 
 .rpeTicks button[aria-pressed="true"] {

@@ -187,3 +187,22 @@
 .confirmActions button {
   flex: 1;
 }
+
+.startBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(12, 11, 15, 0), rgba(12, 11, 15, 0.94) 36%);
+}
+
+.startBarInner {
+  width: min(440px, 100%);
+  margin: 0 auto;
+}
+
+.withStart {
+  padding-bottom: calc(96px + env(safe-area-inset-bottom));
+}

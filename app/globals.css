@@ -111,7 +111,7 @@ body {
   outline-offset: 3px;
 }
 
-/* Active Photos control — frosted circle that sets the capsule width */
+/* Active You control — frosted circle that sets the capsule width */
 .dock__btn[aria-current="page"] {
   width: clamp(86px, 12vmin, 112px);
   height: clamp(86px, 12vmin, 112px);

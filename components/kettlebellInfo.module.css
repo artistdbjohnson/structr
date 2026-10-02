@@ -813,6 +813,28 @@
   max-width: 28rem;
 }
 
+.planStarts {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 16px 0 0;
+  padding: 0;
+  max-width: 28rem;
+}
+
+.planStart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.planTime {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+}
+
 .ctaGhost,
 .ctaPrimary {
   min-height: 52px;

@@ -14,7 +14,7 @@
 
 **Mat practice** is where yoga, Pilates, and quiet flow will live. Still a real session: warm up, learn the positions, a **Bulk** of holds or flow, then slow down. Breath counts.
 
-It's **coming soon**. The sessions will be ones we can stand behind.
+The sessions are ones we can stand behind. You can start them.
 
 ---
 
@@ -33,7 +33,7 @@ Warm up, learn the shape, then The Bulk is the flow or the holds. The number is 
 
 ---
 
-## 4. Future plans
+## 4. Plans
 
 1. **Morning Mat Flow**
 2. **Pilates Mat Fundamentals**
@@ -55,7 +55,7 @@ A mat covers the first sessions.
 It's movement, with breath.
 
 **When?**  
-After the strength and mobility sessions.
+Whenever you want a mat day. Strength and mobility sit next to it, not instead of it.
 
 ---
 

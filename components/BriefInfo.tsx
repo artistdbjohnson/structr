@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 import { PHASE_PATH } from "@/lib/kettlebellInfo";
 import type { Block, BriefSection, Inline, ParsedBrief } from "@/lib/briefs";
-import type { InfoEntry } from "@/lib/taxonomy";
+import { plansForInfoSlug, type InfoEntry } from "@/lib/taxonomy";
 import { StartPlanButton } from "./StartPlanButton";
 import { SoonNotify } from "./SoonNotify";
 import styles from "./kettlebellInfo.module.css";
@@ -183,14 +183,33 @@ function BlockView({ block }: { block: Block }) {
   return null;
 }
 
-function SectionView({ section }: { section: BriefSection }) {
+function StartablePlans({ slug }: { slug: string }) {
+  const plans = plansForInfoSlug(slug);
+  if (!plans.length) return null;
+  return (
+    <ul className={styles.planStarts}>
+      {plans.map((plan) => (
+        <li key={plan.id} className={styles.planStart}>
+          <Link className={styles.inlineLink} href={`/plans/${plan.id}`}>
+            {plan.name}
+          </Link>
+          <span className={styles.planTime}>{plan.minutes}</span>
+          <StartPlanButton templateId={plan.id} label="Start" />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function SectionView({ section, entry }: { section: BriefSection; entry: InfoEntry }) {
   const faq = /faq|question/i.test(section.heading);
   const templates = /template|\bplans?\b/i.test(section.heading);
   return (
     <section className={styles.section} aria-labelledby={section.heading}>
       <h2 id={section.heading}>{section.heading}</h2>
       {faq ? <div className={styles.faq}>{<Blocks blocks={section.blocks} faq />}</div> : <Blocks blocks={section.blocks} faq={false} />}
-      {templates ? <p className={styles.defaultNote}>You can't start these yet.</p> : null}
+      {templates && entry.status === "soon" ? <p className={styles.defaultNote}>You can't start these yet.</p> : null}
+      {templates && entry.status === "live" ? <StartablePlans slug={entry.slug} /> : null}
     </section>
   );
 }
@@ -215,7 +234,7 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
 
         {brief.sections.map((section, index) => (
           <Fragment key={section.heading}>
-            <SectionView section={section} />
+            <SectionView section={section} entry={entry} />
             {index === 0 ? (
               <section className={styles.section} aria-labelledby="phase-path">
                 <h2 id="phase-path">Five phases</h2>

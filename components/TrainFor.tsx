@@ -6,9 +6,9 @@ import styles from "@/components/subpage.module.css";
 import {
   comingSoonForChip,
   goalForChip,
-  liveChips,
+  mainChips,
   modulesForChip,
-  soonChips,
+  moreChips,
   templatesForChip,
   trainForHref,
   type TrainChip,
@@ -20,8 +20,10 @@ export function TrainFor({ chip }: { chip: TrainChip }) {
   const templates = templatesForChip(chip);
   const comingSoon = comingSoonForChip(chip);
   const goal = goalForChip(chip.id);
-  const infoHref = live ? "/plans/info" : goal?.infoHref;
-  const infoLabel = live ? "Kettlebell info" : goal ? `${goal.label} info` : "Info";
+  const infoHref = goal?.infoHref ?? modules[0]?.infoHref ?? "/plans/info";
+  const infoLabel = infoHref === "/plans/info" ? "Kettlebell info" : `${goal?.label ?? modules[0]?.name ?? "Plan"} info`;
+  const more = moreChips();
+  const moreSoon = more.some((item) => item.status === "soon");
 
   return (
     <PageFrame
@@ -31,7 +33,7 @@ export function TrainFor({ chip }: { chip: TrainChip }) {
     >
       <nav className={styles.goals} aria-label="Train for" data-train-for={chip.id} data-chip-status={chip.status}>
         <div className={styles.chipRow}>
-          {liveChips().map((item) => {
+          {mainChips().map((item) => {
             const selected = item.id === chip.id;
             return (
               <Link
@@ -46,31 +48,40 @@ export function TrainFor({ chip }: { chip: TrainChip }) {
             );
           })}
         </div>
-        <details key={chip.id} className={styles.more} open={chip.status === "soon"}>
+        {more.length > 0 ? (
+        <details key={chip.id} className={styles.more} open={chip.shelf === "more"}>
           <summary>
             More goals
-            <span className={styles.mark}>Coming soon</span>
+            {moreSoon ? <span className={styles.mark}>Coming soon</span> : null}
           </summary>
           <div className={styles.chipRow} aria-label="More goals">
-            {soonChips().map((item) => {
+            {more.map((item) => {
               const selected = item.id === chip.id;
+              const soon = item.status === "soon";
               return (
                 <Link
                   key={item.id}
                   href={trainForHref(item.id)}
                   className={
-                    selected ? `${styles.chip} ${styles.chipSoon} ${styles.chipOn}` : `${styles.chip} ${styles.chipSoon}`
+                    soon
+                      ? selected
+                        ? `${styles.chip} ${styles.chipSoon} ${styles.chipOn}`
+                        : `${styles.chip} ${styles.chipSoon}`
+                      : selected
+                        ? `${styles.chip} ${styles.chipOn}`
+                        : styles.chip
                   }
                   aria-current={selected ? "page" : undefined}
                   data-chip={item.id}
                 >
                   {item.label}
-                  <span className={styles.sr}>Coming soon</span>
+                  {soon ? <span className={styles.sr}>Coming soon</span> : null}
                 </Link>
               );
             })}
           </div>
         </details>
+        ) : null}
       </nav>
 
       {live ? (

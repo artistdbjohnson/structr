@@ -12,7 +12,50 @@ import type { Template } from "./types";
 export type CatalogStatus = "live" | "soon";
 
 /** Stable taxonomy ids. Route ids live on TEMPLATE_ROUTES. */
-export type TaxonomyTemplateId = "tpl_swing" | "tpl_clean" | "tpl_getup";
+export const TEMPLATE_ROUTES = {
+  tpl_swing: "swing-foundation",
+  tpl_clean: "clean-path",
+  tpl_getup: "get-up-primer",
+  tpl_goblet: "goblet-squat-path",
+  tpl_press: "press-path",
+  tpl_row: "row-path",
+  tpl_squat: "squat-basics",
+  tpl_bench: "bench-basics",
+  tpl_deadlift: "deadlift-basics",
+  tpl_pull: "pull-ladder",
+  tpl_push: "push-ladder",
+  tpl_bw_squat: "squat-ladder",
+  tpl_handstand: "handstand-wall-path",
+  tpl_dips: "dip-support",
+  tpl_core: "core-holds",
+  tpl_muscleup: "muscle-up-approach",
+  tpl_circles: "full-body-circles",
+  tpl_hips: "hips-upper-back",
+  tpl_shoulders: "shoulders-wrists",
+  tpl_steady: "steady-stance",
+  tpl_floor: "floor-to-stand",
+  tpl_bridge: "get-up-bridge",
+  tpl_mat_flow: "morning-mat-flow",
+  tpl_pilates: "pilates-mat",
+  tpl_hip_strength: "easy-hip-strength",
+  tpl_breath: "breath-and-settle",
+  tpl_mat_core: "core-control-mat",
+  tpl_stations: "station-skills",
+  tpl_erg: "erg-intervals",
+  tpl_mixed: "mixed-stations",
+  tpl_race_easy: "race-week-easy",
+  tpl_carries: "carry-lunges",
+  tpl_golf: "golf-gym-prep",
+  tpl_hang: "hangboard-practice",
+  tpl_shadow: "shadow-boxing",
+  tpl_turn: "power-in-the-turn",
+  tpl_day_before: "day-before-easy",
+  tpl_capable: "capable-strength",
+  tpl_carry_day: "carry-everyday",
+  tpl_easy_day: "move-freer-easy",
+} as const;
+
+export type TaxonomyTemplateId = keyof typeof TEMPLATE_ROUTES;
 
 export type TrainChipId =
   | "kettlebell-skill"
@@ -68,6 +111,8 @@ export type TrainChip = {
   comingSoonIds: string[];
   /** Soon-chip empty state. Names only — never startable. */
   plannedNames: string[];
+  /** Main row, or the More goals disclosure. */
+  shelf: "main" | "more";
 };
 
 export type GoalPage = {
@@ -78,6 +123,8 @@ export type GoalPage = {
   lede: string;
   infoHref: string;
   plannedNames: string[];
+  /** Startable plans when this goal is no longer just names. */
+  templateIds?: TaxonomyTemplateId[];
 };
 
 export type InfoKind = "kettlebell" | "module" | "goal";
@@ -94,12 +141,6 @@ export type InfoEntry = {
   ctas: { href: string; label: string }[];
 };
 
-export const TEMPLATE_ROUTES: Record<TaxonomyTemplateId, string> = {
-  tpl_swing: "swing-foundation",
-  tpl_clean: "clean-path",
-  tpl_getup: "get-up-primer",
-};
-
 export const DEFAULT_TEMPLATE_ROUTE = TEMPLATE_ROUTES.tpl_swing;
 
 export const DEFAULT_TRAIN_CHIP_ID: TrainChipId = "kettlebell-skill";
@@ -108,13 +149,12 @@ export const CATEGORIES: Category[] = [
   {
     id: "cat_strength",
     name: "Strength & free weights",
-    blurb: "Kettlebell is ready. The rest of the weights are still being written.",
+    blurb: "Kettlebell, dumbbell, and barbell. Same five-part session. All three can start.",
   },
   {
     id: "cat_calisthenics",
     name: "Bodyweight",
     blurb: "You earn the next rung when this one feels easy.",
-    goalId: "goal_bodyweight",
   },
   {
     id: "cat_mobility",
@@ -125,31 +165,27 @@ export const CATEGORIES: Category[] = [
     id: "cat_mindbody",
     name: "Mat and quiet strength",
     blurb: "Yoga, Pilates, and quiet work on the floor.",
-    goalId: "goal_mat",
   },
   {
     id: "cat_conditioning",
     name: "Conditioning & endurance",
     blurb: "Stations and machines, in a normal session you can time.",
-    goalId: "goal_engine",
   },
   {
     id: "cat_functional",
     name: "Functional & competition fitness",
-    blurb: "Race-day stations will live with engine prep.",
+    blurb: "The same engine sessions, for a race week.",
     goalId: "goal_engine",
   },
   {
     id: "cat_sport",
     name: "Sport skill practice",
     blurb: "Solo drills you can time for the sport you already play.",
-    goalId: "goal_sport",
   },
   {
     id: "cat_aging",
     name: "Stay capable",
-    blurb: "Keep doing the things you love. Get-Up Primer is already ready.",
-    goalId: "goal_stay_capable",
+    blurb: "Keep doing the things you love. Strength, balance, and a way up off the floor.",
   },
 ];
 
@@ -174,15 +210,11 @@ export const MODULES: CatalogModule[] = [
     subcategory: "Dumbbell / home free weights",
     name: "Dumbbell strength skill",
     blurb: "Press, row, and goblet squat. Learn the shape, then add weight.",
-    status: "soon",
+    status: "live",
     slug: "dumbbell_strength",
     infoHref: "/info/dumbbell_strength",
-    templateIds: [],
-    plannedTemplates: [
-      { name: "Goblet Squat Path", minutes: "~35–45 min" },
-      { name: "Press Path", minutes: "~35–45 min" },
-      { name: "Row Path", minutes: "~35–45 min" },
-    ],
+    templateIds: ["tpl_goblet", "tpl_press", "tpl_row"],
+    plannedTemplates: [],
   },
   {
     id: "mod_barbell_form",
@@ -191,15 +223,11 @@ export const MODULES: CatalogModule[] = [
     subcategory: "Barbell strength",
     name: "Barbell form basics",
     blurb: "Squat, bench, and deadlift. A few cues, then more reps.",
-    status: "soon",
+    status: "live",
     slug: "barbell_form",
     infoHref: "/info/barbell_form",
-    templateIds: [],
-    plannedTemplates: [
-      { name: "Squat Basics", minutes: "~40–50 min" },
-      { name: "Bench Basics", minutes: "~40–50 min" },
-      { name: "Deadlift Basics", minutes: "~40–50 min" },
-    ],
+    templateIds: ["tpl_squat", "tpl_bench", "tpl_deadlift"],
+    plannedTemplates: [],
   },
   {
     id: "mod_calisthenics_ladder",
@@ -208,15 +236,11 @@ export const MODULES: CatalogModule[] = [
     subcategory: "Pull / push / squat progressions",
     name: "Calisthenics ladder",
     blurb: "Pull, push, and squat. Earn the next rung when this one is clean.",
-    status: "soon",
+    status: "live",
     slug: "calisthenics_ladder",
     infoHref: "/info/calisthenics_ladder",
-    templateIds: [],
-    plannedTemplates: [
-      { name: "Pull Ladder", minutes: "~35–45 min" },
-      { name: "Push Ladder", minutes: "~35–45 min" },
-      { name: "Squat Ladder", minutes: "~35–45 min" },
-    ],
+    templateIds: ["tpl_pull", "tpl_push", "tpl_bw_squat"],
+    plannedTemplates: [],
   },
   {
     id: "mod_daily_mobility",
@@ -225,15 +249,11 @@ export const MODULES: CatalogModule[] = [
     subcategory: "Daily mobility",
     name: "Daily mobility session",
     blurb: "Slow circles and easy openers, so you move a little freer.",
-    status: "soon",
+    status: "live",
     slug: "daily_mobility",
     infoHref: "/info/daily_mobility",
-    templateIds: [],
-    plannedTemplates: [
-      { name: "Full-body joint circles", minutes: "~20–30 min" },
-      { name: "Hips and upper back", minutes: "~25–35 min" },
-      { name: "Shoulders and wrists", minutes: "~20–30 min" },
-    ],
+    templateIds: ["tpl_circles", "tpl_hips", "tpl_shoulders"],
+    plannedTemplates: [],
   },
   {
     id: "mod_balance_getup",
@@ -241,16 +261,77 @@ export const MODULES: CatalogModule[] = [
     subcategoryId: "sub_balance",
     subcategory: "Balance practice",
     name: "Balance & get-up pack",
-    blurb: "Steadier feet, and a calm way up off the floor. The get-up with a bell stays with kettlebell.",
-    status: "soon",
+    blurb: "Steadier feet, and a calm way up off the floor. The heavier get-up still lives with kettlebell.",
+    status: "live",
     slug: "balance_getup",
     infoHref: "/info/balance_getup",
-    templateIds: [],
-    plannedTemplates: [
-      { name: "Steady Stance", minutes: "~20–30 min" },
-      { name: "Floor-to-Stand Path", minutes: "~25–35 min" },
-      { name: "Get-Up Bridge", minutes: "~30–40 min", bridgeTemplateId: "get-up-primer" },
-    ],
+    templateIds: ["tpl_steady", "tpl_floor", "tpl_bridge"],
+    plannedTemplates: [],
+  },
+  {
+    id: "mod_bodyweight_skills",
+    categoryId: "cat_calisthenics",
+    subcategoryId: "sub_bodyweight_skills",
+    subcategory: "Bar, wall, and floor",
+    name: "Bodyweight skills",
+    blurb: "The wall, the dip, and the holds. Pull Ladder stays on the calisthenics rung.",
+    status: "live",
+    slug: "bodyweight_skills",
+    infoHref: "/info/bodyweight_skills",
+    templateIds: ["tpl_handstand", "tpl_dips", "tpl_core", "tpl_muscleup"],
+    plannedTemplates: [],
+  },
+  {
+    id: "mod_mat",
+    categoryId: "cat_mindbody",
+    subcategoryId: "sub_mat",
+    subcategory: "Yoga and Pilates",
+    name: "Mat practice",
+    blurb: "Flows and holds on a mat. Breath counts. Still a real session.",
+    status: "live",
+    slug: "mat_practice",
+    infoHref: "/info/mat_practice",
+    templateIds: ["tpl_mat_flow", "tpl_pilates", "tpl_hip_strength", "tpl_breath", "tpl_mat_core"],
+    plannedTemplates: [],
+  },
+  {
+    id: "mod_engine",
+    categoryId: "cat_conditioning",
+    subcategoryId: "sub_engine",
+    subcategory: "Stations and machines",
+    name: "Engine / race prep",
+    blurb: "Stations and easy machine work. A session you can follow, not a map of your miles.",
+    status: "live",
+    slug: "engine_race_prep",
+    infoHref: "/info/engine_race_prep",
+    templateIds: ["tpl_stations", "tpl_erg", "tpl_mixed", "tpl_race_easy", "tpl_carries"],
+    plannedTemplates: [],
+  },
+  {
+    id: "mod_sport",
+    categoryId: "cat_sport",
+    subcategoryId: "sub_sport",
+    subcategory: "Solo sport drills",
+    name: "Sport prep",
+    blurb: "Gym work and solo rounds for the sport you already play. No swing video.",
+    status: "live",
+    slug: "sport_prep",
+    infoHref: "/info/sport_prep",
+    templateIds: ["tpl_golf", "tpl_hang", "tpl_shadow", "tpl_turn", "tpl_day_before"],
+    plannedTemplates: [],
+  },
+  {
+    id: "mod_stay",
+    categoryId: "cat_aging",
+    subcategoryId: "sub_stay",
+    subcategory: "Strength, balance, carry",
+    name: "Stay capable",
+    blurb: "Kinder loads, steadier feet, and a way to keep carrying things.",
+    status: "live",
+    slug: "stay_capable",
+    infoHref: "/info/stay_capable",
+    templateIds: ["tpl_capable", "tpl_steady", "tpl_floor", "tpl_carry_day", "tpl_easy_day"],
+    plannedTemplates: [],
   },
 ];
 
@@ -284,6 +365,7 @@ export const GOAL_PAGES: GoalPage[] = [
       "Race week easy",
       "Carry & Lunges Path",
     ],
+    templateIds: ["tpl_stations", "tpl_erg", "tpl_mixed", "tpl_race_easy", "tpl_carries"],
   },
   {
     id: "goal_mat",
@@ -343,83 +425,114 @@ export const TRAIN_CHIPS: TrainChip[] = [
     primaryTemplateId: "tpl_swing",
     comingSoonIds: [],
     plannedNames: [],
+    shelf: "main",
   },
   {
     id: "get-stronger",
     label: "Get stronger",
     status: "live",
-    why: "The kettlebell sessions are the strength you can start today.",
-    moduleIds: ["mod_kettlebell"],
-    templateIds: ["tpl_swing", "tpl_clean", "tpl_getup"],
+    why: "Kettlebell, dumbbell, barbell, and the bodyweight ladder.",
+    moduleIds: ["mod_kettlebell", "mod_dumbbell_strength", "mod_barbell_form", "mod_calisthenics_ladder"],
+    templateIds: [
+      "tpl_swing",
+      "tpl_clean",
+      "tpl_getup",
+      "tpl_goblet",
+      "tpl_press",
+      "tpl_row",
+      "tpl_squat",
+      "tpl_bench",
+      "tpl_deadlift",
+      "tpl_pull",
+      "tpl_push",
+      "tpl_bw_squat",
+    ],
     primaryTemplateId: "tpl_swing",
-    comingSoonIds: ["mod_dumbbell_strength", "mod_barbell_form", "mod_calisthenics_ladder"],
+    comingSoonIds: [],
     plannedNames: [],
+    shelf: "main",
   },
   {
     id: "move-freer",
     label: "Move freer",
     status: "live",
-    why: "Start with the get-up. Swing and clean are here too.",
-    moduleIds: ["mod_kettlebell"],
-    templateIds: ["tpl_getup", "tpl_swing", "tpl_clean"],
+    why: "Start with the get-up. Mobility and balance are here too.",
+    moduleIds: ["mod_kettlebell", "mod_daily_mobility", "mod_balance_getup"],
+    templateIds: [
+      "tpl_getup",
+      "tpl_swing",
+      "tpl_clean",
+      "tpl_circles",
+      "tpl_hips",
+      "tpl_shoulders",
+      "tpl_steady",
+      "tpl_floor",
+      "tpl_bridge",
+    ],
     primaryTemplateId: "tpl_getup",
-    comingSoonIds: ["mod_daily_mobility", "mod_balance_getup"],
+    comingSoonIds: [],
     plannedNames: [],
+    shelf: "main",
   },
   {
     id: "bodyweight-skills",
     label: "Bodyweight skills",
-    status: "soon",
-    why: "Still writing this.",
-    moduleIds: [],
-    templateIds: [],
-    primaryTemplateId: "tpl_swing",
+    status: "live",
+    why: "The ladder, then the wall, the dip, and the holds.",
+    moduleIds: ["mod_calisthenics_ladder", "mod_bodyweight_skills"],
+    templateIds: ["tpl_pull", "tpl_push", "tpl_bw_squat", "tpl_handstand", "tpl_dips", "tpl_core", "tpl_muscleup"],
+    primaryTemplateId: "tpl_pull",
     comingSoonIds: [],
-    plannedNames: GOAL_PAGES[0].plannedNames,
+    plannedNames: [],
+    shelf: "more",
   },
   {
     id: "engine",
     label: "Engine / race prep",
-    status: "soon",
-    why: "Still writing this.",
-    moduleIds: [],
-    templateIds: [],
-    primaryTemplateId: "tpl_swing",
+    status: "live",
+    why: "Stations, a rower, carries. Still a normal session.",
+    moduleIds: ["mod_engine"],
+    templateIds: ["tpl_stations", "tpl_erg", "tpl_mixed", "tpl_race_easy", "tpl_carries"],
+    primaryTemplateId: "tpl_stations",
     comingSoonIds: [],
-    plannedNames: GOAL_PAGES[1].plannedNames,
+    plannedNames: [],
+    shelf: "more",
   },
   {
     id: "mat-practice",
     label: "Mat practice",
-    status: "soon",
-    why: "Still writing this.",
-    moduleIds: [],
-    templateIds: [],
-    primaryTemplateId: "tpl_swing",
+    status: "live",
+    why: "Yoga and Pilates on a mat. Breath counts.",
+    moduleIds: ["mod_mat"],
+    templateIds: ["tpl_mat_flow", "tpl_pilates", "tpl_hip_strength", "tpl_breath", "tpl_mat_core"],
+    primaryTemplateId: "tpl_mat_flow",
     comingSoonIds: [],
-    plannedNames: GOAL_PAGES[2].plannedNames,
+    plannedNames: [],
+    shelf: "more",
   },
   {
     id: "sport-prep",
     label: "Sport prep",
-    status: "soon",
-    why: "Still writing this.",
-    moduleIds: [],
-    templateIds: [],
-    primaryTemplateId: "tpl_swing",
+    status: "live",
+    why: "Solo gym work for the sport you already play.",
+    moduleIds: ["mod_sport"],
+    templateIds: ["tpl_golf", "tpl_hang", "tpl_shadow", "tpl_turn", "tpl_day_before"],
+    primaryTemplateId: "tpl_golf",
     comingSoonIds: [],
-    plannedNames: GOAL_PAGES[3].plannedNames,
+    plannedNames: [],
+    shelf: "more",
   },
   {
     id: "stay-capable",
     label: "Stay capable",
-    status: "soon",
-    why: "Still writing this.",
-    moduleIds: [],
-    templateIds: [],
-    primaryTemplateId: "tpl_swing",
+    status: "live",
+    why: "Strength, balance, and a carry you can use in real life.",
+    moduleIds: ["mod_stay"],
+    templateIds: ["tpl_capable", "tpl_steady", "tpl_floor", "tpl_carry_day", "tpl_easy_day"],
+    primaryTemplateId: "tpl_capable",
     comingSoonIds: [],
-    plannedNames: GOAL_PAGES[4].plannedNames,
+    plannedNames: [],
+    shelf: "more",
   },
 ];
 
@@ -445,7 +558,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     title: "Dumbbell strength",
     promise: "Press, row, and squat. Same five-part session.",
     crumbs: ["Strength & free weights", "Dumbbell strength skill"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: false,
     ctas: [
       { href: "/plans?for=get-stronger", label: "Back to Get stronger" },
@@ -458,7 +571,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     title: "Barbell form basics",
     promise: "Squat, bench, and deadlift. A few cues, then the work.",
     crumbs: ["Strength & free weights", "Barbell form basics"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: false,
     ctas: [
       { href: "/plans?for=get-stronger", label: "Back to Get stronger" },
@@ -471,7 +584,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     title: "Calisthenics ladder",
     promise: "Earn the next rung when this one is clean.",
     crumbs: ["Bodyweight skills", "Calisthenics ladder"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: false,
     ctas: [
       { href: "/plans?for=get-stronger", label: "Back to Get stronger" },
@@ -484,7 +597,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     title: "Daily mobility",
     promise: "Slow circles, so tomorrow you move a little easier.",
     crumbs: ["Move easier", "Daily mobility"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: false,
     ctas: [
       { href: "/plans?for=move-freer", label: "Back to Move freer" },
@@ -497,7 +610,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     title: "Balance & get-up",
     promise: "Steadier feet. A calm way up off the floor.",
     crumbs: ["Move easier", "Balance and get-up"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: true,
     ctas: [
       { href: "/plans/get-up-primer", label: "Open Get-Up Primer" },
@@ -508,9 +621,9 @@ export const INFO_ENTRIES: InfoEntry[] = [
     slug: "bodyweight_skills",
     kind: "goal",
     title: "Bodyweight skills",
-    promise: "Coming soon. A bar, a wall, and the floor.",
+    promise: "A bar, a wall, and the floor. One rung at a time.",
     crumbs: ["More goals", "Bodyweight skills"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: false,
     ctas: [
       { href: "/plans", label: "Browse kettlebell" },
@@ -522,9 +635,9 @@ export const INFO_ENTRIES: InfoEntry[] = [
     slug: "engine_race_prep",
     kind: "goal",
     title: "Engine / race prep",
-    promise: "Coming soon. Practice the stations until the work feels familiar.",
+    promise: "Practice the stations until the work feels familiar.",
     crumbs: ["More goals", "Engine / race prep"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: false,
     ctas: [
       { href: "/plans", label: "Browse kettlebell" },
@@ -535,9 +648,9 @@ export const INFO_ENTRIES: InfoEntry[] = [
     slug: "mat_practice",
     kind: "goal",
     title: "Mat practice",
-    promise: "Coming soon. Yoga and Pilates, still a real session.",
+    promise: "Yoga and Pilates, still a real session.",
     crumbs: ["More goals", "Mat practice"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: false,
     ctas: [
       { href: "/plans?for=move-freer", label: "Move freer" },
@@ -549,9 +662,9 @@ export const INFO_ENTRIES: InfoEntry[] = [
     slug: "sport_prep",
     kind: "goal",
     title: "Sport prep",
-    promise: "Coming soon. Solo drills for the sport you play.",
+    promise: "Solo drills for the sport you play.",
     crumbs: ["More goals", "Sport prep"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: false,
     ctas: [
       { href: "/plans?for=get-stronger", label: "Get stronger" },
@@ -562,9 +675,9 @@ export const INFO_ENTRIES: InfoEntry[] = [
     slug: "stay_capable",
     kind: "goal",
     title: "Stay capable",
-    promise: "Coming soon. Strength and balance for the life you already have.",
+    promise: "Strength and balance for the life you already have.",
     crumbs: ["More goals", "Stay capable"],
-    status: "soon",
+    status: "live",
     bridgeGetUp: true,
     ctas: [
       { href: "/plans/get-up-primer", label: "Open Get-Up Primer" },
@@ -651,6 +764,37 @@ export function liveChips(): TrainChip[] {
 
 export function soonChips(): TrainChip[] {
   return TRAIN_CHIPS.filter((chip) => chip.status === "soon");
+}
+
+export function mainChips(): TrainChip[] {
+  return TRAIN_CHIPS.filter((chip) => chip.shelf === "main");
+}
+
+export function moreChips(): TrainChip[] {
+  return TRAIN_CHIPS.filter((chip) => chip.shelf === "more");
+}
+
+export function plansForTaxonomyIds(ids: readonly TaxonomyTemplateId[]): Template[] {
+  return ids.flatMap((id) => {
+    const template = getTemplate(TEMPLATE_ROUTES[id]);
+    return template ? [template] : [];
+  });
+}
+
+export function plansForInfoSlug(slug: string): Template[] {
+  const module = MODULES.find((item) => item.slug === slug);
+  if (module && module.templateIds.length > 0) return plansForTaxonomyIds(module.templateIds);
+  const goal = GOAL_PAGES.find((item) => item.slug === slug);
+  if (goal?.templateIds?.length) return plansForTaxonomyIds(goal.templateIds);
+  return [];
+}
+
+export function infoHrefForTemplate(templateId: string): { href: string; label: string } {
+  const module = MODULES.find((item) =>
+    item.templateIds.some((id) => TEMPLATE_ROUTES[id] === templateId),
+  );
+  if (module) return { href: module.infoHref, label: `${module.name} info` };
+  return { href: "/plans/info", label: "Kettlebell info" };
 }
 
 export function modulesForChip(chip: TrainChip): CatalogModule[] {

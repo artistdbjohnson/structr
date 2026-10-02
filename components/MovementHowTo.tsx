@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { MOVEMENT_ART_CREDIT, movementHowTo, type MovementGuide } from "@/lib/movementHowTo";
+import { REPDB_CREDIT, REPDB_HOME } from "@/lib/repdb";
 import styles from "./movementHowTo.module.css";
 import { useTapGuard } from "./useTapGuard";
 
@@ -106,6 +107,66 @@ function FrameReel({ frames }: { frames: readonly string[] }) {
   );
 }
 
+function RepdbStill({ frames, labels }: { frames: readonly string[]; labels: readonly string[] }) {
+  const [index, setIndex] = useState(0);
+  const [failed, setFailed] = useState(false);
+  const shown = Math.min(index, frames.length - 1);
+
+  if (failed) {
+    return (
+      <div className={styles.poster} data-art="placeholder" data-motion="still">
+        <p className={styles.posterKicker}>How</p>
+        <p className={styles.posterName}>Picture didn't load. The words below still count.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.artBlock}>
+      <div className={styles.poster} data-art="repdb" data-motion="still">
+        {frames.map((src, frameIndex) => (
+          <img
+            key={src}
+            src={src}
+            alt={labels[frameIndex] ? `${labels[frameIndex]} position` : ""}
+            width={512}
+            height={512}
+            decoding="async"
+            draggable={false}
+            data-active={frameIndex === shown ? "true" : "false"}
+            onError={() => setFailed(true)}
+          />
+        ))}
+      </div>
+      {frames.length > 1 ? (
+        <div className={styles.frameToggle} role="group" aria-label="Still frames">
+          {labels.map((label, frameIndex) => (
+            <button
+              key={label}
+              type="button"
+              aria-pressed={frameIndex === shown}
+              data-on={frameIndex === shown ? "true" : "false"}
+              onClick={() => setIndex(frameIndex)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function MovementArt({ guide }: { guide: MovementGuide }) {
+  if (guide.source === "repdb" && guide.frames && guide.labels) {
+    return <RepdbStill frames={guide.frames} labels={guide.labels} />;
+  }
+  if (guide.source === "guide" && guide.frames) {
+    return <FrameReel frames={guide.frames} />;
+  }
+  return null;
+}
+
 function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () => void }) {
   const titleId = useId();
   const sheetRef = useRef<HTMLDivElement>(null);
@@ -164,7 +225,7 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
         aria-labelledby={titleId}
         tabIndex={-1}
         data-movement-sheet="true"
-        data-movement-art={guide.frames ? "frames" : "placeholder"}
+        data-movement-art={guide.source ?? "placeholder"}
         onClick={(event) => event.stopPropagation()}
       >
         <div className={styles.sheetBar}>
@@ -175,7 +236,7 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
         </div>
         {guide.frames ? (
           <>
-            <FrameReel frames={guide.frames} />
+            <MovementArt guide={guide} />
             <h2 id={titleId} className={styles.name}>
               {guide.name}
             </h2>
@@ -193,7 +254,14 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
             <li key={cue}>{cue}</li>
           ))}
         </ul>
-        {guide.frames ? (
+        {guide.source === "repdb" ? (
+          <p className={styles.credit}>
+            <a href={REPDB_HOME} target="_blank" rel="noreferrer">
+              {REPDB_CREDIT}
+            </a>
+            . Still pictures. Not a loop.
+          </p>
+        ) : guide.source === "guide" ? (
           <p className={styles.credit}>
             Drawing by {MOVEMENT_ART_CREDIT.creator},{" "}
             <a href={MOVEMENT_ART_CREDIT.workUrl} target="_blank" rel="noreferrer">

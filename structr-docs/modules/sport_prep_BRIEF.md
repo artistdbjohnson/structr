@@ -13,7 +13,7 @@
 
 **Sport prep** is gym work and solo drills for the sport you already love. Turning strength for golf. Fingers and tension for climbing. Shadow rounds for striking.
 
-It's **coming soon**. The drills are ones you can time, count, and mark for how hard they felt.
+The drills are ones you can time, count, and mark for how hard they felt. You can start them. Shadow boxing and the fingerboard stay as words. The free pictures don't include them.
 
 ---
 
@@ -34,7 +34,7 @@ Golf gym work and hangboard fit a normal session. Partner grappling and on-court
 
 ---
 
-## 4. Future plans
+## 4. Plans
 
 1. **Golf Gym Prep**
 2. **Hangboard Practice Block**
@@ -56,7 +56,7 @@ Maybe some solo drills later. A full partner curriculum belongs with a BJJ coach
 Kettlebell has its own home. Sport prep is for the packs named after a sport, when they're written.
 
 **What can I do now?**  
-**Kettlebell skill** already helps most sports. Strength and mobility sessions will too, when they're ready.
+Start a sport session here, or **Kettlebell skill** if you want the bell.
 
 ---
 

@@ -38,6 +38,13 @@ export function TrainModules({
           const category = getCategory(module.categoryId);
           const open = openId === module.id;
           const panelId = `${module.id}-templates`;
+          const order = new Map<string, number>(chip.templateIds.map((id, index) => [id, index]));
+          const rows = module.templateIds
+            .flatMap((taxonomyId) => {
+              const found = templates.find((item) => item.taxonomyId === taxonomyId);
+              return found ? [found] : [];
+            })
+            .sort((a, b) => (order.get(a.taxonomyId) ?? 0) - (order.get(b.taxonomyId) ?? 0));
           return (
             <section key={module.id} className={styles.accItem} data-module={module.id} data-open={open ? "true" : "false"}>
               <div className={styles.accHead}>
@@ -53,7 +60,7 @@ export function TrainModules({
                     <span className={styles.accName}>{module.name}</span>
                   </span>
                   <span className={styles.accSide}>
-                    <span className={styles.accMeta}>{templateCountLabel(templates.length)}</span>
+                    <span className={styles.accMeta}>{templateCountLabel(rows.length)}</span>
                     <span className={styles.accChevron} data-open={open ? "true" : "false"} aria-hidden="true">
                       ▾
                     </span>
@@ -65,7 +72,7 @@ export function TrainModules({
                 <article id={panelId} className={styles.card}>
                   <p className={styles.lead}>{module.blurb}</p>
                   <ul className={styles.templateList}>
-                    {templates.map(({ taxonomyId, template }) => {
+                    {rows.map(({ taxonomyId, template }) => {
                       const primary = taxonomyId === chip.primaryTemplateId;
                       return (
                         <li key={template.id} className={styles.templateRow} data-template={template.id}>

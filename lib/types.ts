@@ -38,6 +38,8 @@ export type Template = {
   name: string;
   focus: string;
   minutes: string;
+  /** Name on the bulk weight pill. Bodyweight bulks hide the number. */
+  implement?: string;
   phases: TemplatePhase[];
 };
 

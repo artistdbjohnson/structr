@@ -13,7 +13,7 @@
 
 **Bodyweight skills** is where the bar, the wall, and the floor will live. Pull-ups, dips, handstands, L-sits. You practice them like a craft, one rung at a time.
 
-It's **coming soon**. You'll see the names. **Kettlebell skill** is ready now, and **Get stronger** is the neighborhood this grows from.
+You can start these. **Pull Ladder** lives with the calisthenics rung. The wall, the dip, and the holds are here too.
 
 ---
 
@@ -32,7 +32,7 @@ Pull, push, and squat ladders fit the usual shape. Handstands want the skill ear
 
 ---
 
-## 4. Future plans
+## 4. Plans
 
 1. **Pull Ladder** — also listed with Calisthenics ladder
 2. **Handstand Wall Path**
@@ -45,7 +45,7 @@ Pull, push, and squat ladders fit the usual shape. Handstands want the skill ear
 ## 5. Questions
 
 **Can I start something bodyweight today?**  
-This chip can't start a session yet. **Calisthenics ladder** will, when it's written. **Kettlebell skill** is ready now.
+Yes. Open **Pull Ladder**, or the wall, dip, and hold sessions on this page.
 
 **Is this the same as Calisthenics ladder?**  
 Calisthenics ladder is the first set of sessions here. **Bodyweight skills** is the wider home, once more bar and wall work shows up.

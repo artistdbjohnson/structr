@@ -1,53 +1,8 @@
-import type {
-  PhaseId,
-  Template,
-  TemplateBlock,
-  TemplatePhase,
-  TrackMode,
-  Unit,
-} from "./types";
+import { CATALOG_TEMPLATES } from "./catalogPlans";
+import { block, phase } from "./planBuild";
+import type { PhaseId, Template, TemplateBlock, TrackMode, Unit } from "./types";
 
-const INTENTS: Record<PhaseId, string> = {
-  warmup: "Get warm. Easy moves. Nothing heavy yet.",
-  skill: "Light bell. Learn the move before you rush it.",
-  form: "Working sets. Keep them clean.",
-  bulk: "The main work. This is the part that counts.",
-  cooldown: "Slow down. Breathe. Let it settle.",
-};
-
-function block(
-  id: string,
-  name: string,
-  detail: string,
-  extra: Partial<TemplateBlock> = {},
-): TemplateBlock {
-  return { id, name, detail, ...extra };
-}
-
-function phase(
-  id: PhaseId,
-  rpe: TemplatePhase["rpe"],
-  blocks: TemplateBlock[],
-  rpeTarget?: string,
-): TemplatePhase {
-  const names: Record<PhaseId, string> = {
-    warmup: "Warm-up",
-    skill: "Skill drills",
-    form: "Form",
-    bulk: "THE BULK",
-    cooldown: "Cool-down",
-  };
-  return {
-    id,
-    name: names[id],
-    intent: INTENTS[id],
-    rpe,
-    rpeTarget,
-    blocks,
-  };
-}
-
-export const TEMPLATES: Template[] = [
+const KETTLEBELL_TEMPLATES: Template[] = [
   {
     id: "swing-foundation",
     name: "Swing Foundation",
@@ -70,7 +25,7 @@ export const TEMPLATES: Template[] = [
           load: "light",
         }),
         block("swing-sk-hike", "Hike pass", "2 sets of 5", { sets: 2, reps: 5 }),
-      ]),
+      ], undefined, "Light bell. Learn the move before you rush it."),
       phase("form", "recommended", [
         block("swing-form", "Two-hand swing", "4 sets of 8, a bell you can own, rest about a minute", {
           sets: 4,
@@ -127,7 +82,7 @@ export const TEMPLATES: Template[] = [
           reps: 1,
           timeSec: 20,
         }),
-      ]),
+      ], undefined, "Light bell. Learn the move before you rush it."),
       phase("form", "recommended", [
         block("clean-form", "Single clean", "4 sets of 4 a side, a bell you can own, rest about 75 seconds", {
           sets: 4,
@@ -185,7 +140,7 @@ export const TEMPLATES: Template[] = [
           perSide: true,
           load: "light",
         }),
-      ]),
+      ], undefined, "Light bell. Learn the move before you rush it."),
       phase("form", "recommended", [
         block("tgu-form-partial", "Partial get-up to hand", "3 sets of 2 a side, light", {
           sets: 3,
@@ -223,10 +178,24 @@ export const TEMPLATES: Template[] = [
   },
 ];
 
+export const TEMPLATES: Template[] = [...KETTLEBELL_TEMPLATES, ...CATALOG_TEMPLATES];
+
 const BELLS: Record<string, Record<Unit, number>> = {
   "swing-foundation": { lb: 35, kg: 16 },
   "clean-path": { lb: 35, kg: 16 },
   "get-up-primer": { lb: 25, kg: 12 },
+  "goblet-squat-path": { lb: 25, kg: 12 },
+  "press-path": { lb: 20, kg: 8 },
+  "row-path": { lb: 20, kg: 8 },
+  "squat-basics": { lb: 45, kg: 20 },
+  "bench-basics": { lb: 45, kg: 20 },
+  "deadlift-basics": { lb: 65, kg: 30 },
+  "get-up-bridge": { lb: 15, kg: 8 },
+  "carry-lunges": { lb: 25, kg: 12 },
+  "golf-gym-prep": { lb: 16, kg: 8 },
+  "power-in-the-turn": { lb: 16, kg: 8 },
+  "capable-strength": { lb: 20, kg: 8 },
+  "carry-everyday": { lb: 20, kg: 8 },
 };
 
 export function getTemplate(id: string): Template | undefined {
@@ -234,7 +203,12 @@ export function getTemplate(id: string): Template | undefined {
 }
 
 export function defaultBell(templateId: string, unit: Unit): number {
-  return (BELLS[templateId] ?? BELLS["swing-foundation"])[unit];
+  const template = getTemplate(templateId);
+  const main = template ? bulkBlock(template) : undefined;
+  if (!main || main.load === "bodyweight" || main.load === "empty") return 0;
+  const table = BELLS[templateId];
+  if (table) return table[unit];
+  return unit === "lb" ? 20 : 8;
 }
 
 export function findBlock(template: Template, blockId: string): TemplateBlock | undefined {

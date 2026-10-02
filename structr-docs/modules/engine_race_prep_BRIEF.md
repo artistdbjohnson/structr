@@ -13,7 +13,7 @@
 
 **Engine / race prep** is where station practice, machine intervals, and race weeks will live. Still a normal session: warm up, learn it, do the work, cool down.
 
-It's **coming soon**. When it arrives, these are practice sessions you can follow on a board, not a map of your outdoor miles.
+These are practice sessions you can follow on a board, not a map of your outdoor miles. You can start them.
 
 ---
 
@@ -32,7 +32,7 @@ Intervals and stations fit Form and **THE BULK**, plus a number for how hard it 
 
 ---
 
-## 4. Future plans
+## 4. Plans
 
 1. **Station Skills Primer**
 2. **Erg intervals**
@@ -51,7 +51,7 @@ These sessions may take their ideas from fitness-race stations. They aren't an o
 Keep it for the miles. Use this for the practice that supports that work.
 
 **Anything I can do today?**  
-The kettlebell Bulks already build a lot of work capacity. The dedicated engine sessions come later.
+Start a station session, an easy erg day, or the carry and lunge path. The kettlebell Bulks are still here when you want them.
 
 ---
 

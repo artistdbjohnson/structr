@@ -13,7 +13,7 @@
 
 **Stay capable** is training that helps you keep doing the things you love. Carry the groceries. Get off the floor. Walk the trail. Play on the floor with the kids. Strength, balance, and mobility, practiced on purpose.
 
-The home for it is still being written. A lot of the heart is already here: Get-Up Primer, and later the balance pack, Daily mobility, and strength at honest loads.
+You can start the sessions on this page. Get-Up Primer is still the kettlebell get-up, if you want the bell.
 
 ---
 
@@ -32,7 +32,7 @@ Strength and balance both fit the usual shape. Warm up, learn it light, keep it 
 
 ---
 
-## 4. Future plans
+## 4. Plans
 
 1. **Capable Strength** — goblet squat, sit-back, press, with a kinder Bulk
 2. **Steady Stance** — from the balance pack
@@ -54,7 +54,7 @@ Yes in spirit. It's already ready under kettlebell. This chip will gather that s
 This is practice and strength. Someone who can look at you is the right next step.
 
 **What can I do today?**  
-Open **Kettlebell skill** and start **Get-Up Primer**. **Move freer** will hold mobility and balance when those sessions are written.
+Start Capable Strength, a carry, or Steady Stance. **Get-Up Primer** is there when you want the bell.
 
 ---
 

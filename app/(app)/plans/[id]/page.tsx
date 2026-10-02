@@ -5,6 +5,7 @@ import { PageFrame } from "@/components/PageFrame";
 import { PlanMarks } from "@/components/PlanMarks";
 import { StartPlanButton } from "@/components/StartPlanButton";
 import styles from "@/components/subpage.module.css";
+import { infoHrefForTemplate } from "@/lib/taxonomy";
 import { TEMPLATES, getTemplate } from "@/lib/templates";
 
 export function generateStaticParams() {
@@ -27,6 +28,7 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ id:
   const { id } = await params;
   const template = getTemplate(id);
   if (!template) notFound();
+  const info = infoHrefForTemplate(template.id);
 
   return (
     <PageFrame
@@ -34,7 +36,7 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ id:
       backLabel="‹ Train for"
       title={template.name}
       meta={template.minutes}
-      trailing={<InfoLink />}
+      trailing={<InfoLink href={info.href} label={info.label} />}
     >
       <div className={styles.withStart}>
         <p className={styles.lead}>{template.focus}</p>

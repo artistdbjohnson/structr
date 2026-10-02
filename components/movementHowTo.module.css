@@ -186,6 +186,43 @@
   opacity: 1;
 }
 
+.artBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.frameToggle {
+  display: flex;
+  gap: 8px;
+}
+
+.frameToggle button {
+  min-height: 44px;
+  min-width: 72px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.78);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.frameToggle button[data-on="true"] {
+  background: #fff;
+  color: #16130f;
+}
+
+.frameToggle button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
 .posterKicker {
   font-size: 11px;
   font-weight: 700;

@@ -10,6 +10,7 @@ import styles from "@/components/subpage.module.css";
 import {
   TEMPLATE_ROUTES,
   browseTree,
+  plansForTaxonomyIds,
   templateCountLabel,
   type CatalogModule,
   type GoalPage,
@@ -30,7 +31,7 @@ export function CatalogBrowse() {
   return (
     <PageFrame backHref="/plans" backLabel="‹ Train for" title="Browse">
       <p className={styles.lead}>
-        Kettlebell is the one you can start today. The rest is names for later.
+        Open a practice, then a plan. Most moves have a picture. A few are still just the words.
       </p>
       <div className={styles.accList}>
         {tree.map(({ category, modules, goal }) => {
@@ -117,7 +118,9 @@ function categoryMeta(modules: CatalogModule[], goal: GoalPage | undefined, goal
   const templates = modules.reduce((sum, module) => sum + module.templateIds.length, 0);
   if (templates > 0) parts.push(templateCountLabel(templates));
   if (goal && !goalSeen && modules.length === 0) {
-    parts.push(goal.plannedNames.length === 1 ? "1 planned" : `${goal.plannedNames.length} planned`);
+    const live = goal.templateIds?.length ?? 0;
+    if (live > 0) parts.push(templateCountLabel(live));
+    else parts.push(goal.plannedNames.length === 1 ? "1 planned" : `${goal.plannedNames.length} planned`);
   }
   if (goal && !goalSeen && modules.length > 0) parts.push("More goals");
   if (goal && goalSeen) parts.push(goal.label);
@@ -227,6 +230,32 @@ function ModuleDisclosure({
 }
 
 function GoalBody({ goal }: { goal: GoalPage }) {
+  const templates = plansForTaxonomyIds(goal.templateIds ?? []);
+  if (templates.length > 0) {
+    return (
+      <article className={styles.card} data-goal={goal.id} data-status="live">
+        <div className={styles.moduleHead}>
+          <h3 className={styles.cardTitle}>{goal.label}</h3>
+          <InfoLink href={goal.infoHref} label={`${goal.label} info`} />
+        </div>
+        <p className={styles.lead}>{goal.lede}</p>
+        <ul className={styles.templateList}>
+          {templates.map((template) => (
+            <li key={template.id} className={styles.templateRow} data-template={template.id}>
+              <Link className={styles.templateLink} href={`/plans/${template.id}`}>
+                <span className={styles.cardTitle}>{template.name}</span>
+                <span className={styles.kicker}>{template.minutes}</span>
+                <span className={styles.lead}>{template.focus}</span>
+              </Link>
+              <PlanMarks id={template.id} />
+              <StartPlanButton templateId={template.id} />
+            </li>
+          ))}
+        </ul>
+      </article>
+    );
+  }
+
   return (
     <article className={`${styles.card} ${styles.glassSoon}`} data-goal={goal.id} data-status="soon">
       <div className={styles.moduleHead}>

@@ -82,6 +82,8 @@ export function BulkPhase({
 
   if (!spec || !phase || !bulk) return <p>The main work didn't load.</p>;
 
+  const unloaded = spec.load === "bodyweight" || spec.load === "empty";
+  const implement = unloaded ? (template.implement ?? "Body weight") : (template.implement ?? "Kettlebell");
   const totalSets = spec.sets && spec.sets > 0 ? spec.sets : 1;
   const restSec = spec.restSec && spec.restSec > 0 ? spec.restSec : 60;
   const perSide = Boolean(spec.perSide);
@@ -241,8 +243,8 @@ export function BulkPhase({
         />
         <MetricPill
           className={styles.pillFit}
-          label={`Kettlebell · ${session.unit}`}
-          value={bulk.weight}
+          label={unloaded ? implement : `${implement} · ${session.unit}`}
+          value={unloaded ? "—" : bulk.weight}
           tint="orange"
           footer={
             weightDelta === null ? (
@@ -290,13 +292,15 @@ export function BulkPhase({
             max={100}
             onChange={(reps) => patch((current) => ({ ...current, reps }))}
           />
-          <Stepper
-            label={`Weight (${session.unit})`}
-            value={bulk.weight}
-            min={1}
-            max={300}
-            onChange={(weight) => patch((current) => ({ ...current, weight }))}
-          />
+          {unloaded ? null : (
+            <Stepper
+              label={`Weight (${session.unit})`}
+              value={bulk.weight}
+              min={1}
+              max={300}
+              onChange={(weight) => patch((current) => ({ ...current, weight }))}
+            />
+          )}
         </div>
       ) : null}
       {bulk.ui !== "active" ? (

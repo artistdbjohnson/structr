@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { formatClock, formatWhen } from "@/lib/format";
 import { MOVEMENT_ART_CREDIT } from "@/lib/movementHowTo";
+import { REPDB_CREDIT, REPDB_HOME } from "@/lib/repdb";
 import { summarize } from "@/lib/session";
 import { clearAllData, loadActive, loadHistory, loadPrefs, savePrefs } from "@/lib/storage";
 import type { Prefs, Unit, WorkoutSession } from "@/lib/types";
@@ -88,9 +89,15 @@ export function YouScreen() {
             )}
           </section>
           <section className={styles.card}>
-            <h2 className={styles.cardTitle}>Drawings</h2>
+            <h2 className={styles.cardTitle}>Pictures</h2>
             <p className={styles.finePrint}>
-              The stretch drawings in How are by {MOVEMENT_ART_CREDIT.creator},{" "}
+              <a href={REPDB_HOME} target="_blank" rel="noreferrer">
+                {REPDB_CREDIT}
+              </a>
+              . The How sheets use their free still pictures, start and peak or one frame. Not loops.
+            </p>
+            <p className={styles.finePrint}>
+              The world's greatest stretch drawing is by {MOVEMENT_ART_CREDIT.creator},{" "}
               <a href={MOVEMENT_ART_CREDIT.workUrl} target="_blank" rel="noreferrer">
                 {MOVEMENT_ART_CREDIT.work}
               </a>
@@ -98,7 +105,7 @@ export function YouScreen() {
               <a href={MOVEMENT_ART_CREDIT.licenseUrl} target="_blank" rel="noreferrer">
                 {MOVEMENT_ART_CREDIT.license}
               </a>
-              . {MOVEMENT_ART_CREDIT.changes} Kettlebell moves are words for now.
+              . {MOVEMENT_ART_CREDIT.changes}
             </p>
           </section>
           {ask ? (

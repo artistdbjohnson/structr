@@ -119,6 +119,16 @@
   text-wrap: pretty;
 }
 
+.finePrint {
+  color: var(--ink-meta);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.finePrint a {
+  color: #fff;
+}
+
 .stack {
   display: flex;
   flex-direction: column;

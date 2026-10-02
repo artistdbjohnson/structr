@@ -6,6 +6,7 @@ import type { LoggedBlock, Template, TemplateBlock, WorkoutSession } from "@/lib
 import { defaultBell, phaseTrack } from "@/lib/templates";
 import { MetricPill } from "@/structr-glass/components/MetricPill";
 import { BlockTimer } from "./BlockTimer";
+import { MovementTitle } from "./MovementHowTo";
 import { RpePicker } from "./RpePicker";
 import { Stepper } from "./Stepper";
 import styles from "./session.module.css";
@@ -67,7 +68,7 @@ function BlockEditor({
   return (
     <article className={styles.block}>
       <div className={styles.blockHead}>
-        <h2 className={styles.blockName}>{block.name}</h2>
+        <MovementTitle name={block.name} className={styles.blockName} />
         <p className={styles.detail}>{block.detail}</p>
       </div>
       {track.sets !== "off" ? (

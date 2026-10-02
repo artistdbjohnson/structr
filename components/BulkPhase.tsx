@@ -8,6 +8,7 @@ import { bulkBlock } from "@/lib/templates";
 import type { BulkState, Template, WorkoutSession } from "@/lib/types";
 import { MetricPill } from "@/structr-glass/components/MetricPill";
 import { TrendChip } from "@/structr-glass/components/TrendChip";
+import { MovementTitle } from "./MovementHowTo";
 import { RpePicker } from "./RpePicker";
 import { Stepper } from "./Stepper";
 import styles from "./session.module.css";
@@ -208,7 +209,7 @@ export function BulkPhase({
 
   return (
     <section className={styles.stack} data-bulk-state={bulk.ui} data-exercise={spec.name}>
-      <h1 className={styles.exercise}>{spec.name}</h1>
+      <MovementTitle name={spec.name} className={styles.exercise} as="h1" />
       <p className={styles.detail}>{scheme}</p>
       <p className={styles.detail}>{spec.detail}</p>
       <article

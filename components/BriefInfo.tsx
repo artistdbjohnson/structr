@@ -184,13 +184,13 @@ function BlockView({ block }: { block: Block }) {
 }
 
 function SectionView({ section }: { section: BriefSection }) {
-  const faq = /faq/i.test(section.heading);
-  const templates = /template/i.test(section.heading);
+  const faq = /faq|question/i.test(section.heading);
+  const templates = /template|\bplans?\b/i.test(section.heading);
   return (
     <section className={styles.section} aria-labelledby={section.heading}>
       <h2 id={section.heading}>{section.heading}</h2>
       {faq ? <div className={styles.faq}>{<Blocks blocks={section.blocks} faq />}</div> : <Blocks blocks={section.blocks} faq={false} />}
-      {templates ? <p className={styles.defaultNote}>These templates aren’t startable yet.</p> : null}
+      {templates ? <p className={styles.defaultNote}>You can't start these yet.</p> : null}
     </section>
   );
 }
@@ -209,7 +209,7 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
           <h1>{entry.title}</h1>
           <p className={styles.promise}>{entry.promise}</p>
           {entry.status === "soon" ? (
-            <p className={styles.soonPill}>Coming soon · nothing here starts a session</p>
+            <p className={styles.soonPill}>Coming soon. Nothing to start from here yet.</p>
           ) : null}
         </header>
 
@@ -219,7 +219,7 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
             {index === 0 ? (
               <section className={styles.section} aria-labelledby="phase-path">
                 <h2 id="phase-path">Five phases</h2>
-                <p className={styles.prose}>Every session walks this path. The order stays fixed.</p>
+                <p className={styles.prose}>Every session goes in this order.</p>
                 <div className={styles.card}>
                   <ol className={styles.phases}>
                     {PHASE_PATH.map((phase) => (
@@ -243,8 +243,8 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
             <div className={`${styles.card} ${styles.bridge}`}>
               <h2 id="getup-bridge">Continue with Get-Up Primer</h2>
               <p className={styles.prose}>
-                The loaded get-up already lives in kettlebell. This page doesn’t start its own session. Open the
-                live primer when you want the bell.
+                The get-up with a bell already lives with the kettlebell plans. Open Get-Up Primer when you want
+                the bell.
               </p>
               <div className={styles.actions}>
                 <Link className={styles.ctaGhost} href="/plans/get-up-primer">
@@ -257,7 +257,7 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
         ) : null}
 
         <section className={styles.section} aria-label="Next">
-          <h2>{entry.status === "soon" ? "While this is in the works" : "When you are ready"}</h2>
+          <h2>{entry.status === "soon" ? "Until this is ready" : "When you are ready"}</h2>
           <div className={styles.actions}>
             {entry.ctas.map((cta) => (
               <Link key={cta.href + cta.label} className={styles.ctaGhost} href={cta.href}>
@@ -269,8 +269,8 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
         </section>
 
         <footer className={styles.footer}>
-          <p>Practice notes for a curated catalog. Nothing here is medical advice, rehab, or a physio plan.</p>
-          {entry.status === "soon" ? <p>Coming soon stays on this device until the templates are written. No generated plans.</p> : null}
+          <p>Notes from practice. If something is injured, talk to a person who can look at you.</p>
+          {entry.status === "soon" ? <p>These stay as names until the sessions are written.</p> : null}
         </footer>
       </div>
     </main>

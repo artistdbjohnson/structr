@@ -76,7 +76,7 @@ function BlockEditor({
       ) : null}
       {track.reps !== "off" ? (
         <Stepper
-          label={track.reps === "optional" ? "Reps · optional" : "Reps"}
+          label={track.reps === "optional" ? "Reps, if you want" : "Reps"}
           value={reps}
           min={0}
           max={200}
@@ -85,7 +85,7 @@ function BlockEditor({
       ) : null}
       {track.weight !== "off" && block.load !== "bodyweight" && block.load !== "empty" ? (
         <Stepper
-          label={track.weight === "optional" ? `Weight · optional (${unit})` : `Weight (${unit})`}
+          label={track.weight === "optional" ? `Weight, if you want (${unit})` : `Weight (${unit})`}
           value={weight}
           min={0}
           max={300}
@@ -102,13 +102,13 @@ function BlockEditor({
       ) : null}
       {invalid ? (
         <p className={styles.hint}>
-          {timeInvalid ? "Add a time to log this block." : null}
-          {repsInvalid ? " Reps are required." : null}
-          {loadInvalid ? " Weight is required." : null}
+          {timeInvalid ? "Add a time before you log this." : null}
+          {repsInvalid ? " Add the reps." : null}
+          {loadInvalid ? " Add the weight." : null}
         </p>
       ) : null}
       <button className={styles.logBtn} type="button" disabled={invalid} onClick={save}>
-        {existing ? "Update block" : "Log block"}
+        {existing ? "Update" : "Log this"}
       </button>
       {existing ? <p className={styles.logged}>{parts.join(" · ")}</p> : null}
     </article>
@@ -175,10 +175,10 @@ export function PrepPhase({
 
   const hint =
     spec.rpe === "required"
-      ? `Required before Next${spec.rpeTarget ? ` · target ${spec.rpeTarget}` : ""}`
+      ? `Mark this before you move on${spec.rpeTarget ? ` · aim for ${spec.rpeTarget}` : ""}`
       : spec.rpe === "recommended"
-        ? "Recommended"
-        : "Optional";
+        ? "Worth a number, if you want one"
+        : "Skip it if you want";
 
   return (
     <>
@@ -194,7 +194,7 @@ export function PrepPhase({
           tint="orange"
         />
         {phase.rpe ? (
-          <MetricPill className={styles.pillFit} label="RPE" value={phase.rpe} tint="magenta" />
+          <MetricPill className={styles.pillFit} label="How hard" value={phase.rpe} tint="magenta" />
         ) : null}
       </div>
       {spec.blocks.map((block) => (

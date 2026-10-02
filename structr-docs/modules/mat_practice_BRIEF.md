@@ -12,53 +12,50 @@
 
 ## 1. Promise
 
-**Mat practice** is where yoga, Pilates, and quiet flow sessions will live — still structured as Structr sessions: warm up, skill/form the positions, a real **Bulk** of held or flowing work, then downshift. Breath matters; **therapy claims don’t**.
+**Mat practice** is where yoga, Pilates, and quiet flow will live. Still a real session: warm up, learn the positions, a **Bulk** of holds or flow, then slow down. Breath counts.
 
-Today: **coming soon.** Huge cultural demand; we ship curated packs when we can match quality without competing on “infinite video library” alone.
+It's **coming soon**. The sessions will be ones we can stand behind.
 
 ---
 
 ## 2. What will live here
 
-- Yoga-style mat templates (beginner flows, strength-leaning holds)  
-- Pilates mat fundamentals (not reformer hardware day one)  
-- Bulk = held sequences / controlled reps with RPE as effort/breath honesty  
-- Cool-downs that are actually cool-downs  
-- Curated catalog — **no AI sequence generator**
-
-**Out of scope:** Clinical rehab mat libraries, trauma-therapy positioning, diet claims.
+- Yoga-style flows, including beginner ones and stronger holds
+- Pilates on a mat. A reformer can wait
+- The Bulk as holds or controlled reps, with a number for effort and breath
+- Cool-downs that actually let you down
 
 ---
 
-## 3. 5-phase fit note
+## 3. How a session goes
 
-**Good.** Taxonomy §C: warm-up/skill/form → Bulk as held flow; RPE = effort/breath. Needs light nursing (timers, hold cues) vs kettlebell logging — still a natural Structr wedge.
+Warm up, learn the shape, then The Bulk is the flow or the holds. The number is how hard it felt, breath included. You'll use a timer more than a bell.
 
 ---
 
-## 4. Example future templates (names only)
+## 4. Future plans
 
-1. **Morning Mat Flow**  
-2. **Pilates Mat Fundamentals**  
-3. **Hip-Friendly Soft Strength**  
-4. **Breath & Downshift Pack**  
+1. **Morning Mat Flow**
+2. **Pilates Mat Fundamentals**
+3. **Easy hip strength**
+4. **Breath and settle**
 5. **Core Control on the Mat**
 
 ---
 
-## 5. FAQ
+## 5. Questions
 
 **Is Daily mobility the same thing?**  
-No. Mobility = joint-control / CARs-style practice. Mat practice = yoga/Pilates-style flows and holds. They complement.
+Daily mobility is slow joint circles. Mat practice is yoga and Pilates: flows and holds. They sit well next to each other.
 
 **Do I need a reformer?**  
-Not for the promised day-one mat packs.
+A mat covers the first sessions.
 
-**Meditation app replacement?**  
-No. Movement practice with breath — not a therapy product.
+**Is this meditation?**  
+It's movement, with breath.
 
-**When will this unlock?**  
-Medium catalog wave after strength/mobility skill modules (see taxonomy §4).
+**When?**  
+After the strength and mobility sessions.
 
 ---
 

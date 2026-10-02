@@ -35,9 +35,9 @@ type Move = {
 };
 
 const FALLBACK_CUES = [
-  "Follow the block as written.",
-  "Quality before speed.",
-  "If it bites, back off and reset.",
+  "Do it the way the block is written.",
+  "Smooth before fast.",
+  "If it bites, ease off and start that rep over.",
 ] as const;
 
 export function movementKey(name: string): string {
@@ -82,11 +82,11 @@ const MOVES: Record<string, Move> = Object.fromEntries(
         ),
       ],
       [
-        "Empty-hand hinge",
+        "Sit-back, no bell",
         move([
-          "Sit the hips back, like you're touching a wall behind you.",
-          "Soft knees. The spine stays long.",
-          "Empty hands. Groove the hinge before you pick up the bell.",
+          "Push your hips back, like you're about to sit in a chair.",
+          "Coaches call that a hinge. Knees soft. Back stays long.",
+          "No bell yet. Learn the sit-back before you pick one up.",
         ]),
       ],
       [
@@ -94,40 +94,40 @@ const MOVES: Record<string, Move> = Object.fromEntries(
         move([
           "Bell at the chest. Elbows point down.",
           "Sit between the hips. Heels stay down.",
-          "Knees chase the toes. Not a forward fold.",
+          "Knees follow your toes. Sit down between your feet.",
         ]),
       ],
       [
-        "Dead-stop swing practice",
+        "Set-down swings",
         move([
-          "Park the bell dead. Reset the hinge every rep.",
-          "Stand about a foot behind. Find the hinge, then grab.",
-          "Hips throw. Arms just hold on.",
+          "Set the bell down between reps. It stays still.",
+          "Stand about a foot behind it. Hips back, then grab the handle.",
+          "Your hips throw it. Your arms just hang on.",
         ]),
       ],
       [
         "Hike pass",
         move([
-          "Upper arms connect to the ribs.",
-          "Forearms sit high on the inner thighs — that's the snap.",
-          "Set-up is the first rep. Set-down is the last.",
+          "Tuck your upper arms into your ribs.",
+          "Forearms rest high on the inside of your thighs. That's the snap.",
+          "Start from this setup. Finish by setting the bell down the same way.",
         ]),
       ],
       [
         "Two-hand swing",
         move([
-          "Sit the hips back. Touch the wall behind you.",
-          "Dead arms. Hips throw, arms hold.",
-          "Aim about chest height — 3 o'clock.",
-          "Tall plank at the top. Eyes toward the horizon.",
+          "Push your hips back, like you're closing a car door behind you.",
+          "Arms stay loose. Hips throw the bell. Hands just hold on.",
+          "Let it float to about chest height, out in front of you.",
+          "Stand tall at the top. Look out, toward the horizon.",
         ]),
       ],
       [
         "Forward fold",
         move([
-          "Soft knees. Let the head hang.",
-          "Hinge. Don't yank the low back to get lower.",
-          "One minute. Breathe.",
+          "Soft knees. Let your head hang.",
+          "Fold from the hips. Don't pull your low back to get lower.",
+          "A minute. Just breathe.",
         ]),
       ],
       [
@@ -149,17 +149,17 @@ const MOVES: Record<string, Move> = Object.fromEntries(
       [
         "Arm bars (light)",
         move([
-          "Roll onto your side. The bell arm stays packed and tall.",
-          "The free hand walks out. The hips follow.",
+          "Roll onto your side. The arm with the bell stays long and tall.",
+          "Your free hand walks out. Your hips follow.",
           "Eyes on the bell. Light, and slow.",
         ]),
       ],
       [
-        "Thoracic openers",
+        "Upper-back openers",
         move([
-          "Open the upper back. Leave the low back out of it.",
-          "One easy breath per reach.",
-          "Warm-up range. Not a stretch contest.",
+          "Open your upper back. Leave your low back out of it.",
+          "One easy breath each time you reach.",
+          "Easy range. Save the big effort for later.",
         ]),
       ],
       [
@@ -167,53 +167,53 @@ const MOVES: Record<string, Move> = Object.fromEntries(
         move([
           "Bell at the chest. Elbows point down.",
           "Sit between the hips. Heels stay down.",
-          "Knees chase the toes. Not a forward fold.",
+          "Knees follow your toes. Sit down between your feet.",
         ]),
       ],
       [
         "Hand-to-hand deadlift",
         move([
-          "Hinge first. Pass the bell from hand to hand down there.",
-          "Tall spine. The bell stays close.",
-          "Stand up like a swing set-up, then park it.",
+          "Hips back first. Pass the bell from hand to hand down there.",
+          "Back stays tall. Keep the bell close to you.",
+          "Stand up the way you'd start a swing, then set it down.",
         ]),
       ],
       [
         "Clean to rack hold",
         move([
-          "Same hike as the swing, then tame the arc.",
-          "Jab the elbow to 9 o'clock, then drop it under to 6.",
-          "Soft catch. Hold the rack and breathe.",
+          "Same backswing as the swing, then keep the bell close.",
+          "Punch the elbow forward, then drop it under the bell.",
+          "Catch it soft. Hold it on your chest and forearm, and breathe.",
         ]),
       ],
       [
-        "Breath in rack",
+        "Breathe in the rack",
         move([
-          "The bell sits in the rack. Elbow tucked in.",
-          "Breathe behind the shield. Ribs don't flare.",
-          "The shoulder stays packed for the whole hold.",
+          "The bell rests on your chest and forearm. That's the rack. Elbow stays in.",
+          "Breathe behind the bell. Let your ribs stay quiet.",
+          "Shoulder stays down, away from your ear.",
         ]),
       ],
       [
         "Single clean",
         move([
-          "Hips drive. The elbow path shortens the trip.",
-          "Jab to 9, then under to 6. No wide loop.",
-          "Soft catch. The bell sits like it is on a spring.",
+          "Hips drive it. A short elbow path keeps the bell close.",
+          "Elbow forward, then under the bell. No big loop.",
+          "Catch it soft, like it lands on a cushion.",
         ]),
       ],
       [
         "Clean + push press",
         move([
-          "Clean it quiet, then press from a packed rack.",
-          "Hips help the press. The elbow stays close on the way down.",
-          "Keep the bell near you. No crash on the forearm.",
+          "Clean it quietly, then press from that same spot on your chest.",
+          "A little help from the hips. Elbow stays close on the way down.",
+          "Keep the bell near you. Don't let it crash on your forearm.",
         ]),
       ],
       [
-        "Shoulder CARs",
+        "Slow shoulder circles",
         move([
-          "One arm draws the biggest slow circle you own.",
+          "One arm draws the biggest slow circle you can.",
           "Everything else stays still.",
           "Both ways. No whipping it around.",
         ]),
@@ -230,83 +230,83 @@ const MOVES: Record<string, Move> = Object.fromEntries(
         ),
       ],
       [
-        "Supine breathing",
+        "Breathing on your back",
         move([
-          "On your back. A hand on the belly if you want a landmark.",
-          "Inhale wide and low. Exhale long.",
+          "Lie on your back. A hand on your belly if you want a landmark.",
+          "Breathe in wide and low. Breathe out long.",
           "One quiet minute.",
         ]),
       ],
       [
         "Glute bridge",
         move([
-          "Heels down. Squeeze the glutes to lift.",
-          "Ribs stay heavy. Don't crank the low back into a big arch.",
+          "Heels down. Squeeze your butt to lift.",
+          "Ribs stay heavy. Don't crank your low back into a big arch.",
           "Eight smooth reps.",
         ]),
       ],
       [
-        "Open half-kneeling",
+        "Half-kneel hip open",
         move([
-          "Tall torso. Front heel planted.",
-          "Open the hip. Don't dump the arch into the low back.",
+          "Tall chest. Front heel planted.",
+          "Open the front of that hip. Keep the arch out of your low back.",
           "Forty-five seconds a side. Easy and tall.",
         ]),
       ],
       [
-        "Naked get-up segments",
+        "Get-up pieces, no bell",
         move([
-          "Naked. Roll, elbow, post, kneel.",
-          "Pack the shoulder. Wrist neutral. Arm nearly vertical.",
-          "Plant the heel through the low sweep.",
+          "No bell. Roll, then elbow, then hand, then kneel.",
+          "Shoulder stays down. Wrist straight. Arm almost straight up.",
+          "Keep the heel down when you sweep the leg through.",
         ]),
       ],
       [
-        "Packed-shoulder floor press",
+        "Floor press",
         move([
-          "Shoulder packed into the floor before you press.",
-          "Press straight. The wrist stays quiet.",
-          "Light. This is the get-up's press, not a max.",
+          "Set your shoulder into the floor before you press.",
+          "Press straight up. Wrist stays quiet.",
+          "Keep it light. Same press you'll use in the get-up.",
         ]),
       ],
       [
         "Partial get-up to hand",
         move([
-          "Roll to the elbow, then post to the hand.",
-          "Push away from the down elbow. Don't crash.",
-          "Shoulder stays packed. Eyes up the arm.",
+          "Roll to your elbow, then push up onto your hand.",
+          "Push away from the down elbow. Don't drop.",
+          "Shoulder stays down. Eyes follow the arm up.",
         ]),
       ],
       [
-        "Full naked TGU",
+        "Full get-up, no bell",
         move([
-          "Slow and vertical. One segment, then the next.",
-          "Packed shoulder, planted heel, silent knee on the way down.",
-          "Tall finish. Don't fold the low back into a deep arch.",
+          "Slow. One piece, then the next. The arm stays tall.",
+          "Shoulder down, heel planted, quiet knee on the way down.",
+          "Finish standing tall. Keep your low back out of a deep arch.",
         ]),
       ],
       [
-        "Full TGU",
+        "Full get-up",
         move([
-          "Same chain with the bell. Both hands pick it up and put it down.",
-          "Packed shoulder, planted heel, silent knee.",
-          "Rest as you need. These are singles, not a race.",
+          "Same chain, with the bell. Both hands pick it up and set it down.",
+          "Shoulder down, heel planted, quiet knee.",
+          "Rest when you need it. One rep, then another when you're ready.",
         ]),
       ],
       [
-        "Supine twist",
+        "Twist on your back",
         move([
-          "Knees fall to one side. Both shoulders stay on the floor.",
-          "The turn lives in the ribs. Easy.",
+          "Let your knees fall to one side. Both shoulders stay on the floor.",
+          "The turn lives in your ribs. Easy.",
           "Both sides.",
         ]),
       ],
       [
-        "Hamstring floss",
+        "Easy hamstrings",
         move([
-          "Straighten and soften the leg, slow.",
-          "Don't yank the end of the range.",
-          "One minute a side.",
+          "Straighten the leg, then soften it. Slow.",
+          "Don't yank the end of the stretch.",
+          "A minute a side.",
         ]),
       ],
     ] as const

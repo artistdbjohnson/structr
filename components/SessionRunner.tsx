@@ -41,7 +41,7 @@ export function SessionRunner({ initial }: { initial: WorkoutSession }) {
       <main className={styles.screen}>
         <div className={styles.shell}>
           <h1 className={styles.title}>Plan missing</h1>
-          <p className={styles.lead}>This session’s template is no longer on the device.</p>
+          <p className={styles.lead}>This plan isn't on the phone anymore.</p>
           <button
             className={styles.nextBtn}
             type="button"
@@ -50,7 +50,7 @@ export function SessionRunner({ initial }: { initial: WorkoutSession }) {
               router.push("/");
             }}
           >
-            Discard
+            Drop it
           </button>
         </div>
       </main>
@@ -165,7 +165,7 @@ export function SessionRunner({ initial }: { initial: WorkoutSession }) {
             </button>
             {phase?.bulk?.ui === "active" ? (
               <button type="button" onClick={abortSet}>
-                Abort set
+                Stop this set
               </button>
             ) : null}
             <button type="button" onClick={toggleUnit}>
@@ -209,11 +209,11 @@ export function SessionRunner({ initial }: { initial: WorkoutSession }) {
             </div>
           ) : null}
           <button className={styles.nextBtn} type="button" onClick={() => advance(false)}>
-            {session.phaseIndex >= session.phases.length - 1 ? "Finish" : "Next phase"}
+            {session.phaseIndex >= session.phases.length - 1 ? "Finish" : "Next"}
           </button>
         </div>
         <p className={styles.metaFooter}>
-          <span>{formatClock(elapsed)} elapsed</span>
+          <span>{formatClock(elapsed)} in</span>
           <span>
             {phase?.id === "bulk"
               ? `${Math.max(0, bulkTarget - bulkSets)} sets left`

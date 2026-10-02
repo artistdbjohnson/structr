@@ -27,7 +27,7 @@ export function SummaryScreen() {
     return (
       <main className={styles.screen}>
         <div className={styles.shell}>
-          <p className={styles.lead}>Loading summary…</p>
+          <p className={styles.lead}>Loading…</p>
         </div>
       </main>
     );
@@ -37,8 +37,8 @@ export function SummaryScreen() {
     return (
       <main className={styles.screen}>
         <div className={styles.shell}>
-          <h1 className={styles.title}>No summary yet</h1>
-          <p className={styles.lead}>Finish a session and the totals land here.</p>
+          <h1 className={styles.title}>Nothing to show yet</h1>
+          <p className={styles.lead}>Finish a session and the totals show up here.</p>
           <Link className={styles.nextBtn} href="/">
             Home
           </Link>
@@ -54,7 +54,7 @@ export function SummaryScreen() {
           <h1 className={styles.title}>{summary.templateName}</h1>
           <p className={styles.kicker}>{formatWhen(summary.endedAt)}</p>
         </header>
-        <p className={styles.lead}>Saved on this device.</p>
+        <p className={styles.lead}>Saved on this phone.</p>
         <PhaseBar
           title="Session"
           phases={5}
@@ -80,7 +80,7 @@ export function SummaryScreen() {
           />
           <MetricPill
             className={styles.pillFit}
-            label="BULK RPE"
+            label="How hard"
             value={summary.bulkRpe ?? "—"}
             tint="magenta"
           />

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: "Structr",
     template: "%s · Structr",
   },
-  description: "Structured kettlebell training sessions.",
+  description: "Kettlebell practice you can follow, one session at a time.",
   applicationName: "Structr",
   appleWebApp: {
     capable: true,

@@ -22,7 +22,7 @@ export function SoonNotify({ id }: { id: string }) {
         setWatching(next);
       }}
     >
-      {watching ? "Watching on this device" : "Notify me on this device"}
+      {watching ? "I'll watch for this" : "Tell me when it's ready"}
     </button>
   );
 }

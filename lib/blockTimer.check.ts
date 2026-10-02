@@ -21,7 +21,7 @@ const fresh = createBlockTimer(60);
 assert.equal(fresh.mode, "countdown");
 assert.equal(displaySeconds(fresh, t0), 60);
 assert.equal(loggedSeconds(fresh, t0), 60);
-assert.equal(timerStatus(fresh, t0), "remaining");
+assert.equal(timerStatus(fresh, t0), "time left");
 assert.equal(timerAction(fresh, t0), "Start");
 
 assert.equal(createBlockTimer(0).mode, "stopwatch");
@@ -37,7 +37,7 @@ assert.equal(loggedSeconds(running, t0 + 1500), 1);
 const paused = pauseTimer(running, t0 + 1500);
 assert.equal(paused.running, false);
 assert.ok(Math.abs(paused.elapsedSec - 1.5) < 1e-6);
-assert.equal(timerStatus(paused, t0), "paused · remaining");
+assert.equal(timerStatus(paused, t0), "paused · time left");
 assert.equal(timerAction(paused, t0), "Resume");
 assert.equal(loggedSeconds(paused, t0 + 99999), 1);
 
@@ -87,7 +87,7 @@ assert.equal(watch.mode, "stopwatch");
 assert.equal(watch.running, false);
 assert.ok(Math.abs(watch.elapsedSec - 5) < 1e-6);
 assert.equal(displaySeconds(watch, t0), 5);
-assert.equal(timerStatus(watch, t0), "paused · elapsed");
+assert.equal(timerStatus(watch, t0), "paused · time so far");
 
 watch = adjustTimer(watch, 15, t0);
 assert.equal(Math.floor(watch.elapsedSec), 20);

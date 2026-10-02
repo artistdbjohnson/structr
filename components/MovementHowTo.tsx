@@ -182,7 +182,7 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
           </>
         ) : (
           <div className={styles.poster} data-art="placeholder" data-motion="still">
-            <p className={styles.posterKicker}>Cue card</p>
+            <p className={styles.posterKicker}>How</p>
             <h2 id={titleId} className={styles.posterName}>
               {guide.name}
             </h2>
@@ -206,7 +206,7 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
             . {MOVEMENT_ART_CREDIT.changes}
           </p>
         ) : (
-          <p className={styles.credit}>Picture later. The cues are the point.</p>
+          <p className={styles.credit}>No picture yet. These words will get you through it.</p>
         )}
       </div>
     </div>,

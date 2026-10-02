@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Structr",
     short_name: "Structr",
-    description: "Structured kettlebell training sessions.",
+    description: "Kettlebell practice you can follow, one session at a time.",
     start_url: "/",
     scope: "/",
     display: "standalone",

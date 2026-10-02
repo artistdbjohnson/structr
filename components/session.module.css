@@ -75,7 +75,8 @@
 .cta:focus-visible,
 .nextBtn:focus-visible,
 .logBtn:focus-visible,
-.rpeTicks button:focus-visible {
+.rpeTicks button:focus-visible,
+.timer button:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
@@ -350,43 +351,11 @@
   border-color: transparent;
 }
 
-.editRow,
-.timeRow {
+.editRow {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 8px;
   align-items: stretch;
-}
-
-.timeReadout {
-  min-width: 0;
-  min-height: 44px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 1px;
-  padding: 6px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  background: rgba(255, 255, 255, 0.08);
-  font-variant-numeric: tabular-nums;
-}
-
-.timeLabel {
-  font-size: 11px;
-  font-weight: 650;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  line-height: 1.2;
-  color: var(--ink-meta);
-}
-
-.timeValue {
-  font-size: 1.05rem;
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
 }
 
 .stepper {
@@ -414,8 +383,8 @@
   gap: 6px;
 }
 
-.stepperControls button,
-.timeRow button {
+.stepperControls button {
+  min-width: 44px;
   min-height: 44px;
   padding: 0 12px;
   border-radius: 14px;
@@ -426,15 +395,6 @@
   line-height: 1.15;
   white-space: nowrap;
   cursor: pointer;
-}
-
-.stepperControls button {
-  min-width: 44px;
-}
-
-.timeRow button {
-  min-width: 0;
-  font-size: 0.9rem;
 }
 
 .stepperControls input,
@@ -615,6 +575,272 @@
   overflow-wrap: anywhere;
 }
 
+.timer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px;
+  border: 0;
+  border-radius: var(--sg-radius-md, 20px);
+  overflow: hidden;
+  background:
+    radial-gradient(90% 80% at 0% 0%, var(--sg-bloom-magenta-a, rgba(255, 80, 170, 0.55)), transparent 58%),
+    radial-gradient(80% 80% at 100% 100%, var(--sg-bloom-cyan-b, rgba(46, 203, 255, 0.4)), transparent 62%),
+    rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.58),
+    0 0 0 1px rgba(255, 255, 255, 0.24),
+    var(--sg-shadow-depth, 0 18px 40px -12px rgba(0, 0, 0, 0.55));
+  backdrop-filter: blur(var(--sg-blur, 14px)) saturate(var(--sg-saturate, 145%));
+  -webkit-backdrop-filter: blur(var(--sg-blur, 14px)) saturate(var(--sg-saturate, 145%));
+}
+
+.timer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(
+    --sg-rim-sheen,
+    linear-gradient(155deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.08) 42%, rgba(255, 255, 255, 0.35))
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.timer[data-running="true"] {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 0 0 1px rgba(231, 197, 106, 0.8),
+    0 0 20px rgba(231, 197, 106, 0.5);
+  animation: timerGlow 1.6s ease-in-out infinite;
+}
+
+.timer[data-done="true"] {
+  animation: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    0 0 0 1px rgba(231, 197, 106, 0.75),
+    0 0 22px rgba(231, 197, 106, 0.48);
+}
+
+.timer[data-done="true"] .timerDigits {
+  color: #e7c56a;
+  text-shadow: 0 0 14px rgba(231, 197, 106, 0.75);
+}
+
+.modeToggle {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.modeToggle button {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+
+.modeToggle button[aria-pressed="true"] {
+  background: #fff;
+  color: #16130f;
+}
+
+.timerClock {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.timerKicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--ink-meta);
+}
+
+.timerDigits {
+  max-width: 100%;
+  font-family: var(--sg-numeral-font, ui-monospace, monospace);
+  font-size: clamp(2.5rem, 13vw, 3.4rem);
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.65);
+}
+
+.timerStatus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 1.2em;
+  color: var(--ink-meta);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #e7c56a;
+  box-shadow: 0 0 8px rgba(231, 197, 106, 0.95);
+}
+
+.timer[data-running="true"] .liveDot {
+  animation: liveBlink 1.2s ease-in-out infinite;
+}
+
+.timerTrack {
+  position: relative;
+  z-index: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+
+.timerTrack > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #e7c56a;
+  box-shadow: 0 0 10px rgba(231, 197, 106, 0.85);
+  transition: width 200ms linear;
+}
+
+.timerActions,
+.timerBumps {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+}
+
+.timerActions {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr);
+}
+
+.timerActions[data-split="true"] {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.75fr) minmax(0, 0.85fr);
+}
+
+.timerBumps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.timerPrimary,
+.timerGhost,
+.timerBumps button {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.timerPrimary {
+  border: 0;
+  background: #fff;
+  color: #16130f;
+}
+
+.timerGhost,
+.timerBumps button {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+}
+
+.timerPrimary:active,
+.timerGhost:active,
+.timerBumps button:active {
+  transform: scale(0.98);
+}
+
+.timer button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.splitRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.splitLabel {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-meta);
+}
+
+.splitList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.splitList li {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-family: var(--sg-numeral-font, ui-monospace, monospace);
+  font-size: 13px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
 .hint,
 .message {
   font-size: 14px;
@@ -687,13 +913,42 @@
   }
 }
 
+@keyframes timerGlow {
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 0 0 1px rgba(231, 197, 106, 1),
+      0 0 32px rgba(231, 197, 106, 0.85);
+  }
+}
+
+@keyframes liveBlink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .cta[data-kind="start"] {
+  .cta[data-kind="start"],
+  .timer[data-running="true"],
+  .timer[data-running="true"] .liveDot {
     animation: none;
+  }
+  .timer[data-running="true"] {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      0 0 0 1px rgba(231, 197, 106, 0.72),
+      0 0 18px rgba(231, 197, 106, 0.45);
+  }
+  .timerTrack > span {
+    transition: none;
   }
   .cta:active,
   .nextBtn:active,
-  .logBtn:active {
+  .logBtn:active,
+  .timerPrimary:active,
+  .timerGhost:active,
+  .timerBumps button:active {
     transform: none;
   }
 }
@@ -708,7 +963,10 @@
   .hero,
   .phasePill,
   .cta,
-  .nextBtn {
+  .nextBtn,
+  .timer,
+  .timerGhost,
+  .timerBumps button {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }

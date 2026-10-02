@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { formatClock } from "@/lib/format";
 import type { LoggedBlock, Template, TemplateBlock, WorkoutSession } from "@/lib/types";
 import { defaultBell, phaseTrack } from "@/lib/templates";
 import { MetricPill } from "@/structr-glass/components/MetricPill";
+import { BlockTimer } from "./BlockTimer";
 import { RpePicker } from "./RpePicker";
 import { Stepper } from "./Stepper";
 import styles from "./session.module.css";
@@ -37,18 +38,8 @@ function BlockEditor({
     existing?.weight ?? (weightNeeded(block, track.weight) ? defaultWeight : 0),
   );
   const [timeSec, setTimeSec] = useState(existing?.timeSec ?? block.timeSec ?? block.restSec ?? 0);
-  const [running, setRunning] = useState(false);
-  const base = useRef(0);
-  const onTime = useRef(setTimeSec);
-  onTime.current = setTimeSec;
-
-  useEffect(() => {
-    if (!running) return;
-    const id = window.setInterval(() => {
-      onTime.current(Math.min(5400, Math.max(0, Math.floor((Date.now() - base.current) / 1000))));
-    }, 200);
-    return () => window.clearInterval(id);
-  }, [running]);
+  const [freezeToken, setFreezeToken] = useState(0);
+  const prescribedSec = existing?.timeSec ?? block.timeSec ?? block.restSec ?? 0;
 
   const timeInvalid = track.time === "required" && timeSec <= 0;
   const repsInvalid = track.reps === "required" && reps <= 0;
@@ -58,12 +49,12 @@ function BlockEditor({
 
   function save() {
     if (invalid) return;
-    setRunning(false);
     const logged: LoggedBlock = { blockId: block.id };
     if (track.sets !== "off" && sets > 0) logged.sets = sets;
     if (reps > 0) logged.reps = reps;
     if (weight > 0) logged.weight = weight;
     if (timeSec > 0) logged.timeSec = timeSec;
+    setFreezeToken((value) => value + 1);
     onSave(logged);
   }
 
@@ -101,46 +92,12 @@ function BlockEditor({
         />
       ) : null}
       {track.time !== "off" ? (
-        <div className={styles.timeRow}>
-          <button
-            className={styles.timeToggle}
-            type="button"
-            onClick={() => {
-              if (!running) {
-                base.current = Date.now() - timeSec * 1000;
-                setRunning(true);
-              } else {
-                setRunning(false);
-              }
-            }}
-          >
-            {running ? "Stop timer" : "Start timer"}
-          </button>
-          <output className={styles.timeReadout} aria-live="polite">
-            <span className={styles.timeLabel}>{timeLabel}</span>
-            <span className={styles.timeValue}>{formatClock(timeSec)}</span>
-          </output>
-          <button
-            className={styles.timeBump}
-            type="button"
-            onClick={() => {
-              setRunning(false);
-              setTimeSec((value) => Math.min(5400, value + 15));
-            }}
-          >
-            +0:15
-          </button>
-          <button
-            className={styles.timeBump}
-            type="button"
-            onClick={() => {
-              setRunning(false);
-              setTimeSec((value) => Math.min(5400, value + 60));
-            }}
-          >
-            +1:00
-          </button>
-        </div>
+        <BlockTimer
+          initialSec={prescribedSec}
+          label={timeLabel}
+          freezeToken={freezeToken}
+          onChange={setTimeSec}
+        />
       ) : null}
       {invalid ? (
         <p className={styles.hint}>

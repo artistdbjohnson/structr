@@ -44,8 +44,15 @@ export function movementKey(name: string): string {
   return name.toLowerCase().replace(/['’]/g, "").replace(/\s+/g, " ").trim();
 }
 
+const FRAMES: Record<LicensedStretch, readonly string[]> = {
+  "worlds-greatest-stretch": [1, 2, 3].map(
+    (index) => `/movement/worlds-greatest-stretch/frame-${index}.svg`,
+  ),
+  "childs-pose": [1, 2, 3].map((index) => `/movement/childs-pose/frame-${index}.svg`),
+};
+
 function framesFor(slug: LicensedStretch): readonly string[] {
-  return [1, 2, 3].map((index) => `/movement/${slug}/frame-${index}.svg`);
+  return FRAMES[slug];
 }
 
 function move(cues: readonly string[], slug?: LicensedStretch): Move {

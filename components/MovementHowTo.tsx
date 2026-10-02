@@ -76,13 +76,15 @@ function FrameReel({ frames }: { frames: readonly string[] }) {
   const still = usePrefersStill();
   const [index, setIndex] = useState(0);
 
+  const signature = frames.join("|");
   useEffect(() => {
     if (still || frames.length < 2) return;
+    const count = frames.length;
     const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % frames.length);
+      setIndex((current) => (current + 1) % count);
     }, 1100);
     return () => window.clearInterval(id);
-  }, [still, frames]);
+  }, [still, signature, frames.length]);
 
   const shown = still ? 0 : index;
 

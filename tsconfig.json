@@ -37,6 +37,7 @@
   ],
   "exclude": [
     "node_modules",
-    "lib/blockTimer.check.ts"
+    "lib/blockTimer.check.ts",
+    "lib/movementHowTo.check.ts"
   ]
 }

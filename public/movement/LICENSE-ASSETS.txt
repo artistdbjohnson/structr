@@ -1,0 +1,25 @@
+Movement illustrations
+======================
+
+The SVG frames in this folder are unmodified copies from Workout Guide
+by Bryl Lim (https://bryllim.github.io/workout-guide/).
+
+License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Included, three frames each:
+
+- worlds-greatest-stretch
+- childs-pose
+
+The Workout Guide manifest records these frames as original artwork by
+Bryl Lim under CC BY-SA 4.0. It does not list a separate Everkinetic
+source URL for these two stretches.
+
+No changes were made to the SVG files. They are bundled here so a session
+can show them without a CDN. If you adapt them, ShareAlike applies:
+keep the adaptation under CC BY-SA 4.0, credit Bryl Lim and Workout Guide,
+and say what changed.
+
+Other session moves use Structr's own placeholder cue card. Those
+placeholders are not Workout Guide artwork.

@@ -16,7 +16,7 @@ The big three — squat, bench, deadlift — are skills with a short attention b
 
 **Warm-up → Skill drills → Form → THE BULK → Cool-down**
 
-This is **form practice**, not a meet peak and not a smash session. Empty bar and light plates earn their place. Density on The Bulk only after the groove is honest.
+This is form practice. The empty bar and the light plates earn their place. More reps on The Bulk come after the shape feels like yours.
 
 **What we ship in this module**
 
@@ -26,15 +26,15 @@ This is **form practice**, not a meet peak and not a smash session. Empty bar an
 | **Bench Basics** | Setup lock → bar to lower chest → stack wrists |
 | **Deadlift Basics** | Mid-foot bar → slack out → push the floor |
 
-> **Light safety note:** If something hurts sharp (not “working hard”), rack it. Film a set or find a coach when you can. One line is enough.
+> If it hurts in a sharp way, rack the bar. Film a set, or find a coach when you can.
 
 ---
 
-## 2. Safety + common mistakes
+## 2. Easy misses
 
 ### Squat
 
-**Blueprint:** Big brace before you sit. Knees travel the way toes point. Depth = hip crease below top of knee when it’s honest for you — not a shallow ego dip.
+**The idea:** A big brace before you sit. Knees travel the way the toes point. Depth you own: hip crease below the top of the knee, when that's honest for you.
 
 **Common misses**
 
@@ -48,7 +48,7 @@ This is **form practice**, not a meet peak and not a smash session. Empty bar an
 
 ### Bench press
 
-**Blueprint:** Feet planted, upper back pinned, slight arch you can own. Bar to **lower** chest; elbows tucked enough that wrists stack over elbows (~45–60° from torso — not a hard “T”).
+**The idea:** Feet planted. Upper back pinned. A small arch you can own. Bar to the lower chest. Elbows in enough that the wrists stack over them.
 
 **Common misses**
 
@@ -62,7 +62,7 @@ This is **form practice**, not a meet peak and not a smash session. Empty bar an
 
 ### Deadlift
 
-**Blueprint:** Bar over mid-foot (~1" from shin). Shoulders slightly ahead of the bar. Take the **slack out**, then push the floor — don’t yank.
+**The idea:** Bar over the middle of your foot, about an inch from the shin. Shoulders a little ahead of the bar. Pull the slack out, then push the floor away.
 
 **Common misses**
 
@@ -78,7 +78,7 @@ This is **form practice**, not a meet peak and not a smash session. Empty bar an
 
 ---
 
-## 3. Our three templates
+## 3. The three plans
 
 ### Squat Basics · ~40–50 min
 
@@ -88,10 +88,10 @@ This is **form practice**, not a meet peak and not a smash session. Empty bar an
 
 | Phase | What you do |
 |-------|-------------|
-| Warm-up | Hip/ankle openers, empty-bar squat grooves |
+| Warm-up | Hip and ankle openers, empty-bar squat practice |
 | Skill drills | Pause squats (light), brace holds, depth checks |
 | Form | Working sets — quality over load |
-| **THE BULK** | Volume sets @ honest load · **RPE target 7–8** |
+| **THE BULK** | More sets, a weight you can own · **aim for 7–8** |
 | Cool-down | Fold, hip openers, breathe |
 
 ### Bench Basics · ~40–50 min
@@ -105,34 +105,34 @@ This is **form practice**, not a meet peak and not a smash session. Empty bar an
 | Warm-up | Scap sets, light push-ups / empty bar |
 | Skill drills | Pause bench (light), wrist-stack drills |
 | Form | Working sets with setup checklist |
-| **THE BULK** | Bench density · **RPE target 7–8** |
-| Cool-down | Shoulder CARs, doorway, breathe |
+| **THE BULK** | More bench reps · **aim for 7–8** |
+| Cool-down | Slow shoulder circles, a doorway reach, breathe |
 
 ### Deadlift Basics · ~40–50 min
 
 **Purpose:** Groove mid-foot setup and a non-yank pull.  
-**Who it’s for:** Anyone whose first instinct is to rip the bar; hinge learners coming from kettlebell swings.  
+**Who it’s for:** Anyone who yanks the bar off the floor, and anyone coming from kettlebell swings.  
 **Session shape**
 
 | Phase | What you do |
 |-------|-------------|
-| Warm-up | Hinge pattern, light RDL, brace breath |
+| Warm-up | Sit-back practice, a light deadlift with soft knees, brace and breathe |
 | Skill drills | Slack-out practice, paused below knee (light) |
 | Form | Working singles/doubles — quality |
-| **THE BULK** | Pull volume @ honest load · **RPE target 7–8** |
-| Cool-down | Hip flexor stretch, hamstring floss, breathe |
+| **THE BULK** | More pulls, a weight you can own · **aim for 7–8** |
+| Cool-down | Hip flexor stretch, easy hamstrings, breathe |
 
 Default open: **Squat Basics** (pairs cleanly with dumbbell Goblet Path as a prior skill).
 
 ---
 
-## 4. RPE & The Bulk
+## 4. How hard it felt
 
-Same 1–10 scale and Bulk-required rule as kettlebell / dumbbell. Typical Bulk target here: **7–8** — hard, crisp, not a grind-to-miss culture. Skill-day singles on deadlift can sit closer to **6–7** when the template says so.
+Same 1–10 scale as kettlebell and dumbbell. You mark it on The Bulk. Most days land around **7–8**: hard, and still crisp. Deadlift singles can sit closer to **6–7** when the session says so.
 
 ---
 
-## 5. Gear (high-level)
+## 5. What you need
 
 | Need | Notes |
 |------|-------|
@@ -148,25 +148,25 @@ Clear space behind the bar for deadlift; collars on. Spotter or pins for heavy b
 ## 6. FAQ
 
 **Is this a powerlifting program?**  
-No — form-practice templates. Numbers climb as a byproduct of clean grooves.
+These are form-practice sessions. The numbers climb when the reps stay clean.
 
-**Which template first?**  
+**Which plan first?**  
 **Squat Basics**, unless you’ve already got a solid squat and want bench or pull emphasis.
 
 **Empty bar feels silly — skip it?**  
 Don’t. Empty bar *is* skill practice. Load comes after the cues stick.
 
-**Do I need RPE everywhere?**  
-Only **required on The Bulk**.
+**Do I need a number everywhere?**  
+Only on The Bulk.
 
 **What if my back rounds a little?**  
-Park, lighten, fix setup/brace. Don’t chase a PR with a soft spine. Film it.
+Stop, take weight off, and fix the setup and the brace. Film it.
 
 **How does this relate to dumbbell / kettlebell?**  
-Same five phases. Goblet Path is a great on-ramp before Squat Basics; swing hinge literacy helps Deadlift Basics.
+Same five parts. Goblet Path is a good step before Squat Basics. A swing that sits the hips back helps Deadlift Basics.
 
 **Can I mix sumo and conventional?**  
-Pick one stance for a block. Don’t thrash both in day-one MVP templates.
+Pick one stance and stay with it for a while.
 
 ---
 

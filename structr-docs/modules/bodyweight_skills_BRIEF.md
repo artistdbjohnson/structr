@@ -11,53 +11,47 @@
 
 ## 1. Promise
 
-**Bodyweight skills** is where Structr will collect ladders and practices you do with a bar, a wall, and the floor — pull-ups, dips, handstand progressions, L-sits — framed as **craft practice**, not a random burpee burner.
+**Bodyweight skills** is where the bar, the wall, and the floor will live. Pull-ups, dips, handstands, L-sits. You practice them like a craft, one rung at a time.
 
-Today: chip is **coming soon**. You’ll see planned modules by name. Soft CTA: browse **Kettlebell skill** or **Get stronger** matches that already ship or are next.
+It's **coming soon**. You'll see the names. **Kettlebell skill** is ready now, and **Get stronger** is the neighborhood this grows from.
 
 ---
 
 ## 2. What will live here
 
-- Skill ladders with clear rungs (earn the next variation)  
-- Short skill blocks early in the session (fresh nervous system)  
-- Same five-phase runner: Warm-up → Skill drills → Form → **THE BULK** → Cool-down  
-- Bulk RPE required — usually density on the current rung  
-- Curated templates first; **no AI plans**
-
-**Out of scope for this chip:** partner acrobatics curricula, outdoor parkour product, rehab protocols.
+- Ladders with a clear next step
+- The skill work early, while you're fresh
+- The usual session: Warm-up → Skill drills → Form → **THE BULK** → Cool-down
+- A number on The Bulk, usually for more reps of the rung you're on
 
 ---
 
-## 3. 5-phase fit note
+## 3. How a session goes
 
-**Clean.** Calisthenics ladders are nearly 1:1 with Structr’s skill → form → Bulk model (see taxonomy §E). Handstand work prefers skill-early, wrists prepared, short frequent practice — the whiteboard already supports that shape.
-
----
-
-## 4. Example future templates (names only)
-
-1. **Pull Ladder** (also under `mod_calisthenics_ladder`)  
-2. **Handstand Wall Path**  
-3. **Dip & Support Strength**  
-4. **Core Holds Studio** (hollow · L-sit progressions)  
-5. **Muscle-Up Approach** (advanced rung — later)
+Pull, push, and squat ladders fit the usual shape. Handstands want the skill early, wrists warmed up, and short practice you can repeat. The session already has room for that.
 
 ---
 
-## 5. FAQ
+## 4. Future plans
+
+1. **Pull Ladder** — also listed with Calisthenics ladder
+2. **Handstand Wall Path**
+3. **Dip & Support Strength**
+4. **Core Holds Studio** — hollow body and L-sit steps
+5. **Muscle-Up Approach** — a later rung
+
+---
+
+## 5. Questions
 
 **Can I start something bodyweight today?**  
-Not under this chip yet. Use **Get stronger** coming-soon rows (Calisthenics ladder) when that module ships, or train kettlebell skill now.
+This chip can't start a session yet. **Calisthenics ladder** will, when it's written. **Kettlebell skill** is ready now.
 
 **Is this the same as Calisthenics ladder?**  
-Calisthenics ladder is the first **module** in this neighborhood. The **Bodyweight skills** chip is the wider goal home as more bar/wall skills arrive.
-
-**Will there be AI-generated plans?**  
-No — curated catalog only for this era.
+Calisthenics ladder is the first set of sessions here. **Bodyweight skills** is the wider home, once more bar and wall work shows up.
 
 **Do I need a gym?**  
-A bar and floor cover most of the promise.
+A bar and a floor cover most of it.
 
 ---
 

@@ -10,150 +10,138 @@
 
 ---
 
-## 1. What this is (and why skill practice)
+## 1. What this is
 
-Mobility here means **owning your joints on purpose** — slow, active circles and openers you can feel — not a physio protocol and not “fix my injury.” Think brushing your teeth for movement: short, daily, unglamorous, compounding.
+Mobility here means moving your joints on purpose. Slow circles. Easy openers. You can feel them. Short, most days, nothing glamorous. It adds up, like brushing your teeth.
 
-Structr still uses the five-phase whiteboard so mobility isn’t a vague stretch blob:
+A session still goes **Warm-up → Skill drills → Form → THE BULK → Cool-down**.
 
-**Warm-up → Skill drills → Form → THE BULK → Cool-down**
+On these days **THE BULK** is more of the same careful range. The effort is real. You mark how hard it felt to *stay in control*, from 1 to 10. People sometimes call that number RPE.
 
-On mobility days, **THE BULK** is denser controlled range work (or a focused region circuit) — effort is real, smash culture is not. RPE still tells the truth about how hard you worked to *control* the range.
-
-**What we ship in this module**
-
-| Template | Skill spine |
+| Template | What you're practicing |
 |----------|-------------|
-| **Full-Body CARs Day** | Slow joint circles · tension · isolation |
-| **Hips & Thoracic Open** | Hip + mid-back freedom for squat/hinge days |
-| **Shoulders & Wrists Prep** | Upper-limb control for press / hang / handstand-adjacent days |
+| **Full-body joint circles** | Slow circles, one joint at a time |
+| **Hips and upper back** | Hips and mid-back, for squat days and swing days |
+| **Shoulders and wrists** | Shoulders and wrists, before you press, hang, or go upside down |
 
-> **Light safety note:** Mild stretch effort is fine; sharp joint pinch is a stop sign — shrink the circle. One line is enough. This is not rehab or physio.
-
----
-
-## 2. Safety + common mistakes
-
-### CARs-style joint circles (general)
-
-**Blueprint:** Largest circle you can **actively** make, slowly, under light whole-body tension, while neighbors stay quiet. Momentum is cheating. Compensating with the spine is cheating.
-
-**Common misses**
-
-| Mistake | What it looks like | Better cue |
-|---------|-------------------|------------|
-| Momentum circles | Fast, floppy loops | Slow down — one quality circle can take 20–30s on big joints |
-| Neighbor joints helping | Hip CAR becomes a low-back dance | Brace lightly; move **only** the target joint |
-| Skipping the sticky arc | Smooth past the hard bit | Explore the “corners”; don’t shortcut restriction |
-| Pain probing | Pushing through sharp pinch | Shrink range; stay in control without sharp pain |
-| Treating CARs as the whole gym | Never strength training again | Maintenance layer — pairs with strength modules |
-
-### Hips & thoracic
-
-**Common misses**
-
-| Mistake | What it looks like | Better cue |
-|---------|-------------------|------------|
-| Passive flop | Gravity does the stretch; you check out | Active end range — you drive it |
-| Forcing depth | Bounce into a yoga pose | Breath + gradual open; no heroics |
-| Soft ribs on thoracic work | Flailing instead of rotating | Tall posture; rotate with intent |
-
-### Shoulders & wrists
-
-**Common misses**
-
-| Mistake | What it looks like | Better cue |
-|---------|-------------------|------------|
-| Skipping wrists | Jump to loaded positions | Wrist circles / rocks first every upper day |
-| Shrugged “openers” | Ears eat shoulders | Pack first, then explore range |
-| High-tension CARs when raw | Joint feels fried next day | Morning / easy days = low tension; save high tension for coached feel |
-
-**Wording rule for UI:** “move freer,” “joints feel available,” “recovery habits” — never treat / diagnose / rehab / physio.
+> A mild stretch is fine. A sharp pinch in the joint means make the circle smaller.
 
 ---
 
-## 3. Our three templates
+## 2. Easy misses
 
-### Full-Body CARs Day · ~20–30 min
+### Slow joint circles
 
-**Purpose:** Daily joint check-in — neck to toes, unglamorous and useful.  
-**Who it’s for:** Anyone who sits a lot; strength athletes on easy days; **Move freer** default.  
+**The idea:** The biggest circle you can make yourself, slowly, with a little tension, while the joints next door stay quiet.
+
+| Mistake | What you see | Try this |
+|---------|-------------------|------------|
+| Swinging it | Fast, floppy loops | Slow down. One good circle on a big joint can take 20–30 seconds |
+| The neighbors help | A hip circle turns into a low-back dance | Brace a little. Move only the joint you meant |
+| Skipping the sticky spot | You rush past the hard bit | Stay in the corners. That's the part worth visiting |
+| Pushing into a pinch | Sharp pain, and you keep going | Smaller circle. Stay where you can control it |
+| Circles instead of lifting | You never pick up a weight again | This sits beside your strength days |
+
+### Hips and upper back
+
+| Mistake | What you see | Try this |
+|---------|-------------------|------------|
+| You check out | Gravity does the stretch | You drive the end of the range |
+| Forcing it | Bouncing deeper | Breathe, and open a little at a time |
+| The ribs flop | The upper back waves around | Stay tall. Turn on purpose |
+
+### Shoulders and wrists
+
+| Mistake | What you see | Try this |
+|---------|-------------------|------------|
+| Wrists get skipped | You jump straight to a loaded position | Wrist circles first, every upper-body day |
+| Shoulders by your ears | The neck disappears | Set the shoulders down, then explore the range |
+| Too much tension | The joint feels fried the next day | Easy mornings stay easy. Save the hard tension for when it feels right |
+
+---
+
+## 3. The three plans
+
+### Full-body joint circles · ~20–30 min
+
+**Purpose:** A daily check-in, neck to toes. Quiet and useful.  
+**Who it’s for:** Anyone who sits a lot, and strong people on an easy day. The **Move freer** default.  
 **Session shape**
 
 | Phase | What you do |
 |-------|-------------|
-| Warm-up | Easy breath, light march or sway |
-| Skill drills | Segmental CARs (teach isolation) — low tension |
-| Form | Linked full-body pass — quality circles |
-| **THE BULK** | Second pass or focus joints · **RPE target 5–7** (control effort) |
-| Cool-down | Easy fold, breathe |
+| Warm-up | Easy breath, a light march or sway |
+| Skill drills | One joint at a time, low tension |
+| Form | A full pass of clean circles |
+| **THE BULK** | A second pass, or the joints that need it · **aim for 5–7** |
+| Cool-down | An easy fold, then breathe |
 
-### Hips & Thoracic Open · ~25–35 min
+### Hips and upper back · ~25–35 min
 
-**Purpose:** Free the squat/hinge supporting cast.  
-**Who it’s for:** Lifters before squat/hinge blocks; desk hips.  
+**Purpose:** Free the hips and the mid-back that squat and swing days ask for.  
+**Who it’s for:** Before a squat or a sit-back day. Desk hips.  
 **Session shape**
 
 | Phase | What you do |
 |-------|-------------|
-| Warm-up | Cat-cow easy, hip rocks |
-| Skill drills | Hip CARs, 90/90 transitions (active) |
-| Form | Thoracic rotations / openers with control |
-| **THE BULK** | Hip + t-spine circuit · **RPE target 6–7** |
-| Cool-down | Soft fold, breathe |
+| Warm-up | Easy cat-cow, hip rocks |
+| Skill drills | Hip circles, moving through 90/90 |
+| Form | Upper-back turns you can control |
+| **THE BULK** | Hips and upper back together · **aim for 6–7** |
+| Cool-down | A soft fold, then breathe |
 
-### Shoulders & Wrists Prep · ~20–30 min
+### Shoulders and wrists · ~20–30 min
 
-**Purpose:** Upper-limb availability for press, hang, and push ladders.  
-**Who it’s for:** Push/pull days that start sticky; desk shoulders.  
+**Purpose:** Shoulders and wrists that are ready to press, hang, or push.  
+**Who it’s for:** Push and pull days that start sticky. Desk shoulders.  
 **Session shape**
 
 | Phase | What you do |
 |-------|-------------|
-| Warm-up | Wrist rocks, gentle arm swings |
-| Skill drills | Wrist + shoulder CARs |
-| Form | Scap control drills, light hangs if available |
-| **THE BULK** | Shoulder/wrist density · **RPE target 5–7** |
-| Cool-down | Soft doorway, breathe |
+| Warm-up | Wrist rocks, easy arm swings |
+| Skill drills | Slow wrist circles and shoulder circles |
+| Form | Shoulder-blade control, a light hang if you have a bar |
+| **THE BULK** | More shoulder and wrist work · **aim for 5–7** |
+| Cool-down | An easy doorway reach, then breathe |
 
-Default open: **Full-Body CARs Day**.
-
----
-
-## 4. RPE & The Bulk
-
-RPE still required on The Bulk — here it often reads lower than swing day (**5–7** typical) because the stimulus is **control and density of quality reps**, not loading a barbell. A honest 7 on mobility can mean “that took real focus and tension,” not “I nearly died.”
+Open **Full-body joint circles** first.
 
 ---
 
-## 5. Gear (high-level)
+## 4. How hard it felt
 
-Floor space. Optional yoga mat. Optional light band. Optional stick/dowel for reach patterns. No special machine. Shoes off often helps feel the feet.
+You still mark a number on The Bulk. Here it often sits lower than swing day, around **5–7**, because the work is control and clean reps. An honest 7 can mean “that took real focus.”
 
 ---
 
-## 6. FAQ
+## 5. What you need
+
+Floor space. A mat if you want one. A light band if you have one. A stick if you like something to reach with. Shoes off often helps you feel your feet.
+
+---
+
+## 6. Questions
 
 **Is this yoga?**  
-Neighbor, not twin. CARs/openers are joint-control practice. Mat flow lives later under **Mat practice**.
+Close, and different. These are joint circles and openers. Flow on a mat comes later under **Mat practice**.
 
-**Is this rehab?**  
-No. Lifestyle mobility. Sharp or lingering issues → appropriate professional — we don’t diagnose here.
+**What if something keeps hurting?**  
+Stop. This is daily movement. A sharp or lingering pain needs a person who can look at you.
 
 **How often?**  
-Designed to be **daily or near-daily** at short length. Consistency > heroic once-a-week sessions.
+Most days, and short. Showing up beats one heroic session a week.
 
-**Which template first?**  
-**Full-Body CARs Day**.
+**Which one first?**  
+**Full-body joint circles**.
 
-**Can this replace strength days?**  
-It supports them. Keep strength / skill modules in the week.
+**Does this replace strength days?**  
+It sits next to them. Keep a strength day in the week.
 
-**Do I need RPE?**  
-Yes on The Bulk — even when the number is a 5.
+**Do I need the number?**  
+Yes on The Bulk, even when it's a 5.
 
-**Relation to kettlebell Get-Up?**  
-Get-Up Primer (kettlebell module) is a **strength-skill** story that also helps you move well. This module is the dedicated mobility home under **Move freer**.
+**What about the kettlebell get-up?**  
+Get-Up Primer lives with **Kettlebell skill**. It makes you strong and it helps you move. This page is the mobility home under **Move freer**.
 
 ---
 

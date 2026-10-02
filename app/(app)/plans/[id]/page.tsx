@@ -46,7 +46,7 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ id:
               <h2 className={styles.phaseName}>
                 {index + 1}. {phase.name}
               </h2>
-              {phase.rpeTarget ? <p className={styles.kicker}>RPE target {phase.rpeTarget}</p> : null}
+              {phase.rpeTarget ? <p className={styles.kicker}>Aim for {phase.rpeTarget}</p> : null}
             </div>
             <p className={styles.lead}>{phase.intent}</p>
             <ul className={styles.blockList}>

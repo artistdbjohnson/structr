@@ -30,7 +30,7 @@ export function CatalogBrowse() {
   return (
     <PageFrame backHref="/plans" backLabel="‹ Train for" title="Browse">
       <p className={styles.lead}>
-        Categories, then modules, then templates. Kettlebell is the only thing you can start.
+        Kettlebell is the one you can start today. The rest is names for later.
       </p>
       <div className={styles.accList}>
         {tree.map(({ category, modules, goal }) => {
@@ -83,7 +83,7 @@ export function CatalogBrowse() {
                         blurb: goal.lede,
                         status: "soon",
                         infoHref: goal.infoHref,
-                        planned: goal.plannedNames.map((name) => ({ name, minutes: "Name only" })),
+                        planned: goal.plannedNames.map((name) => ({ name, minutes: "Just a name" })),
                         bridge: goal.id === "goal_stay_capable",
                       }}
                       open={openModule === goal.id}
@@ -112,7 +112,7 @@ export function CatalogBrowse() {
 function categoryMeta(modules: CatalogModule[], goal: GoalPage | undefined, goalSeen: boolean): string {
   const parts: string[] = [];
   if (modules.length > 0) {
-    parts.push(modules.length === 1 ? "1 module" : `${modules.length} modules`);
+    parts.push(modules.length === 1 ? "1 practice" : `${modules.length} practices`);
   }
   const templates = modules.reduce((sum, module) => sum + module.templateIds.length, 0);
   if (templates > 0) parts.push(templateCountLabel(templates));
@@ -205,18 +205,18 @@ function ModuleDisclosure({
                         Continues in Get-Up Primer
                       </Link>
                     ) : (
-                      <span className={styles.kicker}>Not startable</span>
+                      <span className={styles.kicker}>Not yet</span>
                     )}
                   </li>
                 ))}
               </ul>
               {"bridge" in module && module.bridge ? (
                 <Link className={styles.quietLink} href="/plans/get-up-primer">
-                  Get-Up Primer is live
+                  Get-Up Primer is ready
                 </Link>
               ) : null}
               <Link className={styles.quietLink} href={module.infoHref}>
-                {"bridge" in module ? `About ${module.name}` : "Read the briefing"}
+                {`About ${module.name}`}
               </Link>
             </>
           )}
@@ -239,13 +239,13 @@ function GoalBody({ goal }: { goal: GoalPage }) {
         {goal.plannedNames.map((name) => (
           <li key={name}>
             <span className={styles.plannedName}>{name}</span>
-            <span className={styles.kicker}>Name only</span>
+            <span className={styles.kicker}>Just a name</span>
           </li>
         ))}
       </ul>
       {goal.id === "goal_stay_capable" ? (
         <Link className={styles.quietLink} href="/plans/get-up-primer">
-          Get-Up Primer is live
+          Get-Up Primer is ready
         </Link>
       ) : null}
       <Link className={styles.quietLink} href={goal.infoHref}>

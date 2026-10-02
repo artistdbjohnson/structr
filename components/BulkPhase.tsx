@@ -80,7 +80,7 @@ export function BulkPhase({
     );
   }, [bulk, now]);
 
-  if (!spec || !phase || !bulk) return <p>Bulk tracking is missing.</p>;
+  if (!spec || !phase || !bulk) return <p>The main work didn't load.</p>;
 
   const totalSets = spec.sets && spec.sets > 0 ? spec.sets : 1;
   const restSec = spec.restSec && spec.restSec > 0 ? spec.restSec : 60;
@@ -99,17 +99,17 @@ export function BulkPhase({
   const displaySet = Math.min(totalSets, bulk.sets.length + (finished ? 0 : 1));
 
   let clock = IDLE_CLOCK;
-  let sublabel = "tap Start";
+  let sublabel = "when you're ready";
   let heroLabel = "READY";
   let sparkProgress = 0.04;
   if (bulk.ui === "active") {
     clock = formatClock(elapsed);
-    sublabel = "elapsed";
-    heroLabel = "WORKING";
+    sublabel = "so far";
+    heroLabel = "GOING";
     sparkProgress = Math.min(1, elapsed / 45);
   } else if (bulk.ui === "rest") {
     clock = formatClock(remaining);
-    sublabel = "recover";
+    sublabel = "breathe";
     heroLabel = warn ? `REST · ${formatClock(remaining)}` : "REST";
     sparkProgress = bulk.restTotalSec ? 1 - remaining / bulk.restTotalSec : 1;
   }
@@ -132,28 +132,29 @@ export function BulkPhase({
       : null;
 
   const prevSet = bulk.sets[bulk.sets.length - 1];
-  let status = finished ? "complete" : `Set ${displaySet} ready`;
+  let status = finished ? "done" : `set ${displaySet}`;
   let statusDirection: "up" | "down" | "flat" = "flat";
   if (bulk.ui === "active") {
     if (prevSet && elapsed > 5) {
-      status = "pace";
-      statusDirection = elapsed <= prevSet.elapsedSec ? "up" : "down";
+      const quicker = elapsed <= prevSet.elapsedSec;
+      status = quicker ? "quicker" : "slower";
+      statusDirection = quicker ? "up" : "down";
     } else {
-      status = "in set";
+      status = "going";
     }
   } else if (bulk.ui === "rest") {
-    status = finished ? "last set" : `next: Set ${Math.min(totalSets, bulk.sets.length + 1)}`;
+    status = finished ? "last one" : `next, set ${Math.min(totalSets, bulk.sets.length + 1)}`;
   }
 
   const shownReps = bulk.ui === "rest" ? (bulk.sets.at(-1)?.reps ?? bulk.reps) : bulk.reps;
   const repsChip =
-    bulk.ui === "active" ? "in set" : remainingSets === 0 && bulk.sets.length > 0 ? "done" : `×${remainingSets}`;
+    bulk.ui === "active" ? "going" : remainingSets === 0 && bulk.sets.length > 0 ? "done" : `${remainingSets} left`;
   const volumes = bulk.sets.map((set) => set.reps * set.weight);
   const scheme = finished
-    ? `All ${totalSets} sets logged`
+    ? `All ${totalSets} sets are in`
     : bulk.ui === "rest"
-      ? `Rest · next Set ${Math.min(totalSets, bulk.sets.length + 1)} / ${totalSets}`
-      : `Set ${displaySet} / ${totalSets} · ${bulk.reps}${perSide ? "/side" : " reps"}`;
+      ? `Rest. Next is set ${Math.min(totalSets, bulk.sets.length + 1)} of ${totalSets}`
+      : `Set ${displaySet} of ${totalSets} · ${bulk.reps}${perSide ? " a side" : " reps"}`;
 
   function startSet() {
     patch((current) => {
@@ -205,7 +206,7 @@ export function BulkPhase({
   }
 
   const rpeTarget = template.phases.find((item) => item.id === "bulk")?.rpeTarget;
-  const hint = `Required before Next${rpeTarget ? ` · target ${rpeTarget}` : ""}`;
+  const hint = `Mark this before you move on${rpeTarget ? ` · aim for ${rpeTarget}` : ""}`;
 
   return (
     <section className={styles.stack} data-bulk-state={bulk.ui} data-exercise={spec.name}>
@@ -245,7 +246,7 @@ export function BulkPhase({
           tint="orange"
           footer={
             weightDelta === null ? (
-              <TrendChip value="first" direction="flat" tint="orange" />
+              <TrendChip value="first time" direction="flat" tint="orange" />
             ) : (
               <TrendChip
                 value={`${weightDelta > 0 ? "+" : ""}${weightDelta}`}
@@ -263,7 +264,7 @@ export function BulkPhase({
           spark={volumes.length >= 2 ? volumes : undefined}
           footer={
             volumeDelta === null ? (
-              <TrendChip value={volume > 0 ? "live" : "—"} direction="flat" tint="cyan" />
+              <TrendChip value={volume > 0 ? "today" : "—"} direction="flat" tint="cyan" />
             ) : (
               <TrendChip
                 value={`${volumeDelta > 0 ? "+" : ""}${volumeDelta}%`}
@@ -283,7 +284,7 @@ export function BulkPhase({
       {bulk.ui === "idle" && !finished ? (
         <div className={styles.editRow}>
           <Stepper
-            label={perSide ? "Reps / side" : "Reps"}
+            label={perSide ? "Reps a side" : "Reps"}
             value={bulk.reps}
             min={1}
             max={100}
@@ -304,8 +305,8 @@ export function BulkPhase({
       {bulk.ui === "rest" ? (
         <input
           className={styles.note}
-          aria-label="Set note"
-          placeholder="Note"
+          aria-label="Note for this set"
+          placeholder="How'd that set feel?"
           maxLength={140}
           value={bulk.note ?? ""}
           onChange={(event) => {
@@ -322,17 +323,17 @@ export function BulkPhase({
       ) : null}
       {bulk.ui === "active" ? (
         <button className={styles.cta} data-kind="complete" type="button" onClick={completeSet}>
-          Complete Set
+          Finish set
         </button>
       ) : null}
       {bulk.ui === "rest" ? (
         <button className={styles.cta} data-kind="rest" type="button" onClick={skipRest}>
-          Skip Rest
+          Skip rest
         </button>
       ) : null}
       {bulk.ui === "idle" && !finished ? (
         <button className={styles.cta} data-kind="start" type="button" onClick={startSet}>
-          Start Set
+          Start set
         </button>
       ) : null}
     </section>

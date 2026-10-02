@@ -36,28 +36,27 @@ export function KettlebellInfo() {
             </p>
           ) : null}
           <h1>Kettlebell</h1>
-          <p className={styles.promise}>Skill practice. Three paths. Five phases.</p>
+          <p className={styles.promise}>The swing, the clean, and the get-up. Same five-part session every time.</p>
         </header>
 
         <section className={styles.section} aria-labelledby="practice-heading">
           <h2 id="practice-heading">Practice</h2>
           <p className={styles.prose}>
-            A kettlebell is a cast-iron ball with a handle. The swing, the clean, and the get-up are skills —
-            patterns you groove the way you would practice a serve or a kata.
+            A kettlebell is a cast-iron ball with a handle. The swing, the clean, and the get-up are skills. You
+            practice them the way you'd practice a throw — a little every time, until they feel like yours.
           </p>
           <p className={styles.prose}>
-            These sessions are practice, not a crush-yourself workout. Conditioning shows up when the reps stay
-            clean. Leave something in the tank. Come back tomorrow sharp.
+            You'll get tired. Leave something for tomorrow so you come back sharp.
           </p>
           <p className={styles.safetyNote}>
-            If something hurts sharp — not “working hard” — park the bell. Film a set, or find a coach when you
-            can.
+            If it hurts in a sharp way, the kind that isn't just hard work, set the bell down. Film a set, or find
+            a coach when you can.
           </p>
         </section>
 
         <section className={styles.section} aria-labelledby="path-heading">
           <h2 id="path-heading">Five phases</h2>
-          <p className={styles.prose}>Every session walks the same path. The order stays fixed.</p>
+          <p className={styles.prose}>Every session goes in this order.</p>
           <div className={styles.card}>
             <ol className={styles.phases}>
               {PHASE_PATH.map((phase) => (
@@ -74,8 +73,8 @@ export function KettlebellInfo() {
         </section>
 
         <section className={styles.section} aria-labelledby="templates-heading">
-          <h2 id="templates-heading">Three templates</h2>
-          <p className={styles.prose}>Times are approximate. Pick with your eyes open.</p>
+          <h2 id="templates-heading">Three plans</h2>
+          <p className={styles.prose}>Times are a guess. Read the plan before you start.</p>
           <div className={styles.templates}>
             {TEMPLATE_BRIEFS.map((template) => (
               <article key={template.id} className={styles.template}>
@@ -107,7 +106,7 @@ export function KettlebellInfo() {
 
         <section className={styles.section} aria-labelledby="safety-heading">
           <h2 id="safety-heading">Common misses</h2>
-          <p className={styles.prose}>Cues, not a lecture. Open the skill you are practicing.</p>
+          <p className={styles.prose}>Short cues. Open the move you're actually doing.</p>
           <div className={styles.stack}>
             {SAFETY.map((panel) => (
               <details key={panel.id} className={styles.panel} name="kettlebell-safety" open={panel.id === "swing"}>
@@ -118,7 +117,7 @@ export function KettlebellInfo() {
                 <div className={styles.panelBody}>
                   <p>{panel.job}</p>
                   {panel.clock ? (
-                    <ol className={styles.clock} aria-label="Clean clock">
+                    <ol className={styles.clock} aria-label="Clean, step by step">
                       {panel.clock.map((step) => (
                         <li key={step.step}>
                           <strong>{step.step}</strong>
@@ -156,10 +155,11 @@ export function KettlebellInfo() {
         <section className={styles.section} aria-labelledby="bulk-heading">
           <h2 id="bulk-heading">The Bulk</h2>
           <p className={styles.prose}>
-            RPE is how hard it felt, on a simple 1–10 scale. You log it after The Bulk, not after every phase.
+            After The Bulk, mark how hard it felt, from 1 to 10. People sometimes call that RPE. Here it just
+            means how hard. You can skip the number on the other parts.
           </p>
           <div className={styles.card}>
-            <div className={styles.gauge} role="img" aria-label="RPE from 1, easy, to 10, nothing left. 7 and 8 are the usual Bulk target.">
+            <div className={styles.gauge} role="img" aria-label="How hard, from 1 easy to 10 nothing left. 7 and 8 are the usual Bulk target.">
               {RPE_GAUGE.map((score) => (
                 <span key={score} data-zone={rpeZone(score)}>
                   {score}
@@ -186,7 +186,7 @@ export function KettlebellInfo() {
               ))}
             </ol>
             <p className={styles.closer}>
-              After the last Bulk set, pause one breath and tap the number that matches how hard it felt.
+              After the last set, take one breath and tap the number that matches.
             </p>
           </div>
         </section>
@@ -194,9 +194,9 @@ export function KettlebellInfo() {
         <section className={styles.section} aria-labelledby="gear-heading">
           <h2 id="gear-heading">Gear</h2>
           <p className={styles.prose}>
-            Cast bells are the usual hardstyle choice: a stable base, and a handle that balances grip and glide.
-            Competition bells are fine if that's what you have. This map is a community starting point. Match it
-            to your strength, not a label.
+            A regular cast-iron bell is the usual pick. It sits flat, and the handle is easy to hold and to let
+            slide. A competition bell is fine if that's what you own. This map is a starting guess. Match it to
+            how strong you are today.
           </p>
           <div className={styles.card}>
             <ul className={styles.bells}>
@@ -216,8 +216,8 @@ export function KettlebellInfo() {
               ))}
             </ul>
             <p className={styles.floor}>
-              Flat ground, a clear arc, shoes you trust — or barefoot, if that's your practice. Room to hike and to
-              park the bell.
+              Flat ground. A clear path for the bell. Shoes you trust, or barefoot if that's how you train. Room to
+              swing, and room to set the bell down.
             </p>
           </div>
         </section>
@@ -239,7 +239,7 @@ export function KettlebellInfo() {
 
         <section className={styles.section} aria-label="Next">
           <h2>When you are ready</h2>
-          <p className={styles.prose}>Open the plans, or start Swing Foundation.</p>
+          <p className={styles.prose}>Open the plans, or just start Swing Foundation.</p>
           <div className={styles.actions}>
             <Link className={styles.ctaGhost} href="/plans">
               Train for
@@ -253,10 +253,9 @@ export function KettlebellInfo() {
         </section>
 
         <footer className={styles.footer}>
-          <p>Technique notes drawn from hardstyle coaching standards.</p>
+          <p>These notes come from coaches who teach the swing, the clean, and the get-up.</p>
           <p>
-            Swing, clean, and get-up cues follow that teaching. The 1–10 scale is plain effort language, not a lab
-            score. Nothing here is medical advice.
+            The 1–10 scale is just how hard it felt. If something is injured, talk to a person who can look at you.
           </p>
         </footer>
       </div>

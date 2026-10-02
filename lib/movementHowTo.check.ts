@@ -41,12 +41,12 @@ assert.deepEqual([...withArt].sort(), ["childs pose", "worlds greatest stretch"]
 const hike = movementHowTo("Hike pass");
 assert.equal(hike.frames, null);
 assert.ok(hike.cues.some((cue) => /ribs/i.test(cue)));
-assert.ok(hike.cues.some((cue) => /set-up is the first rep/i.test(cue)));
+assert.ok(hike.cues.some((cue) => /setting the bell down/i.test(cue)));
 
 const stretch = movementHowTo("World's greatest stretch");
 assert.ok(stretch.frames?.every((frame) => frame.includes("worlds-greatest-stretch")));
 
-for (const name of ["Goblet squat", "Light goblet squat", "Glute bridge", "Forward fold", "Hamstring floss", "Hip circles", "Empty-hand hinge"]) {
+for (const name of ["Goblet squat", "Light goblet squat", "Glute bridge", "Forward fold", "Easy hamstrings", "Hip circles", "Sit-back, no bell"]) {
   assert.equal(movementHowTo(name).frames, null, name);
 }
 

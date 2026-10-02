@@ -45,7 +45,7 @@ export function ComingSoonRow({ id, name, href }: { id: string; name: string; hr
       </button>
       {open ? (
         <div id={panelId} className={styles.soonSheet} role="region" aria-label={`${name}. Coming soon.`}>
-          <p>Coming soon. Nothing to start yet.</p>
+          <p>Still writing this. Nothing to start yet.</p>
           <div className={styles.soonActions}>
             <button
               type="button"
@@ -56,10 +56,10 @@ export function ComingSoonRow({ id, name, href }: { id: string; name: string; hr
                 setWatching(next);
               }}
             >
-              {watching ? "Watching on this device" : "Notify me"}
+              {watching ? "I'll watch for this" : "Tell me when it's ready"}
             </button>
             <button type="button" className={styles.ghost} onClick={() => setOpen(false)}>
-              Dismiss
+              Close
             </button>
           </div>
         </div>

@@ -123,20 +123,20 @@ function formBlockOk(logged: LoggedBlock, template: Template): boolean {
 
 export function checkAdvance(session: WorkoutSession, template: Template): AdvanceCheck {
   const phase = session.phases[session.phaseIndex];
-  if (!phase) return { type: "block", message: "This phase is missing." };
+  if (!phase) return { type: "block", message: "This part of the session didn't load." };
 
   if (phase.id === "bulk") {
     if (!phase.bulk) {
-      return { type: "block", message: "Bulk tracking is missing. End the session and start again." };
+      return { type: "block", message: "The main work didn't load. End this and start again." };
     }
     if (phase.bulk.ui === "active") {
-      return { type: "block", message: "Complete or abort the working set before Next." };
+      return { type: "block", message: "Finish this set, or stop it, before you move on." };
     }
     if (!phase.rpe || phase.rpe < 1 || phase.rpe > 10) {
-      return { type: "block", message: "Enter BULK RPE from 1 to 10 before Next." };
+      return { type: "block", message: "Mark how hard The Bulk felt, from 1 to 10, before you move on." };
     }
     if (phase.bulk.sets.length === 0) {
-      return { type: "confirm", message: "THE BULK has zero logged sets. Continue anyway?" };
+      return { type: "confirm", message: "You haven't logged a set in The Bulk. Move on anyway?" };
     }
     return { type: "ok" };
   }
@@ -148,8 +148,8 @@ export function checkAdvance(session: WorkoutSession, template: Template): Advan
         type: "confirm",
         message:
           phase.id === "cooldown"
-            ? "No cool-down time logged. Finish anyway?"
-            : "No warm-up time logged. Continue anyway?",
+            ? "No cool-down time yet. Finish anyway?"
+            : "No warm-up time yet. Move on anyway?",
       };
     }
     return { type: "ok" };
@@ -157,20 +157,20 @@ export function checkAdvance(session: WorkoutSession, template: Template): Advan
 
   if (phase.id === "skill") {
     if (phase.blocks.length === 0) {
-      return { type: "confirm", message: "No skill-drill reps logged. Continue anyway?" };
+      return { type: "confirm", message: "No practice reps yet. Move on anyway?" };
     }
     if (phase.blocks.some((logged) => (logged.reps ?? 0) <= 0)) {
-      return { type: "block", message: "Skill drills need reps on every logged block." };
+      return { type: "block", message: "Add the reps on every block you logged." };
     }
     return { type: "ok" };
   }
 
   if (phase.id === "form") {
     if (phase.blocks.length === 0) {
-      return { type: "confirm", message: "No form sets logged. Continue anyway?" };
+      return { type: "confirm", message: "No working sets yet. Move on anyway?" };
     }
     if (phase.blocks.some((logged) => !formBlockOk(logged, template))) {
-      return { type: "block", message: "Form blocks need reps and weight." };
+      return { type: "block", message: "Those sets need reps and a weight." };
     }
     return { type: "ok" };
   }

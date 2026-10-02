@@ -11,53 +11,52 @@
 
 ## 1. Promise
 
-**Sport prep** is gym-side and solo-drill practice that supports the sport you love — rotational strength for golf, fingers and tension for climb, shadow/pad rounds for striking — without trying to become a swing-AI or partner-mat academy.
+**Sport prep** is gym work and solo drills for the sport you already love. Turning strength for golf. Fingers and tension for climbing. Shadow rounds for striking.
 
-Today: **coming soon.** Structr wins when drills are isolable with timer/reps/RPE.
+It's **coming soon**. The drills are ones you can time, count, and mark for how hard they felt.
 
 ---
 
 ## 2. What will live here
 
-- Golf *fitness* templates (gym patterns — not launch-monitor coaching)  
-- Climbing hangboard / antagonism care sessions (careful loading)  
-- Solo striking / footwork rounds on the whiteboard  
-- Shared mobility/strength crossovers tagged by sport  
-- Curated packs — **no AI “build my sport program”**
+- Golf fitness you can do in a gym
+- Hangboard sessions, loaded with care
+- Solo striking and footwork rounds
+- Strength and mobility you can tag to a sport
 
-**Out of scope as primary:** Full BJJ curriculum (partner), ball-flight video AI, team practice logging social.
-
----
-
-## 3. 5-phase fit note
-
-**Clean → Stretch by sport.** Gym-side golf and hangboard map **Good/Clean**. Partner grappling and on-court sports lean **Stretch** — those stay specialty apps; we only take the solo-drill subset.
+Partner sports and swing-video coaching stay in the apps built for them. This is the solo work.
 
 ---
 
-## 4. Example future templates (names only)
+## 3. How a session goes
 
-1. **Golf Gym Prep**  
-2. **Hangboard Practice Block**  
-3. **Shadow Boxing Rounds**  
-4. **Rotational Power Path**  
-5. **Pre-Match Downshift**
+Golf gym work and hangboard fit a normal session. Partner grappling and on-court play stay with the people you train with. Here you get the drills you can do alone.
 
 ---
 
-## 5. FAQ
+## 4. Future plans
 
-**Will this analyze my golf swing video?**  
-No. Strength/mobility/skill prep only.
+1. **Golf Gym Prep**
+2. **Hangboard Practice Block**
+3. **Shadow Boxing Rounds**
+4. **Power in the turn**
+5. **Day-before easy**
 
-**BJJ?**  
-Solo drilling subset maybe later; full curriculum stays specialty.
+---
 
-**Can I tag kettlebell as sport prep?**  
-Kettlebell has its own chip. Sport prep is for sport-named packs when they ship.
+## 5. Questions
 
-**Anything I can do now?**  
-Strength + mobility modules (when live) plus kettlebell skill already support most sports as general prep.
+**Will this watch my golf swing?**  
+Strength, mobility, and skill. The video stays with you.
+
+**What about BJJ?**  
+Maybe some solo drills later. A full partner curriculum belongs with a BJJ coach.
+
+**Can I file kettlebell under sport prep?**  
+Kettlebell has its own home. Sport prep is for the packs named after a sport, when they're written.
+
+**What can I do now?**  
+**Kettlebell skill** already helps most sports. Strength and mobility sessions will too, when they're ready.
 
 ---
 

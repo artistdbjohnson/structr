@@ -59,7 +59,7 @@ export function loggedSeconds(state: BlockTimerState, now: number): number {
 
 export function timerStatus(state: BlockTimerState, now: number): string {
   const elapsed = liveElapsed(state, now);
-  const kind = state.mode === "countdown" ? "remaining" : "elapsed";
+  const kind = state.mode === "countdown" ? "time left" : "time so far";
   const done =
     state.mode === "countdown" &&
     !state.running &&

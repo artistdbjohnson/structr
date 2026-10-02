@@ -84,13 +84,13 @@ export function TrainFor({ chip }: { chip: TrainChip }) {
             {chip.label}
           </h2>
           <p className={styles.mark}>Coming soon</p>
-          <p className={styles.lead}>{goal?.lede ?? "We're building this."}</p>
-          <p className={styles.lead}>Names only. Nothing here starts a session.</p>
+          <p className={styles.lead}>{goal?.lede ?? "Still writing this."}</p>
+          <p className={styles.lead}>Just names for now. You can't start these yet.</p>
           <ul className={styles.planned}>
             {chip.plannedNames.map((name) => (
               <li key={name}>
                 <span className={styles.plannedName}>{name}</span>
-                <span className={styles.kicker}>Not startable</span>
+                <span className={styles.kicker}>Not yet</span>
               </li>
             ))}
           </ul>

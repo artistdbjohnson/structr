@@ -20,7 +20,7 @@ export function SessionScreen() {
     return (
       <main className={styles.screen}>
         <div className={styles.shell}>
-          <p className={styles.lead}>Loading session…</p>
+          <p className={styles.lead}>Loading…</p>
         </div>
       </main>
     );
@@ -30,8 +30,8 @@ export function SessionScreen() {
     return (
       <main className={styles.screen}>
         <div className={styles.shell}>
-          <h1 className={styles.title}>No active session</h1>
-          <p className={styles.lead}>No session in progress. Pick a plan from Train for.</p>
+          <h1 className={styles.title}>Nothing going</h1>
+          <p className={styles.lead}>Pick a plan and we'll start from the warm-up.</p>
           <div className={styles.links}>
             <Link href="/">Home</Link>
             <Link href="/plans">Train for</Link>

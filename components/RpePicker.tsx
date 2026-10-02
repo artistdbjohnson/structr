@@ -16,13 +16,13 @@ export function RpePicker({
   return (
     <div className={styles.rpe}>
       <div className={styles.rpeHead}>
-        <span>RPE</span>
+        <span>How hard</span>
         <span>{hint}</span>
       </div>
       <div
         className={styles.rpeTicks}
         role="group"
-        aria-label={required ? "RPE required, 1 to 10" : "RPE 1 to 10"}
+        aria-label={required ? "How hard, required, 1 easy to 10 empty" : "How hard, 1 easy to 10 empty"}
       >
         {Array.from({ length: 10 }, (_, index) => {
           const score = index + 1;

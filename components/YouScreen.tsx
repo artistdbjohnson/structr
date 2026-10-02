@@ -40,7 +40,7 @@ export function YouScreen() {
     <PageFrame backHref="/" backLabel="‹ Train for" title="You">
       {prefs && history ? (
         <>
-          <p className={styles.lead}>Sessions stay on this device. No account.</p>
+          <p className={styles.lead}>Sessions stay on this phone. No account.</p>
           {activeName ? (
             <Link className={styles.primary} href="/session">
               Resume {activeName}
@@ -48,7 +48,7 @@ export function YouScreen() {
           ) : null}
           <section className={styles.card}>
             <h2 className={styles.cardTitle}>Units</h2>
-            <p className={styles.lead}>New sessions use this preference. Saved sessions keep the unit they were logged in.</p>
+            <p className={styles.lead}>New sessions use this. Old ones keep the unit you logged them in.</p>
             <div className={styles.unitRow}>
               {(["lb", "kg"] as const).map((unit) => (
                 <button
@@ -66,7 +66,7 @@ export function YouScreen() {
           <section className={styles.stack}>
             <h2 className={styles.cardTitle}>Recent</h2>
             {history.length === 0 ? (
-              <p className={styles.lead}>No sessions yet. Train opens Train for.</p>
+              <p className={styles.lead}>Nothing saved yet. Hit Train and pick a plan.</p>
             ) : (
               history.map((session) => {
                 const summary = summarize(session);
@@ -79,7 +79,7 @@ export function YouScreen() {
                         <li>{formatClock(summary.durationSec)}</li>
                         <li>{summary.totalReps} reps</li>
                         <li>{summary.topWeight > 0 ? `${summary.topWeight} ${summary.unit}` : "no load"}</li>
-                        <li>BULK RPE {summary.bulkRpe ?? "—"}</li>
+                        <li>How hard {summary.bulkRpe ?? "—"}</li>
                       </ul>
                     </div>
                   </article>
@@ -88,9 +88,9 @@ export function YouScreen() {
             )}
           </section>
           <section className={styles.card}>
-            <h2 className={styles.cardTitle}>Movement art</h2>
+            <h2 className={styles.cardTitle}>Drawings</h2>
             <p className={styles.finePrint}>
-              Stretch drawings in the session how-to are by {MOVEMENT_ART_CREDIT.creator},{" "}
+              The stretch drawings in How are by {MOVEMENT_ART_CREDIT.creator},{" "}
               <a href={MOVEMENT_ART_CREDIT.workUrl} target="_blank" rel="noreferrer">
                 {MOVEMENT_ART_CREDIT.work}
               </a>
@@ -98,15 +98,15 @@ export function YouScreen() {
               <a href={MOVEMENT_ART_CREDIT.licenseUrl} target="_blank" rel="noreferrer">
                 {MOVEMENT_ART_CREDIT.license}
               </a>
-              . {MOVEMENT_ART_CREDIT.changes} Kettlebell moves use a Structr cue card.
+              . {MOVEMENT_ART_CREDIT.changes} Kettlebell moves are words for now.
             </p>
           </section>
           {ask ? (
             <div className={styles.confirm}>
-              <p>Erase sessions, the active workout, and the unit preference from this device?</p>
+              <p>Wipe the sessions, the one in progress, and your lb/kg choice off this phone?</p>
               <div className={styles.confirmActions}>
                 <button className={styles.danger} type="button" onClick={clear}>
-                  Erase
+                  Wipe it
                 </button>
                 <button className={styles.ghost} type="button" onClick={() => setAsk(false)}>
                   Cancel
@@ -115,12 +115,12 @@ export function YouScreen() {
             </div>
           ) : (
             <button className={styles.danger} type="button" onClick={() => setAsk(true)}>
-              Clear data
+              Clear everything
             </button>
           )}
         </>
       ) : (
-        <p className={styles.lead}>Loading…</p>
+        <p className={styles.lead}>One second…</p>
       )}
     </PageFrame>
   );

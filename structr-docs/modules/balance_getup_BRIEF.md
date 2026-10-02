@@ -11,152 +11,139 @@
 
 ---
 
-## 1. What this is (and why skill practice)
+## 1. What this is
 
-Getting up from the floor and standing steady are **skills** — the kind you practice near a counter, with patience, the way you’d practice a serve. This pack is for people who want **confidence on their feet** and a calm path from floor → stand, including (when ready) the kettlebell get-up as a beautiful strength cousin.
+Getting up off the floor, and standing steady, are skills. You practice them near a counter, with patience, the way you'd practice a throw. This pack is for people who want steadier feet and a calm path from the floor to standing. When you're ready, the kettlebell get-up is the strong cousin.
 
-**Framing we use:** stay capable · feel steadier · practice the stand-up.  
-**Framing we never use:** fall-prevention medical program · senior rehab · physio protocol · treat injury.
+A session still goes **Warm-up → Skill drills → Form → THE BULK → Cool-down**.
 
-Session spine stays Structr-native:
-
-**Warm-up → Skill drills → Form → THE BULK → Cool-down**
-
-**What we ship in this module**
-
-| Template | Skill spine |
+| Template | What you're practicing |
 |----------|-------------|
-| **Steady Stance** | Supported balance holds → less hand contact → short walks |
-| **Floor-to-Stand Path** | Backward-chain style: stand → kneel → floor — only when ready |
-| **Get-Up Bridge** | Naked / light segments → pointer into kettlebell **Get-Up Primer** |
+| **Steady Stance** | Balance holds with a hand nearby, then less help, then a short walk |
+| **Floor-to-Stand Path** | Stand, then kneel, then the floor — only when the step before feels solid |
+| **Get-Up Bridge** | The get-up in pieces, no bell, then a door into **Get-Up Primer** |
 
-> **Light safety note:** Practice near a sturdy support. If something hurts sharp, stop. This is practice, not a clinic. One line is enough.
-
----
-
-## 2. Safety + common mistakes
-
-### Steady stance / balance drills
-
-**Blueprint:** Start with hand support you trust. Hold; reduce contact as confidence grows. Short, frequent practice beats rare hero attempts.
-
-**Common misses**
-
-| Mistake | What it looks like | Better cue |
-|---------|-------------------|------------|
-| No support nearby | Wobbly in the middle of the room day one | Counter / rail within reach every early session |
-| Eyes-closed too soon | Panic sway | Master eyes-open holds first |
-| Holding breath | Freeze + tip | Soft breath; soft knees |
-| Marathon holds | One shaky minute once a week | Multiple short holds; build to ~20–30s |
-| Comparing to athletes | Ego spiral | Your baseline is the only baseline |
-
-### Floor-to-stand path
-
-**Blueprint:** Teach the chain from the **most stable end** (standing / kneeling) toward the floor — only progress when the prior step feels secure. You should not be forced to lie down on day one.
-
-**Common misses**
-
-| Mistake | What it looks like | Better cue |
-|---------|-------------------|------------|
-| Jumping to supine | Panic on the floor early | Earn each step; stay at kneel longer if needed |
-| Rushing the stand | Scramble up with breath held | Pause in each position; breathe |
-| No clear space | Furniture obstacles | Clear a mat zone before you start |
-| Treating it as a test | Pass/fail anxiety | It’s practice reps — like skill drills |
-
-### Get-up bridge (links to kettlebell)
-
-**Blueprint:** Naked segments first — roll → elbow → post → half-kneeling — same language as kettlebell **Get-Up Primer**. When the chain is calm, **open the kettlebell module** for loaded Get-Up Primer rather than duplicating it here.
-
-**Common misses** (same spirit as kettlebell brief — keep light here)
-
-| Mistake | What it looks like | Better cue |
-|---------|-------------------|------------|
-| Shrugging the “bell” arm | Soft shoulder even naked | Pack the shoulder; arm tall |
-| Rushing segments | Blurry chain | One position at a time |
-| Skipping kettlebell home | Trying to load advanced get-ups only here | Bridge → **Get-Up Primer** for THE BULK with a bell |
+> Practice near something sturdy. If it hurts sharp, stop.
 
 ---
 
-## 3. Our three templates
+## 2. Easy misses
+
+### Standing steady
+
+**The idea:** Start with a hand on something you trust. Hold. Take the hand away as you feel steadier. Short and often beats one brave attempt.
+
+| Mistake | What you see | Try this |
+|---------|-------------------|------------|
+| Nothing to hold | Wobbly in the middle of the room | A counter or rail within reach, early on |
+| Eyes closed too soon | A panicked sway | Own the eyes-open holds first |
+| Breath held | You freeze, then tip | Soft breath. Soft knees |
+| One long hold | A shaky minute, once a week | A few short holds. Build toward 20–30 seconds |
+| Comparing | Someone else's balance in your head | Your starting point is the only one that matters |
+
+### Floor to standing
+
+**The idea:** Start from standing or kneeling, the steadier end, and work toward the floor. Move on when the step you're on feels secure. Day one can stay at a kneel.
+
+| Mistake | What you see | Try this |
+|---------|-------------------|------------|
+| Straight to the floor | You feel stuck down there | Earn each step. Stay at the kneel longer |
+| Rushing the stand | A scramble, breath held | Pause in each spot. Breathe |
+| A cluttered room | Furniture in the way | Clear a mat-sized space first |
+| It feels like a test | Pass or fail in your head | These are practice reps, same as any other skill |
+
+### The get-up bridge
+
+**The idea:** No bell at first. Roll, elbow, hand, half-kneel. Same pieces as **Get-Up Primer**. When that chain feels calm, open **Kettlebell skill** for the get-up with a bell.
+
+| Mistake | What you see | Try this |
+|---------|-------------------|------------|
+| Shoulder by your ear | The shoulder floats, even with no bell | Shoulder down. Arm tall |
+| Rushing the pieces | It blurs together | One position, then the next |
+| Loading it only here | A heavy get-up with nowhere to put the work | Go to **Get-Up Primer** for The Bulk with a bell |
+
+---
+
+## 3. The three plans
 
 ### Steady Stance · ~20–30 min
 
-**Purpose:** Build quiet balance with progressive support removal.  
-**Who it’s for:** Anyone who feels wobbly on one foot; active-aging framing; desk athletes.  
+**Purpose:** Quiet balance, with less hand help as you go.  
+**Who it’s for:** Anyone who feels wobbly on one foot. Desk days. Any age.  
 **Session shape**
 
 | Phase | What you do |
 |-------|-------------|
 | Warm-up | Ankle rocks, easy weight shifts |
-| Skill drills | Supported tandem / single-leg holds |
-| Form | Reduce hand contact; short holds quality |
-| **THE BULK** | Hold circuits · **RPE target 5–7** |
-| Cool-down | Easy march, breathe |
+| Skill drills | Holds with a hand on the counter, one foot or heel-to-toe |
+| Form | Less hand contact. Short holds that look calm |
+| **THE BULK** | A circuit of holds · **aim for 5–7** |
+| Cool-down | An easy march, then breathe |
 
 ### Floor-to-Stand Path · ~25–35 min
 
-**Purpose:** Practice rising with a calm, stepwise chain.  
-**Who it’s for:** People who want confidence getting off the floor — lifestyle capability, not a clinical fall program.  
+**Purpose:** A calm, stepwise way up off the floor.  
+**Who it’s for:** Anyone who wants that confidence in ordinary life.  
 **Session shape**
 
 | Phase | What you do |
 |-------|-------------|
-| Warm-up | Hip openers, tall kneeling breath |
-| Skill drills | Sit-to-stand, half-kneel ↔ stand |
-| Form | Add lower positions only when ready |
-| **THE BULK** | Controlled rise reps · **RPE target 6–7** |
-| Cool-down | Soft twist, breathe |
+| Warm-up | Hip openers, breathing tall on a knee |
+| Skill drills | Sit to stand, half-kneel to stand |
+| Form | Lower positions, only when you're ready |
+| **THE BULK** | Careful rises · **aim for 6–7** |
+| Cool-down | A soft twist, then breathe |
 
 ### Get-Up Bridge · ~30–40 min
 
-**Purpose:** Own naked get-up segments; graduate into kettlebell **Get-Up Primer**.  
-**Who it’s for:** Move-freer users who want the get-up story without starting in the kettlebell catalog; kettlebell users cross-training balance days.  
+**Purpose:** Learn the get-up pieces with no bell, then step into **Get-Up Primer**.  
+**Who it’s for:** People on Move freer who want the get-up, and kettlebell folks on a balance day.  
 **Session shape**
 
 | Phase | What you do |
 |-------|-------------|
-| Warm-up | Supine breath, glute bridge |
-| Skill drills | Naked roll → elbow → post → kneel |
-| Form | Partial get-ups; naked full if ready |
-| **THE BULK** | Segment density or naked full singles · **RPE target 6–7** |
-| Cool-down | Twist, breathe |
+| Warm-up | Breathing on your back, a glute bridge |
+| Skill drills | No bell: roll, elbow, hand, kneel |
+| Form | Partway up, then a full one with no bell if it feels calm |
+| **THE BULK** | More of the pieces, or full singles with no bell · **aim for 6–7** |
+| Cool-down | A twist, then breathe |
 
-**CTA inside Get-Up Bridge:** *Continue with kettlebell Get-Up Primer* → existing `tpl_getup` / `mod_kettlebell`.
+Inside Get-Up Bridge, the next step is kettlebell **Get-Up Primer**.
 
-Default open: **Steady Stance**.
-
----
-
-## 4. RPE & The Bulk
-
-Bulk RPE required. Targets trend **5–7** — focus and control, not collapse. Get-Up Bridge mirrors kettlebell get-up culture: **skill, not smash**.
+Open **Steady Stance** first.
 
 ---
 
-## 5. Gear (high-level)
+## 4. How hard it felt
 
-Sturdy chair or counter. Clear floor / mat. Optional light kettlebell **only** when bridging into Get-Up Primer (loaded work lives primarily in the kettlebell module). Supportive shoes or barefoot — pick what feels stable.
+The Bulk still needs a number. Most days land around **5–7**. That's focus and control. Get-Up Bridge is the same idea as the kettlebell get-up: skill you can repeat tomorrow.
 
 ---
 
-## 6. FAQ
+## 5. What you need
 
-**Is this a fall-prevention medical program?**  
-No. It’s balance and floor-to-stand **practice** with campfire framing. Not rehab, not physio, not diagnosis.
+A sturdy chair or a counter. A clear bit of floor. A light kettlebell only when you're stepping into Get-Up Primer. The heavy get-up lives with the kettlebell plans. Shoes that feel stable, or barefoot.
 
-**How is this different from kettlebell Get-Up Primer?**  
-Get-Up Primer is the loaded hardstyle skill inside **Kettlebell skill**. This pack teaches balance + floor-rise and a **naked bridge**, then points you there for the bell.
+---
 
-**Which template first?**  
-**Steady Stance**. Add Floor-to-Stand when you want the rise practice. Use Get-Up Bridge when you’re curious about the get-up chain.
+## 6. Questions
+
+**What is this for?**  
+Balance, and getting up off the floor, as practice you can do at home.
+
+**How is this different from Get-Up Primer?**  
+Get-Up Primer is the get-up with a bell, inside **Kettlebell skill**. This pack teaches balance, the rise, and the pieces with no bell, then points you there.
+
+**Which one first?**  
+**Steady Stance**. Add Floor-to-Stand when you want the rise. Use Get-Up Bridge when you want the get-up chain.
 
 **Do I need a kettlebell on day one?**  
 No.
 
-**Can younger athletes use this?**  
-Yes — balance and floor skills are for humans, not an age gate. Voice stays capable, not clinical.
+**Is this only for older adults?**  
+Balance and getting off the floor are for any age.
 
-**Do I need RPE?**  
+**Do I need the number?**  
 Yes on The Bulk.
 
 ---

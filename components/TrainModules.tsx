@@ -99,7 +99,7 @@ export function TrainModules({
           <h2 id="coming-soon-heading" className={styles.cardTitle}>
             Coming soon
           </h2>
-          <p className={styles.lead}>Names only. These don’t start a session.</p>
+          <p className={styles.lead}>Just the names for now.</p>
           <ul className={styles.soonList}>
             {comingSoon.map((module) => (
               <ComingSoonRow key={module.id} id={module.id} name={module.name} href={module.infoHref} />

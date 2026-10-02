@@ -39,7 +39,7 @@ export function TrainSheet({
         <h2 id="train-sheet-title" className={styles.title}>
           Train
         </h2>
-        <p className={styles.lead}>Start the last plan, or pick another.</p>
+        <p className={styles.lead}>Pick up the last plan, or choose another.</p>
         <button ref={startRef} className={styles.primary} type="button" onClick={onStart}>
           Start {templateName}
         </button>
@@ -47,7 +47,7 @@ export function TrainSheet({
           Pick plan
         </button>
         <button className={styles.dismiss} type="button" onClick={onClose}>
-          Dismiss
+          Not now
         </button>
       </div>
     </div>

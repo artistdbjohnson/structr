@@ -11,53 +11,50 @@
 
 ## 1. Promise
 
-**Stay capable** is the framing layer for training that helps you **keep doing the things you love** — carry groceries, get off the floor, hike the trail, play with kids/grandkids — with strength, balance, and mobility practiced on purpose.
+**Stay capable** is training that helps you keep doing the things you love. Carry the groceries. Get off the floor. Walk the trail. Play on the floor with the kids. Strength, balance, and mobility, practiced on purpose.
 
-Today: chip **coming soon** as a dedicated home. Much of the soul already exists sideways: Get-Up Primer, future Balance & get-up pack, Daily mobility, strength skill at honest loads.
+The home for it is still being written. A lot of the heart is already here: Get-Up Primer, and later the balance pack, Daily mobility, and strength at honest loads.
 
 ---
 
 ## 2. What will live here
 
-- Longevity-framed strength templates (same patterns, softer progression copy)  
-- Balance & floor-to-stand packs (see `mod_balance_getup`)  
-- Joint-friendly skill blends  
-- Clear routing into live kettlebell / strength modules  
-- Curated only — **no medical programs, no AI diagnosis**
-
-**Hard out:** treat injury · physio libraries · fall-clinic marketing · age-shaming copy.
+- Strength sessions with the same moves and a kinder climb
+- Balance, and getting up off the floor
+- Mixes that are kind to your joints
+- A clear path into the kettlebell plans you can start now
 
 ---
 
-## 3. 5-phase fit note
+## 3. How a session goes
 
-**Good / Clean.** Taxonomy §H: strength for longevity and balance/get-up confidence map cleanly onto five phases + Bulk RPE. Voice is the hard part — keep it campfire and capable.
-
----
-
-## 4. Example future templates (names only)
-
-1. **Capable Strength** (goblet / hinge / press — kinder Bulk)  
-2. **Steady Stance** (from balance pack)  
-3. **Floor-to-Stand Path**  
-4. **Carry Everyday** (suitcase / farmer practice)  
-5. **Move Freer Easy Day** (mobility crossover)
+Strength and balance both fit the usual shape. Warm up, learn it light, keep it clean, do the real work, then slow down. You still mark how hard The Bulk felt.
 
 ---
 
-## 5. FAQ
+## 4. Future plans
+
+1. **Capable Strength** — goblet squat, sit-back, press, with a kinder Bulk
+2. **Steady Stance** — from the balance pack
+3. **Floor-to-Stand Path**
+4. **Carry Everyday** — suitcase and farmer carries
+5. **Move Freer Easy Day** — an easy mobility day
+
+---
+
+## 5. Questions
 
 **Is this only for older adults?**  
-No. Capability is for every age. Trend data highlights older-adult fitness interest; the chip wording stays inclusive.
+Any age. The point is staying able to do your life.
 
 **Is Get-Up Primer part of this?**  
-Yes in spirit — it’s already live under kettlebell and tagged for “move well / stay capable” stories. This chip gathers that framing in one place later.
+Yes in spirit. It's already ready under kettlebell. This chip will gather that story in one place later.
 
-**Medical or rehab?**  
-Never. Practice and strength. Seek professionals for clinical needs.
+**What if I'm injured?**  
+This is practice and strength. Someone who can look at you is the right next step.
 
 **What can I do today?**  
-Open **Kettlebell skill** → **Get-Up Primer**, or **Move freer** when mobility/balance modules ship.
+Open **Kettlebell skill** and start **Get-Up Primer**. **Move freer** will hold mobility and balance when those sessions are written.
 
 ---
 

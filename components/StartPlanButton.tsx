@@ -54,7 +54,7 @@ export function StartPlanButton({
   if (ask) {
     return (
       <div className={styles.confirm}>
-        <p>End the current session before starting this plan? It won&apos;t be saved.</p>
+        <p>You&apos;ve got a session going. End it and start this one? The one in progress won&apos;t be saved.</p>
         <div className={styles.confirmActions}>
           <button
             className={styles.primary}

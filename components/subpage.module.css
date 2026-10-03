@@ -790,6 +790,55 @@
   padding-left: 8px;
 }
 
+.accPanelNest {
+  padding-left: 0;
+}
+
+/* One category's children. Each card sticks 12px lower than the one before it,
+   earlier cards scale down 1.2% per step, and later cards paint above them.
+   The last card has no extra bottom margin. */
+.cardNest {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cardNestItem {
+  position: sticky;
+  min-width: 0;
+}
+
+.cardNestFace {
+  transform-origin: top center;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #121014;
+  min-width: 0;
+}
+
+.cardNestFace:has(.accButton) {
+  border-radius: 18px;
+}
+
+.nestBlurb,
+.nestExtra {
+  padding: 0 14px 14px;
+}
+
+.nestBlurb {
+  color: var(--ink-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.nestExtra {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
 .category {
   display: flex;
   flex-direction: column;

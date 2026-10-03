@@ -171,7 +171,8 @@ export function HomeDock() {
   // Wallpaper home keeps the pill centered. A sheet, and every other page, parks it on the right.
   const trainSheet = isTrainSheet(path);
   const parkDock = trainSheet || path !== "/";
-  const youOpen = path === "/you";
+  // Empty column above and below the pill. You already returns home this way; Plans does too.
+  const gutterDismiss = path === "/you" || path === "/plans";
 
   function goHome() {
     if (marginTap.consumeIfMoved()) return;
@@ -183,7 +184,7 @@ export function HomeDock() {
   const gutterProps = {
     type: "button" as const,
     className: "dock-gutter",
-    "aria-label": "Close You",
+    "aria-label": path === "/plans" ? "Close Plans" : "Close You",
     tabIndex: -1,
     onPointerDown: marginTap.onPointerDown,
     onPointerMove: marginTap.onPointerMove,
@@ -194,14 +195,14 @@ export function HomeDock() {
     <>
       <div
         className={
-          youOpen
+          gutterDismiss
             ? "dock-anchor dock-anchor--side dock-anchor--you"
             : parkDock
               ? "dock-anchor dock-anchor--side"
               : "dock-anchor"
         }
       >
-        {youOpen ? <button {...gutterProps} data-dock-gutter="above" /> : null}
+        {gutterDismiss ? <button {...gutterProps} data-dock-gutter="above" /> : null}
         {trainSheet ? (
           <button
             type="button"
@@ -273,7 +274,7 @@ export function HomeDock() {
           icon={<PersonIcon />}
         />
         </nav>
-        {youOpen ? <button {...gutterProps} data-dock-gutter="below" /> : null}
+        {gutterDismiss ? <button {...gutterProps} data-dock-gutter="below" /> : null}
       </div>
       {sheet ? (
         <TrainSheet

@@ -131,29 +131,31 @@ export function MetricPill({
       style={style}
       aria-label={`${label}: ${value}${pct ? `, ${pct}` : ""}`}
     >
-      <div className={styles.label}>{label}</div>
-      <div className={styles.row}>
-        <span className={styles.value}>{value}</span>
-        {spark && spark.length >= 2 ? (
-          <Sparkline points={spark} stroke="var(--sg-spark)" />
-        ) : null}
-      </div>
-      {(pct || footer) && (
-        <div className={styles.meta}>
-          <svg className={styles.accent} viewBox="0 0 140 24" aria-hidden="true">
-            <path
-              d="M4 18 C 42 18, 64 5, 136 8"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.15"
-              strokeLinecap="round"
-              strokeDasharray="0.9 3.2"
-            />
-          </svg>
-          {pct ? <PercentChip>{pct}</PercentChip> : <span />}
-          {footer}
+      <div className={styles.fit}>
+        <div className={styles.label}>{label}</div>
+        <div className={styles.row}>
+          <span className={styles.value}>{value}</span>
+          {spark && spark.length >= 2 ? (
+            <Sparkline points={spark} stroke="var(--sg-spark)" />
+          ) : null}
         </div>
-      )}
+        {(pct || footer) && (
+          <div className={styles.meta}>
+            <svg className={styles.accent} viewBox="0 0 140 24" aria-hidden="true">
+              <path
+                d="M4 18 C 42 18, 64 5, 136 8"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.15"
+                strokeLinecap="round"
+                strokeDasharray="0.9 3.2"
+              />
+            </svg>
+            {pct ? <PercentChip>{pct}</PercentChip> : <span />}
+            {footer}
+          </div>
+        )}
+      </div>
     </article>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Children, Fragment, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { InfoLink } from "@/components/InfoLink";
 import { PageFrame } from "@/components/PageFrame";
@@ -16,6 +16,7 @@ import {
   type GoalPage,
 } from "@/lib/taxonomy";
 import { getTemplate } from "@/lib/templates";
+import type { Template } from "@/lib/types";
 
 export function CatalogBrowse() {
   const tree = browseTree();
@@ -39,6 +40,64 @@ export function CatalogBrowse() {
           if (goal) seenGoals.add(goal.id);
           const open = openCategory === category.id;
           const panelId = `${category.id}-panel`;
+          const showGoal = Boolean(goal && !goalSeen);
+          const entries: PileEntry[] =
+            modules.length > 0
+              ? [
+                  ...modules.map((module) => ({
+                    id: module.id,
+                    open: openModule === module.id,
+                    panelId: `${module.id}-body`,
+                    attrs: {
+                      "data-module": module.id,
+                      "data-status": module.status,
+                      "data-open": openModule === module.id ? "true" : "false",
+                    },
+                    header: (
+                      <ModuleHeader
+                        module={module}
+                        open={openModule === module.id}
+                        onToggle={() =>
+                          setOpenModule((current) => (current === module.id ? null : module.id))
+                        }
+                      />
+                    ),
+                    cards: moduleCards(module),
+                  })),
+                  ...(showGoal && goal
+                    ? [
+                        {
+                          id: goal.id,
+                          open: openModule === goal.id,
+                          panelId: `${goal.id}-body`,
+                          attrs: {
+                            "data-goal": goal.id,
+                            "data-status": "soon",
+                            "data-open": openModule === goal.id ? "true" : "false",
+                          },
+                          header: (
+                            <ModuleHeader
+                              module={{
+                                id: goal.id,
+                                name: goal.label,
+                                blurb: goal.lede,
+                                status: "soon",
+                                infoHref: goal.infoHref,
+                                planned: goal.plannedNames.map((name) => ({ name, minutes: "Just a name" })),
+                                bridge: goal.id === "goal_stay_capable",
+                              }}
+                              open={openModule === goal.id}
+                              onToggle={() =>
+                                setOpenModule((current) => (current === goal.id ? null : goal.id))
+                              }
+                            />
+                          ),
+                          cards: goalNameCards(goal),
+                        } satisfies PileEntry,
+                      ]
+                    : []),
+                ]
+              : [];
           return (
             <section
               key={category.id}
@@ -64,33 +123,10 @@ export function CatalogBrowse() {
                 </span>
               </button>
               {open ? (
-                <div id={panelId} className={styles.accPanel}>
+                <div id={panelId} className={`${styles.accPanel} ${styles.accPanelNest}`}>
                   <p className={styles.lead}>{category.blurb}</p>
-                  {modules.map((module) => (
-                    <ModuleDisclosure
-                      key={module.id}
-                      module={module}
-                      open={openModule === module.id}
-                      onToggle={() => setOpenModule((current) => (current === module.id ? null : module.id))}
-                    />
-                  ))}
-                  {goal && !goalSeen && modules.length === 0 ? <GoalBody goal={goal} /> : null}
-                  {goal && !goalSeen && modules.length > 0 ? (
-                    <ModuleDisclosure
-                      key={goal.id}
-                      module={{
-                        id: goal.id,
-                        name: goal.label,
-                        blurb: goal.lede,
-                        status: "soon",
-                        infoHref: goal.infoHref,
-                        planned: goal.plannedNames.map((name) => ({ name, minutes: "Just a name" })),
-                        bridge: goal.id === "goal_stay_capable",
-                      }}
-                      open={openModule === goal.id}
-                      onToggle={() => setOpenModule((current) => (current === goal.id ? null : goal.id))}
-                    />
-                  ) : null}
+                  {entries.length > 0 ? <CategoryPile entries={entries} /> : null}
+                  {showGoal && goal && modules.length === 0 ? <GoalNest goal={goal} /> : null}
                   {goal && goalSeen ? (
                     <p className={styles.lead}>
                       Same home as{" "}
@@ -127,18 +163,132 @@ function categoryMeta(modules: CatalogModule[], goal: GoalPage | undefined, goal
   return parts.join(" · ") || "Coming soon";
 }
 
+type PileAttrs = {
+  "data-module"?: string;
+  "data-goal"?: string;
+  "data-status"?: string;
+  "data-open"?: string;
+};
+
+type PileEntry = {
+  id: string;
+  open: boolean;
+  panelId: string;
+  attrs?: PileAttrs;
+  header: ReactNode;
+  cards: ReactNode[];
+};
+
+/** Sticky step. Each next card drops 12px. The safe area is only the screen inset. */
+function stickyTop(step: number): string {
+  return `calc(${step * 12}px + env(safe-area-inset-top, 0px))`;
+}
+
+/** Cards higher in the pile scale down 1.2% per step. The last card stays full size. */
+function pileScale(index: number, total: number): string {
+  return (1 - (total - 1 - index) * 0.012).toFixed(3);
+}
+
+function CardNest({
+  children,
+  startStep = 0,
+  zStart = 1,
+  flushEnd = false,
+}: {
+  children: ReactNode;
+  startStep?: number;
+  zStart?: number;
+  flushEnd?: boolean;
+}) {
+  const items = Children.toArray(children).filter(Boolean);
+  const total = items.length;
+  if (total === 0) return null;
+  return (
+    <div className={styles.cardNest}>
+      {items.map((child, index) => {
+        const last = index === total - 1;
+        return (
+          <div
+            key={index}
+            className={styles.cardNestItem}
+            style={{
+              top: stickyTop(startStep + index),
+              zIndex: zStart + index,
+              marginBottom: last && flushEnd ? 0 : 12,
+            }}
+          >
+            <div className={styles.cardNestFace} style={{ transform: `scale(${pileScale(index, total)})` }}>
+              {child}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/**
+ * Subcategory cards share one column so they stick and pile together.
+ * An open card's plans are their own pile in that same column, not a flat list.
+ */
+function CategoryPile({ entries }: { entries: PileEntry[] }) {
+  let z = 1;
+  return (
+    <div className={styles.cardNest}>
+      {entries.map((entry, index) => {
+        const cards = entry.cards.filter(Boolean);
+        const showCards = entry.open && cards.length > 0;
+        const last = index === entries.length - 1;
+        const headerZ = z;
+        z += 1;
+        const planZ = z;
+        if (showCards) z += cards.length;
+        return (
+          <Fragment key={entry.id}>
+            <div
+              className={styles.cardNestItem}
+              {...entry.attrs}
+              style={{
+                top: stickyTop(index),
+                zIndex: headerZ,
+                marginBottom: last && !showCards ? 0 : 12,
+              }}
+            >
+              <div
+                className={styles.cardNestFace}
+                style={{ transform: `scale(${pileScale(index, entries.length)})` }}
+              >
+                {entry.header}
+              </div>
+            </div>
+            {showCards ? (
+              <div id={entry.panelId}>
+                <CardNest startStep={index + 1} zStart={planZ} flushEnd={last}>
+                  {cards}
+                </CardNest>
+              </div>
+            ) : null}
+          </Fragment>
+        );
+      })}
+    </div>
+  );
+}
+
+type PlannedRow = { name: string; minutes: string; bridgeTemplateId?: string };
+
 type DisclosureModule = {
   id: string;
   name: string;
   blurb: string;
   status: "live" | "soon";
   infoHref: string;
-  planned: { name: string; minutes: string; bridgeTemplateId?: string }[];
+  planned: PlannedRow[];
   bridge?: boolean;
   templateIds?: CatalogModule["templateIds"];
 };
 
-function ModuleDisclosure({
+function ModuleHeader({
   module,
   open,
   onToggle,
@@ -158,7 +308,7 @@ function ModuleDisclosure({
       : "Coming soon";
 
   return (
-    <div className={styles.accItem} data-module={module.id} data-status={module.status} data-open={open ? "true" : "false"}>
+    <>
       <div className={styles.accHead}>
         <button type="button" className={styles.accButton} aria-expanded={open} aria-controls={panelId} onClick={onToggle}>
           <span className={styles.accMain}>
@@ -176,43 +326,10 @@ function ModuleDisclosure({
         <InfoLink href={module.infoHref} label={`${module.name} info`} />
       </div>
       {open ? (
-        <div id={panelId} className={live ? styles.card : `${styles.card} ${styles.glassSoon}`}>
-          <p className={styles.lead}>{module.blurb}</p>
-          {live ? (
-            <ul className={styles.templateList}>
-              {templateIds.map((taxonomyId) => {
-                const template = getTemplate(TEMPLATE_ROUTES[taxonomyId]);
-                if (!template) return null;
-                return (
-                  <li key={template.id} className={styles.templateRow} data-template={template.id}>
-                    <Link className={styles.templateLink} href={`/plans/${template.id}`}>
-                      <span className={styles.cardTitle}>{template.name}</span>
-                      <span className={styles.kicker}>{template.minutes}</span>
-                      <span className={styles.lead}>{template.focus}</span>
-                    </Link>
-                    <PlanMarks id={template.id} />
-                    <StartPlanButton templateId={template.id} />
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <>
-              <ul className={styles.planned}>
-                {planned.map((item) => (
-                  <li key={item.name}>
-                    <span className={styles.plannedName}>{item.name}</span>
-                    <span className={styles.kicker}>{item.minutes}</span>
-                    {"bridgeTemplateId" in item && item.bridgeTemplateId ? (
-                      <Link className={styles.quietLink} href={`/plans/${item.bridgeTemplateId}`}>
-                        Continues in Get-Up Primer
-                      </Link>
-                    ) : (
-                      <span className={styles.kicker}>Not yet</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
+        <>
+          <p className={styles.nestBlurb}>{module.blurb}</p>
+          {!live ? (
+            <div className={styles.nestExtra}>
               {"bridge" in module && module.bridge ? (
                 <Link className={styles.quietLink} href="/plans/get-up-primer">
                   Get-Up Primer is ready
@@ -221,65 +338,100 @@ function ModuleDisclosure({
               <Link className={styles.quietLink} href={module.infoHref}>
                 {`About ${module.name}`}
               </Link>
-            </>
-          )}
-        </div>
+            </div>
+          ) : null}
+        </>
       ) : null}
-    </div>
+    </>
   );
 }
 
-function GoalBody({ goal }: { goal: GoalPage }) {
-  const templates = plansForTaxonomyIds(goal.templateIds ?? []);
-  if (templates.length > 0) {
-    return (
-      <article className={styles.card} data-goal={goal.id} data-status="live">
-        <div className={styles.moduleHead}>
-          <h3 className={styles.cardTitle}>{goal.label}</h3>
-          <InfoLink href={goal.infoHref} label={`${goal.label} info`} />
-        </div>
-        <p className={styles.lead}>{goal.lede}</p>
-        <ul className={styles.templateList}>
-          {templates.map((template) => (
-            <li key={template.id} className={styles.templateRow} data-template={template.id}>
-              <Link className={styles.templateLink} href={`/plans/${template.id}`}>
-                <span className={styles.cardTitle}>{template.name}</span>
-                <span className={styles.kicker}>{template.minutes}</span>
-                <span className={styles.lead}>{template.focus}</span>
-              </Link>
-              <PlanMarks id={template.id} />
-              <StartPlanButton templateId={template.id} />
-            </li>
-          ))}
-        </ul>
-      </article>
-    );
+function moduleCards(module: CatalogModule | DisclosureModule): ReactNode[] {
+  const live = module.status === "live";
+  const planned = "plannedTemplates" in module ? module.plannedTemplates : module.planned;
+  const templateIds = ("templateIds" in module ? module.templateIds : undefined) ?? [];
+  if (live) {
+    return templateIds.flatMap((taxonomyId) => {
+      const template = getTemplate(TEMPLATE_ROUTES[taxonomyId]);
+      return template ? [<PlanCard key={template.id} template={template} />] : [];
+    });
   }
+  return planned.map((item) => <PlannedCard key={item.name} item={item} />);
+}
 
+function PlanCard({ template }: { template: Template }) {
   return (
-    <article className={`${styles.card} ${styles.glassSoon}`} data-goal={goal.id} data-status="soon">
-      <div className={styles.moduleHead}>
-        <h3 className={styles.cardTitle}>{goal.label}</h3>
-        <InfoLink href={goal.infoHref} label={`${goal.label} info`} />
-      </div>
-      <p className={styles.lead}>{goal.lede}</p>
-      <p className={styles.mark}>Coming soon</p>
-      <ul className={styles.planned}>
-        {goal.plannedNames.map((name) => (
-          <li key={name}>
-            <span className={styles.plannedName}>{name}</span>
-            <span className={styles.kicker}>Just a name</span>
-          </li>
-        ))}
-      </ul>
-      {goal.id === "goal_stay_capable" ? (
-        <Link className={styles.quietLink} href="/plans/get-up-primer">
-          Get-Up Primer is ready
-        </Link>
-      ) : null}
-      <Link className={styles.quietLink} href={goal.infoHref}>
-        About {goal.label}
+    <article className={styles.card} data-template={template.id}>
+      <Link className={styles.templateLink} href={`/plans/${template.id}`}>
+        <span className={styles.cardTitle}>{template.name}</span>
+        <span className={styles.kicker}>{template.minutes}</span>
+        <span className={styles.lead}>{template.focus}</span>
       </Link>
+      <PlanMarks id={template.id} />
+      <StartPlanButton templateId={template.id} />
     </article>
+  );
+}
+
+function PlannedCard({ item }: { item: PlannedRow }) {
+  return (
+    <article className={`${styles.card} ${styles.glassSoon}`}>
+      <span className={styles.plannedName}>{item.name}</span>
+      <span className={styles.kicker}>{item.minutes}</span>
+      {item.bridgeTemplateId ? (
+        <Link className={styles.quietLink} href={`/plans/${item.bridgeTemplateId}`}>
+          Continues in Get-Up Primer
+        </Link>
+      ) : (
+        <span className={styles.kicker}>Not yet</span>
+      )}
+    </article>
+  );
+}
+
+function goalNameCards(goal: GoalPage): ReactNode[] {
+  return goal.plannedNames.map((name) => <PlannedCard key={name} item={{ name, minutes: "Just a name" }} />);
+}
+
+function GoalNest({ goal }: { goal: GoalPage }) {
+  const templates = plansForTaxonomyIds(goal.templateIds ?? []);
+  const live = templates.length > 0;
+  const cards = live
+    ? templates.map((template) => <PlanCard key={template.id} template={template} />)
+    : goalNameCards(goal);
+  return (
+    <CategoryPile
+      entries={[
+        {
+          id: goal.id,
+          open: true,
+          panelId: `${goal.id}-body`,
+          attrs: {
+            "data-goal": goal.id,
+            "data-status": live ? "live" : "soon",
+            "data-open": "true",
+          },
+          header: (
+            <article className={live ? styles.card : `${styles.card} ${styles.glassSoon}`}>
+              <div className={styles.moduleHead}>
+                <h3 className={styles.cardTitle}>{goal.label}</h3>
+                <InfoLink href={goal.infoHref} label={`${goal.label} info`} />
+              </div>
+              <p className={styles.lead}>{goal.lede}</p>
+              {!live ? <p className={styles.mark}>Coming soon</p> : null}
+              {!live && goal.id === "goal_stay_capable" ? (
+                <Link className={styles.quietLink} href="/plans/get-up-primer">
+                  Get-Up Primer is ready
+                </Link>
+              ) : null}
+              <Link className={styles.quietLink} href={goal.infoHref}>
+                About {goal.label}
+              </Link>
+            </article>
+          ),
+          cards,
+        },
+      ]}
+    />
   );
 }

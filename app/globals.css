@@ -110,7 +110,7 @@ textarea {
   justify-self: end;
 }
 
-/* You parks the pill on the right. The rows above and below it are the dismiss targets. */
+/* You and Plans park the pill on the right. The rows above and below it are the dismiss targets. */
 .dock-anchor--you {
   grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: stretch;

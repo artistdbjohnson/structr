@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { dockHref, rememberedDockTab } from "@/lib/nav";
 import { formatClock } from "@/lib/format";
 import { checkAdvance, phaseProgress } from "@/lib/session";
 import { clearActive, loadHistory, loadPrefs, saveActive, saveHistory, savePrefs } from "@/lib/storage";
@@ -47,7 +48,7 @@ export function SessionRunner({ initial }: { initial: WorkoutSession }) {
             type="button"
             onClick={() => {
               clearActive();
-              router.push("/");
+              router.push(dockHref(rememberedDockTab()));
             }}
           >
             Drop it
@@ -135,7 +136,7 @@ export function SessionRunner({ initial }: { initial: WorkoutSession }) {
     <main className={styles.screen} data-screen="session" data-phase={phase?.id ?? "unknown"}>
       <div className={styles.shell}>
         <header className={styles.chrome}>
-          <button className={styles.iconBtn} type="button" aria-label="End session" onClick={() => router.push("/")}>
+          <button className={styles.iconBtn} type="button" aria-label="End session" onClick={() => router.push(dockHref(rememberedDockTab()))}>
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
               <path
                 d="M14.5 5.5 8 12l6.5 6.5"
@@ -160,7 +161,7 @@ export function SessionRunner({ initial }: { initial: WorkoutSession }) {
         </header>
         {menu ? (
           <div className={styles.menu} role="menu">
-            <button type="button" onClick={() => router.push("/")}>
+            <button type="button" onClick={() => router.push(dockHref(rememberedDockTab()))}>
               End session
             </button>
             {phase?.bulk?.ui === "active" ? (

@@ -111,14 +111,14 @@ export function TrainFor({ chip }: { chip: TrainChip }) {
                 About {chip.label}
               </Link>
             ) : null}
-            <Link className={styles.ghost} href="/plans">
+            <Link className={styles.ghost} href="/train">
               Browse kettlebell
             </Link>
           </div>
         </section>
       )}
 
-      <Link className={styles.quietLink} href="/plans/browse">
+      <Link className={styles.quietLink} href="/plans">
         Browse all
       </Link>
     </PageFrame>

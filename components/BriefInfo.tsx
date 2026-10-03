@@ -9,7 +9,7 @@ import styles from "./kettlebellInfo.module.css";
 
 const PHRASES: { phrase: string; href: string }[] = [
   { phrase: "Get-Up Primer", href: "/plans/get-up-primer" },
-  { phrase: "Kettlebell skill", href: "/plans" },
+  { phrase: "Kettlebell skill", href: "/train" },
   { phrase: "Calisthenics ladder", href: "/info/calisthenics_ladder" },
   { phrase: "Daily mobility", href: "/info/daily_mobility" },
 ];
@@ -219,7 +219,7 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
     <main className={styles.page} data-info={entry.slug} data-status={entry.status}>
       <div className={styles.bar}>
         <Link className={styles.back} href="/plans">
-          ‹ Train for
+          ‹ Plans
         </Link>
       </div>
       <div className={styles.wrap}>

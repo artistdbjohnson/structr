@@ -537,7 +537,7 @@ export const TRAIN_CHIPS: TrainChip[] = [
 ];
 
 const KETTLEBELL_CTAS = [
-  { href: "/plans", label: "Browse kettlebell" },
+  { href: "/train", label: "Browse kettlebell" },
   { href: "/plans/swing-foundation", label: "Swing Foundation" },
 ];
 
@@ -561,8 +561,8 @@ export const INFO_ENTRIES: InfoEntry[] = [
     status: "live",
     bridgeGetUp: false,
     ctas: [
-      { href: "/plans?for=get-stronger", label: "Back to Get stronger" },
-      { href: "/plans", label: "Browse kettlebell" },
+      { href: "/train?for=get-stronger", label: "Back to Get stronger" },
+      { href: "/train", label: "Browse kettlebell" },
     ],
   },
   {
@@ -574,7 +574,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     status: "live",
     bridgeGetUp: false,
     ctas: [
-      { href: "/plans?for=get-stronger", label: "Back to Get stronger" },
+      { href: "/train?for=get-stronger", label: "Back to Get stronger" },
       { href: "/info/dumbbell_strength", label: "Dumbbell strength" },
     ],
   },
@@ -587,7 +587,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     status: "live",
     bridgeGetUp: false,
     ctas: [
-      { href: "/plans?for=get-stronger", label: "Back to Get stronger" },
+      { href: "/train?for=get-stronger", label: "Back to Get stronger" },
       { href: "/info/bodyweight_skills", label: "Bodyweight skills" },
     ],
   },
@@ -600,7 +600,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     status: "live",
     bridgeGetUp: false,
     ctas: [
-      { href: "/plans?for=move-freer", label: "Back to Move freer" },
+      { href: "/train?for=move-freer", label: "Back to Move freer" },
       { href: "/plans/get-up-primer", label: "Get-Up Primer" },
     ],
   },
@@ -614,7 +614,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     bridgeGetUp: true,
     ctas: [
       { href: "/plans/get-up-primer", label: "Open Get-Up Primer" },
-      { href: "/plans?for=move-freer", label: "Back to Move freer" },
+      { href: "/train?for=move-freer", label: "Back to Move freer" },
     ],
   },
   {
@@ -626,8 +626,8 @@ export const INFO_ENTRIES: InfoEntry[] = [
     status: "live",
     bridgeGetUp: false,
     ctas: [
-      { href: "/plans", label: "Browse kettlebell" },
-      { href: "/plans?for=get-stronger", label: "Get stronger" },
+      { href: "/train", label: "Browse kettlebell" },
+      { href: "/train?for=get-stronger", label: "Get stronger" },
       { href: "/info/calisthenics_ladder", label: "Calisthenics ladder" },
     ],
   },
@@ -640,8 +640,8 @@ export const INFO_ENTRIES: InfoEntry[] = [
     status: "live",
     bridgeGetUp: false,
     ctas: [
-      { href: "/plans", label: "Browse kettlebell" },
-      { href: "/plans?for=get-stronger", label: "Get stronger" },
+      { href: "/train", label: "Browse kettlebell" },
+      { href: "/train?for=get-stronger", label: "Get stronger" },
     ],
   },
   {
@@ -653,9 +653,9 @@ export const INFO_ENTRIES: InfoEntry[] = [
     status: "live",
     bridgeGetUp: false,
     ctas: [
-      { href: "/plans?for=move-freer", label: "Move freer" },
+      { href: "/train?for=move-freer", label: "Move freer" },
       { href: "/info/daily_mobility", label: "Daily mobility" },
-      { href: "/plans", label: "Browse kettlebell" },
+      { href: "/train", label: "Browse kettlebell" },
     ],
   },
   {
@@ -667,8 +667,8 @@ export const INFO_ENTRIES: InfoEntry[] = [
     status: "live",
     bridgeGetUp: false,
     ctas: [
-      { href: "/plans?for=get-stronger", label: "Get stronger" },
-      { href: "/plans", label: "Browse kettlebell" },
+      { href: "/train?for=get-stronger", label: "Get stronger" },
+      { href: "/train", label: "Browse kettlebell" },
     ],
   },
   {
@@ -681,7 +681,7 @@ export const INFO_ENTRIES: InfoEntry[] = [
     bridgeGetUp: true,
     ctas: [
       { href: "/plans/get-up-primer", label: "Open Get-Up Primer" },
-      { href: "/plans?for=move-freer", label: "Move freer" },
+      { href: "/train?for=move-freer", label: "Move freer" },
       { href: "/info/balance_getup", label: "Balance & get-up" },
     ],
   },
@@ -732,8 +732,8 @@ export function infoStaticParams(): { slug: string }[] {
 }
 
 export function trainForHref(id: TrainChipId): string {
-  if (id === DEFAULT_TRAIN_CHIP_ID) return "/plans";
-  return `/plans?for=${encodeURIComponent(id)}`;
+  if (id === DEFAULT_TRAIN_CHIP_ID) return "/train";
+  return `/train?for=${encodeURIComponent(id)}`;
 }
 
 export function resolveTrainChip(raw?: string | null): TrainChip {

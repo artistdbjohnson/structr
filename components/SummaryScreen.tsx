@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { formatClock, formatWhen } from "@/lib/format";
+import { dockHref, rememberedDockTab } from "@/lib/nav";
 import { summarize } from "@/lib/session";
 import { loadHistory } from "@/lib/storage";
 import type { SessionSummary } from "@/lib/types";
@@ -12,6 +14,7 @@ import { TrendChip } from "@/structr-glass/components/TrendChip";
 import styles from "./session.module.css";
 
 export function SummaryScreen() {
+  const router = useRouter();
   const [summary, setSummary] = useState<SessionSummary | null>(null);
   const [ready, setReady] = useState(false);
 
@@ -39,9 +42,9 @@ export function SummaryScreen() {
         <div className={styles.shell}>
           <h1 className={styles.title}>Nothing to show yet</h1>
           <p className={styles.lead}>Finish a session and the totals show up here.</p>
-          <Link className={styles.nextBtn} href="/">
+          <button className={styles.nextBtn} type="button" onClick={() => router.push(dockHref(rememberedDockTab()))}>
             Home
-          </Link>
+          </button>
         </div>
       </main>
     );
@@ -86,9 +89,9 @@ export function SummaryScreen() {
           />
         </div>
         <div className={styles.nextBar}>
-          <Link className={styles.nextBtn} href="/">
+          <button className={styles.nextBtn} type="button" onClick={() => router.push(dockHref(rememberedDockTab()))}>
             Done
-          </Link>
+          </button>
           <Link className={styles.ghostLink} href="/you">
             You
           </Link>

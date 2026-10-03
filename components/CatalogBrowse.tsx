@@ -29,7 +29,7 @@ export function CatalogBrowse() {
   }
 
   return (
-    <PageFrame backHref="/plans" backLabel="‹ Train for" title="Browse">
+    <PageFrame title="Plans">
       <p className={styles.lead}>
         Open a practice, then a plan. Most moves have a picture. A few are still just the words.
       </p>

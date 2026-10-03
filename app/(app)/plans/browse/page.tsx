@@ -1,8 +1,5 @@
-import type { Metadata } from "next";
-import { CatalogBrowse } from "@/components/CatalogBrowse";
-
-export const metadata: Metadata = { title: "Browse" };
+import { redirect } from "next/navigation";
 
 export default function BrowsePage() {
-  return <CatalogBrowse />;
+  redirect("/plans");
 }

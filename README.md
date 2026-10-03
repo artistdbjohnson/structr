@@ -1,6 +1,6 @@
 # structr
 
-Structr is a training PWA. Cold load is the athletic wallpaper and the centered glass dock: **Train · Plans · You**. Plans opens **Train for** over that wallpaper; dismissing it returns to the pill. Workouts run Warm-up → Skill drills → Form → THE BULK → Cool-down and stay on this device.
+Structr is a training PWA. Cold load is the athletic wallpaper and the centered glass dock: **Train · Plans · You**. No tab is selected until you tap one. Train opens **Train for**, Plans opens the plan catalog, and You opens the phone's sessions. Workouts run Warm-up → Skill drills → Form → THE BULK → Cool-down and stay on this device.
 
 Kettlebell (Swing Foundation, Clean Path, Get-Up Primer) is the day-one path. Strength, bodyweight, mobility, mat, engine, sport, and stay-capable plans can start too, built from moves the free RepDB set can picture. A few drills stay words only. See `structr-docs/REPDB.md`.
 
@@ -10,9 +10,10 @@ World's greatest stretch still uses Bryl Lim's Workout Guide drawings (CC BY-SA 
 
 ## Routes
 
-- `/` Wallpaper and the centered dock. Same closed default as Plans
-- `/plans` Train for — Kettlebell skill (default), Get stronger, Move freer, and More goals
-- `/plans/browse` Category → practice → plan
+- `/` Wallpaper and the centered dock. Nothing selected
+- `/train` Train for — Kettlebell skill (default), Get stronger, Move freer, and More goals
+- `/plans` Plans — category, practice, then plan
+- `/plans/browse` Same Plans sheet
 - `/plans/[id]` Phase outline and Start
 - `/plans/info` Kettlebell module briefing
 - `/info/kettlebell` Same kettlebell briefing
@@ -28,7 +29,7 @@ World's greatest stretch still uses Bryl Lim's Workout Guide drawings (CC BY-SA 
 - `/info/stay_capable` Stay capable
 - `/plans/info/[module]` Same Info pages
 
-Train with no finished session opens Train for. After a finished session, Train offers the last template or Pick plan. An in-progress session resumes.
+Train with no finished session opens Train for. After a finished session, Train offers the last template or Pick plan, which opens Train for. An in-progress session resumes. Leaving a session reopens the dock tab that was selected.
 
 - `/session` Five-phase runner (dock hidden, resumes after refresh)
 - `/session/complete` Summary

@@ -34,7 +34,7 @@ export function SessionScreen() {
           <p className={styles.lead}>Pick a plan and we'll start from the warm-up.</p>
           <div className={styles.links}>
             <Link href="/">Home</Link>
-            <Link href="/plans">Train for</Link>
+            <Link href="/train">Train for</Link>
           </div>
         </div>
       </main>

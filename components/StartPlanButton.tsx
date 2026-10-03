@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { dockTab, rememberDockTab } from "@/lib/nav";
 import { createSession } from "@/lib/session";
 import { loadActive, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
@@ -18,6 +19,7 @@ export function StartPlanButton({
   label?: string;
 }) {
   const router = useRouter();
+  const pathname = usePathname() || "/";
   const tap = useTapGuard();
   const [mode, setMode] = useState<"start" | "resume">("start");
   const [ask, setAsk] = useState(false);
@@ -34,6 +36,8 @@ export function StartPlanButton({
     const session = createSession(template, prefs.unit);
     saveActive(session);
     savePrefs({ ...prefs, lastTemplateId: template.id });
+    const tab = dockTab(pathname);
+    if (tab) rememberDockTab(tab);
     router.push("/session");
   }
 
@@ -41,6 +45,8 @@ export function StartPlanButton({
     if (tap.consumeIfMoved()) return;
     const active = loadActive();
     if (active?.templateId === templateId) {
+      const tab = dockTab(pathname);
+      if (tab) rememberDockTab(tab);
       router.push("/session");
       return;
     }
@@ -75,6 +81,8 @@ export function StartPlanButton({
             onPointerMove={tap.onPointerMove}
             onClick={() => {
               if (tap.consumeIfMoved()) return;
+              const tab = dockTab(pathname);
+              if (tab) rememberDockTab(tab);
               router.push("/session");
             }}
           >

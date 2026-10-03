@@ -33,7 +33,7 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ id:
   return (
     <PageFrame
       backHref="/plans"
-      backLabel="‹ Train for"
+      backLabel="‹ Plans"
       title={template.name}
       meta={template.minutes}
       trailing={<InfoLink href={info.href} label={info.label} />}

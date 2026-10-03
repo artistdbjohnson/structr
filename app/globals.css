@@ -214,7 +214,7 @@ textarea {
 }
 
 .dock__btn {
-  z-index: 1;
+  z-index: 2;
   cursor: pointer;
   color: #fff;
   -webkit-tap-highlight-color: transparent;
@@ -339,6 +339,7 @@ textarea {
   color: #1a1612;
 }
 
+.dock__btn[data-selected="true"] .dock__icon,
 .dock__btn[data-selected="true"] .dock__label {
   color: #1a1612;
   text-shadow: none;

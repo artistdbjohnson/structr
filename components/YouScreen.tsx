@@ -38,7 +38,7 @@ export function YouScreen() {
   }
 
   return (
-    <PageFrame backHref="/" backLabel="‹ Train for" title="You">
+    <PageFrame title="You">
       {prefs && history ? (
         <>
           <p className={styles.lead}>Sessions stay on this phone. No account.</p>

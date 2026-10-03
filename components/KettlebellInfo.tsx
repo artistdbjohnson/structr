@@ -23,7 +23,7 @@ export function KettlebellInfo() {
     <main className={styles.page}>
       <div className={styles.bar}>
         <Link className={styles.back} href="/plans">
-          ‹ Train for
+          ‹ Plans
         </Link>
       </div>
       <div className={styles.wrap}>
@@ -241,7 +241,7 @@ export function KettlebellInfo() {
           <h2>When you are ready</h2>
           <p className={styles.prose}>Open the plans, or just start Swing Foundation.</p>
           <div className={styles.actions}>
-            <Link className={styles.ctaGhost} href="/plans">
+            <Link className={styles.ctaGhost} href="/train">
               Train for
             </Link>
             <StartPlanButton

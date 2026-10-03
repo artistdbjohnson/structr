@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { TrainFor } from "@/components/TrainFor";
-import { resolveTrainChip } from "@/lib/taxonomy";
+import { redirect } from "next/navigation";
+import { CatalogBrowse } from "@/components/CatalogBrowse";
 
-export const metadata: Metadata = { title: "Train for" };
+export const metadata: Metadata = { title: "Plans" };
 
 export default async function PlansPage({
   searchParams,
@@ -11,5 +11,6 @@ export default async function PlansPage({
 }) {
   const params = await searchParams;
   const raw = Array.isArray(params.for) ? params.for[0] : params.for;
-  return <TrainFor chip={resolveTrainChip(raw)} />;
+  if (raw) redirect(`/train?for=${encodeURIComponent(raw)}`);
+  return <CatalogBrowse />;
 }

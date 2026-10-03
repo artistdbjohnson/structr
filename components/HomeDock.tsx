@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
-import { isTrainHome } from "@/lib/nav";
+import { dockTab, isTrainSheet, rememberDockTab } from "@/lib/nav";
 import { createSession } from "@/lib/session";
 import { loadActive, loadHistory, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
@@ -40,54 +40,36 @@ function measureSlot(nav: HTMLElement, id: SlotId): SlotBox | null {
   return { x: slot.offsetLeft, y: slot.offsetTop, size };
 }
 
-function routeSlot(pathname: string): Exclude<SlotId, "train"> {
-  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-  if (
-    path === "/" ||
-    path === "/plans" ||
-    path.startsWith("/plans/") ||
-    path === "/info" ||
-    path.startsWith("/info/")
-  ) {
-    return "plans";
-  }
-  return "you";
+function normalize(pathname: string): string {
+  return pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
 }
 
-function isYouPath(pathname: string): boolean {
-  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-  return path === "/you";
-}
-
-export function HomeDock({
-  trayOpen,
-  onOpenTray,
-  onCloseTray,
-}: {
-  trayOpen: boolean;
-  onOpenTray: () => void;
-  onCloseTray: () => void;
-}) {
+export function HomeDock() {
   const router = useRouter();
   const pathname = usePathname() || "/";
   const reduce = useReducedMotion() === true;
   const lock = useRef(false);
   const tap = useTapGuard();
   const marginTap = useTapGuard();
-  const routeActive = routeSlot(pathname);
+  const path = normalize(pathname);
+  const tab = dockTab(path);
   const [hold, setHold] = useState<SlotId | null>(null);
   const [sheet, setSheet] = useState<{ templateId: string; templateName: string } | null>(null);
-  const active: SlotId = hold ?? routeActive;
+  const active: SlotId | null = hold ?? tab;
   const navRef = useRef<HTMLElement>(null);
   const [box, setBox] = useState<SlotBox | null>(null);
 
   useLayoutEffect(() => {
     const nav = navRef.current;
-    if (!nav) return;
+    if (!nav || !active) {
+      setBox(null);
+      return;
+    }
+    const slot = active;
     const measure = () => {
-      const next = measureSlot(nav, active);
+      const next = measureSlot(nav, slot);
       setBox((prev) => {
-        if (!next) return prev;
+        if (!next) return null;
         if (prev && prev.x === next.x && prev.y === next.y && prev.size === next.size) return prev;
         return next;
       });
@@ -95,15 +77,16 @@ export function HomeDock({
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(nav);
-    for (const slot of nav.querySelectorAll<HTMLElement>("[data-slot]")) observer.observe(slot);
+    for (const button of nav.querySelectorAll<HTMLElement>("[data-slot]")) observer.observe(button);
     return () => observer.disconnect();
-  }, [active, trayOpen, pathname]);
+  }, [active, pathname]);
 
   useEffect(() => {
     setHold(null);
     setSheet(null);
     lock.current = false;
-  }, [pathname]);
+    if (tab) rememberDockTab(tab);
+  }, [pathname, tab]);
 
   function returningTemplate() {
     const history = loadHistory();
@@ -125,29 +108,36 @@ export function HomeDock({
     saveActive(session);
     savePrefs({ ...prefs, lastTemplateId: template.id });
     setSheet(null);
+    rememberDockTab("train");
     router.push("/session");
   }
 
   function train() {
     if (lock.current) return;
-    if (tap.consumeIfMoved()) return;
+    if (tap.consumeIfMoved()) {
+      setHold(null);
+      return;
+    }
     if (loadActive()) {
       lock.current = true;
       setSheet(null);
+      rememberDockTab("train");
       router.push("/session");
       return;
     }
     if (loadHistory().length > 0) {
       const template = returningTemplate();
       if (!template) return;
+      setHold(null);
       setSheet({ templateId: template.id, templateName: template.name });
       return;
     }
-    onOpenTray();
-    if (!isTrainHome(pathname)) {
+    if (path !== "/train") {
       lock.current = true;
-      router.push("/plans");
+      router.push("/train");
+      return;
     }
+    setHold(null);
   }
 
   function press(id: SlotId, event: PointerEvent<HTMLElement>) {
@@ -180,17 +170,15 @@ export function HomeDock({
     },
     onPointerLeave: () => setHold(null),
   };
-  // Wallpaper home keeps the pill centered. An open tray, and every other page, parks it on the right.
-  const parkDock = trayOpen || !isTrainHome(pathname);
-  const youOpen = isYouPath(pathname);
+  // Wallpaper home keeps the pill centered. A sheet, and every other page, parks it on the right.
+  const trainSheet = isTrainSheet(path);
+  const parkDock = trainSheet || path !== "/";
+  const youOpen = path === "/you";
 
-  function dismissYou() {
+  function goHome() {
     if (marginTap.consumeIfMoved()) return;
     if (lock.current) return;
     lock.current = true;
-    // You can be opened after Plans, which leaves the tray flag set.
-    // Clearing it here is what makes / the cold wallpaper, not an open tray.
-    onCloseTray();
     router.push("/");
   }
 
@@ -201,7 +189,7 @@ export function HomeDock({
     tabIndex: -1,
     onPointerDown: marginTap.onPointerDown,
     onPointerMove: marginTap.onPointerMove,
-    onClick: dismissYou,
+    onClick: goHome,
   };
 
   return (
@@ -216,7 +204,7 @@ export function HomeDock({
         }
       >
         {youOpen ? <button {...gutterProps} data-dock-gutter="above" /> : null}
-        {trayOpen ? (
+        {trainSheet ? (
           <button
             type="button"
             className="dock-margin"
@@ -225,14 +213,11 @@ export function HomeDock({
             data-dock-margin="true"
             onPointerDown={marginTap.onPointerDown}
             onPointerMove={marginTap.onPointerMove}
-            onClick={() => {
-              if (marginTap.consumeIfMoved()) return;
-              onCloseTray();
-            }}
+            onClick={goHome}
           />
         ) : null}
-      <nav ref={navRef} className="dock" aria-label="Home" data-active={routeActive}>
-        {box ? (
+      <nav ref={navRef} className="dock" aria-label="Home" data-active={tab ?? "none"}>
+        {box && active ? (
           <motion.span
             className="dock__selection"
             data-pressed={hold ? "true" : "false"}
@@ -244,6 +229,7 @@ export function HomeDock({
               {
                 "--disc-size": `${box.size}px`,
                 "--disc-x": `${box.x}px`,
+                zIndex: 0,
               } as CSSProperties
             }
             transition={
@@ -260,7 +246,7 @@ export function HomeDock({
           id="train"
           label="Train"
           active={active === "train"}
-          current={false}
+          current={tab === "train"}
           onPointerDown={(event) => press("train", event)}
           onClick={train}
           icon={<BoltIcon />}
@@ -271,14 +257,13 @@ export function HomeDock({
           label="Plans"
           href="/plans"
           active={active === "plans"}
-          current={routeActive === "plans"}
+          current={tab === "plans"}
           onPointerDown={(event) => press("plans", event)}
           onClick={(event) => {
             if (tap.consumeIfMoved()) {
               event.preventDefault();
-              return;
+              setHold(null);
             }
-            onOpenTray();
           }}
           icon={<CalendarIcon />}
         />
@@ -288,10 +273,13 @@ export function HomeDock({
           label="You"
           href="/you"
           active={active === "you"}
-          current={routeActive === "you"}
+          current={tab === "you"}
           onPointerDown={(event) => press("you", event)}
           onClick={(event) => {
-            if (tap.consumeIfMoved()) event.preventDefault();
+            if (tap.consumeIfMoved()) {
+              event.preventDefault();
+              setHold(null);
+            }
           }}
           icon={<PersonIcon />}
         />
@@ -304,8 +292,7 @@ export function HomeDock({
           onClose={() => setSheet(null)}
           onPickPlan={() => {
             setSheet(null);
-            onOpenTray();
-            if (!isTrainHome(pathname)) router.push("/plans");
+            router.push("/train");
           }}
           onStart={() => startTemplate(sheet.templateId)}
         />
@@ -374,6 +361,7 @@ function DockSlot({
       className="dock__btn"
       type="button"
       aria-label={label}
+      aria-current={current ? "page" : undefined}
       data-slot={id}
       data-selected={active ? "true" : "false"}
       onClick={onClick}

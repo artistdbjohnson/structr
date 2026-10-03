@@ -11,7 +11,6 @@ import {
 } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { motion, useReducedMotion } from "motion/react";
 import { dockTab, isTrainSheet, rememberDockTab } from "@/lib/nav";
 import { createSession } from "@/lib/session";
 import { loadActive, loadHistory, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
@@ -21,23 +20,24 @@ import { BoltIcon, CalendarIcon, PersonIcon } from "./icons";
 import { TrainSheet } from "./TrainSheet";
 import { useTapGuard } from "./useTapGuard";
 
-/** Y-only glide. Overdamped so the disc settles without bounce or size morph. */
-const SELECTION_SPRING = {
-  type: "spring" as const,
-  stiffness: 420,
-  damping: 42,
-  mass: 0.8,
-};
-
 type SlotId = "train" | "plans" | "you";
 type SlotBox = { x: number; y: number; size: number };
 
+/**
+ * One diameter for every slot: the dock's content box, not each button's
+ * offsetWidth. A spring on y was still stretching the disc (motion couples
+ * that axis to scale). Position is applied as a translate only.
+ */
 function measureSlot(nav: HTMLElement, id: SlotId): SlotBox | null {
   const slot = nav.querySelector<HTMLElement>(`[data-slot="${id}"]`);
   if (!slot) return null;
-  const size = slot.offsetWidth;
+  const style = getComputedStyle(nav);
+  const padL = Number.parseFloat(style.paddingLeft) || 0;
+  const padR = Number.parseFloat(style.paddingRight) || 0;
+  const size = Math.round(nav.clientWidth - padL - padR);
   if (size <= 0) return null;
-  return { x: slot.offsetLeft, y: slot.offsetTop, size };
+  const y = Math.round(slot.offsetTop + (slot.offsetHeight - size) / 2);
+  return { x: Math.round(padL), y, size };
 }
 
 function normalize(pathname: string): string {
@@ -47,7 +47,6 @@ function normalize(pathname: string): string {
 export function HomeDock() {
   const router = useRouter();
   const pathname = usePathname() || "/";
-  const reduce = useReducedMotion() === true;
   const lock = useRef(false);
   const tap = useTapGuard();
   const marginTap = useTapGuard();
@@ -77,7 +76,6 @@ export function HomeDock() {
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(nav);
-    for (const button of nav.querySelectorAll<HTMLElement>("[data-slot]")) observer.observe(button);
     return () => observer.disconnect();
   }, [active, pathname]);
 
@@ -218,28 +216,19 @@ export function HomeDock() {
         ) : null}
       <nav ref={navRef} className="dock" aria-label="Home" data-active={tab ?? "none"}>
         {box && active ? (
-          <motion.span
+          <span
             className="dock__selection"
-            data-pressed={hold ? "true" : "false"}
             aria-hidden="true"
-            layout={false}
-            initial={false}
-            animate={{ y: box.y, scaleX: 1, scaleY: 1 }}
             style={
               {
                 "--disc-size": `${box.size}px`,
                 "--disc-x": `${box.x}px`,
-                zIndex: 0,
+                "--disc-y": `${box.y}px`,
               } as CSSProperties
-            }
-            transition={
-              reduce
-                ? { duration: 0 }
-                : { y: SELECTION_SPRING, scaleX: { duration: 0 }, scaleY: { duration: 0 } }
             }
           >
             <span className="dock__selection-face" />
-          </motion.span>
+          </span>
         ) : null}
         <DockSlot
           {...slotProps}

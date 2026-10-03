@@ -15,14 +15,11 @@
 
   position: relative;
   isolation: isolate;
-  container-type: inline-size;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: block;
   width: 100%;
   min-width: 0;
-  max-width: none;
-  padding: 16px 14px 14px;
+  max-width: 100%;
+  padding: 14px 12px 12px;
   border-radius: var(--sg-radius-capsule);
   color: var(--sg-ink);
   background:
@@ -40,6 +37,17 @@
   backdrop-filter: var(--sg-backdrop);
   -webkit-backdrop-filter: var(--sg-backdrop);
   overflow: hidden;
+}
+
+.fit {
+  container-type: inline-size;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
 }
 
 .pill[data-tint="magenta"] {
@@ -107,13 +115,14 @@
   position: relative;
   z-index: 3;
   max-width: 100%;
-  font-size: clamp(0.62rem, 8.2cqi, 0.72rem);
+  font-size: 0.68rem;
   font-weight: 650;
-  letter-spacing: 0.045em;
-  line-height: 1.25;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   text-transform: uppercase;
-  text-wrap: balance;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--sg-ink-muted);
 }
 
@@ -141,7 +150,7 @@
   min-width: 0;
   max-width: 100%;
   font-family: var(--sg-numeral-font);
-  font-size: clamp(1.15rem, 24cqi, 1.9rem);
+  font-size: clamp(1rem, 16cqi, 1.4rem);
   font-weight: var(--sg-numeral-weight);
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;

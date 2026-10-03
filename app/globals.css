@@ -193,6 +193,7 @@ textarea {
   padding: clamp(15px, 1.9vmin, 18px);
   display: flex;
   position: relative;
+  container-type: inline-size;
   box-shadow:
     inset 0 1px #fffc,
     inset 0 -1px #fff3,
@@ -222,9 +223,15 @@ textarea {
   background: transparent;
   border: 0;
   border-radius: 50%;
+  box-sizing: border-box;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
   aspect-ratio: 1;
-  flex: none;
+  flex: 0 0 auto;
+  align-self: stretch;
   margin: 0;
   padding: 0;
   display: flex;
@@ -237,6 +244,14 @@ textarea {
   appearance: none;
 }
 
+@supports (height: 100cqi) {
+  .dock__btn {
+    height: 100cqi;
+    max-height: 100cqi;
+    aspect-ratio: auto;
+  }
+}
+
 .dock__btn:focus-visible {
   outline: 2px solid #fff;
   outline-offset: -6px;
@@ -246,19 +261,24 @@ textarea {
   position: absolute;
   z-index: 0;
   top: 0;
-  left: var(--disc-x, 0px);
+  left: 0;
   width: var(--disc-size, 0px);
   height: var(--disc-size, 0px);
   min-width: var(--disc-size, 0px);
   max-width: var(--disc-size, 0px);
   min-height: var(--disc-size, 0px);
   max-height: var(--disc-size, 0px);
-  aspect-ratio: 1;
-  border-radius: 9999px;
+  margin: 0;
+  border-radius: 50%;
   box-sizing: border-box;
   flex: none;
+  align-self: start;
+  justify-self: start;
   pointer-events: none;
   overflow: hidden;
+  /* Translate only. A scale on this element is what stretched the disc into an oval. */
+  transform: translate3d(var(--disc-x, 0px), var(--disc-y, 0px), 0);
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .dock__selection-face {
@@ -275,7 +295,6 @@ textarea {
     0 10px 20px #0000001f;
   backdrop-filter: blur(16px) saturate(170%) brightness(1.16);
   -webkit-backdrop-filter: blur(16px) saturate(170%) brightness(1.16);
-  transition: transform 0.18s cubic-bezier(0.34, 1.45, 0.5, 1);
 }
 
 .dock__selection-face::before {
@@ -299,12 +318,12 @@ textarea {
   justify-content: center;
   gap: 5px;
   width: 100%;
-  transition: transform 0.18s cubic-bezier(0.34, 1.45, 0.5, 1);
+  min-width: 0;
+  transition: transform 120ms ease-out;
 }
 
-.dock__selection[data-pressed="true"] .dock__selection-face,
 .dock__btn:active .dock__content {
-  transform: scale(0.94);
+  transform: scale(0.96);
 }
 
 .dock__icon {
@@ -373,11 +392,10 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dock__selection-face,
+  .dock__selection,
   .dock__content {
     transition: none;
   }
-  .dock__selection[data-pressed="true"] .dock__selection-face,
   .dock__btn:active .dock__content {
     transform: none;
   }

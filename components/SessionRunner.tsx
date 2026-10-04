@@ -82,7 +82,11 @@ export function SessionRunner({ initial }: { initial: WorkoutSession }) {
   const phase = session.phases[session.phaseIndex];
   const spec = template.phases[session.phaseIndex];
   const quiet = phase?.id === "skill" && quietUntil != null && now < quietUntil;
-  const quietLeft = quiet && quietUntil != null ? Math.max(0, Math.ceil((quietUntil - now) / 1000)) : 0;
+  // The clock tick lags the timeout by a fraction of a second, so ceil can read 11. The stop itself is ten.
+  const quietLeft =
+    quiet && quietUntil != null
+      ? Math.min(QUIET_STOP_SEC, Math.max(0, Math.ceil((quietUntil - now) / 1000)))
+      : 0;
   const quietDelays = phase?.id === "skill" ? quietStopDelaysMs(session.id, "skill") : [];
   const started = Date.parse(session.startedAt);
   const elapsed = Number.isFinite(started) ? Math.max(0, Math.floor((now - started) / 1000)) : 0;

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { bendLine, focusCountLine, focusTotals } from "@/lib/focusBend";
 import { formatClock, formatWhen } from "@/lib/format";
 import { MOVEMENT_ART_CREDIT } from "@/lib/movementHowTo";
 import { REPDB_CREDIT, REPDB_HOME } from "@/lib/repdb";
@@ -10,6 +11,20 @@ import { clearAllData, loadActive, loadHistory, loadPrefs, savePrefs } from "@/l
 import type { Prefs, Unit, WorkoutSession } from "@/lib/types";
 import { PageFrame } from "./PageFrame";
 import styles from "./subpage.module.css";
+
+function FocusCard({ history }: { history: WorkoutSession[] }) {
+  const total = focusTotals(history);
+  if (!total) return null;
+  return (
+    <section className={styles.card} data-focus-total="true" data-bend={total.early ? "early" : "hit"}>
+      <h2 className={styles.cardTitle}>Current focus</h2>
+      <p className={styles.lead}>{total.label}</p>
+      {total.planName !== total.label ? <p className={styles.kicker}>{total.planName}</p> : null}
+      <p className={styles.kicker}>{focusCountLine(total.sessions, total.reps)}</p>
+      <p className={styles.lead}>{bendLine(total)}</p>
+    </section>
+  );
+}
 
 export function YouScreen() {
   const [prefs, setPrefs] = useState<Prefs | null>(null);
@@ -64,6 +79,9 @@ export function YouScreen() {
               ))}
             </div>
           </section>
+          {history.length > 0 ? (
+            <FocusCard history={history} />
+          ) : null}
           <section className={styles.stack}>
             <h2 className={styles.cardTitle}>Recent</h2>
             {history.length === 0 ? (

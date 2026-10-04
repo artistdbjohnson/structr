@@ -554,6 +554,11 @@
   place-items: center;
 }
 
+.nextBtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .block {
   background: rgba(12, 11, 15, 0.62);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -983,6 +988,90 @@
   }
 }
 
+.quietScrim {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: end center;
+  padding: 24px 16px calc(28px + env(safe-area-inset-bottom));
+  background: rgba(8, 12, 18, 0.5);
+}
+
+.quietCard {
+  width: min(420px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 22px 22px;
+  border-radius: var(--sg-radius-xl, 32px);
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(90% 80% at 8% 0%, rgba(46, 203, 255, 0.38), transparent 58%),
+    radial-gradient(80% 70% at 100% 100%, rgba(255, 255, 255, 0.14), transparent 62%),
+    rgba(12, 16, 22, 0.74);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.58),
+    0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 18px 40px -12px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+
+.quietKicker {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(210, 244, 255, 0.86);
+}
+
+.quietTime {
+  margin: 0;
+  font-family: var(--sg-numeral-font, ui-monospace, monospace);
+  font-size: clamp(3rem, 16vw, 4.2rem);
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+}
+
+.quietLead {
+  margin: 4px 0 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.quietNote {
+  margin: 0;
+  max-width: 26ch;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.quietTrack {
+  width: 100%;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+
+.quietTrack > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: rgba(46, 203, 255, 0.92);
+  transition: width 200ms linear;
+}
+
 @keyframes liveBlink {
   50% {
     opacity: 0.35;
@@ -1001,7 +1090,8 @@
       0 0 0 1px rgba(231, 197, 106, 0.72),
       0 0 18px rgba(231, 197, 106, 0.45);
   }
-  .timerTrack > span {
+  .timerTrack > span,
+  .quietTrack > span {
     transition: none;
   }
   .cta:active,
@@ -1027,8 +1117,15 @@
   .nextBtn,
   .timer,
   .timerGhost,
-  .timerBumps button {
+  .timerBumps button,
+  .quietCard {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+  }
+  .quietScrim {
+    background: rgba(8, 12, 18, 0.86);
+  }
+  .quietCard {
+    background: #141c22;
   }
 }

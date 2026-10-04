@@ -1677,4 +1677,108 @@ export const CATALOG_TEMPLATES: Template[] = [
       ]),
     ],
   },
+  {
+    id: "hike-only",
+    name: "Hike Only",
+    focus: "Just the hike. One piece of the swing.",
+    minutes: "~20–25 min",
+    implement: "Kettlebell",
+    phases: [
+      phase("warmup", "optional", [
+        block("hike-wu-hip", "Hip circles", "45 seconds", { timeSec: 45 }),
+        block("hike-wu-sit", "Sit-back, no bell", "8", { reps: 8, load: "empty" }),
+      ]),
+      phase(
+        "skill",
+        "optional",
+        [
+          block("hike-sk", "Hike pass", "4 sets of 5. Upper arms in. Then set the bell down.", {
+            sets: 4,
+            reps: 5,
+            load: "light",
+          }),
+        ],
+        undefined,
+        "One piece. The rest of the swing can wait.",
+      ),
+      phase("form", "recommended", [
+        block("hike-form", "Hike pass", "4 sets of 5, a light bell, rest about a minute", {
+          sets: 4,
+          reps: 5,
+          restSec: 60,
+          load: "light",
+        }),
+      ]),
+      phase(
+        "bulk",
+        "required",
+        [
+          block("hike-bulk", "Hike pass", "6 sets of 6, same bell, rest about a minute", {
+            sets: 6,
+            reps: 6,
+            restSec: 60,
+            load: "working",
+          }),
+        ],
+        "6–7",
+      ),
+      phase("cooldown", "optional", [
+        block("hike-cd-fold", "Forward fold", "1:00", { timeSec: 60 }),
+        block("hike-cd-breathe", "Box breathe", "2:00", { timeSec: 120 }),
+      ]),
+    ],
+  },
+  {
+    id: "roll-to-elbow",
+    name: "Roll to Elbow",
+    focus: "Just the roll up to the elbow. One piece of the get-up.",
+    minutes: "~20–25 min",
+    implement: "Body weight",
+    phases: [
+      phase("warmup", "optional", [
+        block("roll-wu-breath", "Breathing on your back", "1:00", { timeSec: 60 }),
+        block("roll-wu-bridge", "Glute bridge", "6", { reps: 6, load: "bodyweight" }),
+      ]),
+      phase(
+        "skill",
+        "optional",
+        [
+          block("roll-sk", "Roll to elbow", "4 a side, no bell. Stop at the elbow.", {
+            sets: 4,
+            reps: 1,
+            perSide: true,
+            load: "bodyweight",
+          }),
+        ],
+        undefined,
+        "One piece. The hand and the stand can wait.",
+      ),
+      phase("form", "recommended", [
+        block("roll-form", "Roll to elbow", "4 a side. Still no bell. Same stop.", {
+          sets: 4,
+          reps: 1,
+          perSide: true,
+          load: "bodyweight",
+        }),
+      ]),
+      phase(
+        "bulk",
+        "required",
+        [
+          block("roll-bulk", "Roll to elbow", "5 a side. Rest when you need it. Stop at the elbow.", {
+            sets: 5,
+            reps: 1,
+            perSide: true,
+            restSec: 30,
+            load: "bodyweight",
+          }),
+        ],
+        "5–6",
+      ),
+      phase("cooldown", "optional", [
+        block("roll-cd-twist", "Twist on your back", "45 seconds a side", { timeSec: 45, perSide: true }),
+        block("roll-cd-breathe", "Box breathe", "2:00", { timeSec: 120 }),
+      ]),
+    ],
+  },
 ];

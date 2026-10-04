@@ -196,6 +196,7 @@ const BELLS: Record<string, Record<Unit, number>> = {
   "power-in-the-turn": { lb: 16, kg: 8 },
   "capable-strength": { lb: 20, kg: 8 },
   "carry-everyday": { lb: 20, kg: 8 },
+  "hike-only": { lb: 16, kg: 8 },
 };
 
 export function getTemplate(id: string): Template | undefined {

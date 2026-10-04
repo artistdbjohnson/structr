@@ -24,6 +24,7 @@ function BlockEditor({
   existing,
   defaultWeight,
   onSave,
+  held = false,
 }: {
   block: TemplateBlock;
   phaseId: WorkoutSession["phases"][number]["id"];
@@ -31,6 +32,7 @@ function BlockEditor({
   existing?: LoggedBlock;
   defaultWeight: number;
   onSave: (logged: LoggedBlock) => void;
+  held?: boolean;
 }) {
   const track = phaseTrack(phaseId);
   const [sets, setSets] = useState(existing?.sets ?? block.sets ?? 1);
@@ -97,6 +99,7 @@ function BlockEditor({
           initialSec={prescribedSec}
           label={timeLabel}
           freezeToken={freezeToken}
+          suspended={held}
           onChange={setTimeSec}
         />
       ) : null}
@@ -119,10 +122,12 @@ export function PrepPhase({
   session,
   template,
   onChange,
+  held = false,
 }: {
   session: WorkoutSession;
   template: Template;
   onChange: (next: WorkoutSession) => void;
+  held?: boolean;
 }) {
   const spec = template.phases[session.phaseIndex];
   const phase = session.phases[session.phaseIndex];
@@ -205,6 +210,7 @@ export function PrepPhase({
           unit={session.unit}
           existing={phase.blocks.find((item) => item.blockId === block.id)}
           defaultWeight={bell}
+          held={held}
           onSave={saveBlock}
         />
       ))}

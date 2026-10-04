@@ -295,6 +295,108 @@
   color: rgba(255, 255, 255, 0.86);
 }
 
+.pieceBlock,
+.recall {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pieceLine,
+.ignoreLine,
+.recallPrompt,
+.recallEcho {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.pieceLine {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.ignoreLine,
+.recallEcho {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.recallLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.recallLabel input {
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 16px;
+  padding: 0 14px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 550;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.recallLabel input:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.recallActions {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.recallSubmit,
+.recallSkip {
+  min-height: 48px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.recallSubmit {
+  border: 0;
+  background: #fff;
+  color: #16130f;
+}
+
+.recallSubmit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.recallSkip {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #fff;
+}
+
+.recallSubmit:focus-visible,
+.recallSkip:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
 @keyframes rise {
   from {
     transform: translateY(12px);

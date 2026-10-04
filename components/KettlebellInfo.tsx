@@ -73,8 +73,11 @@ export function KettlebellInfo() {
         </section>
 
         <section className={styles.section} aria-labelledby="templates-heading">
-          <h2 id="templates-heading">Three plans</h2>
-          <p className={styles.prose}>Times are a guess. Read the plan before you start.</p>
+          <h2 id="templates-heading">Plans</h2>
+          <p className={styles.prose}>
+            Swing Foundation, Clean Path, and Get-Up Primer are the full sessions. Hike Only and Roll to Elbow
+            practice one piece. Times are a guess. Read the plan before you start.
+          </p>
           <div className={styles.templates}>
             {TEMPLATE_BRIEFS.map((template) => (
               <article key={template.id} className={styles.template}>

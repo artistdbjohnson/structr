@@ -129,6 +129,48 @@
   color: #fff;
 }
 
+.learnForm,
+.learnLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.learnLabel {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.learnLabel input {
+  min-height: 48px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 16px;
+  padding: 0 14px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 550;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.learnLabel input:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.learnForm button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .stack {
   display: flex;
   flex-direction: column;

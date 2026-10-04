@@ -82,6 +82,34 @@ export const TEMPLATE_BRIEFS: TemplateBrief[] = [
       { name: "Cool-down", detail: "A twist, easy hamstrings, breathe" },
     ],
   },
+  {
+    id: "hike-only",
+    name: "Hike Only",
+    time: "~20–25 min",
+    purpose: "Just the hike pass. The rest of the swing waits.",
+    who: "The swing keeps turning into a squat, or you want the snap on its own.",
+    phases: [
+      { name: "Warm-up", detail: "Hips, then a sit-back with no bell" },
+      { name: "Skill drills", detail: "Hike pass only" },
+      { name: "Form", detail: "The same hike, light bell" },
+      { name: "THE BULK", detail: "More hikes · aim for 6–7", bulk: true },
+      { name: "Cool-down", detail: "Fold, breathe" },
+    ],
+  },
+  {
+    id: "roll-to-elbow",
+    name: "Roll to Elbow",
+    time: "~20–25 min",
+    purpose: "Just the roll up to the elbow. The rest of the get-up waits.",
+    who: "You get stuck leaving the floor, and a full get-up is too much for today.",
+    phases: [
+      { name: "Warm-up", detail: "Breathing on your back, a few bridges" },
+      { name: "Skill drills", detail: "Roll to the elbow, no bell" },
+      { name: "Form", detail: "The same roll, still no bell" },
+      { name: "THE BULK", detail: "More rolls to the elbow · aim for 5–6", bulk: true },
+      { name: "Cool-down", detail: "A twist, breathe" },
+    ],
+  },
 ];
 
 export const SAFETY: SafetyPanel[] = [

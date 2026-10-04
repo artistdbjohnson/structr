@@ -6,6 +6,7 @@
  * Moves with no free still stay words only. See structr-docs/REPDB.md.
  */
 
+import { movementPiece } from "./movementPiece";
 import { repdbSheet, type RepdbShape } from "./repdb";
 
 export const MOVEMENT_ART_CREDIT = {
@@ -26,6 +27,10 @@ export type MovementArtSource = "repdb" | "guide";
 export type MovementGuide = {
   name: string;
   cues: readonly string[];
+  /** The one piece that matters. Hidden until they try to recall it. */
+  piece: string;
+  /** What to leave alone for now. */
+  ignore: string;
   frames: readonly string[] | null;
   labels: readonly string[] | null;
   /** RepDB exercise id, when the stills come from that free set. */
@@ -308,6 +313,14 @@ const MOVES: Record<string, Move> = Object.fromEntries(
           "No bell. Roll, then elbow, then hand, then kneel.",
           "Shoulder stays down. Wrist straight. Arm almost straight up.",
           "Keep the heel down when you sweep the leg through.",
+        ]),
+      ],
+      [
+        "Roll to elbow",
+        move([
+          "On your back. Roll up onto one elbow and stop.",
+          "The free arm stays long. The other shoulder stays down.",
+          "Come back down the same way. Both sides. The hand can wait.",
         ]),
       ],
       [
@@ -1224,17 +1237,40 @@ const MOVES: Record<string, Move> = Object.fromEntries(
 );
 
 export function movementHowTo(name: string): MovementGuide {
+  const focus = movementPiece(name);
   const found = MOVES[movementKey(name)];
   if (!found) {
-    return { name, cues: FALLBACK_CUES, frames: null, labels: null, repdbId: null, source: null, mapped: false };
+    return {
+      name,
+      cues: FALLBACK_CUES,
+      piece: focus.piece,
+      ignore: focus.ignore,
+      frames: null,
+      labels: null,
+      repdbId: null,
+      source: null,
+      mapped: false,
+    };
   }
   if (!found.art) {
-    return { name, cues: found.cues, frames: null, labels: null, repdbId: null, source: null, mapped: true };
+    return {
+      name,
+      cues: found.cues,
+      piece: focus.piece,
+      ignore: focus.ignore,
+      frames: null,
+      labels: null,
+      repdbId: null,
+      source: null,
+      mapped: true,
+    };
   }
   if (found.art.kind === "guide") {
     return {
       name,
       cues: found.cues,
+      piece: focus.piece,
+      ignore: focus.ignore,
       frames: FRAMES[found.art.slug],
       labels: null,
       repdbId: null,
@@ -1246,6 +1282,8 @@ export function movementHowTo(name: string): MovementGuide {
   return {
     name,
     cues: found.cues,
+    piece: focus.piece,
+    ignore: focus.ignore,
     frames: sheet.frames,
     labels: sheet.labels,
     repdbId: found.art.id,

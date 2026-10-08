@@ -39,6 +39,7 @@
     "node_modules",
     "lib/blockTimer.check.ts",
     "lib/movementHowTo.check.ts",
-    "lib/skillLearn.check.ts"
+    "lib/skillLearn.check.ts",
+    "lib/surfaceDecision.check.ts"
   ]
 }

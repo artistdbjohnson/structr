@@ -1,4 +1,6 @@
-/* Minimal service worker so the PWA can be installed. Requests stay on the network. */
+/* Minimal service worker so the PWA can be installed.
+   Every request stays on the network. HTML is not cached, so the desktop
+   gate cannot be stored and later opened on a phone. */
 self.addEventListener("install", (event) => {
   event.waitUntil(self.skipWaiting());
 });

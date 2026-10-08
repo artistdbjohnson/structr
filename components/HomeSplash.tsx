@@ -3,8 +3,9 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Full-bleed 9:16 loop behind the dock.
- * The file dissolves into its own first frame, so the native loop is seamless.
+ * Full-bleed 9:16 loop behind the dock: the light-trail runner on her own.
+ * The tail dissolves into the head over 1.25s, eased and baked into the file,
+ * and the last frame runs straight into the first, so the native loop has no seam.
  */
 export function HomeSplash() {
   const ref = useRef<HTMLVideoElement>(null);

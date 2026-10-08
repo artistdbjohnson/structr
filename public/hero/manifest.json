@@ -1,0 +1,68 @@
+[
+  {
+    "file": "hero-01",
+    "subject": "boxer",
+    "width": 1080,
+    "height": 1929,
+    "avif_kb": 110.3,
+    "webp_kb": 98.2,
+    "ground": "#e6e8ec",
+    "average": "#c0c1c6",
+    "placeholder": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQBACdASoQAB0APu1krU6ppaSiMAgBMB2JaQAAW+vlMadBFWg3OchWKAD+7TdscSqToqNqh7LD4GIebtpcqlXOLKCm1LDpHVaa3RHZcNb2d0TvcGF7wgAA"
+  },
+  {
+    "file": "hero-02",
+    "subject": "sprinter",
+    "width": 1080,
+    "height": 1929,
+    "avif_kb": 193.4,
+    "webp_kb": 183.6,
+    "ground": "#eef0fd",
+    "average": "#c1c3d4",
+    "placeholder": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADQAwCdASoQAB0APu1oqk6ppiQiMAgBMB2JYwABHutAtKboI99+1AAA/vzUnIRJtybQfDn7eHinvX6jhJ2MzR9snf8IMpOGAflKN6cK7oT+/kjDmvH20SusRwAAAA=="
+  },
+  {
+    "file": "hero-03",
+    "subject": "stride",
+    "width": 1080,
+    "height": 1929,
+    "avif_kb": 275.1,
+    "webp_kb": 281.0,
+    "ground": "#e4e9fa",
+    "average": "#aaadc0",
+    "placeholder": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADwAwCdASoQAB0APu1mqk4ppaOiMAgBMB2JYwCdABi9Ie0p/rgI1MwAAP7Kd5dN9xZjdyILO8RIGx84JWl4iUhDoNLN44NkAXIO6OSSiy5ECsZYsqzNc+L/ilKKK8gS6UDlbIqOlA+dEw/74AA="
+  },
+  {
+    "file": "hero-04",
+    "subject": "runner",
+    "width": 1080,
+    "height": 1929,
+    "avif_kb": 168.4,
+    "webp_kb": 137.1,
+    "ground": "#d9d8e5",
+    "average": "#a397a4",
+    "placeholder": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoQAB0ALrV2u12jqampiYC0SzAE6ZQANFlCW0/bcBQ5Z6DIAP7zcrP3HSy/VCe+H9MUYlTPKMnmAbXKF9YzgOxzQEzvNsOJ6t7TrbjFQZn/ByPNVY2k9iAc2tFuYfZQEIfAAA=="
+  },
+  {
+    "file": "hero-05",
+    "subject": "torso",
+    "width": 1080,
+    "height": 1929,
+    "avif_kb": 221.7,
+    "webp_kb": 212.0,
+    "ground": "#d2d8e2",
+    "average": "#848ba1",
+    "placeholder": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAQBACdASoQAB0APu1iqk2ppaQiMAgBMB2JYgCw7GRRUUdwZ3YqbqgbyAD++zF720VpP05041QWI9uv131idd3uqjcwOB+zZtxmzi1S0K+JQ2Mkw7uFLtLl1u8DWINtELHoEzvoaMMpJMpXAZkEChy3F8qWxIAA"
+  },
+  {
+    "file": "hero-06",
+    "subject": "stand",
+    "width": 1080,
+    "height": 1929,
+    "avif_kb": 167.3,
+    "webp_kb": 151.5,
+    "ground": "#d1d5df",
+    "average": "#b6b9c5",
+    "placeholder": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACwAwCdASoQAB0APu1orU6ppiSiMAgBMB2JZQC06GS+ajDxi48sAAD++XTqq3l/zGly+eMKXKAfW30pUBpyrjs7/n7ZNDrBiMGp65HLaYRDp8lkIuz5gsgAAAA="
+  }
+]

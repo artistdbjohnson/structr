@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { DesktopGate } from "@/components/DesktopGate";
 import { RegisterSw } from "@/components/RegisterSw";
+import { surfaceBootScript } from "@/lib/surfaceBoot";
 import "./globals.css";
+import "./gate.css";
 import "../structr-glass/tokens.css";
 
 export const metadata: Metadata = {
@@ -27,11 +30,13 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script id="structr-boot" data-structr-keep="" dangerouslySetInnerHTML={{ __html: surfaceBootScript }} />
         <link rel="preconnect" href="https://exercise-dataset.com" />
       </head>
-      <body>
+      <body suppressHydrationWarning>
+        <DesktopGate />
         {children}
         <RegisterSw />
       </body>

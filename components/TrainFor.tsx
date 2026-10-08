@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { InfoLink } from "@/components/InfoLink";
+import { LearnSkill } from "@/components/LearnSkill";
 import { PageFrame } from "@/components/PageFrame";
 import { TrainModules } from "@/components/TrainModules";
 import styles from "@/components/subpage.module.css";
@@ -118,6 +119,7 @@ export function TrainFor({ chip }: { chip: TrainChip }) {
         </section>
       )}
 
+      <LearnSkill />
       <Link className={styles.quietLink} href="/plans">
         Browse all
       </Link>

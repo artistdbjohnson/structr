@@ -1,3 +1,4 @@
+import { learnedPlan } from "./storage";
 import type {
   AdvanceCheck,
   LoggedBlock,
@@ -19,6 +20,7 @@ export function createSession(template: Template, unit: Unit): WorkoutSession {
     unit,
     status: "active",
     phaseIndex: 0,
+    templateSnapshot: getTemplate(template.id) ? undefined : template,
     phases: template.phases.map((step) => ({
       id: step.id,
       blocks: [],
@@ -46,8 +48,15 @@ export function blockReps(logged: LoggedBlock, spec: TemplateBlock | undefined):
   return logged.reps * sets * sidesFor(spec);
 }
 
+/** Catalog plan, or the copy saved with a session that was named on the spot. */
+export function templateForSession(
+  session: Pick<WorkoutSession, "templateId" | "templateSnapshot">,
+): Template | undefined {
+  return getTemplate(session.templateId) ?? session.templateSnapshot ?? learnedPlan(session.templateId);
+}
+
 export function summarize(session: WorkoutSession): SessionSummary {
-  const template = getTemplate(session.templateId);
+  const template = templateForSession(session);
   let totalReps = 0;
   let topWeight = 0;
   let bulkVolume = 0;

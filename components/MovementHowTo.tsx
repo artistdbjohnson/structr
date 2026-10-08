@@ -170,13 +170,17 @@ function MovementArt({ guide }: { guide: MovementGuide }) {
 function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () => void }) {
   const titleId = useId();
   const sheetRef = useRef<HTMLDivElement>(null);
+  const answerRef = useRef<HTMLInputElement>(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
+  const [revealed, setRevealed] = useState(false);
+  const [answer, setAnswer] = useState("");
 
   useEffect(() => {
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     sheetRef.current?.focus();
+    answerRef.current?.focus();
     return () => {
       document.body.style.overflow = previous;
     };
@@ -192,7 +196,7 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
       if (event.key !== "Tab") return;
       const root = sheetRef.current;
       if (!root) return;
-      const nodes = [...root.querySelectorAll<HTMLElement>("button, a[href]")];
+      const nodes = [...root.querySelectorAll<HTMLElement>("button, a[href], input, textarea")];
       if (!nodes.length) return;
       const first = nodes[0];
       const last = nodes[nodes.length - 1];
@@ -225,7 +229,8 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
         aria-labelledby={titleId}
         tabIndex={-1}
         data-movement-sheet="true"
-        data-movement-art={guide.source ?? "placeholder"}
+        data-movement-art={revealed ? (guide.source ?? "placeholder") : "recall"}
+        data-how-step={revealed ? "cues" : "recall"}
         onClick={(event) => event.stopPropagation()}
       >
         <div className={styles.sheetBar}>
@@ -234,34 +239,78 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
             Close
           </button>
         </div>
-        {guide.frames ? (
+        {revealed ? (
           <>
-            <MovementArt guide={guide} />
-            <h2 id={titleId} className={styles.name}>
-              {guide.name}
-            </h2>
+            <div className={styles.pieceBlock} data-how-piece="true">
+              <p className={styles.posterKicker}>The one piece</p>
+              <p className={styles.pieceLine}>{guide.piece}</p>
+              <p className={styles.posterKicker}>Leave this for now</p>
+              <p className={styles.ignoreLine}>{guide.ignore}</p>
+              {answer.trim() ? <p className={styles.recallEcho}>You had: {answer.trim()}</p> : null}
+            </div>
+            {guide.frames ? (
+              <>
+                <MovementArt guide={guide} />
+                <h2 id={titleId} className={styles.name}>
+                  {guide.name}
+                </h2>
+              </>
+            ) : (
+              <div className={styles.poster} data-art="placeholder" data-motion="still">
+                <p className={styles.posterKicker}>How</p>
+                <h2 id={titleId} className={styles.posterName}>
+                  {guide.name}
+                </h2>
+              </div>
+            )}
+            <ul className={styles.cues}>
+              {guide.cues.map((cue) => (
+                <li key={cue}>{cue}</li>
+              ))}
+            </ul>
           </>
         ) : (
-          <div className={styles.poster} data-art="placeholder" data-motion="still">
-            <p className={styles.posterKicker}>How</p>
+          <form
+            className={styles.recall}
+            data-how-recall="true"
+            onSubmit={(event) => {
+              event.preventDefault();
+              if (!answer.trim()) return;
+              setRevealed(true);
+            }}
+          >
             <h2 id={titleId} className={styles.posterName}>
               {guide.name}
             </h2>
-          </div>
+            <p className={styles.recallPrompt}>Before the picture. What&apos;s the one piece that matters?</p>
+            <label className={styles.recallLabel}>
+              Your guess
+              <input
+                ref={answerRef}
+                value={answer}
+                onChange={(event) => setAnswer(event.target.value)}
+                autoComplete="off"
+                enterKeyHint="done"
+              />
+            </label>
+            <div className={styles.recallActions}>
+              <button className={styles.recallSubmit} type="submit" disabled={!answer.trim()}>
+                That&apos;s it
+              </button>
+              <button className={styles.recallSkip} type="button" onClick={() => setRevealed(true)}>
+                Skip
+              </button>
+            </div>
+          </form>
         )}
-        <ul className={styles.cues}>
-          {guide.cues.map((cue) => (
-            <li key={cue}>{cue}</li>
-          ))}
-        </ul>
-        {guide.source === "repdb" ? (
+        {revealed && guide.source === "repdb" ? (
           <p className={styles.credit}>
             <a href={REPDB_HOME} target="_blank" rel="noreferrer">
               {REPDB_CREDIT}
             </a>
             . Still pictures. Not a loop.
           </p>
-        ) : guide.source === "guide" ? (
+        ) : revealed && guide.source === "guide" ? (
           <p className={styles.credit}>
             Drawing by {MOVEMENT_ART_CREDIT.creator},{" "}
             <a href={MOVEMENT_ART_CREDIT.workUrl} target="_blank" rel="noreferrer">
@@ -273,9 +322,9 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
             </a>
             . {MOVEMENT_ART_CREDIT.changes}
           </p>
-        ) : (
+        ) : revealed ? (
           <p className={styles.credit}>No picture yet. These words will get you through it.</p>
-        )}
+        ) : null}
       </div>
     </div>,
     document.body,

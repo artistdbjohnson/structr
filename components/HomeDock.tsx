@@ -12,8 +12,8 @@ import {
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { dockTab, isTrainSheet, rememberDockTab } from "@/lib/nav";
-import { createSession } from "@/lib/session";
-import { loadActive, loadHistory, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
+import { createSession, templateForSession } from "@/lib/session";
+import { learnedPlan, loadActive, loadHistory, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
 import { DEFAULT_TEMPLATE_ROUTE } from "@/lib/taxonomy";
 import { BoltIcon, CalendarIcon, PersonIcon } from "./icons";
@@ -86,19 +86,24 @@ export function HomeDock() {
     if (tab) rememberDockTab(tab);
   }, [pathname, tab]);
 
+  function findTemplate(templateId: string) {
+    return (
+      getTemplate(templateId) ??
+      learnedPlan(templateId) ??
+      loadHistory().find((item) => item.templateId === templateId)?.templateSnapshot
+    );
+  }
+
   function returningTemplate() {
     const history = loadHistory();
     const prefs = loadPrefs();
-    return (
-      (history[0]?.templateId && getTemplate(history[0].templateId)) ||
-      (prefs.lastTemplateId && getTemplate(prefs.lastTemplateId)) ||
-      getTemplate(DEFAULT_TEMPLATE_ROUTE)
-    );
+    const recent = history[0] ? templateForSession(history[0]) : undefined;
+    return recent || (prefs.lastTemplateId && findTemplate(prefs.lastTemplateId)) || getTemplate(DEFAULT_TEMPLATE_ROUTE);
   }
 
   function startTemplate(templateId: string) {
     if (lock.current) return;
-    const template = getTemplate(templateId) || getTemplate(DEFAULT_TEMPLATE_ROUTE);
+    const template = findTemplate(templateId) || getTemplate(DEFAULT_TEMPLATE_ROUTE);
     if (!template) return;
     lock.current = true;
     const prefs = loadPrefs();

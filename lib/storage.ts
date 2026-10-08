@@ -1,10 +1,11 @@
-import type { BulkUi, Prefs, WorkoutSession } from "./types";
+import type { BulkUi, PhaseId, Prefs, Template, WorkoutSession } from "./types";
 
 export const STORAGE_KEYS = {
   active: "structr.activeSession",
   history: "structr.history",
   prefs: "structr.prefs",
   soonWatch: "structr.soonWatch",
+  learned: "structr.learnedPlans",
 } as const;
 
 const DEFAULT_PREFS: Prefs = { unit: "lb" };
@@ -90,10 +91,38 @@ export function saveHistory(sessions: WorkoutSession[]) {
   writeJson(STORAGE_KEYS.history, sessions.slice(0, 40));
 }
 
+const PHASE_IDS: readonly PhaseId[] = ["warmup", "skill", "form", "bulk", "cooldown"];
+
+function isLearnedTemplate(value: unknown): value is Template {
+  if (!value || typeof value !== "object") return false;
+  const template = value as Template;
+  if (typeof template.id !== "string" || !template.id.startsWith("learn-")) return false;
+  if (typeof template.name !== "string" || !template.name.trim()) return false;
+  if (!Array.isArray(template.phases) || template.phases.length !== PHASE_IDS.length) return false;
+  return template.phases.every((step, index) => step?.id === PHASE_IDS[index] && Array.isArray(step.blocks));
+}
+
+export function loadLearnedPlans(): Template[] {
+  const parsed = readJson<unknown>(STORAGE_KEYS.learned);
+  if (!Array.isArray(parsed)) return [];
+  return parsed.filter(isLearnedTemplate);
+}
+
+export function learnedPlan(id: string): Template | undefined {
+  return loadLearnedPlans().find((template) => template.id === id);
+}
+
+export function rememberLearnedPlan(template: Template) {
+  if (!isLearnedTemplate(template)) return;
+  const rest = loadLearnedPlans().filter((item) => item.id !== template.id);
+  writeJson(STORAGE_KEYS.learned, [template, ...rest].slice(0, 20));
+}
+
 export function clearAllData() {
   if (!canStore()) return;
   window.localStorage.removeItem(STORAGE_KEYS.active);
   window.localStorage.removeItem(STORAGE_KEYS.history);
   window.localStorage.removeItem(STORAGE_KEYS.prefs);
   window.localStorage.removeItem(STORAGE_KEYS.soonWatch);
+  window.localStorage.removeItem(STORAGE_KEYS.learned);
 }

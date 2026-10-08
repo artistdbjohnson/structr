@@ -53,6 +53,8 @@ export const TEMPLATE_ROUTES = {
   tpl_capable: "capable-strength",
   tpl_carry_day: "carry-everyday",
   tpl_easy_day: "move-freer-easy",
+  tpl_hike: "hike-only",
+  tpl_roll: "roll-to-elbow",
 } as const;
 
 export type TaxonomyTemplateId = keyof typeof TEMPLATE_ROUTES;
@@ -196,11 +198,11 @@ export const MODULES: CatalogModule[] = [
     subcategoryId: "sub_kettlebell",
     subcategory: "Kettlebell skill practice",
     name: "Kettlebell skill practice",
-    blurb: "Practice the swing, the clean, and the get-up.",
+    blurb: "Practice the swing, the clean, and the get-up. Or just one piece of them.",
     status: "live",
     slug: "kettlebell",
     infoHref: "/plans/info",
-    templateIds: ["tpl_swing", "tpl_clean", "tpl_getup"],
+    templateIds: ["tpl_swing", "tpl_clean", "tpl_getup", "tpl_hike", "tpl_roll"],
     plannedTemplates: [],
   },
   {
@@ -419,9 +421,9 @@ export const TRAIN_CHIPS: TrainChip[] = [
     id: "kettlebell-skill",
     label: "Kettlebell skill",
     status: "live",
-    why: "Three kettlebell sessions. Same order every time.",
+    why: "Swing, clean, and get-up. Two shorter plans practice one piece.",
     moduleIds: ["mod_kettlebell"],
-    templateIds: ["tpl_swing", "tpl_clean", "tpl_getup"],
+    templateIds: ["tpl_swing", "tpl_clean", "tpl_getup", "tpl_hike", "tpl_roll"],
     primaryTemplateId: "tpl_swing",
     comingSoonIds: [],
     plannedNames: [],

@@ -29,12 +29,15 @@ export function BlockTimer({
   label,
   onChange,
   freezeToken = 0,
+  suspended = false,
 }: {
   initialSec: number;
   label: string;
   onChange: (seconds: number) => void;
   /** Bump after a log so the clock holds the time that was just written down. */
   freezeToken?: number;
+  /** Pause a running clock while a quiet stop covers the drill. */
+  suspended?: boolean;
 }) {
   const [snap, setSnap] = useState<BlockTimerState>(() => createBlockTimer(initialSec));
   const [now, setNow] = useState(() => Date.now());
@@ -43,6 +46,17 @@ export function BlockTimer({
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
   const freezeRef = useRef(freezeToken);
+
+  useEffect(() => {
+    if (!suspended) return;
+    const current = snapRef.current;
+    if (!current.running) return;
+    const t = Date.now();
+    const next = pauseTimer(current, t);
+    snapRef.current = next;
+    setNow(t);
+    setSnap(next);
+  }, [suspended]);
 
   useEffect(() => {
     if (freezeRef.current === freezeToken) return;

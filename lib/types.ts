@@ -87,6 +87,11 @@ export type WorkoutSession = {
   status: SessionStatus;
   phaseIndex: number;
   phases: PhaseState[];
+  /**
+   * Kept on the phone when this session was built from a name
+   * that is not in the catalog. Catalog plans leave this empty.
+   */
+  templateSnapshot?: Template;
 };
 
 export type Prefs = {

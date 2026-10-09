@@ -9,16 +9,36 @@
 :root {
   --glass: #ffffff38;
   --rim-soft: #ffffff47;
-  --ink: #fff;
-  --ink-body: rgba(255, 255, 255, 0.86);
-  --ink-meta: rgba(255, 255, 255, 0.78);
-  --ink-label: rgba(255, 255, 255, 0.72);
+  --ink: #1a2340;
+  --ink-body: #243356;
+  --ink-meta: #2c3d62;
+  --ink-label: #33456e;
   --track-tight: -0.03em;
   --track-label: 0.08em;
   --measure: 40rem;
   --dock-width: clamp(128px, 17.5vmin, 158px);
   --dock-gutter: calc(var(--dock-width) + 22px);
-  color-scheme: dark;
+  color-scheme: light;
+  /* Mist liquid glass. One recipe for cards, rows, pills, sheets, and tiles.
+     Blur stays in the 24–32px band. The solid paint is the fallback when
+     backdrop-filter is off or unsupported. */
+  --liq-blur: blur(28px) saturate(180%) brightness(1.1);
+  --liq-solid: #ebe6f3;
+  --liq-border: transparent;
+  --liq-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  --liq-sheen: linear-gradient(168deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.12) 34%, rgba(255, 255, 255, 0) 58%);
+  --liq-fill: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(234, 228, 246, 0.7) 48%, rgba(255, 241, 235, 0.74) 100%);
+  --liq-row-fill: linear-gradient(180deg, rgba(255, 255, 255, 0.84) 0%, rgba(236, 230, 246, 0.76) 100%);
+  --liq-edge: linear-gradient(165deg, rgba(86, 124, 210, 0.55) 0%, rgba(255, 255, 255, 0.4) 46%, rgba(222, 126, 116, 0.52) 100%);
+  --liq-paint: var(--liq-grain) 0 0 / 120px 120px repeat padding-box, var(--liq-sheen) 0 0 / auto no-repeat padding-box, var(--liq-fill) 0 0 / auto no-repeat padding-box, var(--liq-edge) 0 0 / auto no-repeat border-box;
+  --liq-row-paint: var(--liq-grain) 0 0 / 120px 120px repeat padding-box, var(--liq-sheen) 0 0 / auto no-repeat padding-box, var(--liq-row-fill) 0 0 / auto no-repeat padding-box, var(--liq-edge) 0 0 / auto no-repeat border-box;
+  --liq-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.36),
+    0 0 0 0.5px rgba(255, 255, 255, 0.45),
+    0 0 16px rgba(86, 124, 210, 0.14),
+    0 0 20px rgba(222, 126, 116, 0.1),
+    0 16px 32px -18px rgba(42, 36, 58, 0.24);
 }
 
 * {
@@ -31,8 +51,38 @@ html,
 body {
   height: 100%;
   color: var(--ink);
-  background: #0a0a0a;
+  background: #e6e8ec;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+/* One persistent still. Fixed, so route changes do not remount it.
+   The app root stacks above this layer. */
+.app-reel {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #e6e8ec;
+}
+
+.app-reel__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(236, 232, 246, 0.22) 46%,
+    rgba(255, 244, 238, 0.28) 100%
+  );
+}
+
+.app-root {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
 }
 
 button,
@@ -199,7 +249,7 @@ textarea {
   user-select: none;
   -webkit-touch-callout: none;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.66) 0%, rgba(232, 228, 244, 0.5) 46%, rgba(255, 240, 234, 0.56) 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84) 0%, rgba(234, 228, 246, 0.76) 48%, rgba(255, 241, 235, 0.8) 100%) padding-box,
     linear-gradient(165deg, rgba(86, 124, 210, 0.45) 0%, rgba(255, 255, 255, 0.22) 46%, rgba(222, 126, 116, 0.42) 100%) border-box;
   border-radius: 999px;
   flex-direction: column;
@@ -446,8 +496,8 @@ textarea {
   display: grid;
   place-items: center;
   padding: 24px;
-  background: #0c0b0f;
-  color: #fff;
+  background: transparent;
+  color: var(--ink);
   text-align: center;
 }
 
@@ -457,9 +507,35 @@ textarea {
   gap: 12px;
   align-items: center;
   max-width: 320px;
+  padding: 18px 16px;
+  border-radius: 22px;
+  border: 1px solid var(--liq-border);
+  background: var(--liq-paint);
+  box-shadow: var(--liq-shadow);
+  color: var(--ink);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .empty-card a {
-  color: #fff;
+  color: var(--ink);
   font-weight: 600;
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  :root {
+    --liq-paint: var(--liq-solid);
+    --liq-row-paint: #f7f4fb;
+    --liq-blur: none;
+    --liq-border: rgba(86, 124, 210, 0.35);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --liq-paint: var(--liq-solid);
+    --liq-row-paint: #f7f4fb;
+    --liq-blur: none;
+    --liq-border: rgba(86, 124, 210, 0.35);
+  }
 }

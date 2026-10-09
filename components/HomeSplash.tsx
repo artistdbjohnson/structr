@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import frames from "@/public/hero/manifest.json";
 
 /** Fully on screen before the dissolve starts. */
@@ -18,38 +18,8 @@ type HeroFrame = {
 };
 
 const HERO = frames as HeroFrame[];
-const HOME_ORDER = HERO.map((_, index) => index);
 
 let avifSupport: Promise<boolean> | null = null;
-
-function shuffledHeroOrder(seed: number): readonly number[] {
-  const order = HERO.map((_, index) => index);
-  let state = seed >>> 0;
-  for (let i = order.length - 1; i > 0; i -= 1) {
-    state = (Math.imul(1664525, state) + 1013904223) >>> 0;
-    const j = state % (i + 1);
-    const swap = order[i];
-    order[i] = order[j];
-    order[j] = swap;
-  }
-  if (order[0] === 0 && order.length > 1) {
-    const first = order.shift();
-    if (first != null) order.push(first);
-  }
-  return order;
-}
-
-function resolveOrder(order: readonly number[] | undefined): readonly number[] {
-  if (!order || order.length === 0) return HOME_ORDER;
-  const filtered = order.filter((index) => index >= 0 && index < HERO.length);
-  return filtered.length > 0 ? filtered : HOME_ORDER;
-}
-
-/**
- * You plays every still, but not in home's order, and it does not open on
- * the same frame the dock does.
- */
-export const YOU_HERO_ORDER = shuffledHeroOrder(0x5e11);
 
 function supportsAvif(): Promise<boolean> {
   if (typeof window === "undefined") return Promise.resolve(true);
@@ -65,24 +35,19 @@ function supportsAvif(): Promise<boolean> {
   return avifSupport;
 }
 
-type HomeSplashProps = {
-  /** Manifest indexes, in play order. Defaults to home: hero-02 onward. */
-  order?: readonly number[];
-};
-
 /**
- * Full-bleed 9:16 stills. Each frame holds, then dissolves into the next,
- * and the last returns to the first. Only the on-screen still and the next
- * one are loaded. Reduced motion keeps the opening still and does not crossfade.
+ * Full-bleed 9:16 stills. Mounted once at the app root, so the hold and
+ * crossfade keep running across home, Train, Plans, and You. Each frame
+ * holds, then dissolves into the next, and the last returns to the first.
+ * Only the on-screen still and the next one are loaded. Reduced motion
+ * keeps the opening still and does not crossfade. The opening frame is in
+ * the server HTML, with its ground color and placeholder, so the first
+ * paint is never blank.
  */
-export function HomeSplash({ order }: HomeSplashProps = {}) {
-  const sequence = useMemo(() => resolveOrder(order), [order]);
-  const sequenceRef = useRef(sequence);
-  sequenceRef.current = sequence;
-  const opening = sequence[0] ?? 0;
+export function HomeSplash() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const frontRef = useRef(opening);
-  const [front, setFront] = useState(opening);
+  const frontRef = useRef(0);
+  const [front, setFront] = useState(0);
   const [under, setUnder] = useState<number | null>(null);
   const [incoming, setIncoming] = useState(false);
   const [reduce, setReduce] = useState(false);
@@ -155,9 +120,7 @@ export function HomeSplash({ order }: HomeSplashProps = {}) {
       fadeRemain = FADE_MS;
       fadeStarted = performance.now();
       const current = frontRef.current;
-      const play = sequenceRef.current;
-      const at = play.indexOf(current);
-      const next = play[at === -1 ? 0 : (at + 1) % play.length] ?? current;
+      const next = (current + 1) % HERO.length;
       frontRef.current = next;
       setUnder(current);
       setFront(next);
@@ -211,10 +174,7 @@ export function HomeSplash({ order }: HomeSplashProps = {}) {
 
   useEffect(() => {
     if (reduce || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const play = sequenceRef.current;
-    const at = play.indexOf(front);
-    const nextIndex = play[at === -1 ? 0 : (at + 1) % play.length];
-    const next = nextIndex == null ? undefined : HERO[nextIndex];
+    const next = HERO[(front + 1) % HERO.length];
     if (!next) return;
     let cancelled = false;
     const link = document.createElement("link");
@@ -275,7 +235,7 @@ export function HomeSplash({ order }: HomeSplashProps = {}) {
                 height={frame.height}
                 draggable={false}
                 decoding="async"
-                fetchPriority={index === opening ? "high" : "auto"}
+                fetchPriority={index === 0 ? "high" : "auto"}
                 loading="eager"
               />
             </picture>

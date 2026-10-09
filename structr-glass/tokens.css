@@ -18,10 +18,10 @@
   color-scheme: dark;
 
   /* ── Ink / surfaces (shared dark canvas; dock keeps its own) ─────────── */
-  --sg-ink: #ffffff;
-  --sg-ink-muted: rgba(255, 255, 255, 0.82);
-  --sg-ink-faint: rgba(255, 255, 255, 0.68);
-  --sg-canvas: #0a0a0a;
+  --sg-ink: #1a2340;
+  --sg-ink-muted: #2c3d62;
+  --sg-ink-faint: #3d4e74;
+  --sg-canvas: transparent;
 
   /* ── Backdrop: metric glass (NOT dock) ───────────────────────────────── */
   /* Spec range: blur 12–16px + saturate. Default mid; use -sm / -lg variants. */
@@ -205,10 +205,10 @@
 /* Reduced transparency / motion — shared fallbacks for metric glass */
 @media (prefers-reduced-transparency: reduce) {
   :root {
-    --sg-fill-base: rgba(40, 40, 44, 0.92);
-    --sg-fill-magenta: hsla(var(--sg-tint-magenta) / 0.45);
-    --sg-fill-orange: hsla(var(--sg-tint-orange) / 0.45);
-    --sg-fill-cyan: hsla(var(--sg-tint-cyan) / 0.45);
+    --sg-fill-base: #ebe6f3;
+    --sg-fill-magenta: #ebe6f3;
+    --sg-fill-orange: #ebe6f3;
+    --sg-fill-cyan: #ebe6f3;
     --sg-backdrop: none;
     --sg-grain-opacity: 0;
   }

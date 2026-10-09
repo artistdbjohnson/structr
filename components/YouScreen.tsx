@@ -7,26 +7,10 @@ import { formatClock, formatWhen } from "@/lib/format";
 import { MOVEMENT_ART_CREDIT } from "@/lib/movementHowTo";
 import { REPDB_CREDIT, REPDB_HOME } from "@/lib/repdb";
 import { summarize } from "@/lib/session";
-import frames from "@/public/hero/manifest.json";
 import { clearAllData, loadActive, loadHistory, loadPrefs, savePrefs } from "@/lib/storage";
 import type { Prefs, Unit, WorkoutSession } from "@/lib/types";
-import { HomeSplash, YOU_HERO_ORDER } from "./HomeSplash";
 import { PageFrame } from "./PageFrame";
 import styles from "./subpage.module.css";
-
-function YouWallpaper() {
-  const opening = frames[YOU_HERO_ORDER[0] ?? 0];
-  return (
-    <div
-      className={styles.heroStage}
-      style={{ backgroundColor: opening?.ground ?? "#e6e8ec" }}
-      aria-hidden="true"
-    >
-      <HomeSplash order={YOU_HERO_ORDER} />
-      <div className={styles.heroScrim} />
-    </div>
-  );
-}
 
 function FocusCard({ history }: { history: WorkoutSession[] }) {
   const total = focusTotals(history);
@@ -69,7 +53,7 @@ export function YouScreen() {
   }
 
   return (
-    <PageFrame title="You" backdrop={<YouWallpaper />}>
+    <PageFrame title="You">
       {prefs && history ? (
         <>
           <p className={styles.lead}>Sessions stay on this phone. No account.</p>
@@ -98,7 +82,7 @@ export function YouScreen() {
           {history.length > 0 ? (
             <FocusCard history={history} />
           ) : null}
-          <section className={styles.stack}>
+          <section className={`${styles.stack} ${styles.historyStack}`}>
             <h2 className={styles.cardTitle}>Recent</h2>
             {history.length === 0 ? (
               <p className={styles.lead}>Nothing saved yet. Hit Train and pick a plan.</p>

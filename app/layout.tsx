@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { DesktopGate } from "@/components/DesktopGate";
+import { HomeSplash } from "@/components/HomeSplash";
 import { RegisterSw } from "@/components/RegisterSw";
 import { surfaceBootScript } from "@/lib/surfaceBoot";
 import "./globals.css";
@@ -21,11 +22,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#e6e8ec",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  colorScheme: "dark",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -37,7 +38,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body suppressHydrationWarning>
         <DesktopGate />
-        {children}
+        <div className="app-reel" aria-hidden="true">
+          <HomeSplash />
+          <div className="app-reel__scrim" />
+        </div>
+        <div className="app-root">{children}</div>
         <RegisterSw />
       </body>
     </html>

@@ -89,12 +89,9 @@ export function PercentChip({ children }: { children: ReactNode }) {
         fontFamily: "var(--sg-numeral-font)",
         fontVariantNumeric: "tabular-nums",
         letterSpacing: "0.04em",
-        color: "var(--sg-ink)",
-        background: "var(--sg-chip-fill)",
-        boxShadow: "var(--sg-chip-shadow)",
-        backdropFilter: "blur(var(--sg-chip-blur)) saturate(var(--sg-chip-saturate))",
-        WebkitBackdropFilter:
-          "blur(var(--sg-chip-blur)) saturate(var(--sg-chip-saturate))",
+        color: "var(--ink)",
+        background: "var(--liq-row-paint)",
+        boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.85)",
         position: "relative",
         zIndex: 3,
         whiteSpace: "nowrap",
@@ -127,6 +124,7 @@ export function MetricPill({
   return (
     <article
       className={[styles.pill, className].filter(Boolean).join(" ")}
+      data-surface="pill"
       data-tint={tint}
       style={style}
       aria-label={`${label}: ${value}${pct ? `, ${pct}` : ""}`}
@@ -136,7 +134,7 @@ export function MetricPill({
         <div className={styles.row}>
           <span className={styles.value}>{value}</span>
           {spark && spark.length >= 2 ? (
-            <Sparkline points={spark} stroke="var(--sg-spark)" />
+            <Sparkline points={spark} stroke="var(--ink)" />
           ) : null}
         </div>
         {(pct || footer) && (

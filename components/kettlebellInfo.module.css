@@ -60,7 +60,12 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 18px 0 8px;
+  margin-top: 16px;
+  padding: 18px 16px;
+  border-radius: 22px;
+  border: 1px solid var(--liq-border);
+  background: var(--liq-paint);
+  box-shadow: var(--liq-shadow);
 }
 
 .hero h1 {
@@ -93,7 +98,12 @@
 }
 
 .section {
-  margin-top: 56px;
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid var(--liq-border);
+  background: var(--liq-paint);
+  box-shadow: var(--liq-shadow);
 }
 
 .section h2 {

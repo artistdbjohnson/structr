@@ -1,0 +1,1053 @@
+[
+  {
+    "id": "0051",
+    "slug": "pec-deck-machine-fly",
+    "name": "pec deck machine fly",
+    "bodyPart": "chest",
+    "equipment": "machine",
+    "target": "chest",
+    "instructions": [
+      "Sit on the pec deck machine and adjust the seat so your arms are parallel to the floor.",
+      "Place your forearms against the arm pads or grip the handles with elbows bent at 90 degrees.",
+      "Press the arm pads together in front of your chest by contracting your pectoral muscles.",
+      "Pause at the peak of the contraction and squeeze your chest.",
+      "Slowly allow the arm pads to return to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0051.mp4",
+    "poster": {
+      "avif": "/how/vital/0051.avif",
+      "webp": "/how/vital/0051.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0052",
+    "slug": "svend-press-chest",
+    "name": "svend press chest",
+    "bodyPart": "chest",
+    "equipment": "body weight",
+    "target": "chest",
+    "instructions": [
+      "Stand upright and hold a pair of weight plates pressed together at chest level with both palms.",
+      "Press the plates outward from your chest until your arms are nearly fully extended.",
+      "Squeeze the plates together throughout the entire movement to engage the inner chest.",
+      "Slowly pull the plates back towards your chest in a controlled manner.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0052.mp4",
+    "poster": {
+      "avif": "/how/vital/0052.avif",
+      "webp": "/how/vital/0052.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0053",
+    "slug": "air-bike-sprint",
+    "name": "air bike sprint",
+    "bodyPart": "cardio",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Sit on the air bike and adjust the seat so your legs are slightly bent at full extension.",
+      "Grip the moving handles with both hands.",
+      "Begin pedaling and pumping the handles simultaneously at maximum effort.",
+      "Sprint at full intensity for the desired interval duration.",
+      "Slow down gradually and rest before repeating."
+    ],
+    "mp4": "/how/vital/0053.mp4",
+    "poster": {
+      "avif": "/how/vital/0053.avif",
+      "webp": "/how/vital/0053.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0054",
+    "slug": "barbell-back-squat",
+    "name": "barbell back squat",
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "target": "quads",
+    "instructions": [
+      "Position a barbell on your upper traps and step back from the rack with feet shoulder-width apart.",
+      "Point your toes slightly outward and keep your chest up and core braced.",
+      "Descend by bending your knees and pushing your hips back until your thighs are parallel to the floor.",
+      "Drive through your heels to extend your knees and hips and return to the standing position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0054.mp4",
+    "poster": {
+      "avif": "/how/vital/0054.avif",
+      "webp": "/how/vital/0054.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0055",
+    "slug": "barbell-bulgarian-split-squat",
+    "name": "barbell bulgarian split squat",
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "target": "quads",
+    "instructions": [
+      "Stand in front of a bench and hold a barbell across your upper traps.",
+      "Extend one leg behind you and rest the top of your foot on the bench.",
+      "Lower your back knee toward the floor by bending your front knee, keeping your torso upright.",
+      "Descend until your front thigh is parallel to the floor.",
+      "Drive through your front heel to return to the starting position and repeat, then switch legs."
+    ],
+    "mp4": "/how/vital/0055.mp4",
+    "poster": {
+      "avif": "/how/vital/0055.avif",
+      "webp": "/how/vital/0055.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0056",
+    "slug": "barbell-front-squat",
+    "name": "barbell front squat",
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "target": "quads",
+    "instructions": [
+      "Position a barbell in a front rack across the front of your shoulders with your elbows raised high.",
+      "Stand with feet shoulder-width apart and toes slightly pointed out.",
+      "Keeping your elbows high and torso upright, descend by bending your knees and hips.",
+      "Lower until your thighs are parallel to the floor or below.",
+      "Drive through your heels to return to the standing position and repeat."
+    ],
+    "mp4": "/how/vital/0056.mp4",
+    "poster": {
+      "avif": "/how/vital/0056.avif",
+      "webp": "/how/vital/0056.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0057",
+    "slug": "barbell-hip-thrust",
+    "name": "barbell hip thrust",
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "target": "glutes",
+    "instructions": [
+      "Sit on the floor with your upper back against a bench and a padded barbell across your hips.",
+      "Plant your feet flat on the floor hip-width apart with knees bent.",
+      "Drive through your heels to thrust your hips upward until your body forms a straight line from knees to shoulders.",
+      "Squeeze your glutes at the top of the movement.",
+      "Lower your hips back toward the floor in a controlled manner and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0057.mp4",
+    "poster": {
+      "avif": "/how/vital/0057.avif",
+      "webp": "/how/vital/0057.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0058",
+    "slug": "barbell-march",
+    "name": "barbell march",
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "target": "quads",
+    "instructions": [
+      "Hold a barbell across your upper traps as in a back squat position with feet hip-width apart.",
+      "Brace your core and maintain an upright posture.",
+      "Lift one knee upward to hip height in a marching motion while keeping your stance foot flat.",
+      "Lower your foot and repeat the movement with the opposite leg.",
+      "Continue alternating legs in a controlled marching motion for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0058.mp4",
+    "poster": {
+      "avif": "/how/vital/0058.avif",
+      "webp": "/how/vital/0058.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0059",
+    "slug": "barbell-reverse-lunges",
+    "name": "barbell reverse lunges",
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "target": "quads",
+    "instructions": [
+      "Stand upright with a barbell across your upper traps and feet together.",
+      "Step one foot directly backward and lower your back knee toward the floor.",
+      "Continue descending until your front thigh is parallel to the floor.",
+      "Push through your front heel to bring your back foot forward to the starting position.",
+      "Alternate legs for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0059.mp4",
+    "poster": {
+      "avif": "/how/vital/0059.avif",
+      "webp": "/how/vital/0059.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0060",
+    "slug": "barbell-romanian-deadlift",
+    "name": "barbell romanian deadlift",
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "target": "upper legs",
+    "instructions": [
+      "Stand with feet hip-width apart holding a barbell in front of your thighs with an overhand grip.",
+      "Keep a soft bend in your knees and your back flat throughout the movement.",
+      "Hinge at the hips and push them back as you lower the bar along your legs.",
+      "Continue lowering until you feel a deep stretch in your hamstrings.",
+      "Drive your hips forward to return to the upright position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0060.mp4",
+    "poster": {
+      "avif": "/how/vital/0060.avif",
+      "webp": "/how/vital/0060.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0061",
+    "slug": "cable-leg-kickback",
+    "name": "cable leg kickback",
+    "bodyPart": "upper legs",
+    "equipment": "cable",
+    "target": "glutes",
+    "instructions": [
+      "Attach an ankle strap to the low pulley of a cable machine and secure it to one ankle.",
+      "Face the machine and hold the frame for support, keeping your body slightly inclined.",
+      "Keeping your knee straight, kick your strapped leg backward and upward as far as possible.",
+      "Squeeze your glute at the top of the movement.",
+      "Slowly return your leg to the starting position and repeat, then switch legs."
+    ],
+    "mp4": "/how/vital/0061.mp4",
+    "poster": {
+      "avif": "/how/vital/0061.avif",
+      "webp": "/how/vital/0061.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0062",
+    "slug": "cycling",
+    "name": "cycling",
+    "bodyPart": "cardio",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Mount a stationary bike and adjust the seat height so your leg has a slight bend at full pedal extension.",
+      "Place your feet in the pedal straps and grip the handlebars.",
+      "Begin pedaling at a comfortable cadence, maintaining an upright or forward-leaning posture.",
+      "Adjust the resistance as needed to reach your target intensity level.",
+      "Continue for the desired duration, then gradually slow to a cool down pace."
+    ],
+    "mp4": "/how/vital/0062.mp4",
+    "poster": {
+      "avif": "/how/vital/0062.avif",
+      "webp": "/how/vital/0062.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0063",
+    "slug": "dumbbell-bulgarian-split-squat",
+    "name": "dumbbell bulgarian split squat",
+    "bodyPart": "upper legs",
+    "equipment": "dumbbell",
+    "target": "quads",
+    "instructions": [
+      "Stand in front of a bench and hold a dumbbell in each hand at your sides.",
+      "Extend one leg back and rest the top of your foot on the bench.",
+      "Lower your back knee toward the floor by bending your front knee.",
+      "Descend until your front thigh is parallel to the floor.",
+      "Drive through your front heel to return to the starting position and repeat, then switch legs."
+    ],
+    "mp4": "/how/vital/0063.mp4",
+    "poster": {
+      "avif": "/how/vital/0063.avif",
+      "webp": "/how/vital/0063.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0064",
+    "slug": "dumbbell-goblet-squat",
+    "name": "dumbbell goblet squat",
+    "bodyPart": "upper legs",
+    "equipment": "dumbbell",
+    "target": "quads",
+    "instructions": [
+      "Stand with feet shoulder-width apart holding a dumbbell vertically at chest level with both hands cupping the top end.",
+      "Keep your elbows tucked in and your chest up.",
+      "Descend into a squat by bending your knees and pushing your hips back until your thighs are parallel to the floor.",
+      "Drive through your heels to return to the standing position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0064.mp4",
+    "poster": {
+      "avif": "/how/vital/0064.avif",
+      "webp": "/how/vital/0064.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0065",
+    "slug": "dumbbell-hip-hinge",
+    "name": "dumbbell hip hinge",
+    "bodyPart": "upper legs",
+    "equipment": "dumbbell",
+    "target": "upper legs",
+    "instructions": [
+      "Stand with feet hip-width apart holding a dumbbell in each hand at your sides.",
+      "Keep a slight bend in your knees and your back flat throughout the movement.",
+      "Hinge at the hips and push them back as you lower your torso toward the floor.",
+      "Lower until you feel a stretch in your hamstrings, then drive your hips forward to return to standing.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0065.mp4",
+    "poster": {
+      "avif": "/how/vital/0065.avif",
+      "webp": "/how/vital/0065.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0066",
+    "slug": "dumbbell-jump-squat",
+    "name": "dumbbell jump squat",
+    "bodyPart": "upper legs",
+    "equipment": "dumbbell",
+    "target": "quads",
+    "instructions": [
+      "Stand with feet shoulder-width apart holding a light dumbbell in each hand at your sides.",
+      "Perform a squat by bending your knees and pushing your hips back to thigh-parallel depth.",
+      "Explosively drive through your heels to jump off the ground as high as possible.",
+      "Land softly with bent knees to absorb the impact.",
+      "Immediately descend into the next squat and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0066.mp4",
+    "poster": {
+      "avif": "/how/vital/0066.avif",
+      "webp": "/how/vital/0066.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0067",
+    "slug": "elliptical-hiit-machine",
+    "name": "elliptical hiit machine",
+    "bodyPart": "cardio",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Step onto the elliptical machine and grip the moving handles.",
+      "Set a high resistance level appropriate for interval training.",
+      "Push and pull the handles while driving through the pedals at maximum effort for the work interval.",
+      "Reduce your pace to a slow recovery stride for the rest interval.",
+      "Continue alternating between work and rest intervals for the desired duration."
+    ],
+    "mp4": "/how/vital/0067.mp4",
+    "poster": {
+      "avif": "/how/vital/0067.avif",
+      "webp": "/how/vital/0067.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0068",
+    "slug": "hack-squat-machine",
+    "name": "hack squat machine",
+    "bodyPart": "upper legs",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Position yourself on the hack squat machine with your back against the pad and shoulders under the shoulder pads.",
+      "Place your feet shoulder-width apart on the platform with toes slightly pointed out.",
+      "Release the safety handles and lower the sled by bending your knees to 90 degrees or below.",
+      "Drive through your heels to extend your knees and return to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0068.mp4",
+    "poster": {
+      "avif": "/how/vital/0068.avif",
+      "webp": "/how/vital/0068.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0069",
+    "slug": "hip-abduction-machine",
+    "name": "hip abduction machine",
+    "bodyPart": "upper legs",
+    "equipment": "machine",
+    "target": "glutes",
+    "instructions": [
+      "Sit on the hip abduction machine with your outer thighs resting against the padded levers.",
+      "Adjust the starting position so your legs are together and feet are flat on the foot rests.",
+      "Push your legs outward against the resistance by abducting your hips as far as comfortable.",
+      "Pause at the end of the range of motion, then slowly return your legs to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0069.mp4",
+    "poster": {
+      "avif": "/how/vital/0069.avif",
+      "webp": "/how/vital/0069.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0070",
+    "slug": "kettlebell-hold-march",
+    "name": "kettlebell hold march",
+    "bodyPart": "upper legs",
+    "equipment": "kettlebell",
+    "target": "quads",
+    "instructions": [
+      "Stand upright holding a kettlebell in each hand at your sides.",
+      "Brace your core and maintain an upright posture with shoulders back.",
+      "Lift one knee upward to hip height in a controlled marching motion.",
+      "Lower that foot to the floor and immediately lift the opposite knee.",
+      "Continue alternating legs in a slow, deliberate march for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0070.mp4",
+    "poster": {
+      "avif": "/how/vital/0070.avif",
+      "webp": "/how/vital/0070.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0071",
+    "slug": "kettlebell-lift-up",
+    "name": "kettlebell lift up",
+    "bodyPart": "upper legs",
+    "equipment": "kettlebell",
+    "target": "quads",
+    "instructions": [
+      "Stand with feet hip-width apart and a kettlebell on the floor between your feet.",
+      "Hinge at the hips and bend your knees to grip the kettlebell handle with both hands.",
+      "Brace your core and maintain a flat back as you prepare to lift.",
+      "Drive through your heels and extend your hips and knees to stand upright, lifting the kettlebell.",
+      "Lower the kettlebell back to the floor in a controlled manner and repeat."
+    ],
+    "mp4": "/how/vital/0071.mp4",
+    "poster": {
+      "avif": "/how/vital/0071.avif",
+      "webp": "/how/vital/0071.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0072",
+    "slug": "kettlebell-swing",
+    "name": "kettlebell swing",
+    "bodyPart": "upper legs",
+    "equipment": "kettlebell",
+    "target": "glutes",
+    "instructions": [
+      "Stand with feet slightly wider than shoulder-width and the kettlebell on the floor in front of you.",
+      "Hinge at the hips to grip the kettlebell with both hands and hike it back between your legs.",
+      "Explosively drive your hips forward to propel the kettlebell upward to chest or shoulder height.",
+      "Allow the kettlebell to swing back down and hike it back between your legs, hinging at the hips.",
+      "Repeat the swing in a fluid, continuous motion for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0072.mp4",
+    "poster": {
+      "avif": "/how/vital/0072.avif",
+      "webp": "/how/vital/0072.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0073",
+    "slug": "leg-extension-machine",
+    "name": "leg extension machine",
+    "bodyPart": "upper legs",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Sit on the leg extension machine and adjust the back pad so your knees align with the machine's pivot point.",
+      "Place your shins behind the padded lever and grip the handles at your sides.",
+      "Extend your legs upward by straightening your knees until your legs are parallel to the floor.",
+      "Pause at the top and squeeze your quadriceps.",
+      "Slowly lower the lever back to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0073.mp4",
+    "poster": {
+      "avif": "/how/vital/0073.avif",
+      "webp": "/how/vital/0073.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0074",
+    "slug": "leg-press-machine",
+    "name": "leg press machine",
+    "bodyPart": "upper legs",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Sit on the leg press machine and place your feet shoulder-width apart on the platform.",
+      "Release the safety handles and lower the platform by bending your knees toward your chest.",
+      "Stop when your knees reach approximately 90 degrees or your lower back begins to lift off the seat.",
+      "Drive through your heels to extend your knees and push the platform back to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0074.mp4",
+    "poster": {
+      "avif": "/how/vital/0074.avif",
+      "webp": "/how/vital/0074.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0075",
+    "slug": "lying-leg-curl-machine",
+    "name": "lying leg curl machine",
+    "bodyPart": "upper legs",
+    "equipment": "machine",
+    "target": "upper legs",
+    "instructions": [
+      "Lie face down on the leg curl machine and position the pad just above your heels.",
+      "Grip the handles beneath the bench for stability.",
+      "Curl your heels toward your glutes by bending your knees as far as the machine allows.",
+      "Pause at the top and squeeze your hamstrings.",
+      "Slowly lower your legs back to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0075.mp4",
+    "poster": {
+      "avif": "/how/vital/0075.avif",
+      "webp": "/how/vital/0075.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0076",
+    "slug": "rope-wave",
+    "name": "rope wave",
+    "bodyPart": "cardio",
+    "equipment": "body weight",
+    "target": "shoulders",
+    "instructions": [
+      "Hold one end of a battle rope in each hand and stand in a half-squat position.",
+      "Brace your core and keep your feet shoulder-width apart.",
+      "Rapidly raise and lower one arm while the other arm descends, creating alternating waves in the rope.",
+      "Maintain a continuous, powerful wave motion for the desired interval duration.",
+      "Rest and repeat for the desired number of sets."
+    ],
+    "mp4": "/how/vital/0076.mp4",
+    "poster": {
+      "avif": "/how/vital/0076.avif",
+      "webp": "/how/vital/0076.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0077",
+    "slug": "rowing-machine",
+    "name": "rowing machine",
+    "bodyPart": "cardio",
+    "equipment": "machine",
+    "target": "back",
+    "instructions": [
+      "Sit on the rowing machine, secure your feet in the straps, and grip the handle with both hands.",
+      "Begin with your knees bent, leaning slightly forward, and arms extended.",
+      "Drive through your legs to extend your knees while simultaneously leaning back slightly.",
+      "As your legs reach full extension, pull the handle toward your lower chest by bending your elbows.",
+      "Reverse the sequence to return to the starting position and repeat for the desired duration."
+    ],
+    "mp4": "/how/vital/0077.mp4",
+    "poster": {
+      "avif": "/how/vital/0077.avif",
+      "webp": "/how/vital/0077.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0078",
+    "slug": "run-on-treadmill",
+    "name": "run on treadmill",
+    "bodyPart": "cardio",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Step onto the treadmill and set your desired speed and incline level.",
+      "Begin walking and gradually increase the speed to your running pace.",
+      "Maintain an upright posture with a slight forward lean and land softly on your midfoot.",
+      "Swing your arms in coordination with your legs to maintain rhythm.",
+      "Continue running for the desired duration, then gradually decrease speed to a walking cool down."
+    ],
+    "mp4": "/how/vital/0078.mp4",
+    "poster": {
+      "avif": "/how/vital/0078.avif",
+      "webp": "/how/vital/0078.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0079",
+    "slug": "seated-leg-curl-machine",
+    "name": "seated leg curl machine",
+    "bodyPart": "upper legs",
+    "equipment": "machine",
+    "target": "upper legs",
+    "instructions": [
+      "Sit on the seated leg curl machine and adjust the back pad so your knees align with the pivot point.",
+      "Place your legs over the top pad and secure the lower pad just above your ankles.",
+      "Curl your legs downward by bending your knees as far as the machine allows.",
+      "Pause at the bottom and squeeze your hamstrings.",
+      "Slowly return your legs to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0079.mp4",
+    "poster": {
+      "avif": "/how/vital/0079.avif",
+      "webp": "/how/vital/0079.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0080",
+    "slug": "seated-overhead-press",
+    "name": "seated overhead press",
+    "bodyPart": "shoulders",
+    "equipment": "machine",
+    "target": "delts",
+    "instructions": [
+      "Sit on a shoulder press machine and adjust the seat so the handles are at shoulder height.",
+      "Grip the handles with both hands and plant your feet flat on the floor.",
+      "Press the handles upward until your arms are fully extended overhead.",
+      "Pause briefly at the top, then slowly lower the handles back to shoulder height.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0080.mp4",
+    "poster": {
+      "avif": "/how/vital/0080.avif",
+      "webp": "/how/vital/0080.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0081",
+    "slug": "step-ups-weighted",
+    "name": "step-ups (weighted)",
+    "bodyPart": "upper legs",
+    "equipment": "dumbbell",
+    "target": "quads",
+    "instructions": [
+      "Stand in front of a box or bench holding a dumbbell in each hand at your sides.",
+      "Step one foot up onto the surface and drive through that heel to lift your body up.",
+      "Bring your back foot up to stand fully on the box.",
+      "Step the leading foot back down to the floor followed by the trailing foot.",
+      "Alternate the leading leg or complete all repetitions on one side before switching."
+    ],
+    "mp4": "/how/vital/0081.mp4",
+    "poster": {
+      "avif": "/how/vital/0081.avif",
+      "webp": "/how/vital/0081.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0082",
+    "slug": "stepmill-machine-version-1",
+    "name": "stepmill machine version 1",
+    "bodyPart": "cardio",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Step onto the stepmill machine and grip the handrails lightly for balance.",
+      "Set your desired speed on the control panel.",
+      "Begin stepping at a comfortable pace, placing your full foot on each step.",
+      "Drive through your heel with each step to engage your glutes and quads.",
+      "Continue for the desired duration, maintaining an upright posture and minimizing reliance on the handrails."
+    ],
+    "mp4": "/how/vital/0082.mp4",
+    "poster": {
+      "avif": "/how/vital/0082.avif",
+      "webp": "/how/vital/0082.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0083",
+    "slug": "stepmill-machine",
+    "name": "stepmill machine",
+    "bodyPart": "cardio",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Mount the stepmill and set your target speed and duration.",
+      "Step onto the rotating staircase and begin climbing at a steady pace.",
+      "Keep your torso upright and engage your core throughout the exercise.",
+      "Drive through each step using your full foot to activate the glutes and quads.",
+      "Complete the session for the desired duration, then slow down to cool off before dismounting."
+    ],
+    "mp4": "/how/vital/0083.mp4",
+    "poster": {
+      "avif": "/how/vital/0083.avif",
+      "webp": "/how/vital/0083.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0084",
+    "slug": "stiff-legged-deadlift-machine",
+    "name": "stiff-legged deadlift machine",
+    "bodyPart": "upper legs",
+    "equipment": "machine",
+    "target": "upper legs",
+    "instructions": [
+      "Stand on the platform of a deadlift machine with feet hip-width apart and grip the handles.",
+      "Keep your legs nearly straight with a slight bend in your knees.",
+      "Hinge at the hips and lower the handles along your legs until you feel a deep hamstring stretch.",
+      "Drive your hips forward to return to the upright starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0084.mp4",
+    "poster": {
+      "avif": "/how/vital/0084.avif",
+      "webp": "/how/vital/0084.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0085",
+    "slug": "triceps-pushdown-cable-rope",
+    "name": "triceps pushdown (cable - rope)",
+    "bodyPart": "upper arms",
+    "equipment": "cable",
+    "target": "triceps",
+    "instructions": [
+      "Attach a rope handle to the high pulley of a cable machine and stand facing the machine.",
+      "Grasp the rope with both hands using a neutral grip and tuck your elbows close to your sides.",
+      "Push the rope downward by extending your arms until they are fully straight.",
+      "At the bottom, spread the rope ends apart slightly to maximize tricep contraction.",
+      "Slowly allow the rope to rise back to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0085.mp4",
+    "poster": {
+      "avif": "/how/vital/0085.avif",
+      "webp": "/how/vital/0085.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0086",
+    "slug": "walk-on-treadmill",
+    "name": "walk on treadmill",
+    "bodyPart": "cardio",
+    "equipment": "machine",
+    "target": "quads",
+    "instructions": [
+      "Step onto the treadmill and set a comfortable walking speed and incline.",
+      "Begin walking at your chosen pace, maintaining an upright posture.",
+      "Swing your arms naturally in coordination with your stride.",
+      "Keep your gaze forward and avoid looking down at your feet.",
+      "Continue walking for the desired duration, then gradually bring the belt to a stop."
+    ],
+    "mp4": "/how/vital/0086.mp4",
+    "poster": {
+      "avif": "/how/vital/0086.avif",
+      "webp": "/how/vital/0086.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0087",
+    "slug": "arnold-press-dumbbell",
+    "name": "arnold press dumbbell",
+    "bodyPart": "shoulders",
+    "equipment": "dumbbell",
+    "target": "delts",
+    "instructions": [
+      "Sit on a bench with back support and hold a dumbbell in each hand at chest height, palms facing you.",
+      "Begin the press by rotating your palms to face forward as you push the dumbbells upward.",
+      "Continue pressing until your arms are fully extended overhead.",
+      "Reverse the motion, rotating your palms back to face you as you lower the dumbbells to chest height.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0087.mp4",
+    "poster": {
+      "avif": "/how/vital/0087.avif",
+      "webp": "/how/vital/0087.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0088",
+    "slug": "barbell-overhead-press-standing",
+    "name": "barbell overhead press standing",
+    "bodyPart": "shoulders",
+    "equipment": "barbell",
+    "target": "delts",
+    "instructions": [
+      "Stand with feet shoulder-width apart and hold a barbell at shoulder height with an overhand grip.",
+      "Brace your core and maintain a neutral spine throughout the movement.",
+      "Press the barbell directly overhead until your arms are fully extended.",
+      "Pause at the top, then slowly lower the barbell back to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0088.mp4",
+    "poster": {
+      "avif": "/how/vital/0088.avif",
+      "webp": "/how/vital/0088.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0089",
+    "slug": "barbell-upright-row",
+    "name": "barbell upright row",
+    "bodyPart": "shoulders",
+    "equipment": "barbell",
+    "target": "delts",
+    "instructions": [
+      "Stand upright holding a barbell with an overhand grip, hands approximately shoulder-width apart.",
+      "Let the bar hang in front of your thighs with your arms extended.",
+      "Pull the bar upward along your body by raising your elbows above the level of your hands.",
+      "Continue pulling until the bar reaches chin height and your elbows are above your shoulders.",
+      "Slowly lower the bar back to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0089.mp4",
+    "poster": {
+      "avif": "/how/vital/0089.avif",
+      "webp": "/how/vital/0089.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0090",
+    "slug": "dumbbell-overhead-standard",
+    "name": "dumbbell overhead standard",
+    "bodyPart": "shoulders",
+    "equipment": "dumbbell",
+    "target": "delts",
+    "instructions": [
+      "Stand with feet shoulder-width apart and hold a dumbbell in each hand at shoulder height, palms facing forward.",
+      "Brace your core and maintain an upright posture.",
+      "Press the dumbbells upward until your arms are fully extended overhead.",
+      "Pause briefly at the top, then slowly lower the dumbbells back to shoulder height.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0090.mp4",
+    "poster": {
+      "avif": "/how/vital/0090.avif",
+      "webp": "/how/vital/0090.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0091",
+    "slug": "dumbbell-upright-row",
+    "name": "dumbbell upright row",
+    "bodyPart": "shoulders",
+    "equipment": "dumbbell",
+    "target": "delts",
+    "instructions": [
+      "Stand upright holding a dumbbell in each hand with a neutral grip in front of your thighs.",
+      "Pull the dumbbells upward along your body by raising your elbows above the level of your hands.",
+      "Continue pulling until the dumbbells reach chest height and your elbows are at shoulder level.",
+      "Pause at the top, then slowly lower the dumbbells back to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0091.mp4",
+    "poster": {
+      "avif": "/how/vital/0091.avif",
+      "webp": "/how/vital/0091.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0092",
+    "slug": "front-raise-dumbbell",
+    "name": "front raise (dumbbell)",
+    "bodyPart": "shoulders",
+    "equipment": "dumbbell",
+    "target": "delts",
+    "instructions": [
+      "Stand upright holding a dumbbell in each hand in front of your thighs with palms facing your body.",
+      "Keep a slight bend in your elbows and your back straight.",
+      "Raise one or both dumbbells forward and upward until your arms are parallel to the floor.",
+      "Pause briefly at the top, then slowly lower the dumbbells back to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0092.mp4",
+    "poster": {
+      "avif": "/how/vital/0092.avif",
+      "webp": "/how/vital/0092.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0093",
+    "slug": "front-raise-weighted-plate",
+    "name": "front raise (weighted plate)",
+    "bodyPart": "shoulders",
+    "equipment": "body weight",
+    "target": "delts",
+    "instructions": [
+      "Stand upright and hold a weight plate with both hands at the 3 and 9 o'clock positions in front of your thighs.",
+      "Keep a slight bend in your elbows and your core engaged.",
+      "Raise the plate forward and upward in a controlled arc until your arms are parallel to the floor.",
+      "Pause briefly at the top, then slowly lower the plate back to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0093.mp4",
+    "poster": {
+      "avif": "/how/vital/0093.avif",
+      "webp": "/how/vital/0093.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0094",
+    "slug": "kettlebell-overhead-press",
+    "name": "kettlebell overhead press",
+    "bodyPart": "shoulders",
+    "equipment": "kettlebell",
+    "target": "delts",
+    "instructions": [
+      "Stand with feet shoulder-width apart and hold a kettlebell in one hand at shoulder height in the rack position.",
+      "Brace your core and keep your elbow pointing forward.",
+      "Press the kettlebell straight overhead until your arm is fully extended.",
+      "Pause at the top, then slowly lower the kettlebell back to the rack position.",
+      "Repeat for the desired number of repetitions, then switch arms."
+    ],
+    "mp4": "/how/vital/0094.mp4",
+    "poster": {
+      "avif": "/how/vital/0094.avif",
+      "webp": "/how/vital/0094.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0095",
+    "slug": "cable-cross-lateral-raise",
+    "name": "cable cross lateral raise",
+    "bodyPart": "shoulders",
+    "equipment": "cable",
+    "target": "lateral delts",
+    "instructions": [
+      "Stand between two low cable pulleys and grasp the opposite handle with each hand so the cables cross in front of your body.",
+      "Stand upright with your feet shoulder-width apart, keep your core braced, and maintain a slight bend in your elbows.",
+      "Raise both arms out to your sides until they are approximately parallel to the floor.",
+      "Pause briefly at the top while squeezing your lateral deltoids.",
+      "Slowly lower the handles back to the starting position under control and repeat."
+    ],
+    "mp4": "/how/vital/0095.mp4",
+    "poster": {
+      "avif": "/how/vital/0095.avif",
+      "webp": "/how/vital/0095.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0096",
+    "slug": "lateral-raises-dumbbell",
+    "name": "lateral raises (dumbbell)",
+    "bodyPart": "shoulders",
+    "equipment": "dumbbell",
+    "target": "delts",
+    "instructions": [
+      "Stand upright holding a dumbbell in each hand at your sides with a neutral grip.",
+      "Keep a slight bend in your elbows and your core engaged.",
+      "Raise both dumbbells out to the sides in a wide arc until your arms are parallel to the floor.",
+      "Pause briefly at the top and squeeze your medial delts.",
+      "Slowly lower the dumbbells back to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0096.mp4",
+    "poster": {
+      "avif": "/how/vital/0096.avif",
+      "webp": "/how/vital/0096.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0097",
+    "slug": "lateral-raise-machine",
+    "name": "lateral raise machine",
+    "bodyPart": "shoulders",
+    "equipment": "machine",
+    "target": "lateral delts",
+    "instructions": [
+      "Stand on the platform of the lateral raise machine and position your upper arms against the pads.",
+      "Keep your chest up, core engaged, and maintain a slight bend in your elbows.",
+      "Raise the pads outward by abducting your shoulders until your upper arms are approximately parallel to the floor.",
+      "Pause briefly at the top and squeeze your lateral deltoids.",
+      "Slowly lower the weight back to the starting position under control and repeat."
+    ],
+    "mp4": "/how/vital/0097.mp4",
+    "poster": {
+      "avif": "/how/vital/0097.avif",
+      "webp": "/how/vital/0097.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0098",
+    "slug": "military-press-seated-smith-machine",
+    "name": "military press (seated - smith machine)",
+    "bodyPart": "shoulders",
+    "equipment": "machine",
+    "target": "delts",
+    "instructions": [
+      "Set a bench inside a smith machine and adjust the bar to shoulder height.",
+      "Sit on the bench and grip the bar with an overhand grip slightly wider than shoulder-width.",
+      "Unrack the bar and hold it at the front of your shoulders.",
+      "Press the bar upward until your arms are fully extended overhead.",
+      "Slowly lower the bar back to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0098.mp4",
+    "poster": {
+      "avif": "/how/vital/0098.avif",
+      "webp": "/how/vital/0098.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0099",
+    "slug": "rear-delt-fly-reverse-pec-deck",
+    "name": "rear delt fly (reverse pec deck)",
+    "bodyPart": "shoulders",
+    "equipment": "machine",
+    "target": "delts",
+    "instructions": [
+      "Sit facing the pec deck machine and adjust the seat so your arms are parallel to the floor.",
+      "Grip the handles with a neutral grip and keep a slight bend in your elbows.",
+      "Pull the handles outward and backward in a wide arcing motion by squeezing your rear delts and shoulder blades together.",
+      "Pause at the peak of the contraction.",
+      "Slowly return the handles to the starting position and repeat for the desired number of repetitions."
+    ],
+    "mp4": "/how/vital/0099.mp4",
+    "poster": {
+      "avif": "/how/vital/0099.avif",
+      "webp": "/how/vital/0099.webp"
+    },
+    "credit": "Vital Animations"
+  },
+  {
+    "id": "0100",
+    "slug": "rear-delt-cable-fly",
+    "name": "rear delt cable fly",
+    "bodyPart": "shoulders",
+    "equipment": "cable",
+    "target": "rear delts",
+    "instructions": [
+      "Stand between two cable pulleys set at shoulder height.",
+      "Grasp the opposite cable handle with each hand and step back until there is tension on the cables.",
+      "Maintain a slight bend in your elbows and keep your chest up throughout the movement.",
+      "Pull your arms outward and backward in a wide arc until they are in line with your shoulders.",
+      "Squeeze your rear delts and upper back at the end of the movement.",
+      "Slowly return to the starting position under control and repeat."
+    ],
+    "mp4": "/how/vital/0100.mp4",
+    "poster": {
+      "avif": "/how/vital/0100.avif",
+      "webp": "/how/vital/0100.webp"
+    },
+    "credit": "Vital Animations"
+  }
+]

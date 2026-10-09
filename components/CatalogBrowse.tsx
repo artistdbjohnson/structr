@@ -33,7 +33,7 @@ export function CatalogBrowse() {
   return (
     <PageFrame title="Plans">
       <p className={styles.lead}>
-        Open a practice, then a plan. Most moves have a picture. A few are still just the words.
+        Open a practice, then a plan. Every startable move has a clip in How.
       </p>
       <LearnSkill />
       <div className={styles.accList}>

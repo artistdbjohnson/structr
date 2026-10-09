@@ -75,7 +75,7 @@ export function LearnSkill() {
             <input
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="Hike pass, or anything else"
+              placeholder="Kettlebell swing, or anything else"
               autoComplete="off"
               enterKeyHint="go"
             />

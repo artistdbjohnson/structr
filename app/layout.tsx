@@ -35,7 +35,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <script id="structr-boot" data-structr-keep="" dangerouslySetInnerHTML={{ __html: surfaceBootScript }} />
-        <link rel="preconnect" href="https://exercise-dataset.com" />
       </head>
       <body suppressHydrationWarning>
         <DesktopGate />

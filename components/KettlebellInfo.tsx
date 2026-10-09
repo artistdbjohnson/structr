@@ -36,13 +36,13 @@ export function KettlebellInfo() {
             </p>
           ) : null}
           <h1>Kettlebell</h1>
-          <p className={styles.promise}>The swing, the clean, and the get-up. Same five-part session every time.</p>
+          <p className={styles.promise}>The swing, the overhead press, and the lift up off the floor. Same five-part session every time.</p>
         </header>
 
         <section className={styles.section} aria-labelledby="practice-heading">
           <h2 id="practice-heading">Practice</h2>
           <p className={styles.prose}>
-            A kettlebell is a cast-iron ball with a handle. The swing, the clean, and the get-up are skills. You
+            A kettlebell is a cast-iron ball with a handle. The swing, the overhead press, and the lift up are skills. You
             practice them the way you'd practice a throw — a little every time, until they feel like yours.
           </p>
           <p className={styles.prose}>
@@ -75,8 +75,8 @@ export function KettlebellInfo() {
         <section className={styles.section} aria-labelledby="templates-heading">
           <h2 id="templates-heading">Plans</h2>
           <p className={styles.prose}>
-            Swing Foundation, Clean Path, and Get-Up Primer are the full sessions. Hike Only and Roll to Elbow
-            practice one piece. Times are a guess. Read the plan before you start.
+            Swing Foundation, Clean Path, and Get-Up Primer are the full sessions. Times are a guess. Read the plan
+            before you start. Open How on a move to see the clip.
           </p>
           <div className={styles.templates}>
             {TEMPLATE_BRIEFS.map((template) => (

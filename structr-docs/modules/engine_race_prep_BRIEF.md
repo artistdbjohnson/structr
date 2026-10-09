@@ -38,7 +38,7 @@ Intervals and stations fit Form and **THE BULK**, plus a number for how hard it 
 2. **Erg intervals**
 3. **Mixed station practice**
 4. **Race week easy** — a lighter Bulk, polish the skills
-5. **Carry & Lunges Path**
+5. **Lunge and March** — reverse lunges and a loaded march. No suitcase carry in this pack.
 
 ---
 

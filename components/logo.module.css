@@ -31,6 +31,38 @@
   background: #fff;
   position: relative;
   transform-origin: 50% 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.letters {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  padding: 12% 0;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.letter {
+  display: block;
+  margin: 0;
+  font-family: var(--font-logo), "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: calc(var(--logo-size) * 0.055);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  color: #18181b;
+  opacity: 0;
+  transform: scale(1.15);
+  transform-origin: 50% 50%;
 }
 
 .flash {
@@ -41,6 +73,7 @@
   overflow: visible;
   opacity: 0;
   pointer-events: none;
+  z-index: 2;
 }
 
 .reversed {
@@ -54,6 +87,10 @@
   background: #141416;
 }
 
+.reversed .letter {
+  color: #fff;
+}
+
 .tile:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 3px;
@@ -64,52 +101,39 @@
 }
 
 .splash {
-  --logo-size: 200px;
+  /* ~120–140px at 390px phone width */
+  --logo-size: clamp(120px, 34vw, 140px);
   position: fixed;
   inset: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: calc(var(--logo-size) * 0.28);
+  gap: 0;
   background: #0b0b0d;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .splash .tile {
-  cursor: default;
+  --logo-size: inherit;
+  cursor: pointer;
+  width: var(--logo-size);
+  height: var(--logo-size);
 }
 
 .splash .pill {
   transform: rotateY(-25deg);
 }
 
-.splash.is-out {
-  opacity: 0;
-  transition: opacity 240ms ease;
+.splash .letter {
+  font-size: calc(var(--logo-size) * 0.058);
 }
 
-.word {
-  height: calc(var(--logo-size) * 0.68);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  font-family: var(--font-logo), "JetBrains Mono", ui-monospace, monospace;
-  font-weight: 500;
-  font-size: calc(var(--logo-size) * 0.11);
-  line-height: 1;
-  letter-spacing: 0.24em;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  color: rgba(255, 255, 255, 0.85);
+.splash.is-out {
   opacity: 0;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='1.2' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.35 1.05'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23n)'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='1.2' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.35 1.05'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23n)'/%3E%3C/svg%3E");
-  -webkit-mask-size: 80px 80px;
-  mask-size: 80px 80px;
-  -webkit-mask-repeat: repeat;
-  mask-repeat: repeat;
+  transition: opacity 400ms ease;
+  pointer-events: none;
 }
 
 .lockup {
@@ -142,8 +166,9 @@
     transform: none;
   }
 
-  .word {
+  .letter {
     opacity: 1;
+    transform: none;
   }
 
   .flash {

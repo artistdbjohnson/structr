@@ -7,10 +7,26 @@ import { formatClock, formatWhen } from "@/lib/format";
 import { MOVEMENT_ART_CREDIT } from "@/lib/movementHowTo";
 import { REPDB_CREDIT, REPDB_HOME } from "@/lib/repdb";
 import { summarize } from "@/lib/session";
+import frames from "@/public/hero/manifest.json";
 import { clearAllData, loadActive, loadHistory, loadPrefs, savePrefs } from "@/lib/storage";
 import type { Prefs, Unit, WorkoutSession } from "@/lib/types";
+import { HomeSplash, YOU_HERO_ORDER } from "./HomeSplash";
 import { PageFrame } from "./PageFrame";
 import styles from "./subpage.module.css";
+
+function YouWallpaper() {
+  const opening = frames[YOU_HERO_ORDER[0] ?? 0];
+  return (
+    <div
+      className={styles.heroStage}
+      style={{ backgroundColor: opening?.ground ?? "#e6e8ec" }}
+      aria-hidden="true"
+    >
+      <HomeSplash order={YOU_HERO_ORDER} />
+      <div className={styles.heroScrim} />
+    </div>
+  );
+}
 
 function FocusCard({ history }: { history: WorkoutSession[] }) {
   const total = focusTotals(history);
@@ -53,7 +69,7 @@ export function YouScreen() {
   }
 
   return (
-    <PageFrame title="You">
+    <PageFrame title="You" backdrop={<YouWallpaper />}>
       {prefs && history ? (
         <>
           <p className={styles.lead}>Sessions stay on this phone. No account.</p>

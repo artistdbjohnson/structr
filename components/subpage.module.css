@@ -17,6 +17,32 @@
     #0c0b0f url(/bg.jpg) center / cover no-repeat;
 }
 
+/* You replaces the single still with the hero reel. The scrim is the same veil as ::before. */
+.pageHeroes {
+  background: #e6e8ec;
+}
+
+.pageHeroes::before {
+  content: none;
+}
+
+.heroStage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #e6e8ec;
+  pointer-events: none;
+}
+
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(10, 9, 12, 0.7), rgba(10, 9, 12, 0.84));
+}
+
 .wrap {
   position: relative;
   z-index: 1;

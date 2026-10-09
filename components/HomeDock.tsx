@@ -17,8 +17,6 @@ import { learnedPlan, loadActive, loadHistory, loadPrefs, saveActive, savePrefs 
 import { getTemplate } from "@/lib/templates";
 import { DEFAULT_TEMPLATE_ROUTE } from "@/lib/taxonomy";
 import { BoltIcon, CalendarIcon, PersonIcon } from "./icons";
-import { LogoMarkButton } from "./LogoMarkButton";
-import logoStyles from "./logo.module.css";
 import { TrainSheet } from "./TrainSheet";
 import { useTapGuard } from "./useTapGuard";
 
@@ -223,18 +221,6 @@ export function HomeDock() {
           />
         ) : null}
       <nav ref={navRef} className="dock" aria-label="Home" data-active={tab ?? "none"}>
-        <LogoMarkButton
-          variant="reversed"
-          size={44}
-          className={logoStyles.dockMark}
-          label="Structr"
-          onClick={() => {
-            if (path === "/") return;
-            if (lock.current) return;
-            lock.current = true;
-            router.push("/");
-          }}
-        />
         {box && active ? (
           <span
             className="dock__selection"

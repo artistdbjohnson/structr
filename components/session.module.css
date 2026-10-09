@@ -315,13 +315,9 @@
   gap: 8px;
   width: 100%;
   min-width: 0;
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  backdrop-filter: blur(16px) saturate(150%);
-}
-
-/* One blur for the metric row. Pills and chips inside do not blur again. */
-.pills :global([data-surface="pill"]),
-.pills :global([data-surface="pill"]) * {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }

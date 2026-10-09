@@ -37,8 +37,8 @@ Strength and balance both fit the usual shape. Warm up, learn it light, keep it 
 1. **Capable Strength** — goblet squat, sit-back, press, with a kinder Bulk
 2. **Steady Stance** — from the balance pack
 3. **Floor-to-Stand Path**
-4. **Carry Everyday** — suitcase and farmer carries
-5. **Move Freer Easy Day** — an easy mobility day
+4. **Loaded March** — a kettlebell march and a step-up. No farmer carry in this pack.
+5. **Move Freer Easy Day** — an easy walk, bike, and march
 
 ---
 

@@ -2,11 +2,9 @@
 
 Structr is a training PWA. Cold load is the athletic wallpaper and the centered glass dock: **Train · Plans · You**. No tab is selected until you tap one. Train opens **Train for**, Plans opens the plan catalog, and You opens the phone's sessions. Workouts run Warm-up → Skill drills → Form → THE BULK → Cool-down and stay on this device.
 
-Kettlebell (Swing Foundation, Clean Path, Get-Up Primer) is the day-one path. Strength, bodyweight, mobility, mat, engine, sport, and stay-capable plans can start too, built from moves the free RepDB set can picture. A few drills stay words only. See `structr-docs/REPDB.md`.
+Kettlebell (Swing Foundation, Clean Path, Get-Up Primer) is the day-one path. Other startable plans use the same 50 Vital Animations clips. Modules that would need a bench, pull-up, row, push-up, conventional deadlift, or core work stay coming soon.
 
-Exercise data by [RepDB](https://repdb.co) (repdb.co). Free-tier stills only — start/peak or one main frame from `exercise-dataset.com`. No paid animations, no `premium-samples`. In-app use with this credit. The pictures are not redistributed here as a dataset.
-
-World's greatest stretch still uses Bryl Lim's Workout Guide drawings (CC BY-SA 4.0). RepDB has no match for that one.
+Animation: Vital Animations. How sheets show the poster, then a muted loop. Home, Plans, and Train do not load the clips.
 
 ## Routes
 

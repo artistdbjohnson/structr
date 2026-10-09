@@ -21,35 +21,32 @@ assert.notDeepEqual(quietStopDelaysMs("other-session", "skill"), delays);
 assert.equal(matchCatalogPlan("Swing Foundation")?.id, "swing-foundation");
 assert.equal(matchCatalogPlan("Clean Path")?.id, "clean-path");
 assert.equal(matchCatalogPlan("Get-Up Primer")?.id, "get-up-primer");
-assert.equal(matchCatalogPlan("Hike Only")?.id, "hike-only");
-assert.equal(matchCatalogPlan("roll to elbow")?.id, "roll-to-elbow");
 assert.equal(matchCatalogPlan("Kettlebell skill practice")?.id, "swing-foundation");
-assert.equal(matchCatalogPlan("hike")?.id, "hike-only");
-assert.equal(matchCatalogPlan("The two-hand swing")?.id, "swing-foundation");
+assert.equal(matchCatalogPlan("The kettlebell swing")?.id, "swing-foundation");
+assert.equal(matchCatalogPlan("Hike Only"), undefined);
+assert.equal(matchCatalogPlan("roll to elbow"), undefined);
 
-const kept = ["swing-foundation", "clean-path", "get-up-primer", "hike-only", "roll-to-elbow"];
+const kept = ["swing-foundation", "clean-path", "get-up-primer"];
 for (const id of kept) assert.ok(TEMPLATES.some((template) => template.id === id), id);
+assert.equal(getTemplate("hike-only"), undefined);
+assert.equal(getTemplate("roll-to-elbow"), undefined);
+assert.equal(getTemplate("bench-basics"), undefined);
+assert.equal(getTemplate("row-path"), undefined);
 const kettlebell = MODULES.find((module) => module.id === "mod_kettlebell");
 assert.ok(kettlebell);
-assert.deepEqual(kettlebell?.templateIds.slice(0, 3), ["tpl_swing", "tpl_clean", "tpl_getup"]);
-assert.ok(kettlebell?.templateIds.includes("tpl_hike"));
-assert.ok(kettlebell?.templateIds.includes("tpl_roll"));
+assert.deepEqual(kettlebell?.templateIds, ["tpl_swing", "tpl_clean", "tpl_getup"]);
 
-const hike = getTemplate("hike-only");
-const roll = getTemplate("roll-to-elbow");
-assert.ok(hike && roll);
+const press = getTemplate("clean-path");
+const lift = getTemplate("get-up-primer");
+assert.ok(press && lift);
 assert.deepEqual(
-  hike?.phases.find((step) => step.id === "skill")?.blocks.map((item) => item.name),
-  ["Hike pass"],
+  press?.phases.find((step) => step.id === "bulk")?.blocks.map((item) => item.name),
+  ["Kettlebell overhead press"],
 );
 assert.deepEqual(
-  roll?.phases.find((step) => step.id === "skill")?.blocks.map((item) => item.name),
-  ["Roll to elbow"],
+  lift?.phases.find((step) => step.id === "bulk")?.blocks.map((item) => item.name),
+  ["Kettlebell lift up"],
 );
-for (const id of ["form", "bulk"] as const) {
-  assert.deepEqual(hike?.phases.find((step) => step.id === id)?.blocks.map((item) => item.name), ["Hike pass"]);
-  assert.deepEqual(roll?.phases.find((step) => step.id === id)?.blocks.map((item) => item.name), ["Roll to elbow"]);
-}
 
 const built = buildLearnedTemplate("  paddle boarding ");
 assert.equal(built.name, "Paddle boarding");
@@ -85,7 +82,7 @@ const early = [
   finished("swing-foundation", "Swing Foundation", 40, "2026-10-04T12:00:00.000Z"),
   finished("swing-foundation", "Swing Foundation", 40, "2026-10-03T12:00:00.000Z"),
   finished("swing-foundation", "Swing Foundation", 40, "2026-10-02T12:00:00.000Z"),
-  finished("hike-only", "Hike Only", 200, "2026-10-01T12:00:00.000Z"),
+  finished("clean-path", "Clean Path", 200, "2026-10-01T12:00:00.000Z"),
 ];
 const earlyTotal = focusTotals(early);
 assert.ok(earlyTotal);
@@ -96,10 +93,10 @@ assert.equal(earlyTotal?.early, true);
 assert.match(bendLine(earlyTotal), /still early/i);
 
 const bent = [
-  finished("hike-only", "Hike Only", BEND_REPS / BEND_SESSIONS, "2026-10-04T12:00:00.000Z"),
-  finished("hike-only", "Hike Only", BEND_REPS / BEND_SESSIONS, "2026-10-03T12:00:00.000Z"),
-  finished("hike-only", "Hike Only", BEND_REPS / BEND_SESSIONS, "2026-10-02T12:00:00.000Z"),
-  finished("hike-only", "Hike Only", BEND_REPS / BEND_SESSIONS, "2026-10-01T12:00:00.000Z"),
+  finished("clean-path", "Clean Path", BEND_REPS / BEND_SESSIONS, "2026-10-04T12:00:00.000Z"),
+  finished("clean-path", "Clean Path", BEND_REPS / BEND_SESSIONS, "2026-10-03T12:00:00.000Z"),
+  finished("clean-path", "Clean Path", BEND_REPS / BEND_SESSIONS, "2026-10-02T12:00:00.000Z"),
+  finished("clean-path", "Clean Path", BEND_REPS / BEND_SESSIONS, "2026-10-01T12:00:00.000Z"),
   finished("swing-foundation", "Swing Foundation", 500, "2026-09-01T12:00:00.000Z"),
 ];
 const bentTotal = focusTotals(bent);
@@ -107,6 +104,6 @@ assert.equal(bentTotal?.sessions, BEND_SESSIONS);
 assert.equal(bentTotal?.reps, BEND_REPS);
 assert.equal(bentTotal?.early, false);
 assert.match(bendLine(bentTotal!), /hit the bend/i);
-assert.equal(bentTotal?.planName, "Hike Only");
+assert.equal(bentTotal?.planName, "Clean Path");
 
 console.log("skill-learn checks passed");

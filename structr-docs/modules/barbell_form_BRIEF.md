@@ -12,7 +12,7 @@
 
 ## 1. What this is (and why skill practice)
 
-The big three — squat, bench, deadlift — are skills with a short attention budget. Flooding yourself with a 47-point checklist mid-set helps nobody. Structr’s barbell wedge picks **a few high-leverage cues per lift** and practices them inside the same five-phase session shape:
+The bar work in this pack is the back squat and the Romanian deadlift. Bench and a conventional deadlift are not in the clip set. Structr picks **a few high-leverage cues per lift** and practices them inside the same five-phase session shape:
 
 **Warm-up → Skill drills → Form → THE BULK → Cool-down**
 
@@ -22,9 +22,8 @@ This is form practice. The empty bar and the light plates earn their place. More
 
 | Template | Skill spine |
 |----------|-------------|
-| **Squat Basics** | Brace → knees track → depth you own |
-| **Bench Basics** | Setup lock → bar to lower chest → stack wrists |
-| **Deadlift Basics** | Mid-foot bar → slack out → push the floor |
+| **Squat Basics** | Bar on the back → depth you own |
+| **Romanian Deadlift** | Barbell hinge. No conventional deadlift in this pack |
 
 > If it hurts in a sharp way, rack the bar. Film a set, or find a coach when you can.
 

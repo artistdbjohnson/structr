@@ -2,6 +2,12 @@ import { block, phase } from "./planBuild";
 import { MODULES, TEMPLATE_ROUTES } from "./taxonomy";
 import { getTemplate, TEMPLATES } from "./templates";
 import type { Template } from "./types";
+import { vitalMove } from "./vital";
+
+const march = vitalMove("kettlebell-hold-march");
+const hinge = vitalMove("dumbbell-hip-hinge");
+const walk = vitalMove("walk-on-treadmill");
+const bike = vitalMove("cycling");
 
 export function normalizeSkillName(raw: string): string {
   return raw
@@ -66,8 +72,8 @@ export function buildLearnedTemplate(raw: string): Template {
     implement: "Body weight",
     phases: [
       phase("warmup", "optional", [
-        block(`${id}-wu-hip`, "Hip circles", "45 seconds", { timeSec: 45 }),
-        block(`${id}-wu-cat`, "Cat-cow", "6", { reps: 6, load: "bodyweight" }),
+        block(`${id}-wu-hip`, march, "45 seconds", { timeSec: 45, load: "light" }),
+        block(`${id}-wu-cat`, hinge, "6", { reps: 6, load: "light" }),
         block(`${id}-wu-easy`, `${name}, easy`, "6 easy", { reps: 6, load: "bodyweight" }),
       ]),
       phase(
@@ -105,8 +111,8 @@ export function buildLearnedTemplate(raw: string): Template {
         "6–7",
       ),
       phase("cooldown", "optional", [
-        block(`${id}-cd-child`, "Child's pose", "1:00", { timeSec: 60 }),
-        block(`${id}-cd-breathe`, "Box breathe", "2:00", { timeSec: 120 }),
+        block(`${id}-cd-child`, walk, "3:00, easy", { timeSec: 180 }),
+        block(`${id}-cd-breathe`, bike, "2:00, easy", { timeSec: 120 }),
       ]),
     ],
   };

@@ -2,8 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { MOVEMENT_ART_CREDIT, movementHowTo, type MovementGuide } from "@/lib/movementHowTo";
-import { REPDB_CREDIT, REPDB_HOME } from "@/lib/repdb";
+import { movementHowTo, type MovementGuide } from "@/lib/movementHowTo";
 import styles from "./movementHowTo.module.css";
 import { useTapGuard } from "./useTapGuard";
 
@@ -57,130 +56,79 @@ export function MovementTitle({
   );
 }
 
-function usePrefersStill(): boolean {
-  const [still, setStill] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
+function VitalClip({ guide }: { guide: MovementGuide }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [play, setPlay] = useState(false);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => setStill(media.matches);
-    apply();
-    media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
+    const sync = () => setPlay(!media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
   }, []);
 
-  return still;
-}
-
-function FrameReel({ frames }: { frames: readonly string[] }) {
-  const still = usePrefersStill();
-  const [index, setIndex] = useState(0);
-
-  const signature = frames.join("|");
   useEffect(() => {
-    if (still || frames.length < 2) return;
-    const count = frames.length;
-    const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % count);
-    }, 1100);
-    return () => window.clearInterval(id);
-  }, [still, signature, frames.length]);
+    const video = videoRef.current;
+    if (!video || !play) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    const onHide = () => {
+      if (document.hidden) {
+        video.pause();
+        return;
+      }
+      void video.play().catch(() => undefined);
+    };
+    document.addEventListener("visibilitychange", onHide);
+    void video.play().catch(() => undefined);
+    return () => {
+      document.removeEventListener("visibilitychange", onHide);
+      video.pause();
+    };
+  }, [play]);
 
-  const shown = still ? 0 : index;
-
-  return (
-    <div className={styles.poster} data-art="frames" data-motion={still ? "still" : "frames"}>
-      {frames.map((src, frameIndex) => (
-        <img
-          key={src}
-          src={src}
-          alt=""
-          width={512}
-          height={512}
-          decoding="async"
-          draggable={false}
-          data-active={frameIndex === shown ? "true" : "false"}
-        />
-      ))}
-    </div>
-  );
-}
-
-function RepdbStill({ frames, labels }: { frames: readonly string[]; labels: readonly string[] }) {
-  const [index, setIndex] = useState(0);
-  const [failed, setFailed] = useState(false);
-  const shown = Math.min(index, frames.length - 1);
-
-  if (failed) {
-    return (
-      <div className={styles.poster} data-art="placeholder" data-motion="still">
-        <p className={styles.posterKicker}>How</p>
-        <p className={styles.posterName}>Picture didn't load. The words below still count.</p>
-      </div>
-    );
-  }
+  if (!guide.poster || !guide.mp4) return null;
 
   return (
-    <div className={styles.artBlock}>
-      <div className={styles.poster} data-art="repdb" data-motion="still">
-        {frames.map((src, frameIndex) => (
-          <img
-            key={src}
-            src={src}
-            alt={labels[frameIndex] ? `${labels[frameIndex]} position` : ""}
-            width={512}
-            height={512}
-            decoding="async"
-            draggable={false}
-            data-active={frameIndex === shown ? "true" : "false"}
-            onError={() => setFailed(true)}
-          />
-        ))}
-      </div>
-      {frames.length > 1 ? (
-        <div className={styles.frameToggle} role="group" aria-label="Still frames">
-          {labels.map((label, frameIndex) => (
-            <button
-              key={label}
-              type="button"
-              aria-pressed={frameIndex === shown}
-              data-on={frameIndex === shown ? "true" : "false"}
-              onClick={() => setIndex(frameIndex)}
-            >
-              {label}
-            </button>
-          ))}
+    <figure className={styles.clipCard} data-vital-clip="true" data-motion={play ? "clip" : "still"}>
+      <div className={styles.clipWell}>
+        <div className={styles.clipHalo} aria-hidden="true" />
+        <div className={styles.clipPanel}>
+          <picture>
+            <source srcSet={guide.poster.avif} type="image/avif" />
+            <img src={guide.poster.webp} alt="" width={480} height={480} decoding="async" draggable={false} />
+          </picture>
+          {play ? (
+            <video
+              ref={videoRef}
+              src={guide.mp4}
+              muted
+              loop
+              playsInline
+              autoPlay
+              preload="auto"
+              disablePictureInPicture
+              controls={false}
+            />
+          ) : null}
         </div>
-      ) : null}
-    </div>
+      </div>
+      <figcaption className={styles.clipCredit}>Animation: Vital Animations</figcaption>
+    </figure>
   );
-}
-
-function MovementArt({ guide }: { guide: MovementGuide }) {
-  if (guide.source === "repdb" && guide.frames && guide.labels) {
-    return <RepdbStill frames={guide.frames} labels={guide.labels} />;
-  }
-  if (guide.source === "guide" && guide.frames) {
-    return <FrameReel frames={guide.frames} />;
-  }
-  return null;
 }
 
 function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () => void }) {
   const titleId = useId();
   const sheetRef = useRef<HTMLDivElement>(null);
-  const answerRef = useRef<HTMLInputElement>(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
-  const [revealed, setRevealed] = useState(false);
-  const [answer, setAnswer] = useState("");
 
   useEffect(() => {
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     sheetRef.current?.focus();
-    answerRef.current?.focus();
     return () => {
       document.body.style.overflow = previous;
     };
@@ -229,8 +177,8 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
         aria-labelledby={titleId}
         tabIndex={-1}
         data-movement-sheet="true"
-        data-movement-art={revealed ? (guide.source ?? "placeholder") : "recall"}
-        data-how-step={revealed ? "cues" : "recall"}
+        data-movement-art={guide.mp4 ? "vital" : "words"}
+        data-how-step="cues"
         onClick={(event) => event.stopPropagation()}
       >
         <div className={styles.sheetBar}>
@@ -239,92 +187,16 @@ function MovementSheet({ guide, onClose }: { guide: MovementGuide; onClose: () =
             Close
           </button>
         </div>
-        {revealed ? (
-          <>
-            <div className={styles.pieceBlock} data-how-piece="true">
-              <p className={styles.posterKicker}>The one piece</p>
-              <p className={styles.pieceLine}>{guide.piece}</p>
-              <p className={styles.posterKicker}>Leave this for now</p>
-              <p className={styles.ignoreLine}>{guide.ignore}</p>
-              {answer.trim() ? <p className={styles.recallEcho}>You had: {answer.trim()}</p> : null}
-            </div>
-            {guide.frames ? (
-              <>
-                <MovementArt guide={guide} />
-                <h2 id={titleId} className={styles.name}>
-                  {guide.name}
-                </h2>
-              </>
-            ) : (
-              <div className={styles.poster} data-art="placeholder" data-motion="still">
-                <p className={styles.posterKicker}>How</p>
-                <h2 id={titleId} className={styles.posterName}>
-                  {guide.name}
-                </h2>
-              </div>
-            )}
-            <ul className={styles.cues}>
-              {guide.cues.map((cue) => (
-                <li key={cue}>{cue}</li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <form
-            className={styles.recall}
-            data-how-recall="true"
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (!answer.trim()) return;
-              setRevealed(true);
-            }}
-          >
-            <h2 id={titleId} className={styles.posterName}>
-              {guide.name}
-            </h2>
-            <p className={styles.recallPrompt}>Before the picture. What&apos;s the one piece that matters?</p>
-            <label className={styles.recallLabel}>
-              Your guess
-              <input
-                ref={answerRef}
-                value={answer}
-                onChange={(event) => setAnswer(event.target.value)}
-                autoComplete="off"
-                enterKeyHint="done"
-              />
-            </label>
-            <div className={styles.recallActions}>
-              <button className={styles.recallSubmit} type="submit" disabled={!answer.trim()}>
-                That&apos;s it
-              </button>
-              <button className={styles.recallSkip} type="button" onClick={() => setRevealed(true)}>
-                Skip
-              </button>
-            </div>
-          </form>
-        )}
-        {revealed && guide.source === "repdb" ? (
-          <p className={styles.credit}>
-            <a href={REPDB_HOME} target="_blank" rel="noreferrer">
-              {REPDB_CREDIT}
-            </a>
-            . Still pictures. Not a loop.
-          </p>
-        ) : revealed && guide.source === "guide" ? (
-          <p className={styles.credit}>
-            Drawing by {MOVEMENT_ART_CREDIT.creator},{" "}
-            <a href={MOVEMENT_ART_CREDIT.workUrl} target="_blank" rel="noreferrer">
-              {MOVEMENT_ART_CREDIT.work}
-            </a>
-            .{" "}
-            <a href={MOVEMENT_ART_CREDIT.licenseUrl} target="_blank" rel="noreferrer">
-              {MOVEMENT_ART_CREDIT.license}
-            </a>
-            . {MOVEMENT_ART_CREDIT.changes}
-          </p>
-        ) : revealed ? (
-          <p className={styles.credit}>No picture yet. These words will get you through it.</p>
-        ) : null}
+        <h2 id={titleId} className={styles.name}>
+          {guide.name}
+        </h2>
+        {guide.poster ? <VitalClip guide={guide} /> : null}
+        <ol className={styles.cues}>
+          {guide.cues.map((cue) => (
+            <li key={cue}>{cue}</li>
+          ))}
+        </ol>
+        {guide.poster ? null : <p className={styles.credit}>No clip for this one. These words will get you through it.</p>}
       </div>
     </div>,
     document.body,

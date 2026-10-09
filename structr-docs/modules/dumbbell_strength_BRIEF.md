@@ -12,7 +12,7 @@
 
 ## 1. What this is (and why skill practice)
 
-Dumbbells are the free weight most people actually own. Press, row, and goblet squat are patterns. Learn the shape until the weight can climb and the form still holds.
+Dumbbells are the free weight most people actually own. Goblet squat and an overhead press are the patterns here. This pack has no bench and no row. Learn the shape until the weight can climb and the form still holds.
 
 These are practice sessions. You get stronger because the sets stay clean enough to repeat. Same path as kettlebell:
 
@@ -22,9 +22,9 @@ These are practice sessions. You get stronger because the sets stay clean enough
 
 | Template | Skill spine |
 |----------|-------------|
-| **Goblet Squat Path** | Front-loaded squat → honest depth · upright torso |
-| **Press Path** | Floor or bench press · shoulder stays down · easy finish at the top |
-| **Row Path** | Hinge brace → elbow to hip · quiet torso |
+| **Goblet Squat Path** | Dumbbell goblet squat → honest depth · upright torso |
+| **Press Path** | Dumbbell overhead press · no bench in this pack |
+| **Chest Machines** | Pec deck and a plate press |
 
 Read this so you can pick a session with your eyes open, know why The Bulk asks how hard it felt, and stop guessing which pair of bells to buy first.
 

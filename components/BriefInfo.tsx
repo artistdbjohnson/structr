@@ -262,8 +262,7 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
             <div className={`${styles.card} ${styles.bridge}`}>
               <h2 id="getup-bridge">Continue with Get-Up Primer</h2>
               <p className={styles.prose}>
-                The get-up with a bell already lives with the kettlebell plans. Open Get-Up Primer when you want
-                the bell.
+                The lift off the floor lives with the kettlebell plans. Open Get-Up Primer when you want the bell.
               </p>
               <div className={styles.actions}>
                 <Link className={styles.ctaGhost} href="/plans/get-up-primer">

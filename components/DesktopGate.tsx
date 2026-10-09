@@ -1,4 +1,5 @@
 import heroFrames from "@/public/hero/manifest.json";
+import { LogoMark } from "@/components/LogoMark";
 import { desktopGateScript, type GateFrame } from "@/lib/surfaceBoot";
 
 const frames: GateFrame[] = (heroFrames as { file: string; ground: string }[]).map((frame) => ({
@@ -18,6 +19,7 @@ export function DesktopGate() {
         </div>
       </div>
       <div className="gate__note">
+        <LogoMark variant="reversed" size={56} staticMark />
         <img id="structr-gate-qr" className="gate__qr" alt="" width={76} height={76} />
         <div className="gate__copy">
           <p className="gate__lead">Structr lives on your phone.</p>

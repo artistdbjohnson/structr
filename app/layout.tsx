@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { DesktopGate } from "@/components/DesktopGate";
 import { HomeSplash } from "@/components/HomeSplash";
+import { LogoSplash } from "@/components/LogoSplash";
 import { RegisterSw } from "@/components/RegisterSw";
 import { surfaceBootScript } from "@/lib/surfaceBoot";
 import "./globals.css";
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="app-reel__scrim" />
         </div>
         <div className="app-root">{children}</div>
+        <LogoSplash />
         <RegisterSw />
       </body>
     </html>

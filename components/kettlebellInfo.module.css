@@ -62,10 +62,12 @@
   gap: 14px;
   margin-top: 16px;
   padding: 18px 16px;
-  border-radius: 22px;
+  border-radius: 12px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .hero h1 {
@@ -100,10 +102,12 @@
 .section {
   margin-top: 20px;
   padding: 16px;
-  border-radius: 22px;
+  border-radius: 12px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .section h2 {
@@ -143,7 +147,7 @@
   container-type: inline-size;
   margin-top: 16px;
   padding: 18px 16px 16px;
-  border-radius: var(--sg-radius-lg, 26px);
+  border-radius: 12px;
   color: var(--ink);
   background: var(--liq-paint);
   border: 1px solid var(--liq-border);
@@ -188,7 +192,7 @@
   height: 9px;
   margin-left: 4px;
   border-radius: 50%;
-  border: 1.5px solid rgba(86, 124, 210, 0.45);
+  border: 1.5px solid rgba(28, 36, 52, 0.28);
   background: var(--ink);
   position: relative;
   z-index: 1;
@@ -244,7 +248,7 @@
   flex-direction: column;
   gap: 12px;
   padding: 20px 18px 16px;
-  border-radius: var(--sg-radius-lg, 26px);
+  border-radius: 12px;
   color: var(--ink);
   background: var(--liq-paint);
   border: 1px solid var(--liq-border);
@@ -381,7 +385,7 @@
   position: relative;
   container-type: inline-size;
   padding: 6px 16px 8px;
-  border-radius: var(--sg-radius-md, 20px);
+  border-radius: 12px;
   color: var(--ink);
   background: var(--liq-paint);
   border: 1px solid var(--liq-border);
@@ -581,7 +585,7 @@
   height: 36px;
   display: grid;
   place-items: center;
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--liq-row-paint);
   color: var(--ink);
   font-size: 12px;
@@ -810,7 +814,7 @@
 .ctaGhost,
 .ctaPrimary {
   min-height: 52px;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 0 18px;
   font-size: 16px;
   font-weight: 650;
@@ -865,7 +869,7 @@
   width: fit-content;
   max-width: 100%;
   padding: 6px 10px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-row-paint);
   color: var(--ink);
@@ -918,7 +922,7 @@
   align-items: flex-start;
   gap: 2px;
   padding: 10px 0;
-  border-top: 1px solid rgba(86, 124, 210, 0.22);
+  border-top: 1px solid rgba(28, 36, 52, 0.12);
 }
 
 .pairs li:first-child {
@@ -957,7 +961,7 @@
   color: var(--ink);
   font-weight: 650;
   text-decoration: underline;
-  text-decoration-color: rgba(86, 124, 210, 0.45);
+  text-decoration-color: rgba(28, 36, 52, 0.28);
   text-underline-offset: 3px;
 }
 
@@ -1110,7 +1114,7 @@
 .templates,
 .stack,
 .faq {
-  border-radius: 26px;
+  border-radius: 12px;
   -webkit-backdrop-filter: var(--liq-blur);
   backdrop-filter: var(--liq-blur);
 }
@@ -1124,13 +1128,15 @@
 
 @media (prefers-reduced-transparency: reduce) {
   .bar,
+  .hero,
+  .section,
   .card,
   .template,
   .panel {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
     background: var(--liq-solid);
-    border-color: rgba(86, 124, 210, 0.35);
+    border-color: rgba(28, 36, 52, 0.2);
   }
 }
 

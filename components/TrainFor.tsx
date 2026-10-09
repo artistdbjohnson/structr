@@ -30,6 +30,7 @@ export function TrainFor({ chip }: { chip: TrainChip }) {
     <PageFrame
       title="Train for"
       titleId="train-for-title"
+      tone="night"
       trailing={infoHref ? <InfoLink href={infoHref} label={infoLabel} /> : undefined}
     >
       <nav className={styles.goals} aria-label="Train for" data-train-for={chip.id} data-chip-status={chip.status}>

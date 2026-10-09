@@ -50,10 +50,12 @@
   width: fit-content;
   max-width: 100%;
   padding: 12px 16px;
-  border-radius: 20px;
+  border-radius: 12px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .title {
@@ -81,20 +83,24 @@
   width: fit-content;
   max-width: 100%;
   padding: 4px 8px 4px 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .wrap > .lead {
   width: fit-content;
   max-width: 100%;
   padding: 12px 14px;
-  border-radius: 18px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .infoLink {
@@ -162,8 +168,8 @@
   min-height: 48px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid transparent;
-  border-radius: 16px;
+  border: 1px solid var(--liq-border);
+  border-radius: 8px;
   padding: 0 14px;
   background: var(--liq-row-paint);
   color: var(--ink);
@@ -197,7 +203,7 @@
   color: var(--ink);
   background: var(--liq-paint);
   border: 1px solid var(--liq-border);
-  border-radius: 22px;
+  border-radius: 12px;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -240,8 +246,8 @@
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink);
-  border: 1px solid transparent;
-  border-radius: 999px;
+  border: 1px solid var(--liq-border);
+  border-radius: 8px;
   padding: 4px 8px;
   background: var(--liq-row-paint);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
@@ -252,7 +258,7 @@
 .danger {
   min-height: 48px;
   max-width: 100%;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 10px 16px;
   font-size: 16px;
   font-weight: 650;
@@ -282,6 +288,8 @@
   color: var(--ink);
   border: 1px solid var(--liq-border);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .danger {
@@ -299,7 +307,7 @@
 .phaseItem {
   background: var(--liq-paint);
   border: 1px solid var(--liq-border);
-  border-radius: 18px;
+  border-radius: 8px;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
@@ -341,7 +349,7 @@
   align-items: flex-start;
   gap: 2px;
   padding: 10px 0;
-  border-top: 1px solid rgba(86, 124, 210, 0.22);
+  border-top: 1px solid rgba(28, 36, 52, 0.12);
 }
 
 .blockList li:first-child {
@@ -376,7 +384,7 @@
 .unitOn {
   background: #fff;
   color: var(--ink);
-  border-color: rgba(86, 124, 210, 0.45);
+  border-color: rgba(28, 36, 52, 0.28);
 }
 
 .sessionItem {
@@ -416,7 +424,7 @@
   container-type: inline-size;
   background: var(--liq-row-paint);
   border: 1px solid var(--liq-border);
-  border-radius: 14px;
+  border-radius: 8px;
   padding: 12px;
   color: var(--ink-body);
   font-size: 0.9375rem;
@@ -444,7 +452,7 @@
   height: auto;
   min-height: 48px;
   aspect-ratio: auto;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 10px 12px;
   font-size: 15px;
   font-weight: 650;
@@ -489,7 +497,7 @@
   bottom: 0;
   z-index: 4;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(236, 232, 246, 0.78) 42%, rgba(255, 255, 255, 0.62));
+  background: linear-gradient(180deg, rgba(232, 236, 242, 0), rgba(226, 232, 240, 0.9) 42%, rgba(236, 240, 246, 0.78));
   -webkit-backdrop-filter: var(--liq-blur);
   backdrop-filter: var(--liq-blur);
 }
@@ -516,7 +524,7 @@
   align-items: center;
   gap: 8px;
   min-width: 0;
-  border-radius: 999px;
+  border-radius: 8px;
   -webkit-backdrop-filter: var(--liq-blur);
   backdrop-filter: var(--liq-blur);
 }
@@ -528,7 +536,7 @@
 }
 
 .phaseList {
-  border-radius: 22px;
+  border-radius: 12px;
   -webkit-backdrop-filter: var(--liq-blur);
   backdrop-filter: var(--liq-blur);
 }
@@ -542,7 +550,7 @@
   align-items: center;
   justify-content: center;
   padding: 10px 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   color: var(--ink);
@@ -560,7 +568,7 @@
 .chipOn {
   background: #fff;
   color: var(--ink);
-  border-color: rgba(86, 124, 210, 0.45);
+  border-color: rgba(28, 36, 52, 0.28);
 }
 
 .chipSoon:not(.chipOn) {
@@ -589,10 +597,12 @@
   color: var(--ink);
   font-weight: 650;
   list-style: none;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .more summary::-webkit-details-marker {
@@ -650,10 +660,12 @@
   display: inline-flex;
   align-items: center;
   padding: 0 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .templateList {
@@ -668,7 +680,7 @@
   flex-direction: column;
   gap: 8px;
   padding-top: 12px;
-  border-top: 1px solid rgba(86, 124, 210, 0.2);
+  border-top: 1px solid rgba(28, 36, 52, 0.12);
 }
 
 .templateLink {
@@ -718,7 +730,7 @@
   background: var(--liq-row-paint);
   color: var(--ink);
   border: 1px solid var(--liq-border);
-  border-radius: 14px;
+  border-radius: 8px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
   text-align: left;
   text-decoration: none;
@@ -759,7 +771,7 @@
   flex-direction: column;
   gap: 8px;
   padding: 10px;
-  border-radius: 22px;
+  border-radius: 12px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
@@ -795,7 +807,7 @@
   color: inherit;
   font: inherit;
   cursor: pointer;
-  border-radius: 18px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   color: var(--ink);
@@ -907,14 +919,14 @@
 
 .cardNestFace {
   transform-origin: top center;
-  border-radius: 22px;
+  border-radius: 12px;
   overflow: hidden;
   background: transparent;
   min-width: 0;
 }
 
 .cardNestFace:has(.accButton) {
-  border-radius: 18px;
+  border-radius: 8px;
 }
 
 .nestBlurb,
@@ -960,7 +972,7 @@
   align-items: baseline;
   gap: 4px 10px;
   padding: 10px 0;
-  border-top: 1px solid rgba(86, 124, 210, 0.22);
+  border-top: 1px solid rgba(28, 36, 52, 0.12);
 }
 
 .plannedName {
@@ -977,7 +989,7 @@
   gap: 8px;
   margin: 8px 0 4px;
   padding: 12px;
-  border-radius: 14px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-row-paint);
   color: var(--ink-body);
@@ -1013,7 +1025,7 @@
 
 .nameList li {
   padding: 12px 14px;
-  border-radius: 14px;
+  border-radius: 8px;
   border: 1px solid var(--liq-border);
   background: var(--liq-row-paint);
   color: var(--ink);
@@ -1024,7 +1036,7 @@
 .historyStack {
   gap: 0;
   padding: 14px 16px 8px;
-  border-radius: 22px;
+  border-radius: 12px;
   border: 1px solid var(--liq-border);
   background: var(--liq-paint);
   box-shadow: var(--liq-shadow);
@@ -1041,7 +1053,7 @@
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   padding: 12px 0;
-  border-top: 1px solid rgba(86, 124, 210, 0.22);
+  border-top: 1px solid rgba(28, 36, 52, 0.12);
 }
 
 .historyStack > .card:first-of-type {
@@ -1050,7 +1062,7 @@
 
 /* Catalog and Train lists scroll as one frost. Rows and nested cards do not blur again. */
 .accList {
-  border-radius: 22px;
+  border-radius: 12px;
   -webkit-backdrop-filter: var(--liq-blur);
   backdrop-filter: var(--liq-blur);
 }
@@ -1075,4 +1087,255 @@
 .historyStack .danger {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
+}
+
+/* You and Train, as they looked before the shared mist. The app reel stays behind the dark veil. */
+.night {
+  --ink: #fff;
+  --ink-body: rgba(255, 255, 255, 0.86);
+  --ink-meta: rgba(255, 255, 255, 0.78);
+  --ink-label: rgba(255, 255, 255, 0.72);
+  color: #fff;
+  color-scheme: dark;
+}
+
+.page.night {
+  color: #fff;
+  background: transparent;
+}
+
+.page.night::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(10, 9, 12, 0.7), rgba(10, 9, 12, 0.84));
+}
+
+.page.night.pageTray::before {
+  content: none;
+}
+
+.night .heading,
+.night .chrome,
+.night .wrap > .lead,
+.night .more summary,
+.night .quietLink {
+  width: auto;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.night .quietLink {
+  border-radius: 8px;
+  color: #fff;
+}
+
+.night .more summary {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.night .back,
+.night .infoLink,
+.night .finePrint a {
+  color: #fff;
+}
+
+.night .infoLink:focus-visible,
+.night .back:focus-visible,
+.night .chip:focus-visible,
+.night .quietLink:focus-visible,
+.night .accButton:focus-visible,
+.night .more summary:focus-visible {
+  outline-color: #fff;
+}
+
+.night .learnLabel {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.night .learnLabel input {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+  box-shadow: none;
+}
+
+.night .card,
+.night .glass,
+.night .accButton {
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05) 46%, rgba(255, 255, 255, 0.08)),
+    rgba(18, 16, 20, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 18px 40px -20px rgba(0, 0, 0, 0.72);
+}
+
+.night .card,
+.night .glass {
+  border-radius: 22px;
+}
+
+.night .accButton {
+  border-radius: 18px;
+}
+
+.night .glassSoon {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.05)),
+    rgba(12, 11, 15, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 18px 40px -20px rgba(0, 0, 0, 0.72);
+}
+
+.night .mark {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.night .primary,
+.night .ghost,
+.night .danger,
+.night .confirmActions > .primary,
+.night .confirmActions > .ghost,
+.night .confirmActions > .danger,
+.night .confirmActions > button {
+  border-radius: 999px;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.night .primary {
+  border: 0;
+  background: #fff;
+  color: #16130f;
+}
+
+.night .ghost,
+.night .danger {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.night .danger {
+  border-color: rgba(255, 140, 120, 0.7);
+  color: #ffd0c6;
+}
+
+.night .unitOn,
+.night .chipOn {
+  background: #fff;
+  color: #16130f;
+  border-color: #fff;
+}
+
+.night .phaseItem {
+  background: rgba(18, 16, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  color: #fff;
+  box-shadow: none;
+}
+
+.night .blockList li,
+.night .planned li,
+.night .templateList,
+.night .historyStack > .card {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.night .confirm {
+  background: rgba(0, 0, 0, 0.28);
+  border: 0;
+  border-radius: 14px;
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.night .chip {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(12, 11, 15, 0.28);
+  color: #fff;
+  box-shadow: none;
+}
+
+.night .chipSoon:not(.chipOn) {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.night .startBar {
+  background: linear-gradient(180deg, rgba(12, 11, 15, 0), rgba(12, 11, 15, 0.96) 36%);
+}
+
+.night .accList,
+.night .historyStack,
+.night .phaseList,
+.night .chipRow {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: inherit;
+}
+
+.night .accList,
+.night .chipRow {
+  border-radius: 0;
+}
+
+.night .historyStack {
+  gap: 12px;
+  border-radius: 0;
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+.night .historyStack > .card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05) 46%, rgba(255, 255, 255, 0.08)),
+    rgba(18, 16, 20, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 22px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 18px 40px -20px rgba(0, 0, 0, 0.72);
+  padding: 16px;
+  border-top: 0;
+}
+
+.night .historyStack > .card:first-of-type {
+  border-top: 0;
+}
+
+.night .soonSheet,
+.night .nameList li,
+.night .soonButton {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.28);
+  color: rgba(255, 255, 255, 0.86);
+  box-shadow: none;
+}
+
+.night .cardNestFace,
+.night .cardNestFace:has(.accButton) {
+  border-radius: 18px;
 }

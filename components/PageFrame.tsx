@@ -12,6 +12,7 @@ export function PageFrame({
   titleId,
   meta,
   trailing,
+  tone,
   children,
 }: {
   backHref?: string;
@@ -20,12 +21,16 @@ export function PageFrame({
   titleId?: string;
   meta?: ReactNode;
   trailing?: ReactNode;
+  /** You and Train keep the pre-mist surface. Plans stays on the shared frost. */
+  tone?: "night";
   children: ReactNode;
 }) {
   const trayClose = useTrayClose();
   const close = backHref ? null : trayClose;
   const back = Boolean((backHref && backLabel) || close || trailing);
-  const className = [styles.page, trayClose ? styles.pageTray : ""].filter(Boolean).join(" ");
+  const className = [styles.page, trayClose ? styles.pageTray : "", tone === "night" ? styles.night : ""]
+    .filter(Boolean)
+    .join(" ");
   return (
     <main className={className}>
       <div className={styles.wrap}>

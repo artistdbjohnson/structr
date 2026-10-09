@@ -205,10 +205,10 @@
 /* Reduced transparency / motion — shared fallbacks for metric glass */
 @media (prefers-reduced-transparency: reduce) {
   :root {
-    --sg-fill-base: #ebe6f3;
-    --sg-fill-magenta: #ebe6f3;
-    --sg-fill-orange: #ebe6f3;
-    --sg-fill-cyan: #ebe6f3;
+    --sg-fill-base: rgba(40, 40, 44, 0.92);
+    --sg-fill-magenta: hsla(var(--sg-tint-magenta) / 0.45);
+    --sg-fill-orange: hsla(var(--sg-tint-orange) / 0.45);
+    --sg-fill-cyan: hsla(var(--sg-tint-cyan) / 0.45);
     --sg-backdrop: none;
     --sg-grain-opacity: 0;
   }

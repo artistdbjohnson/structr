@@ -9,7 +9,7 @@
     max(20px, env(safe-area-inset-right))
     max(24px, env(safe-area-inset-bottom))
     max(20px, env(safe-area-inset-left));
-  background: rgba(8, 7, 10, 0.55);
+  background: rgba(26, 35, 64, 0.18);
 }
 
 .sheet {
@@ -19,10 +19,12 @@
   gap: 10px;
   padding: 18px;
   border-radius: 18px;
-  color: #fff;
-  background: rgba(18, 16, 20, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 22px 48px -14px rgba(0, 0, 0, 0.55);
+  color: var(--ink);
+  background: var(--liq-paint);
+  border: 1px solid var(--liq-border);
+  box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .title {
@@ -33,7 +35,7 @@
 }
 
 .lead {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-body);
   font-size: 15px;
   line-height: 1.45;
 }
@@ -51,26 +53,27 @@
 }
 
 .primary {
-  border: 0;
+  border: 1px solid var(--liq-border);
   background: #fff;
-  color: #16130f;
+  color: var(--ink);
 }
 
 .ghost,
 .dismiss {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: var(--liq-row-paint);
+  color: var(--ink);
+  border: 1px solid var(--liq-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .dismiss {
   border-color: transparent;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-meta);
 }
 
 .primary:focus-visible,
 .ghost:focus-visible,
 .dismiss:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }

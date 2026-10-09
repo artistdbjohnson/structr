@@ -12,7 +12,6 @@ export function PageFrame({
   titleId,
   meta,
   trailing,
-  backdrop,
   children,
 }: {
   backHref?: string;
@@ -21,19 +20,14 @@ export function PageFrame({
   titleId?: string;
   meta?: ReactNode;
   trailing?: ReactNode;
-  /** Fixed layer behind the copy. You uses this for the hero reel. */
-  backdrop?: ReactNode;
   children: ReactNode;
 }) {
   const trayClose = useTrayClose();
   const close = backHref ? null : trayClose;
   const back = Boolean((backHref && backLabel) || close || trailing);
-  const className = [styles.page, trayClose ? styles.pageTray : "", backdrop ? styles.pageHeroes : ""]
-    .filter(Boolean)
-    .join(" ");
+  const className = [styles.page, trayClose ? styles.pageTray : ""].filter(Boolean).join(" ");
   return (
     <main className={className}>
-      {backdrop}
       <div className={styles.wrap}>
         {back ? (
           <div className={styles.chrome}>

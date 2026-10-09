@@ -21,21 +21,12 @@
   max-width: 100%;
   padding: 14px 12px 12px;
   border-radius: var(--sg-radius-capsule);
-  color: var(--sg-ink);
-  background:
-    radial-gradient(115% 90% at 12% 0%, var(--sg-bloom-a) 0%, transparent 58%),
-    radial-gradient(95% 85% at 100% 115%, var(--sg-bloom-b) 0%, transparent 62%),
-    linear-gradient(165deg, var(--sg-fill-base-hi) 0%, transparent 44%),
-    linear-gradient(185deg, var(--sg-fill-strong) 0%, var(--sg-fill) 68%, rgba(8, 8, 12, 0.22) 100%);
-  border: 0;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.62),
-    inset 0 -10px 22px rgba(0, 0, 0, 0.16),
-    0 0 0 1px var(--sg-rim-color),
-    var(--sg-shadow-glow),
-    var(--sg-shadow-depth);
-  backdrop-filter: var(--sg-backdrop);
-  -webkit-backdrop-filter: var(--sg-backdrop);
+  color: var(--ink);
+  background: var(--liq-paint);
+  border: 1px solid var(--liq-border);
+  box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
   overflow: hidden;
 }
 
@@ -87,7 +78,7 @@
   inset: 0;
   border-radius: inherit;
   padding: var(--sg-rim-width);
-  background: var(--sg-rim-sheen);
+  background: var(--liq-edge);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -155,20 +146,8 @@
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
   line-height: 1.05;
-  color: var(--sg-ink);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.38);
-}
-
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .value {
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    background-image: radial-gradient(circle, #fff 0.7px, rgba(255, 255, 255, 0.2) 0.95px);
-    background-size: 2px 2px;
-    -webkit-background-clip: text;
-    background-clip: text;
-    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
-  }
+  color: var(--ink);
+  text-shadow: none;
 }
 
 .meta {
@@ -191,15 +170,14 @@
   top: -4px;
   width: auto;
   height: 16px;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(26, 35, 64, 0.55);
   pointer-events: none;
   z-index: 2;
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .pill {
-    background:
-      radial-gradient(115% 90% at 12% 0%, var(--sg-bloom-a) 0%, transparent 58%),
-      linear-gradient(180deg, var(--sg-fill-strong), #2a2a2e);
+    background: var(--liq-solid);
+    border-color: rgba(86, 124, 210, 0.35);
   }
 }

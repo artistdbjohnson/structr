@@ -15,7 +15,7 @@
   max-width: 100%;
   padding: 0.22em 0.7em 0.22em 0.5em;
   border-radius: var(--sg-radius-pill);
-  color: var(--sg-ink);
+  color: var(--ink);
   font-family: var(--sg-numeral-font);
   font-size: 0.72rem;
   font-weight: 650;
@@ -23,15 +23,9 @@
   letter-spacing: 0.02em;
   line-height: 1.2;
   white-space: nowrap;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.08) 55%),
-    var(--sg-fill);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.66),
-    0 0 0 1px rgba(255, 255, 255, 0.28),
-    0 0 12px var(--sg-glow, var(--sg-glow-cyan));
-  backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
-  -webkit-backdrop-filter: blur(var(--sg-blur-sm)) saturate(var(--sg-saturate-sm));
+  background: var(--liq-row-paint);
+  border: 1px solid var(--liq-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
   overflow: hidden;
 }
 
@@ -68,7 +62,7 @@
   inset: 0;
   border-radius: inherit;
   padding: var(--sg-rim-width);
-  background: var(--sg-rim-sheen);
+  background: var(--liq-edge);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);

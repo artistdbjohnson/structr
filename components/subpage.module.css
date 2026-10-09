@@ -1,46 +1,9 @@
 .page {
   position: relative;
   min-height: 100dvh;
-  color: #fff;
-  background: #0c0b0f;
+  color: var(--ink);
+  background: transparent;
   padding: calc(20px + env(safe-area-inset-top)) 20px calc(32px + env(safe-area-inset-bottom));
-}
-
-.page::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(10, 9, 12, 0.7), rgba(10, 9, 12, 0.84)),
-    #0c0b0f url(/bg.jpg) center / cover no-repeat;
-}
-
-/* You replaces the single still with the hero reel. The scrim is the same veil as ::before. */
-.pageHeroes {
-  background: #e6e8ec;
-}
-
-.pageHeroes::before {
-  content: none;
-}
-
-.heroStage {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  background: #e6e8ec;
-  pointer-events: none;
-}
-
-.heroScrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(10, 9, 12, 0.7), rgba(10, 9, 12, 0.84));
 }
 
 .wrap {
@@ -55,7 +18,7 @@
 }
 
 .back {
-  color: #fff;
+  color: var(--ink);
   text-decoration: none;
   font-size: 15px;
   font-weight: 600;
@@ -112,7 +75,7 @@
 
 .infoLink {
   flex: none;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
   font-family: Georgia, "Iowan Old Style", Palatino, serif;
   font-style: italic;
   font-size: 18px;
@@ -128,13 +91,13 @@
 }
 
 .infoLink:hover {
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
 }
 
 .infoLink:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
-  color: #fff;
+  color: var(--ink);
 }
 
 .lead {
@@ -152,7 +115,7 @@
 }
 
 .finePrint a {
-  color: #fff;
+  color: var(--ink);
 }
 
 .learnForm,
@@ -164,7 +127,7 @@
 }
 
 .learnLabel {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-meta);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -175,11 +138,11 @@
   min-height: 48px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid transparent;
   border-radius: 16px;
   padding: 0 14px;
-  background: rgba(0, 0, 0, 0.28);
-  color: #fff;
+  background: var(--liq-row-paint);
+  color: var(--ink);
   font: inherit;
   font-size: 16px;
   font-weight: 550;
@@ -188,7 +151,7 @@
 }
 
 .learnLabel input:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -206,26 +169,22 @@
 .card,
 .glass {
   position: relative;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05) 46%, rgba(255, 255, 255, 0.08)),
-    rgba(18, 16, 20, 0.42);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  isolation: isolate;
+  color: var(--ink);
+  background: var(--liq-paint);
+  border: 1px solid var(--liq-border);
   border-radius: 22px;
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.32),
-    0 18px 40px -20px rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .glassSoon {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.05)),
-    rgba(12, 11, 15, 0.35);
+  box-shadow: var(--liq-shadow);
 }
 
 .cardLink {
@@ -256,10 +215,12 @@
   font-weight: 650;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--ink);
+  border: 1px solid transparent;
   border-radius: 999px;
   padding: 4px 8px;
+  background: var(--liq-row-paint);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .primary,
@@ -283,21 +244,25 @@
 }
 
 .primary {
-  border: 0;
-  background: #fff;
-  color: #16130f;
+  border: 1px solid var(--liq-border);
+  background: var(--liq-paint);
+  color: var(--ink);
+  box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .ghost,
 .danger {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: var(--liq-row-paint);
+  color: var(--ink);
+  border: 1px solid var(--liq-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .danger {
-  border-color: rgba(255, 140, 120, 0.7);
-  color: #ffd0c6;
+  border-color: rgba(168, 72, 64, 0.45);
+  color: #7a2e32;
 }
 
 .phaseList {
@@ -308,14 +273,18 @@
 }
 
 .phaseItem {
-  background: rgba(18, 16, 20, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--liq-paint);
+  border: 1px solid var(--liq-border);
   border-radius: 18px;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+  color: var(--ink);
+  box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .phaseHead {
@@ -348,7 +317,7 @@
   align-items: flex-start;
   gap: 2px;
   padding: 10px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(86, 124, 210, 0.22);
 }
 
 .blockList li:first-child {
@@ -357,7 +326,7 @@
 }
 
 .blockName {
-  color: #fff;
+  color: var(--ink);
   font-size: 15px;
   font-weight: 650;
   letter-spacing: -0.015em;
@@ -382,8 +351,8 @@
 
 .unitOn {
   background: #fff;
-  color: #16130f;
-  border-color: #fff;
+  color: var(--ink);
+  border-color: rgba(86, 124, 210, 0.45);
 }
 
 .sessionItem {
@@ -421,12 +390,14 @@
   min-width: 0;
   box-sizing: border-box;
   container-type: inline-size;
-  background: rgba(0, 0, 0, 0.28);
+  background: var(--liq-row-paint);
+  border: 1px solid var(--liq-border);
   border-radius: 14px;
   padding: 12px;
   color: var(--ink-body);
   font-size: 0.9375rem;
   line-height: 1.45;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .confirmActions {
@@ -494,7 +465,9 @@
   bottom: 0;
   z-index: 4;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(12, 11, 15, 0), rgba(12, 11, 15, 0.96) 36%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(236, 232, 246, 0.78) 42%, rgba(255, 255, 255, 0.62));
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .startBarInner {
@@ -519,6 +492,21 @@
   align-items: center;
   gap: 8px;
   min-width: 0;
+  border-radius: 999px;
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
+}
+
+.chipRow .chip,
+.phaseList .phaseItem {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.phaseList {
+  border-radius: 22px;
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .chip {
@@ -531,27 +519,28 @@
   justify-content: center;
   padding: 10px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(12, 11, 15, 0.28);
-  color: #fff;
+  border: 1px solid var(--liq-border);
+  background: var(--liq-paint);
+  color: var(--ink);
   text-decoration: none;
   font-size: 15px;
   font-weight: 650;
   line-height: 1.25;
   text-align: center;
   text-wrap: balance;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .chipOn {
   background: #fff;
-  color: #16130f;
-  border-color: #fff;
+  color: var(--ink);
+  border-color: rgba(86, 124, 210, 0.45);
 }
 
 .chipSoon:not(.chipOn) {
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--ink-meta);
   border-style: dashed;
 }
 
@@ -560,7 +549,7 @@
 .templateLink:focus-visible,
 .soonButton:focus-visible,
 .more summary:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -572,7 +561,7 @@
   justify-content: space-between;
   gap: 8px 12px;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--ink);
   font-weight: 650;
   list-style: none;
 }
@@ -624,7 +613,7 @@
 }
 
 .quietLink {
-  color: #fff;
+  color: var(--ink);
   font-weight: 650;
   text-decoration: none;
   min-height: 44px;
@@ -646,7 +635,7 @@
   flex-direction: column;
   gap: 8px;
   padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(86, 124, 210, 0.2);
 }
 
 .templateLink {
@@ -691,11 +680,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px 12px;
-  padding: 10px 0;
-  background: transparent;
-  color: inherit;
-  border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 12px;
+  margin: 4px 0;
+  background: var(--liq-row-paint);
+  color: var(--ink);
+  border: 1px solid var(--liq-border);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
   text-align: left;
   text-decoration: none;
   cursor: pointer;
@@ -766,17 +757,16 @@
   font: inherit;
   cursor: pointer;
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05) 46%, rgba(255, 255, 255, 0.08)),
-    rgba(18, 16, 20, 0.42);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--liq-border);
+  background: var(--liq-paint);
+  color: var(--ink);
+  box-shadow: var(--liq-shadow);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
 }
 
 .accButton:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -835,7 +825,7 @@
 
 .accChevron {
   display: inline-block;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-meta);
   font-size: 14px;
   line-height: 1;
 }
@@ -880,7 +870,7 @@
   transform-origin: top center;
   border-radius: 22px;
   overflow: hidden;
-  background: #121014;
+  background: transparent;
   min-width: 0;
 }
 
@@ -931,11 +921,11 @@
   align-items: baseline;
   gap: 4px 10px;
   padding: 10px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(86, 124, 210, 0.22);
 }
 
 .plannedName {
-  color: #fff;
+  color: var(--ink);
   font-size: 16px;
   font-weight: 650;
   letter-spacing: -0.015em;
@@ -949,10 +939,12 @@
   margin: 8px 0 4px;
   padding: 12px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.28);
-  color: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--liq-border);
+  background: var(--liq-row-paint);
+  color: var(--ink-body);
   font-size: 15px;
   line-height: 1.45;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .soonActions {
@@ -983,6 +975,65 @@
 .nameList li {
   padding: 12px 14px;
   border-radius: 14px;
-  border: 1px dashed rgba(255, 255, 255, 0.22);
-  color: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--liq-border);
+  background: var(--liq-row-paint);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+/* Recent sessions can grow without bound. One frost for the list; rows do not blur again. */
+.historyStack {
+  gap: 0;
+  padding: 14px 16px 8px;
+  border-radius: 22px;
+  border: 1px solid var(--liq-border);
+  background: var(--liq-paint);
+  box-shadow: var(--liq-shadow);
+  color: var(--ink);
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
+}
+
+.historyStack > .card {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  padding: 12px 0;
+  border-top: 1px solid rgba(86, 124, 210, 0.22);
+}
+
+.historyStack > .card:first-of-type {
+  border-top: 0;
+}
+
+/* Catalog and Train lists scroll as one frost. Rows and nested cards do not blur again. */
+.accList {
+  border-radius: 22px;
+  -webkit-backdrop-filter: var(--liq-blur);
+  backdrop-filter: var(--liq-blur);
+}
+
+.accList .accButton,
+.accList .card,
+.accList .cardNest,
+.accList .primary,
+.accList .ghost,
+.accList .danger,
+.card .primary,
+.card .ghost,
+.card .danger,
+.card .confirm,
+.card .soonSheet,
+.card .soonButton,
+.phaseItem .blockList li,
+.phaseList .phaseItem,
+.startBar .primary,
+.historyStack .primary,
+.historyStack .ghost,
+.historyStack .danger {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }

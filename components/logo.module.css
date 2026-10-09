@@ -1,0 +1,156 @@
+.tile {
+  --logo-size: 200px;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  border-radius: calc(var(--logo-size) * 0.23);
+  background: #18181b;
+  display: grid;
+  place-items: center;
+  perspective: 600px;
+  position: relative;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 calc(var(--logo-size) * 0.05) calc(var(--logo-size) * 0.15) rgba(0, 0, 0, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tile[data-static="true"] {
+  cursor: default;
+}
+
+.pill {
+  width: 28%;
+  height: 68%;
+  border-radius: 999px;
+  background: #fff;
+  position: relative;
+  transform-origin: 50% 50%;
+}
+
+.flash {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  overflow: visible;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reversed {
+  background: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 calc(var(--logo-size) * 0.05) calc(var(--logo-size) * 0.15) rgba(60, 40, 110, 0.18);
+}
+
+.reversed .pill {
+  background: #141416;
+}
+
+.tile:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.reversed:focus-visible {
+  outline-color: #141416;
+}
+
+.splash {
+  --logo-size: 200px;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--logo-size) * 0.28);
+  background: #0b0b0d;
+  pointer-events: none;
+}
+
+.splash .tile {
+  cursor: default;
+}
+
+.splash .pill {
+  transform: rotateY(-25deg);
+}
+
+.splash.is-out {
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.word {
+  height: calc(var(--logo-size) * 0.68);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: var(--font-logo), "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: calc(var(--logo-size) * 0.11);
+  line-height: 1;
+  letter-spacing: 0.24em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='1.2' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.35 1.05'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='1.2' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.35 1.05'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 80px 80px;
+  mask-size: 80px 80px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
+.lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.dockMark {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  align-self: center;
+  width: fit-content;
+  touch-action: manipulation;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash .pill,
+  .tile .pill {
+    transform: none;
+  }
+
+  .word {
+    opacity: 1;
+  }
+
+  .flash {
+    display: none;
+  }
+
+  .splash.is-out {
+    transition: none;
+  }
+}

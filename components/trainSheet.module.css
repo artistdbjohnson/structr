@@ -18,7 +18,7 @@
   flex-direction: column;
   gap: 10px;
   padding: 18px;
-  border-radius: 18px;
+  border-radius: 12px;
   color: var(--ink);
   background: var(--liq-paint);
   border: 1px solid var(--liq-border);
@@ -44,7 +44,7 @@
 .ghost,
 .dismiss {
   min-height: 48px;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 0 16px;
   font: inherit;
   font-size: 16px;

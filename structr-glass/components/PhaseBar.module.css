@@ -16,12 +16,19 @@
   min-width: 0;
   padding: 14px 18px 12px;
   border-radius: 28px;
-  color: var(--ink);
-  background: var(--liq-paint);
-  border: 1px solid var(--liq-border);
-  box-shadow: var(--liq-shadow);
-  -webkit-backdrop-filter: var(--liq-blur);
-  backdrop-filter: var(--liq-blur);
+  color: var(--sg-ink);
+  background:
+    radial-gradient(90% 150% at 0% 0%, var(--sg-bloom-a, var(--sg-bloom-magenta-a)) 0%, transparent 62%),
+    radial-gradient(80% 140% at 100% 120%, var(--sg-bloom-b, var(--sg-bloom-cyan-b)) 0%, transparent 64%),
+    linear-gradient(165deg, var(--sg-fill-base-hi) 0%, transparent 48%),
+    linear-gradient(180deg, var(--sg-fill-strong, var(--sg-fill)) 0%, var(--sg-fill) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 0 0 1px var(--sg-rim-color),
+    var(--sg-shadow-glow, var(--sg-shadow-glow-magenta)),
+    var(--sg-shadow-depth);
+  backdrop-filter: var(--sg-backdrop);
+  -webkit-backdrop-filter: var(--sg-backdrop);
   overflow: hidden;
 }
 
@@ -58,7 +65,7 @@
   inset: 0;
   border-radius: inherit;
   padding: var(--sg-rim-width);
-  background: var(--liq-edge);
+  background: var(--sg-rim-sheen);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -125,8 +132,8 @@
   text-wrap: balance;
   overflow-wrap: anywhere;
   font-variant-numeric: tabular-nums;
-  color: var(--ink);
-  text-shadow: none;
+  color: var(--sg-ink);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.28);
 }
 
 .track {
@@ -141,19 +148,21 @@
 .seg {
   flex: 1;
   border-radius: 999px;
-  background: rgba(26, 35, 64, 0.12);
-  box-shadow: inset 0 0 0 0.5px rgba(26, 35, 64, 0.12);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.15);
   overflow: hidden;
   position: relative;
 }
 
 .seg[data-state="done"] {
-  background: linear-gradient(90deg, rgba(86, 124, 210, 0.85), rgba(222, 126, 116, 0.8));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  background: color-mix(in srgb, var(--pb-active) 55%, rgba(255, 255, 255, 0.2));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 0 10px color-mix(in srgb, var(--pb-active) 40%, transparent);
 }
 
 .seg[data-state="active"] {
-  background: rgba(26, 35, 64, 0.1);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .seg[data-state="active"] > .fill {
@@ -161,8 +170,12 @@
   inset: 0;
   width: var(--pb-progress, 50%);
   border-radius: inherit;
-  background: linear-gradient(90deg, #567cd2, #de7e74);
-  box-shadow: none;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--pb-active) 40%, transparent),
+    var(--pb-active)
+  );
+  box-shadow: 0 0 12px color-mix(in srgb, var(--pb-active) 50%, transparent);
 }
 
 .seg[data-state="todo"] {

@@ -89,9 +89,9 @@ export function PercentChip({ children }: { children: ReactNode }) {
         fontFamily: "var(--sg-numeral-font)",
         fontVariantNumeric: "tabular-nums",
         letterSpacing: "0.04em",
-        color: "var(--ink)",
-        background: "var(--liq-row-paint)",
-        boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.85)",
+        color: "var(--sg-ink)",
+        background: "var(--sg-chip-fill)",
+        boxShadow: "var(--sg-chip-shadow)",
         position: "relative",
         zIndex: 3,
         whiteSpace: "nowrap",
@@ -134,7 +134,7 @@ export function MetricPill({
         <div className={styles.row}>
           <span className={styles.value}>{value}</span>
           {spark && spark.length >= 2 ? (
-            <Sparkline points={spark} stroke="var(--ink)" />
+            <Sparkline points={spark} stroke="var(--sg-spark)" />
           ) : null}
         </div>
         {(pct || footer) && (

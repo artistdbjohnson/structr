@@ -53,7 +53,7 @@ export function YouScreen() {
   }
 
   return (
-    <PageFrame title="You">
+    <PageFrame title="You" tone="night">
       {prefs && history ? (
         <>
           <p className={styles.lead}>Sessions stay on this phone. No account.</p>

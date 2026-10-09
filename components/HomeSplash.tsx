@@ -66,7 +66,7 @@ function supportsAvif(): Promise<boolean> {
 }
 
 type HomeSplashProps = {
-  /** Manifest indexes, in play order. Defaults to home: hero-01 onward. */
+  /** Manifest indexes, in play order. Defaults to home: hero-02 onward. */
   order?: readonly number[];
 };
 

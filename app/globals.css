@@ -399,7 +399,8 @@ textarea {
   transition: transform 120ms ease-out;
 }
 
-.dock__btn:active .dock__content {
+.dock__btn:active .dock__content,
+.dock__btn[data-pressed="true"] .dock__content {
   transform: scale(0.96);
 }
 

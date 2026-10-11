@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { formatClock, formatWhen } from "@/lib/format";
-import { dockHref, rememberedDockTab } from "@/lib/nav";
+import { clearReturnTo } from "@/lib/nav";
 import { summarize } from "@/lib/session";
 import { loadHistory } from "@/lib/storage";
 import type { SessionSummary } from "@/lib/types";
@@ -42,7 +42,7 @@ export function SummaryScreen() {
         <div className={styles.shell}>
           <h1 className={styles.title}>Nothing to show yet</h1>
           <p className={styles.lead}>Finish a session and the totals show up here.</p>
-          <button className={styles.nextBtn} type="button" onClick={() => router.push(dockHref(rememberedDockTab()))}>
+          <button className={styles.nextBtn} type="button" onClick={() => { clearReturnTo(); router.push("/"); }}>
             Home
           </button>
         </div>
@@ -89,7 +89,7 @@ export function SummaryScreen() {
           />
         </div>
         <div className={styles.nextBar}>
-          <button className={styles.nextBtn} type="button" onClick={() => router.push(dockHref(rememberedDockTab()))}>
+          <button className={styles.nextBtn} type="button" onClick={() => { clearReturnTo(); router.push("/"); }}>
             Done
           </button>
           <Link className={styles.ghostLink} href="/you">

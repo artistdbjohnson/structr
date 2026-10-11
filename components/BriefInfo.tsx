@@ -218,8 +218,8 @@ export function BriefInfo({ entry, brief }: { entry: InfoEntry; brief: ParsedBri
   return (
     <main className={styles.page} data-info={entry.slug} data-status={entry.status}>
       <div className={styles.bar}>
-        <Link className={styles.back} href="/plans">
-          ‹ Plans
+        <Link className={styles.back} href="/train">
+          ‹ Train
         </Link>
       </div>
       <div className={styles.wrap}>

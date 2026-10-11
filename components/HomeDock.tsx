@@ -11,23 +11,18 @@ import {
 } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { dockTab, isTrainSheet, rememberDockTab } from "@/lib/nav";
+import { dockTab, isTrainSheet, rememberReturnTo } from "@/lib/nav";
 import { createSession, templateForSession } from "@/lib/session";
 import { learnedPlan, loadActive, loadHistory, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
 import { DEFAULT_TEMPLATE_ROUTE } from "@/lib/taxonomy";
-import { BoltIcon, CalendarIcon, PersonIcon } from "./icons";
+import { BoltIcon, PersonIcon } from "./icons";
 import { TrainSheet } from "./TrainSheet";
 import { useTapGuard } from "./useTapGuard";
 
-type SlotId = "train" | "plans" | "you";
+type SlotId = "train" | "you";
 type SlotBox = { x: number; y: number; size: number };
 
-/**
- * One diameter for every slot: the dock's content box, not each button's
- * offsetWidth. A spring on y was still stretching the disc (motion couples
- * that axis to scale). Position is applied as a translate only.
- */
 function measureSlot(nav: HTMLElement, id: SlotId): SlotBox | null {
   const slot = nav.querySelector<HTMLElement>(`[data-slot="${id}"]`);
   if (!slot) return null;
@@ -52,9 +47,10 @@ export function HomeDock() {
   const marginTap = useTapGuard();
   const path = normalize(pathname);
   const tab = dockTab(path);
-  const [hold, setHold] = useState<SlotId | null>(null);
+  const [pressed, setPressed] = useState<SlotId | null>(null);
   const [sheet, setSheet] = useState<{ templateId: string; templateName: string } | null>(null);
-  const active: SlotId | null = hold ?? tab;
+  /** Pearl follows the route only — never a press/hold preview. */
+  const active: SlotId | null = tab;
   const navRef = useRef<HTMLElement>(null);
   const [box, setBox] = useState<SlotBox | null>(null);
 
@@ -80,11 +76,10 @@ export function HomeDock() {
   }, [active, pathname]);
 
   useEffect(() => {
-    setHold(null);
+    setPressed(null);
     setSheet(null);
     lock.current = false;
-    if (tab) rememberDockTab(tab);
-  }, [pathname, tab]);
+  }, [pathname]);
 
   function findTemplate(templateId: string) {
     return (
@@ -111,27 +106,27 @@ export function HomeDock() {
     saveActive(session);
     savePrefs({ ...prefs, lastTemplateId: template.id });
     setSheet(null);
-    rememberDockTab("train");
+    rememberReturnTo(path === "/" ? "/train" : path);
     router.push("/session");
   }
 
   function train() {
     if (lock.current) return;
     if (tap.consumeIfMoved()) {
-      setHold(null);
+      setPressed(null);
       return;
     }
     if (loadActive()) {
       lock.current = true;
       setSheet(null);
-      rememberDockTab("train");
+      rememberReturnTo(path === "/" ? "/" : path);
       router.push("/session");
       return;
     }
-    if (loadHistory().length > 0) {
+    if (loadHistory().length > 0 && path === "/") {
       const template = returningTemplate();
       if (!template) return;
-      setHold(null);
+      setPressed(null);
       setSheet({ templateId: template.id, templateName: template.name });
       return;
     }
@@ -140,15 +135,17 @@ export function HomeDock() {
       router.push("/train");
       return;
     }
-    setHold(null);
+    setPressed(null);
   }
 
   function press(id: SlotId, event: PointerEvent<HTMLElement>) {
     if (event.button !== 0) return;
-    // Do not capture the pointer. Capture turned a scroll beside the pill into a Train click,
-    // which resumed Warm-up. Movement past a few pixels is ignored instead.
     tap.onPointerDown(event);
-    setHold(id);
+    setPressed(id);
+  }
+
+  function clearPressed() {
+    setPressed(null);
   }
 
   function release(event: PointerEvent<HTMLElement>) {
@@ -160,8 +157,8 @@ export function HomeDock() {
       event.clientY <= rect.bottom;
     if (!inside) {
       tap.suppress();
-      setHold(null);
     }
+    clearPressed();
   }
 
   const slotProps = {
@@ -169,15 +166,14 @@ export function HomeDock() {
     onPointerUp: release,
     onPointerCancel: () => {
       tap.suppress();
-      setHold(null);
+      clearPressed();
     },
-    onPointerLeave: () => setHold(null),
+    onPointerLeave: clearPressed,
   };
-  // Wallpaper home keeps the pill centered. A sheet, and every other page, parks it on the right.
+
   const trainSheet = isTrainSheet(path);
   const parkDock = trainSheet || path !== "/";
-  // Empty column above and below the pill. You already returns home this way; Plans does too.
-  const gutterDismiss = path === "/you" || path === "/plans";
+  const gutterDismiss = path === "/you";
 
   function goHome() {
     if (marginTap.consumeIfMoved()) return;
@@ -189,7 +185,7 @@ export function HomeDock() {
   const gutterProps = {
     type: "button" as const,
     className: "dock-gutter",
-    "aria-label": path === "/plans" ? "Close Plans" : "Close You",
+    "aria-label": "Close You",
     tabIndex: -1,
     onPointerDown: marginTap.onPointerDown,
     onPointerMove: marginTap.onPointerMove,
@@ -220,64 +216,50 @@ export function HomeDock() {
             onClick={goHome}
           />
         ) : null}
-      <nav ref={navRef} className="dock" aria-label="Home" data-active={tab ?? "none"}>
-        {box && active ? (
-          <span
-            className="dock__selection"
-            aria-hidden="true"
-            style={
-              {
-                "--disc-size": `${box.size}px`,
-                "--disc-x": `${box.x}px`,
-                "--disc-y": `${box.y}px`,
-              } as CSSProperties
-            }
-          >
-            <span className="dock__selection-face" />
-          </span>
-        ) : null}
-        <DockSlot
-          {...slotProps}
-          id="train"
-          label="Train"
-          active={active === "train"}
-          current={tab === "train"}
-          onPointerDown={(event) => press("train", event)}
-          onClick={train}
-          icon={<BoltIcon />}
-        />
-        <DockSlot
-          {...slotProps}
-          id="plans"
-          label="Plans"
-          href="/plans"
-          active={active === "plans"}
-          current={tab === "plans"}
-          onPointerDown={(event) => press("plans", event)}
-          onClick={(event) => {
-            if (tap.consumeIfMoved()) {
-              event.preventDefault();
-              setHold(null);
-            }
-          }}
-          icon={<CalendarIcon />}
-        />
-        <DockSlot
-          {...slotProps}
-          id="you"
-          label="You"
-          href="/you"
-          active={active === "you"}
-          current={tab === "you"}
-          onPointerDown={(event) => press("you", event)}
-          onClick={(event) => {
-            if (tap.consumeIfMoved()) {
-              event.preventDefault();
-              setHold(null);
-            }
-          }}
-          icon={<PersonIcon />}
-        />
+        <nav ref={navRef} className="dock" aria-label="Home" data-active={tab ?? "none"} data-slots="2">
+          {box && active ? (
+            <span
+              className="dock__selection"
+              aria-hidden="true"
+              style={
+                {
+                  "--disc-size": `${box.size}px`,
+                  "--disc-x": `${box.x}px`,
+                  "--disc-y": `${box.y}px`,
+                } as CSSProperties
+              }
+            >
+              <span className="dock__selection-face" />
+            </span>
+          ) : null}
+          <DockSlot
+            {...slotProps}
+            id="train"
+            label="Train"
+            active={active === "train"}
+            current={tab === "train"}
+            pressed={pressed === "train"}
+            onPointerDown={(event) => press("train", event)}
+            onClick={train}
+            icon={<BoltIcon />}
+          />
+          <DockSlot
+            {...slotProps}
+            id="you"
+            label="You"
+            href="/you"
+            active={active === "you"}
+            current={tab === "you"}
+            pressed={pressed === "you"}
+            onPointerDown={(event) => press("you", event)}
+            onClick={(event) => {
+              if (tap.consumeIfMoved()) {
+                event.preventDefault();
+                clearPressed();
+              }
+            }}
+            icon={<PersonIcon />}
+          />
         </nav>
         {gutterDismiss ? <button {...gutterProps} data-dock-gutter="below" /> : null}
       </div>
@@ -302,6 +284,7 @@ function DockSlot({
   href,
   active,
   current,
+  pressed,
   icon,
   onPointerDown,
   onPointerMove,
@@ -315,6 +298,7 @@ function DockSlot({
   href?: string;
   active: boolean;
   current: boolean;
+  pressed: boolean;
   icon: ReactNode;
   onPointerDown: (event: PointerEvent<HTMLElement>) => void;
   onPointerMove: (event: PointerEvent<HTMLElement>) => void;
@@ -339,6 +323,7 @@ function DockSlot({
         aria-current={current ? "page" : undefined}
         data-slot={id}
         data-selected={active ? "true" : "false"}
+        data-pressed={pressed ? "true" : "false"}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -359,6 +344,7 @@ function DockSlot({
       aria-current={current ? "page" : undefined}
       data-slot={id}
       data-selected={active ? "true" : "false"}
+      data-pressed={pressed ? "true" : "false"}
       onClick={onClick}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

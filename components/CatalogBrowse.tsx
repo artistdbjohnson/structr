@@ -3,7 +3,6 @@
 import { Children, Fragment, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { InfoLink } from "@/components/InfoLink";
-import { LearnSkill } from "@/components/LearnSkill";
 import { PageFrame } from "@/components/PageFrame";
 import { PlanMarks } from "@/components/PlanMarks";
 import { StartPlanButton } from "@/components/StartPlanButton";
@@ -35,7 +34,6 @@ export function CatalogBrowse() {
       <p className={styles.lead}>
         Open a practice, then a plan. Every startable move has a clip in How.
       </p>
-      <LearnSkill />
       <div className={styles.accList}>
         {tree.map(({ category, modules, goal }) => {
           const goalSeen = goal ? seenGoals.has(goal.id) : false;

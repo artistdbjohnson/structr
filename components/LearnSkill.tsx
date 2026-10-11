@@ -3,7 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { resolveLearnName } from "@/lib/learnSkill";
-import { dockTab, rememberDockTab } from "@/lib/nav";
+import { rememberReturnTo } from "@/lib/nav";
 import { createSession } from "@/lib/session";
 import { loadActive, loadPrefs, rememberLearnedPlan, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
@@ -29,8 +29,7 @@ export function LearnSkill() {
     const session = createSession(template, prefs.unit);
     saveActive(session);
     savePrefs({ ...prefs, lastTemplateId: template.id });
-    const tab = dockTab(pathname);
-    if (tab) rememberDockTab(tab);
+    rememberReturnTo(pathname);
     router.push("/session");
   }
 

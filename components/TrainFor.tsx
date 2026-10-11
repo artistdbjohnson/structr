@@ -121,9 +121,6 @@ export function TrainFor({ chip }: { chip: TrainChip }) {
       )}
 
       <LearnSkill />
-      <Link className={styles.quietLink} href="/plans">
-        Browse all
-      </Link>
     </PageFrame>
   );
 }

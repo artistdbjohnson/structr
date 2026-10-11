@@ -22,8 +22,8 @@ export function KettlebellInfo() {
   return (
     <main className={styles.page}>
       <div className={styles.bar}>
-        <Link className={styles.back} href="/plans">
-          ‹ Plans
+        <Link className={styles.back} href="/train">
+          ‹ Train
         </Link>
       </div>
       <div className={styles.wrap}>

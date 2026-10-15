@@ -2,11 +2,13 @@
 
 .root {
   display: grid;
-  grid-template-columns: 2.4rem minmax(0, 1fr);
-  gap: 0.35rem 0.55rem;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.3rem 0.45rem;
   align-items: stretch;
-  min-height: min(68dvh, 560px);
-  padding-bottom: 1.25rem;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  padding-bottom: 0;
 }
 
 .monthRail {
@@ -57,7 +59,12 @@
 
 .spine {
   touch-action: pan-y;
-  overflow: hidden;
+  min-height: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   border-radius: 22px;
   background:
     linear-gradient(165deg, rgba(255, 255, 255, 0.55) 0%, rgba(246, 242, 252, 0.42) 55%, rgba(255, 246, 240, 0.48) 100%);
@@ -87,8 +94,8 @@
   display: grid;
   grid-template-columns: 1.1rem minmax(0, 1fr);
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.22rem 0.45rem;
+  gap: 0.45rem;
+  padding: 0.08rem 0.35rem;
   border-radius: 14px;
   cursor: pointer;
   color: inherit;
@@ -110,7 +117,7 @@
 }
 
 .num {
-  font: 500 clamp(1.55rem, 6.2vw, 2.05rem)/1 "JetBrains Mono", monospace;
+  font: 500 clamp(1.15rem, 4.6vw, 1.7rem)/1 "JetBrains Mono", monospace;
   letter-spacing: -0.02em;
   color: rgba(44, 61, 98, 0.28);
   transition: color 120ms ease;

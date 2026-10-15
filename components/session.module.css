@@ -1,5 +1,8 @@
 .screen {
-  min-height: 100dvh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
   --ink: #fff;
   --ink-body: rgba(255, 255, 255, 0.86);
   --ink-meta: rgba(255, 255, 255, 0.78);
@@ -49,11 +52,15 @@
   z-index: 2;
   width: min(430px, 100%);
   margin: 0 auto;
-  min-height: 100dvh;
+  height: 100%;
+  max-height: 100dvh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: calc(8px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));
+  gap: 10px;
+  padding: calc(8px + env(safe-area-inset-top)) 16px calc(12px + env(safe-area-inset-bottom));
 }
 
 .shell > * {

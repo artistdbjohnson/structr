@@ -1,4 +1,4 @@
-export type DockTab = "train" | "you";
+export type DockTab = "train" | "plans" | "you";
 
 const RETURN_KEY = "structr.returnTo";
 
@@ -8,22 +8,21 @@ function normalize(pathname: string): string {
 }
 
 /**
- * Dock has Train and You only. Plan and info routes sit under Train.
+ * Dock has Train, Plans, and You. Pearl follows the route only.
  * `/` selects nothing so the pearl never rests on a closed sheet.
  */
 export function dockTab(pathname: string): DockTab | null {
   const path = normalize(pathname);
   if (path === "/") return null;
   if (path === "/you") return "you";
+  if (path === "/train" || path.startsWith("/train/")) return "train";
   if (
-    path === "/train" ||
-    path.startsWith("/train/") ||
     path === "/plans" ||
     path.startsWith("/plans/") ||
     path === "/info" ||
     path.startsWith("/info/")
   ) {
-    return "train";
+    return "plans";
   }
   return null;
 }
@@ -34,7 +33,9 @@ export function isTrainSheet(pathname: string): boolean {
 }
 
 export function dockHref(tab: DockTab): string {
-  return tab === "you" ? "/you" : "/train";
+  if (tab === "train") return "/train";
+  if (tab === "you") return "/you";
+  return "/plans";
 }
 
 /** Where session chrome Back / swipe should land. */
@@ -83,12 +84,11 @@ export function exitSession(router: { back(): void; push(href: string): void }) 
   router.push(fallback || "/");
 }
 
-/** @deprecated kept for any stray imports — maps to train/you only */
 export function rememberDockTab(tab: DockTab) {
   rememberReturnTo(dockHref(tab));
 }
 
 export function rememberedDockTab(): DockTab {
   const path = peekReturnTo();
-  return dockTab(path) ?? "train";
+  return dockTab(path) ?? "plans";
 }

@@ -13,6 +13,7 @@ export function PageFrame({
   meta,
   trailing,
   tone,
+  fill,
   children,
 }: {
   backHref?: string;
@@ -23,6 +24,8 @@ export function PageFrame({
   trailing?: ReactNode;
   /** You and Train keep the pre-mist surface. Plans stays on the shared frost. */
   tone?: "night";
+  /** Lock children to the leftover viewport (no page scroll); child scrolls itself. */
+  fill?: boolean;
   children: ReactNode;
 }) {
   const trayClose = useTrayClose();
@@ -56,7 +59,7 @@ export function PageFrame({
           </h1>
           {meta ? <p className={styles.kicker}>{meta}</p> : null}
         </header>
-        {children}
+        <div className={fill ? styles.fill : styles.body}>{children}</div>
       </div>
     </main>
   );

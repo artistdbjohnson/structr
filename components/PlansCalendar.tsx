@@ -171,7 +171,7 @@ export function PlansCalendar() {
   }
 
   return (
-    <PageFrame title="Plans" meta="Training spine">
+    <PageFrame title="Plans" meta="Training spine" fill>
       <div className={styles.root}>
         <div className={styles.monthRail}>
           <button type="button" className={styles.navBtn} aria-label="Previous month" onClick={() => shiftMonth(-1)}>

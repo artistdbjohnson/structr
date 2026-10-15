@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { clearReturnTo } from "@/lib/nav";
 import { JetBrains_Mono } from "next/font/google";
 import { LogoMark } from "./LogoMark";
 import styles from "./logo.module.css";
@@ -34,6 +36,8 @@ export function LogoSplash() {
   const tileRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<"show" | "out" | "gone">("show");
   const skipRef = useRef<(() => void) | null>(null);
+  const router = useRouter();
+  const pathname = usePathname() || "/";
 
   useEffect(() => {
     if (window.__structrSplash) {
@@ -41,6 +45,14 @@ export function LogoSplash() {
       return;
     }
     window.__structrSplash = true;
+    // Drop any session return path so exit never invents a tab after a cold open.
+    clearReturnTo();
+    // Cold document open always settles on the centered home pill (PWA restore included).
+    const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+    if (path !== "/") {
+      router.replace("/");
+    }
+
     const tile = tileRef.current;
     if (!tile) return;
 

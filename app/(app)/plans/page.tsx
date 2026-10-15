@@ -1,6 +1,8 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { PlansCalendar } from "@/components/PlansCalendar";
 
-/** Plans catalog merged into Train. Old links land on Train. */
+export const metadata: Metadata = { title: "Plans" };
+
 export default function PlansPage() {
-  redirect("/train");
+  return <PlansCalendar />;
 }

@@ -16,11 +16,11 @@ import { createSession, templateForSession } from "@/lib/session";
 import { learnedPlan, loadActive, loadHistory, loadPrefs, saveActive, savePrefs } from "@/lib/storage";
 import { getTemplate } from "@/lib/templates";
 import { DEFAULT_TEMPLATE_ROUTE } from "@/lib/taxonomy";
-import { BoltIcon, PersonIcon } from "./icons";
+import { BoltIcon, CalendarIcon, PersonIcon } from "./icons";
 import { TrainSheet } from "./TrainSheet";
 import { useTapGuard } from "./useTapGuard";
 
-type SlotId = "train" | "you";
+type SlotId = "train" | "plans" | "you";
 type SlotBox = { x: number; y: number; size: number };
 
 function measureSlot(nav: HTMLElement, id: SlotId): SlotBox | null {
@@ -173,7 +173,7 @@ export function HomeDock() {
 
   const trainSheet = isTrainSheet(path);
   const parkDock = trainSheet || path !== "/";
-  const gutterDismiss = path === "/you";
+  const gutterDismiss = path === "/you" || path === "/plans";
 
   function goHome() {
     if (marginTap.consumeIfMoved()) return;
@@ -185,7 +185,7 @@ export function HomeDock() {
   const gutterProps = {
     type: "button" as const,
     className: "dock-gutter",
-    "aria-label": "Close You",
+    "aria-label": path === "/plans" ? "Close Plans" : "Close You",
     tabIndex: -1,
     onPointerDown: marginTap.onPointerDown,
     onPointerMove: marginTap.onPointerMove,
@@ -216,7 +216,7 @@ export function HomeDock() {
             onClick={goHome}
           />
         ) : null}
-        <nav ref={navRef} className="dock" aria-label="Home" data-active={tab ?? "none"} data-slots="2">
+        <nav ref={navRef} className="dock" aria-label="Home" data-active={tab ?? "none"}>
           {box && active ? (
             <span
               className="dock__selection"
@@ -242,6 +242,23 @@ export function HomeDock() {
             onPointerDown={(event) => press("train", event)}
             onClick={train}
             icon={<BoltIcon />}
+          />
+          <DockSlot
+            {...slotProps}
+            id="plans"
+            label="Plans"
+            href="/plans"
+            active={active === "plans"}
+            current={tab === "plans"}
+            pressed={pressed === "plans"}
+            onPointerDown={(event) => press("plans", event)}
+            onClick={(event) => {
+              if (tap.consumeIfMoved()) {
+                event.preventDefault();
+                clearPressed();
+              }
+            }}
+            icon={<CalendarIcon />}
           />
           <DockSlot
             {...slotProps}
